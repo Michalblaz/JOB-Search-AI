@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class JobSearchService | JOB Search - dokumentacja kodu </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class JobSearchService | JOB Search - dokumentacja kodu ">
+      
+      <meta name="description" content="Koordynuje wyszukiwanie ofert pracy, filtrowanie wynik&#243;w, konta użytkownik&#243;w oraz listę ulubionych.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Michalblaz/JOB-Search-AI/new/CODEX/apiSpec/new?filename=MauiApp1_testowe_JobSearchService.md&amp;value=---%0Auid%3A%20MauiApp1.testowe.JobSearchService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="MauiApp1.testowe.JobSearchService">
+
+
+
+  <h1 id="MauiApp1_testowe_JobSearchService" data-uid="MauiApp1.testowe.JobSearchService" class="text-break">
+Class JobSearchService  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="MauiApp1.html">MauiApp1</a>.<a class="xref" href="MauiApp1.testowe.html">testowe</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>MauiApp1.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Koordynuje wyszukiwanie ofert pracy, filtrowanie wyników, konta użytkowników oraz listę ulubionych.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class JobSearchService</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">JobSearchService</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="MauiApp1_testowe_JobSearchService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Serwis pełni rolę stanu aplikacji dla ekranów Blazor/MAUI. Łączy dane z wielu źródeł, normalizuje je do
+<a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a>, a następnie oblicza dopasowanie względem aktywnych filtrów i profilu użytkownika.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="MauiApp1_testowe_JobSearchService__ctor_" data-uid="MauiApp1.testowe.JobSearchService.#ctor*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService__ctor_MauiApp1_testowe_IUserStore_MauiApp1_testowe_AppSettingsProvider_MauiApp1_testowe_IAppSessionStore_MauiApp1_testowe_IUrlLauncher_MauiApp1_testowe_PostgresJobReader_" data-uid="MauiApp1.testowe.JobSearchService.#ctor(MauiApp1.testowe.IUserStore,MauiApp1.testowe.AppSettingsProvider,MauiApp1.testowe.IAppSessionStore,MauiApp1.testowe.IUrlLauncher,MauiApp1.testowe.PostgresJobReader)">
+  JobSearchService(IUserStore, AppSettingsProvider, IAppSessionStore, IUrlLauncher, PostgresJobReader)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tworzy usługę wyszukiwania z zależnościami odpowiednimi dla aktualnej platformy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JobSearchService(IUserStore userStore, AppSettingsProvider settingsProvider, IAppSessionStore sessionStore, IUrlLauncher urlLauncher, PostgresJobReader jobReader)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userStore</code> <a class="xref" href="MauiApp1.testowe.IUserStore.html">IUserStore</a></dt>
+    <dd><p>Magazyn kont użytkowników, np. lokalny JSON albo PostgreSQL.</p>
+</dd>
+    <dt><code>settingsProvider</code> <a class="xref" href="MauiApp1.testowe.AppSettingsProvider.html">AppSettingsProvider</a></dt>
+    <dd><p>Provider ustawień zawierający klucze API i konfigurację bazy.</p>
+</dd>
+    <dt><code>sessionStore</code> <a class="xref" href="MauiApp1.testowe.IAppSessionStore.html">IAppSessionStore</a></dt>
+    <dd><p>Magazyn krótkotrwałej sesji logowania.</p>
+</dd>
+    <dt><code>urlLauncher</code> <a class="xref" href="MauiApp1.testowe.IUrlLauncher.html">IUrlLauncher</a></dt>
+    <dd><p>Usługa otwierająca linki zewnętrzne do ofert.</p>
+</dd>
+    <dt><code>jobReader</code> <a class="xref" href="MauiApp1.testowe.PostgresJobReader.html">PostgresJobReader</a></dt>
+    <dd><p>Czytnik ofert zaimportowanych wcześniej do PostgreSQL.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="MauiApp1_testowe_JobSearchService_AllJobOffers_" data-uid="MauiApp1.testowe.JobSearchService.AllJobOffers*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_AllJobOffers" data-uid="MauiApp1.testowe.JobSearchService.AllJobOffers">
+  AllJobOffers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;JobOffer&gt; AllJobOffers { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_CurrentResultsPage_" data-uid="MauiApp1.testowe.JobSearchService.CurrentResultsPage*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_CurrentResultsPage" data-uid="MauiApp1.testowe.JobSearchService.CurrentResultsPage">
+  CurrentResultsPage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L221"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CurrentResultsPage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_CurrentUser_" data-uid="MauiApp1.testowe.JobSearchService.CurrentUser*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_CurrentUser" data-uid="MauiApp1.testowe.JobSearchService.CurrentUser">
+  CurrentUser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Aktualnie zalogowany profil albo profil tymczasowy użytkownika niezalogowanego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UserProfile CurrentUser { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="MauiApp1.testowe.UserProfile.html">UserProfile</a></dt>
+    <dd><p>Wartość jest odświeżana po rejestracji, logowaniu, wylogowaniu i wczytaniu danych z magazynu.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_DarkModeEnabled_" data-uid="MauiApp1.testowe.JobSearchService.DarkModeEnabled*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_DarkModeEnabled" data-uid="MauiApp1.testowe.JobSearchService.DarkModeEnabled">
+  DarkModeEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DarkModeEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_Distance_" data-uid="MauiApp1.testowe.JobSearchService.Distance*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_Distance" data-uid="MauiApp1.testowe.JobSearchService.Distance">
+  Distance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Distance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_FavoriteOffers_" data-uid="MauiApp1.testowe.JobSearchService.FavoriteOffers*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_FavoriteOffers" data-uid="MauiApp1.testowe.JobSearchService.FavoriteOffers">
+  FavoriteOffers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L220"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;JobOffer&gt; FavoriteOffers { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_FilteredOffers_" data-uid="MauiApp1.testowe.JobSearchService.FilteredOffers*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_FilteredOffers" data-uid="MauiApp1.testowe.JobSearchService.FilteredOffers">
+  FilteredOffers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L310"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;JobOffer&gt; FilteredOffers { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_HasNextPage_" data-uid="MauiApp1.testowe.JobSearchService.HasNextPage*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_HasNextPage" data-uid="MauiApp1.testowe.JobSearchService.HasNextPage">
+  HasNextPage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L222"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasNextPage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_HasPreviousPage_" data-uid="MauiApp1.testowe.JobSearchService.HasPreviousPage*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_HasPreviousPage" data-uid="MauiApp1.testowe.JobSearchService.HasPreviousPage">
+  HasPreviousPage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L223"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasPreviousPage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_HasRegisteredAccount_" data-uid="MauiApp1.testowe.JobSearchService.HasRegisteredAccount*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_HasRegisteredAccount" data-uid="MauiApp1.testowe.JobSearchService.HasRegisteredAccount">
+  HasRegisteredAccount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasRegisteredAccount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_IsLoading_" data-uid="MauiApp1.testowe.JobSearchService.IsLoading*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_IsLoading" data-uid="MauiApp1.testowe.JobSearchService.IsLoading">
+  IsLoading
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLoading { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_IsLoggedIn_" data-uid="MauiApp1.testowe.JobSearchService.IsLoggedIn*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_IsLoggedIn" data-uid="MauiApp1.testowe.JobSearchService.IsLoggedIn">
+  IsLoggedIn
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLoggedIn { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_JobRange_" data-uid="MauiApp1.testowe.JobSearchService.JobRange*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_JobRange" data-uid="MauiApp1.testowe.JobSearchService.JobRange">
+  JobRange
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string JobRange { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_LanguageFilters_" data-uid="MauiApp1.testowe.JobSearchService.LanguageFilters*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_LanguageFilters" data-uid="MauiApp1.testowe.JobSearchService.LanguageFilters">
+  LanguageFilters
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L288"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, bool&gt; LanguageFilters { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_LastApiError_" data-uid="MauiApp1.testowe.JobSearchService.LastApiError*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_LastApiError" data-uid="MauiApp1.testowe.JobSearchService.LastApiError">
+  LastApiError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LastApiError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_Location_" data-uid="MauiApp1.testowe.JobSearchService.Location*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_Location" data-uid="MauiApp1.testowe.JobSearchService.Location">
+  Location
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Location { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_MaxSalary_" data-uid="MauiApp1.testowe.JobSearchService.MaxSalary*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_MaxSalary" data-uid="MauiApp1.testowe.JobSearchService.MaxSalary">
+  MaxSalary
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxSalary { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_MinSalary_" data-uid="MauiApp1.testowe.JobSearchService.MinSalary*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_MinSalary" data-uid="MauiApp1.testowe.JobSearchService.MinSalary">
+  MinSalary
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MinSalary { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_NotificationsEnabled_" data-uid="MauiApp1.testowe.JobSearchService.NotificationsEnabled*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_NotificationsEnabled" data-uid="MauiApp1.testowe.JobSearchService.NotificationsEnabled">
+  NotificationsEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NotificationsEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_RemoteOnly_" data-uid="MauiApp1.testowe.JobSearchService.RemoteOnly*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_RemoteOnly" data-uid="MauiApp1.testowe.JobSearchService.RemoteOnly">
+  RemoteOnly
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoteOnly { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_ResultsPerPage_" data-uid="MauiApp1.testowe.JobSearchService.ResultsPerPage*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_ResultsPerPage" data-uid="MauiApp1.testowe.JobSearchService.ResultsPerPage">
+  ResultsPerPage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L224"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ResultsPerPage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SearchText_" data-uid="MauiApp1.testowe.JobSearchService.SearchText*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SearchText" data-uid="MauiApp1.testowe.JobSearchService.SearchText">
+  SearchText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SearchText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SelectedContracts_" data-uid="MauiApp1.testowe.JobSearchService.SelectedContracts*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SelectedContracts" data-uid="MauiApp1.testowe.JobSearchService.SelectedContracts">
+  SelectedContracts
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; SelectedContracts { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SelectedEducation_" data-uid="MauiApp1.testowe.JobSearchService.SelectedEducation*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SelectedEducation" data-uid="MauiApp1.testowe.JobSearchService.SelectedEducation">
+  SelectedEducation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SelectedEducation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SelectedExperience_" data-uid="MauiApp1.testowe.JobSearchService.SelectedExperience*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SelectedExperience" data-uid="MauiApp1.testowe.JobSearchService.SelectedExperience">
+  SelectedExperience
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L217"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SelectedExperience { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SourceFilters_" data-uid="MauiApp1.testowe.JobSearchService.SourceFilters*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SourceFilters" data-uid="MauiApp1.testowe.JobSearchService.SourceFilters">
+  SourceFilters
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L296"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, bool&gt; SourceFilters { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_StatusMessage_" data-uid="MauiApp1.testowe.JobSearchService.StatusMessage*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_StatusMessage" data-uid="MauiApp1.testowe.JobSearchService.StatusMessage">
+  StatusMessage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L198"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string StatusMessage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="MauiApp1_testowe_JobSearchService_AddToHistory_" data-uid="MauiApp1.testowe.JobSearchService.AddToHistory*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_AddToHistory_MauiApp1_testowe_JobOffer_" data-uid="MauiApp1.testowe.JobSearchService.AddToHistory(MauiApp1.testowe.JobOffer)">
+  AddToHistory(JobOffer)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L468"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Dodaje ofertę do historii przeglądania bieżącego użytkownika.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddToHistory(JobOffer offer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd><p>Oferta otwarta przez użytkownika.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MauiApp1_testowe_JobSearchService_AddToHistory_MauiApp1_testowe_JobOffer__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Historia jest deduplikowana po tytule i firmie oraz ograniczana, aby nie rozrastała się bez kontroli w magazynie konta.</p>
+</div>
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_ApplyProfileFilters_" data-uid="MauiApp1.testowe.JobSearchService.ApplyProfileFilters*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_ApplyProfileFilters" data-uid="MauiApp1.testowe.JobSearchService.ApplyProfileFilters">
+  ApplyProfileFilters()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L508"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Przenosi preferencje zapisane w profilu użytkownika na bieżące filtry wyszukiwania.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyProfileFilters()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MauiApp1_testowe_JobSearchService_ApplyProfileFilters_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Metoda jest wywoływana wtedy, gdy użytkownik chce szybko wrócić do swoich długoterminowych preferencji bez ręcznego
+ustawiania lokalizacji, wynagrodzenia, doświadczenia, wykształcenia, języków i typów umowy.</p>
+</div>
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_CalculateMatchingScore_" data-uid="MauiApp1.testowe.JobSearchService.CalculateMatchingScore*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_CalculateMatchingScore_MauiApp1_testowe_JobOffer_" data-uid="MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)">
+  CalculateMatchingScore(JobOffer)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L620"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Oblicza lokalny wynik dopasowania oferty do aktualnych filtrów i preferencji użytkownika.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CalculateMatchingScore(JobOffer offer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd><p>Oferta oceniana bez udziału usługi AI.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Wynik w skali 0-100, gdzie większa wartość oznacza lepsze dopasowanie.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MauiApp1_testowe_JobSearchService_CalculateMatchingScore_MauiApp1_testowe_JobOffer__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Algorytm celowo łączy kilka sygnałów: wyszukiwaną frazę, lokalizację, widełki wynagrodzenia, doświadczenie,
+wykształcenie, języki, rodzaj umowy i tryb zdalny. Dzięki temu ranking nadal działa, gdy <a class="xref" href="MauiApp1.testowe.GeminiMatchService.html">GeminiMatchService</a>
+nie jest skonfigurowany albo zewnętrzne API AI zwróci błąd.</p>
+</div>
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_ChangePassword_" data-uid="MauiApp1.testowe.JobSearchService.ChangePassword*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_ChangePassword_System_String_System_String_System_String_System_String__" data-uid="MauiApp1.testowe.JobSearchService.ChangePassword(System.String,System.String,System.String,System.String@)">
+  ChangePassword(string, string, string, out string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L423"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Zmienia hasło aktualnie zalogowanego konta po walidacji obecnego hasła.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ChangePassword(string currentPassword, string newPassword, string confirmPassword, out string errorMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>currentPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Aktualne hasło służące do potwierdzenia tożsamości.</p>
+</dd>
+    <dt><code>newPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Nowe hasło do zapisania.</p>
+</dd>
+    <dt><code>confirmPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Powtórzenie nowego hasła z formularza.</p>
+</dd>
+    <dt><code>errorMessage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Komunikat błędu walidacji albo pusty tekst po sukcesie.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy hasło zostało zaktualizowane.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_ConvertHourlyRateToMonthlySalary_" data-uid="MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_ConvertHourlyRateToMonthlySalary_System_Int32_" data-uid="MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary(System.Int32)">
+  ConvertHourlyRateToMonthlySalary(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L568"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ConvertHourlyRateToMonthlySalary(int hourlyRate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hourlyRate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_DescriptionMatchesSearchQuery_" data-uid="MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_DescriptionMatchesSearchQuery_MauiApp1_testowe_JobOffer_System_String_" data-uid="MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)">
+  DescriptionMatchesSearchQuery(JobOffer, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L724"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DescriptionMatchesSearchQuery(JobOffer offer, string query)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd></dd>
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_HasAnyTitleMatch_" data-uid="MauiApp1.testowe.JobSearchService.HasAnyTitleMatch*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_HasAnyTitleMatch_System_Collections_Generic_IEnumerable_MauiApp1_testowe_JobOffer__System_String_" data-uid="MauiApp1.testowe.JobSearchService.HasAnyTitleMatch(System.Collections.Generic.IEnumerable{MauiApp1.testowe.JobOffer},System.String)">
+  HasAnyTitleMatch(IEnumerable&lt;JobOffer&gt;, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L734"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasAnyTitleMatch(IEnumerable&lt;JobOffer&gt; offers, string query)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_IsSearchMatchForDisplay_" data-uid="MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_IsSearchMatchForDisplay_MauiApp1_testowe_JobOffer_System_String_System_Boolean_" data-uid="MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay(MauiApp1.testowe.JobOffer,System.String,System.Boolean)">
+  IsSearchMatchForDisplay(JobOffer, string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L744"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSearchMatchForDisplay(JobOffer offer, string query, bool hasAnyTitleMatch)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd></dd>
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>hasAnyTitleMatch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_LoadDataFromDevice_" data-uid="MauiApp1.testowe.JobSearchService.LoadDataFromDevice*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_LoadDataFromDevice" data-uid="MauiApp1.testowe.JobSearchService.LoadDataFromDevice">
+  LoadDataFromDevice()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L987"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoadDataFromDevice()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_LoadNextPageAsync_" data-uid="MauiApp1.testowe.JobSearchService.LoadNextPageAsync*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_LoadNextPageAsync" data-uid="MauiApp1.testowe.JobSearchService.LoadNextPageAsync">
+  LoadNextPageAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L1216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task LoadNextPageAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_LoadPreviousPageAsync_" data-uid="MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_LoadPreviousPageAsync" data-uid="MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync">
+  LoadPreviousPageAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L1228"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task LoadPreviousPageAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_Login_" data-uid="MauiApp1.testowe.JobSearchService.Login*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_Login_System_String_System_String_System_String__" data-uid="MauiApp1.testowe.JobSearchService.Login(System.String,System.String,System.String@)">
+  Login(string, string, out string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L367"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loguje użytkownika po porównaniu skrótu hasła z rekordem zapisanym w <a class="xref" href="MauiApp1.testowe.IUserStore.html">IUserStore</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Login(string username, string password, out string errorMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>username</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Login wpisany w formularzu logowania.</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Hasło wprowadzone przez użytkownika.</p>
+</dd>
+    <dt><code>errorMessage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Powód odmowy logowania albo pusty tekst po sukcesie.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy konto istnieje i hasło jest poprawne.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_Logout_" data-uid="MauiApp1.testowe.JobSearchService.Logout*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_Logout" data-uid="MauiApp1.testowe.JobSearchService.Logout">
+  Logout()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L404"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Kończy sesję użytkownika i usuwa z pamięci dane profilu oraz wyniki powiązane z kontem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Logout()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_MarkAiFallback_" data-uid="MauiApp1.testowe.JobSearchService.MarkAiFallback*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_MarkAiFallback_System_String_" data-uid="MauiApp1.testowe.JobSearchService.MarkAiFallback(System.String)">
+  MarkAiFallback(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L809"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MarkAiFallback(string? reason)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reason</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_MatchesLocationFilter_" data-uid="MauiApp1.testowe.JobSearchService.MatchesLocationFilter*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_MatchesLocationFilter_MauiApp1_testowe_JobOffer_" data-uid="MauiApp1.testowe.JobSearchService.MatchesLocationFilter(MauiApp1.testowe.JobOffer)">
+  MatchesLocationFilter(JobOffer)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Określa, czy oferta spełnia bieżące kryteria lokalizacji i trybu zdalnego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MatchesLocationFilter(JobOffer offer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd><p>Oferta sprawdzana względem aktualnych filtrów usługi.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy oferta powinna pozostać na liście wyników.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_MatchesMaximumSalary_" data-uid="MauiApp1.testowe.JobSearchService.MatchesMaximumSalary*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_MatchesMaximumSalary_System_String_System_Int32_" data-uid="MauiApp1.testowe.JobSearchService.MatchesMaximumSalary(System.String,System.Int32)">
+  MatchesMaximumSalary(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L594"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MatchesMaximumSalary(string salary, int maximumHourlyRate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>salary</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>maximumHourlyRate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_MatchesMinimumSalary_" data-uid="MauiApp1.testowe.JobSearchService.MatchesMinimumSalary*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_MatchesMinimumSalary_System_String_System_Int32_" data-uid="MauiApp1.testowe.JobSearchService.MatchesMinimumSalary(System.String,System.Int32)">
+  MatchesMinimumSalary(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L578"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MatchesMinimumSalary(string salary, int minimumHourlyRate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>salary</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>minimumHourlyRate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_MatchesSearchQuery_" data-uid="MauiApp1.testowe.JobSearchService.MatchesSearchQuery*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_MatchesSearchQuery_MauiApp1_testowe_JobOffer_System_String_" data-uid="MauiApp1.testowe.JobSearchService.MatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)">
+  MatchesSearchQuery(JobOffer, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L704"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sprawdza, czy oferta pasuje do wyszukiwanej frazy lub jej synonimów branżowych.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MatchesSearchQuery(JobOffer offer, string query)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd><p>Oferta sprawdzana względem zapytania.</p>
+</dd>
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Fraza wpisana przez użytkownika.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy tytuł, firma, opis lub tagi zawierają dopasowanie.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_NotifyStateChanged_" data-uid="MauiApp1.testowe.JobSearchService.NotifyStateChanged*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_NotifyStateChanged" data-uid="MauiApp1.testowe.JobSearchService.NotifyStateChanged">
+  NotifyStateChanged()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L308"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Powiadamia widoki, że stan usługi zmienił się i należy odświeżyć interfejs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyStateChanged()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_OpenJobDetails_" data-uid="MauiApp1.testowe.JobSearchService.OpenJobDetails*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_OpenJobDetails_MauiApp1_testowe_JobOffer_" data-uid="MauiApp1.testowe.JobSearchService.OpenJobDetails(MauiApp1.testowe.JobOffer)">
+  OpenJobDetails(JobOffer)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L491"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Otwiera zewnętrzny adres oferty i zapisuje ją w historii użytkownika.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task OpenJobDetails(JobOffer offer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd><p>Oferta, której szczegóły mają zostać otwarte w przeglądarce.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>Zadanie reprezentujące operację uruchomienia adresu URL.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_RefreshOfferOrdering_" data-uid="MauiApp1.testowe.JobSearchService.RefreshOfferOrdering*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_RefreshOfferOrdering" data-uid="MauiApp1.testowe.JobSearchService.RefreshOfferOrdering">
+  RefreshOfferOrdering()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L818"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RefreshOfferOrdering()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_Register_" data-uid="MauiApp1.testowe.JobSearchService.Register*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_Register_System_String_System_String_System_String__" data-uid="MauiApp1.testowe.JobSearchService.Register(System.String,System.String,System.String@)">
+  Register(string, string, out string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L322"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rejestruje nowe konto i natychmiast ustawia je jako aktywną sesję.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Register(string username, string password, out string errorMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>username</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Login podany w formularzu rejestracji.</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Hasło użytkownika, które zostanie zapisane wyłącznie w postaci skrótu.</p>
+</dd>
+    <dt><code>errorMessage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Komunikat walidacyjny gotowy do pokazania w UI, gdy operacja się nie powiedzie.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy konto zostało utworzone i zapisane.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MauiApp1_testowe_JobSearchService_Register_System_String_System_String_System_String___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Metoda resetuje stan wyszukiwania, aby nowy użytkownik nie odziedziczył historii ani ulubionych z poprzedniej sesji.</p>
+</div>
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_ResetOfferMatchInsights_" data-uid="MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_ResetOfferMatchInsights" data-uid="MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights">
+  ResetOfferMatchInsights()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L800"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Usuwa poprzednie uzasadnienia i flagi AI z aktualnej listy wyników.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetOfferMatchInsights()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="MauiApp1_testowe_JobSearchService_ResetOfferMatchInsights_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Reset jest wykonywany przed ponownym rankingiem, aby użytkownik nie widział starego uzasadnienia przy wynikach
+przeliczonych już według innych filtrów.</p>
+</div>
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SafeParseSalary_" data-uid="MauiApp1.testowe.JobSearchService.SafeParseSalary*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SafeParseSalary_System_String_" data-uid="MauiApp1.testowe.JobSearchService.SafeParseSalary(System.String)">
+  SafeParseSalary(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L550"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Próbuje odczytać liczbową wartość wynagrodzenia z tekstu oferty.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SafeParseSalary(string salary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>salary</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Tekst wynagrodzenia zwrócony przez źródło zewnętrzne.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Pierwsza sensowna kwota wykryta w tekście albo <code>0</code>, gdy nie da się jej odczytać.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SaveDataToDevice_" data-uid="MauiApp1.testowe.JobSearchService.SaveDataToDevice*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SaveDataToDevice" data-uid="MauiApp1.testowe.JobSearchService.SaveDataToDevice">
+  SaveDataToDevice()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L975"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SaveDataToDevice()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SearchJobsOnlineAsync_" data-uid="MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SearchJobsOnlineAsync_System_String_System_String_" data-uid="MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync(System.String,System.String)">
+  SearchJobsOnlineAsync(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L1147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Pobiera oferty pracy z aktywnych źródeł i zapisuje pierwszą stronę wyników w stanie aplikacji.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SearchJobsOnlineAsync(string query, string location)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Fraza stanowiska lub branży wpisana przez użytkownika.</p>
+</dd>
+    <dt><code>location</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Lokalizacja przekazana do źródeł wspierających wyszukiwanie geograficzne.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>Zadanie kończące się po pobraniu, filtrowaniu i uporządkowaniu wyników.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="MauiApp1_testowe_JobSearchService_SearchJobsOnlineAsync_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Metoda łączy wyniki z bazy PostgreSQL oraz zewnętrznych API. Przy błędach pojedynczych źródeł zachowuje możliwe wyniki
+z pozostałych źródeł i zapisuje komunikat w <a class="xref" href="MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_LastApiError">LastApiError</a>.</p>
+</div>
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SetCurrentResultsPage_" data-uid="MauiApp1.testowe.JobSearchService.SetCurrentResultsPage*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SetCurrentResultsPage_System_Int32_" data-uid="MauiApp1.testowe.JobSearchService.SetCurrentResultsPage(System.Int32)">
+  SetCurrentResultsPage(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L1240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCurrentResultsPage(int pageNumber)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pageNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_SourceSupportsDistance_" data-uid="MauiApp1.testowe.JobSearchService.SourceSupportsDistance*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_SourceSupportsDistance_System_String_" data-uid="MauiApp1.testowe.JobSearchService.SourceSupportsDistance(System.String)">
+  SourceSupportsDistance(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sprawdza, czy dane źródło obsługuje wyszukiwanie z promieniem odległości.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SourceSupportsDistance(string source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Nazwa źródła widoczna w filtrach aplikacji.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy źródło przyjmuje filtr odległości bez lokalnego dopasowywania tekstu.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_TitleMatchesSearchQuery_" data-uid="MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_TitleMatchesSearchQuery_MauiApp1_testowe_JobOffer_System_String_" data-uid="MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)">
+  TitleMatchesSearchQuery(JobOffer, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L714"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TitleMatchesSearchQuery(JobOffer offer, string query)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd></dd>
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="MauiApp1_testowe_JobSearchService_ToggleFavorite_" data-uid="MauiApp1.testowe.JobSearchService.ToggleFavorite*"></a>
+
+  <h3 id="MauiApp1_testowe_JobSearchService_ToggleFavorite_MauiApp1_testowe_JobOffer_" data-uid="MauiApp1.testowe.JobSearchService.ToggleFavorite(MauiApp1.testowe.JobOffer)">
+  ToggleFavorite(JobOffer)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L959"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Dodaje ofertę do ulubionych albo usuwa ją, jeżeli już była zapisana.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ToggleFavorite(JobOffer offer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offer</code> <a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></dt>
+    <dd><p>Oferta przełączana na liście ulubionych bieżącego użytkownika.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="MauiApp1_testowe_JobSearchService_OnChange" data-uid="MauiApp1.testowe.JobSearchService.OnChange">
+  OnChange
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action? OnChange</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h2 id="seealso">See Also</h2>
+  <div class="seealso">
+      <div><a class="xref" href="MauiApp1.testowe.JobOffer.html">JobOffer</a></div>
+      <div><a class="xref" href="MauiApp1.testowe.GeminiMatchService.html">GeminiMatchService</a></div>
+      <div><a class="xref" href="MauiApp1.testowe.IUserStore.html">IUserStore</a></div>
+  </div>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Michalblaz/JOB-Search-AI/blob/CODEX/MauiApp1/testowe/JobSearchService.cs/#L124" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Dokumentacja wygenerowana z komentarzy XML C#
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

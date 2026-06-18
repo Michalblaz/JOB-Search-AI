@@ -1,0 +1,1375 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.Importer.NormalizedJobOffer
+  commentId: T:MauiApp1.Importer.NormalizedJobOffer
+  id: NormalizedJobOffer
+  parent: MauiApp1.Importer
+  children:
+  - MauiApp1.Importer.NormalizedJobOffer.City
+  - MauiApp1.Importer.NormalizedJobOffer.CompanyName
+  - MauiApp1.Importer.NormalizedJobOffer.ContentHash
+  - MauiApp1.Importer.NormalizedJobOffer.ContractType
+  - MauiApp1.Importer.NormalizedJobOffer.CountryCode
+  - MauiApp1.Importer.NormalizedJobOffer.Description
+  - MauiApp1.Importer.NormalizedJobOffer.DescriptionShort
+  - MauiApp1.Importer.NormalizedJobOffer.EducationLevel
+  - MauiApp1.Importer.NormalizedJobOffer.EmploymentType
+  - MauiApp1.Importer.NormalizedJobOffer.ExperienceLevel
+  - MauiApp1.Importer.NormalizedJobOffer.ExternalId
+  - MauiApp1.Importer.NormalizedJobOffer.ExternalUrl
+  - MauiApp1.Importer.NormalizedJobOffer.IsRemote
+  - MauiApp1.Importer.NormalizedJobOffer.Languages
+  - MauiApp1.Importer.NormalizedJobOffer.LocationName
+  - MauiApp1.Importer.NormalizedJobOffer.PublishedAt
+  - MauiApp1.Importer.NormalizedJobOffer.Region
+  - MauiApp1.Importer.NormalizedJobOffer.SalaryCurrency
+  - MauiApp1.Importer.NormalizedJobOffer.SalaryMax
+  - MauiApp1.Importer.NormalizedJobOffer.SalaryMin
+  - MauiApp1.Importer.NormalizedJobOffer.SalaryRaw
+  - MauiApp1.Importer.NormalizedJobOffer.SourceCode
+  - MauiApp1.Importer.NormalizedJobOffer.Tags
+  - MauiApp1.Importer.NormalizedJobOffer.Title
+  langs:
+  - csharp
+  - vb
+  name: NormalizedJobOffer
+  nameWithType: NormalizedJobOffer
+  fullName: MauiApp1.Importer.NormalizedJobOffer
+  type: Class
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: NormalizedJobOffer
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 64
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Wspólny model oferty pracy przygotowany do zapisu w bazie importera.
+  remarks: >-
+    Różne API zwracają inne nazwy pól, formaty lokalizacji, wynagrodzeń i dat. Ten model jest granicą normalizacji, dzięki której
+
+    <xref href="MauiApp1.Importer.PostgresJobRepository" data-throw-if-not-resolved="false"></xref> może zapisywać wszystkie źródła jednym mechanizmem.
+  example: []
+  syntax:
+    content: public sealed class NormalizedJobOffer
+    content.vb: Public NotInheritable Class NormalizedJobOffer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.Importer.NormalizedJobOffer.SourceCode
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.SourceCode
+  id: SourceCode
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: SourceCode
+  nameWithType: NormalizedJobOffer.SourceCode
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SourceCode
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SourceCode
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 66
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string SourceCode { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SourceCode As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.SourceCode*
+- uid: MauiApp1.Importer.NormalizedJobOffer.ExternalId
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.ExternalId
+  id: ExternalId
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: ExternalId
+  nameWithType: NormalizedJobOffer.ExternalId
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ExternalId
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ExternalId
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 67
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string ExternalId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ExternalId As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.ExternalId*
+- uid: MauiApp1.Importer.NormalizedJobOffer.ExternalUrl
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.ExternalUrl
+  id: ExternalUrl
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: ExternalUrl
+  nameWithType: NormalizedJobOffer.ExternalUrl
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ExternalUrl
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ExternalUrl
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 68
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? ExternalUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ExternalUrl As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.ExternalUrl*
+- uid: MauiApp1.Importer.NormalizedJobOffer.Title
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.Title
+  id: Title
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: Title
+  nameWithType: NormalizedJobOffer.Title
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Title
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Title
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 69
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string Title { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Title As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.Title*
+- uid: MauiApp1.Importer.NormalizedJobOffer.CompanyName
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.CompanyName
+  id: CompanyName
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: CompanyName
+  nameWithType: NormalizedJobOffer.CompanyName
+  fullName: MauiApp1.Importer.NormalizedJobOffer.CompanyName
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: CompanyName
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 70
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? CompanyName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CompanyName As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.CompanyName*
+- uid: MauiApp1.Importer.NormalizedJobOffer.LocationName
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.LocationName
+  id: LocationName
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: LocationName
+  nameWithType: NormalizedJobOffer.LocationName
+  fullName: MauiApp1.Importer.NormalizedJobOffer.LocationName
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: LocationName
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 71
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? LocationName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property LocationName As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.LocationName*
+- uid: MauiApp1.Importer.NormalizedJobOffer.City
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.City
+  id: City
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: City
+  nameWithType: NormalizedJobOffer.City
+  fullName: MauiApp1.Importer.NormalizedJobOffer.City
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: City
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 72
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? City { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property City As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.City*
+- uid: MauiApp1.Importer.NormalizedJobOffer.Region
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.Region
+  id: Region
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: Region
+  nameWithType: NormalizedJobOffer.Region
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Region
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Region
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 73
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? Region { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Region As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.Region*
+- uid: MauiApp1.Importer.NormalizedJobOffer.CountryCode
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.CountryCode
+  id: CountryCode
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: CountryCode
+  nameWithType: NormalizedJobOffer.CountryCode
+  fullName: MauiApp1.Importer.NormalizedJobOffer.CountryCode
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: CountryCode
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 74
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? CountryCode { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CountryCode As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.CountryCode*
+- uid: MauiApp1.Importer.NormalizedJobOffer.Description
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.Description
+  id: Description
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: NormalizedJobOffer.Description
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Description
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Description
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 75
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Description As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.Description*
+- uid: MauiApp1.Importer.NormalizedJobOffer.DescriptionShort
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.DescriptionShort
+  id: DescriptionShort
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: DescriptionShort
+  nameWithType: NormalizedJobOffer.DescriptionShort
+  fullName: MauiApp1.Importer.NormalizedJobOffer.DescriptionShort
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: DescriptionShort
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 76
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? DescriptionShort { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DescriptionShort As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.DescriptionShort*
+- uid: MauiApp1.Importer.NormalizedJobOffer.SalaryMin
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.SalaryMin
+  id: SalaryMin
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: SalaryMin
+  nameWithType: NormalizedJobOffer.SalaryMin
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SalaryMin
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SalaryMin
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 77
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public decimal? SalaryMin { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Decimal}
+    content.vb: Public Property SalaryMin As Decimal?
+  overload: MauiApp1.Importer.NormalizedJobOffer.SalaryMin*
+- uid: MauiApp1.Importer.NormalizedJobOffer.SalaryMax
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.SalaryMax
+  id: SalaryMax
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: SalaryMax
+  nameWithType: NormalizedJobOffer.SalaryMax
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SalaryMax
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SalaryMax
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 78
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public decimal? SalaryMax { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Decimal}
+    content.vb: Public Property SalaryMax As Decimal?
+  overload: MauiApp1.Importer.NormalizedJobOffer.SalaryMax*
+- uid: MauiApp1.Importer.NormalizedJobOffer.SalaryCurrency
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.SalaryCurrency
+  id: SalaryCurrency
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: SalaryCurrency
+  nameWithType: NormalizedJobOffer.SalaryCurrency
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SalaryCurrency
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SalaryCurrency
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 79
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? SalaryCurrency { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SalaryCurrency As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.SalaryCurrency*
+- uid: MauiApp1.Importer.NormalizedJobOffer.SalaryRaw
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.SalaryRaw
+  id: SalaryRaw
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: SalaryRaw
+  nameWithType: NormalizedJobOffer.SalaryRaw
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SalaryRaw
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SalaryRaw
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 80
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? SalaryRaw { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SalaryRaw As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.SalaryRaw*
+- uid: MauiApp1.Importer.NormalizedJobOffer.EmploymentType
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.EmploymentType
+  id: EmploymentType
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: EmploymentType
+  nameWithType: NormalizedJobOffer.EmploymentType
+  fullName: MauiApp1.Importer.NormalizedJobOffer.EmploymentType
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: EmploymentType
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 81
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? EmploymentType { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property EmploymentType As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.EmploymentType*
+- uid: MauiApp1.Importer.NormalizedJobOffer.ContractType
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.ContractType
+  id: ContractType
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: ContractType
+  nameWithType: NormalizedJobOffer.ContractType
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ContractType
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ContractType
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 82
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? ContractType { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ContractType As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.ContractType*
+- uid: MauiApp1.Importer.NormalizedJobOffer.ExperienceLevel
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.ExperienceLevel
+  id: ExperienceLevel
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: ExperienceLevel
+  nameWithType: NormalizedJobOffer.ExperienceLevel
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ExperienceLevel
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ExperienceLevel
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 83
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? ExperienceLevel { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ExperienceLevel As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.ExperienceLevel*
+- uid: MauiApp1.Importer.NormalizedJobOffer.EducationLevel
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.EducationLevel
+  id: EducationLevel
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: EducationLevel
+  nameWithType: NormalizedJobOffer.EducationLevel
+  fullName: MauiApp1.Importer.NormalizedJobOffer.EducationLevel
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: EducationLevel
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 84
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string? EducationLevel { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property EducationLevel As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.EducationLevel*
+- uid: MauiApp1.Importer.NormalizedJobOffer.IsRemote
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.IsRemote
+  id: IsRemote
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: IsRemote
+  nameWithType: NormalizedJobOffer.IsRemote
+  fullName: MauiApp1.Importer.NormalizedJobOffer.IsRemote
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: IsRemote
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 85
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public bool IsRemote { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsRemote As Boolean
+  overload: MauiApp1.Importer.NormalizedJobOffer.IsRemote*
+- uid: MauiApp1.Importer.NormalizedJobOffer.PublishedAt
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.PublishedAt
+  id: PublishedAt
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: PublishedAt
+  nameWithType: NormalizedJobOffer.PublishedAt
+  fullName: MauiApp1.Importer.NormalizedJobOffer.PublishedAt
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: PublishedAt
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 86
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public DateTimeOffset? PublishedAt { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTimeOffset}
+    content.vb: Public Property PublishedAt As DateTimeOffset?
+  overload: MauiApp1.Importer.NormalizedJobOffer.PublishedAt*
+- uid: MauiApp1.Importer.NormalizedJobOffer.ContentHash
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.ContentHash
+  id: ContentHash
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: ContentHash
+  nameWithType: NormalizedJobOffer.ContentHash
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ContentHash
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ContentHash
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 87
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public string ContentHash { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ContentHash As String
+  overload: MauiApp1.Importer.NormalizedJobOffer.ContentHash*
+- uid: MauiApp1.Importer.NormalizedJobOffer.Languages
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.Languages
+  id: Languages
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: Languages
+  nameWithType: NormalizedJobOffer.Languages
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Languages
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Languages
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 88
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public List<OfferLanguage> Languages { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{MauiApp1.Importer.OfferLanguage}
+    content.vb: Public Property Languages As List(Of OfferLanguage)
+  overload: MauiApp1.Importer.NormalizedJobOffer.Languages*
+- uid: MauiApp1.Importer.NormalizedJobOffer.Tags
+  commentId: P:MauiApp1.Importer.NormalizedJobOffer.Tags
+  id: Tags
+  parent: MauiApp1.Importer.NormalizedJobOffer
+  langs:
+  - csharp
+  - vb
+  name: Tags
+  nameWithType: NormalizedJobOffer.Tags
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Tags
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Tags
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 89
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public List<string> Tags { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Property Tags As List(Of String)
+  overload: MauiApp1.Importer.NormalizedJobOffer.Tags*
+references:
+- uid: MauiApp1.Importer.PostgresJobRepository
+  commentId: T:MauiApp1.Importer.PostgresJobRepository
+  href: MauiApp1.Importer.PostgresJobRepository.html
+  name: PostgresJobRepository
+  nameWithType: PostgresJobRepository
+  fullName: MauiApp1.Importer.PostgresJobRepository
+- uid: MauiApp1.Importer
+  commentId: N:MauiApp1.Importer
+  href: MauiApp1.html
+  name: MauiApp1.Importer
+  nameWithType: MauiApp1.Importer
+  fullName: MauiApp1.Importer
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.Importer.NormalizedJobOffer.SourceCode*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.SourceCode
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_SourceCode
+  name: SourceCode
+  nameWithType: NormalizedJobOffer.SourceCode
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SourceCode
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MauiApp1.Importer.NormalizedJobOffer.ExternalId*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.ExternalId
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_ExternalId
+  name: ExternalId
+  nameWithType: NormalizedJobOffer.ExternalId
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ExternalId
+- uid: MauiApp1.Importer.NormalizedJobOffer.ExternalUrl*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.ExternalUrl
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_ExternalUrl
+  name: ExternalUrl
+  nameWithType: NormalizedJobOffer.ExternalUrl
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ExternalUrl
+- uid: MauiApp1.Importer.NormalizedJobOffer.Title*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.Title
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_Title
+  name: Title
+  nameWithType: NormalizedJobOffer.Title
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Title
+- uid: MauiApp1.Importer.NormalizedJobOffer.CompanyName*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.CompanyName
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_CompanyName
+  name: CompanyName
+  nameWithType: NormalizedJobOffer.CompanyName
+  fullName: MauiApp1.Importer.NormalizedJobOffer.CompanyName
+- uid: MauiApp1.Importer.NormalizedJobOffer.LocationName*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.LocationName
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_LocationName
+  name: LocationName
+  nameWithType: NormalizedJobOffer.LocationName
+  fullName: MauiApp1.Importer.NormalizedJobOffer.LocationName
+- uid: MauiApp1.Importer.NormalizedJobOffer.City*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.City
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_City
+  name: City
+  nameWithType: NormalizedJobOffer.City
+  fullName: MauiApp1.Importer.NormalizedJobOffer.City
+- uid: MauiApp1.Importer.NormalizedJobOffer.Region*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.Region
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_Region
+  name: Region
+  nameWithType: NormalizedJobOffer.Region
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Region
+- uid: MauiApp1.Importer.NormalizedJobOffer.CountryCode*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.CountryCode
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_CountryCode
+  name: CountryCode
+  nameWithType: NormalizedJobOffer.CountryCode
+  fullName: MauiApp1.Importer.NormalizedJobOffer.CountryCode
+- uid: MauiApp1.Importer.NormalizedJobOffer.Description*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.Description
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_Description
+  name: Description
+  nameWithType: NormalizedJobOffer.Description
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Description
+- uid: MauiApp1.Importer.NormalizedJobOffer.DescriptionShort*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.DescriptionShort
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_DescriptionShort
+  name: DescriptionShort
+  nameWithType: NormalizedJobOffer.DescriptionShort
+  fullName: MauiApp1.Importer.NormalizedJobOffer.DescriptionShort
+- uid: MauiApp1.Importer.NormalizedJobOffer.SalaryMin*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.SalaryMin
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_SalaryMin
+  name: SalaryMin
+  nameWithType: NormalizedJobOffer.SalaryMin
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SalaryMin
+- uid: System.Nullable{System.Decimal}
+  commentId: T:System.Nullable{System.Decimal}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal?
+  nameWithType: decimal?
+  fullName: decimal?
+  nameWithType.vb: Decimal?
+  fullName.vb: Decimal?
+  name.vb: Decimal?
+  spec.csharp:
+  - uid: System.Decimal
+    name: decimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.decimal
+  - name: '?'
+  spec.vb:
+  - uid: System.Decimal
+    name: Decimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.decimal
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MauiApp1.Importer.NormalizedJobOffer.SalaryMax*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.SalaryMax
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_SalaryMax
+  name: SalaryMax
+  nameWithType: NormalizedJobOffer.SalaryMax
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SalaryMax
+- uid: MauiApp1.Importer.NormalizedJobOffer.SalaryCurrency*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.SalaryCurrency
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_SalaryCurrency
+  name: SalaryCurrency
+  nameWithType: NormalizedJobOffer.SalaryCurrency
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SalaryCurrency
+- uid: MauiApp1.Importer.NormalizedJobOffer.SalaryRaw*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.SalaryRaw
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_SalaryRaw
+  name: SalaryRaw
+  nameWithType: NormalizedJobOffer.SalaryRaw
+  fullName: MauiApp1.Importer.NormalizedJobOffer.SalaryRaw
+- uid: MauiApp1.Importer.NormalizedJobOffer.EmploymentType*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.EmploymentType
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_EmploymentType
+  name: EmploymentType
+  nameWithType: NormalizedJobOffer.EmploymentType
+  fullName: MauiApp1.Importer.NormalizedJobOffer.EmploymentType
+- uid: MauiApp1.Importer.NormalizedJobOffer.ContractType*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.ContractType
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_ContractType
+  name: ContractType
+  nameWithType: NormalizedJobOffer.ContractType
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ContractType
+- uid: MauiApp1.Importer.NormalizedJobOffer.ExperienceLevel*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.ExperienceLevel
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_ExperienceLevel
+  name: ExperienceLevel
+  nameWithType: NormalizedJobOffer.ExperienceLevel
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ExperienceLevel
+- uid: MauiApp1.Importer.NormalizedJobOffer.EducationLevel*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.EducationLevel
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_EducationLevel
+  name: EducationLevel
+  nameWithType: NormalizedJobOffer.EducationLevel
+  fullName: MauiApp1.Importer.NormalizedJobOffer.EducationLevel
+- uid: MauiApp1.Importer.NormalizedJobOffer.IsRemote*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.IsRemote
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_IsRemote
+  name: IsRemote
+  nameWithType: NormalizedJobOffer.IsRemote
+  fullName: MauiApp1.Importer.NormalizedJobOffer.IsRemote
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MauiApp1.Importer.NormalizedJobOffer.PublishedAt*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.PublishedAt
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_PublishedAt
+  name: PublishedAt
+  nameWithType: NormalizedJobOffer.PublishedAt
+  fullName: MauiApp1.Importer.NormalizedJobOffer.PublishedAt
+- uid: System.Nullable{System.DateTimeOffset}
+  commentId: T:System.Nullable{System.DateTimeOffset}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  name: DateTimeOffset?
+  nameWithType: DateTimeOffset?
+  fullName: System.DateTimeOffset?
+  spec.csharp:
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  - name: '?'
+- uid: MauiApp1.Importer.NormalizedJobOffer.ContentHash*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.ContentHash
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_ContentHash
+  name: ContentHash
+  nameWithType: NormalizedJobOffer.ContentHash
+  fullName: MauiApp1.Importer.NormalizedJobOffer.ContentHash
+- uid: MauiApp1.Importer.NormalizedJobOffer.Languages*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.Languages
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_Languages
+  name: Languages
+  nameWithType: NormalizedJobOffer.Languages
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Languages
+- uid: System.Collections.Generic.List{MauiApp1.Importer.OfferLanguage}
+  commentId: T:System.Collections.Generic.List{MauiApp1.Importer.OfferLanguage}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<OfferLanguage>
+  nameWithType: List<OfferLanguage>
+  fullName: System.Collections.Generic.List<MauiApp1.Importer.OfferLanguage>
+  nameWithType.vb: List(Of OfferLanguage)
+  fullName.vb: System.Collections.Generic.List(Of MauiApp1.Importer.OfferLanguage)
+  name.vb: List(Of OfferLanguage)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: MauiApp1.Importer.OfferLanguage
+    name: OfferLanguage
+    href: MauiApp1.Importer.OfferLanguage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MauiApp1.Importer.OfferLanguage
+    name: OfferLanguage
+    href: MauiApp1.Importer.OfferLanguage.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: MauiApp1.Importer.NormalizedJobOffer.Tags*
+  commentId: Overload:MauiApp1.Importer.NormalizedJobOffer.Tags
+  href: MauiApp1.Importer.NormalizedJobOffer.html#MauiApp1_Importer_NormalizedJobOffer_Tags
+  name: Tags
+  nameWithType: NormalizedJobOffer.Tags
+  fullName: MauiApp1.Importer.NormalizedJobOffer.Tags
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<string>
+  nameWithType: List<string>
+  fullName: System.Collections.Generic.List<string>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )

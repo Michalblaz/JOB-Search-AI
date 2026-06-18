@@ -1,0 +1,107 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.testowe.IAppDataPathProvider
+  commentId: T:MauiApp1.testowe.IAppDataPathProvider
+  id: IAppDataPathProvider
+  parent: MauiApp1.testowe
+  children:
+  - MauiApp1.testowe.IAppDataPathProvider.AppDataDirectory
+  langs:
+  - csharp
+  - vb
+  name: IAppDataPathProvider
+  nameWithType: IAppDataPathProvider
+  fullName: MauiApp1.testowe.IAppDataPathProvider
+  type: Interface
+  source:
+    remote:
+      path: MauiApp1/testowe/IAppDataPathProvider.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: IAppDataPathProvider
+    path: ../MauiApp1/testowe/IAppDataPathProvider.cs
+    startLine: 2
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public interface IAppDataPathProvider
+    content.vb: Public Interface IAppDataPathProvider
+  derivedClasses:
+  - MauiApp1.testowe.MauiAppDataPathProvider
+- uid: MauiApp1.testowe.IAppDataPathProvider.AppDataDirectory
+  commentId: P:MauiApp1.testowe.IAppDataPathProvider.AppDataDirectory
+  id: AppDataDirectory
+  parent: MauiApp1.testowe.IAppDataPathProvider
+  langs:
+  - csharp
+  - vb
+  name: AppDataDirectory
+  nameWithType: IAppDataPathProvider.AppDataDirectory
+  fullName: MauiApp1.testowe.IAppDataPathProvider.AppDataDirectory
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/IAppDataPathProvider.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: AppDataDirectory
+    path: ../MauiApp1/testowe/IAppDataPathProvider.cs
+    startLine: 4
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: string AppDataDirectory { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: ReadOnly Property AppDataDirectory As String
+  overload: MauiApp1.testowe.IAppDataPathProvider.AppDataDirectory*
+references:
+- uid: MauiApp1.testowe
+  commentId: N:MauiApp1.testowe
+  href: MauiApp1.html
+  name: MauiApp1.testowe
+  nameWithType: MauiApp1.testowe
+  fullName: MauiApp1.testowe
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+- uid: MauiApp1.testowe.IAppDataPathProvider.AppDataDirectory*
+  commentId: Overload:MauiApp1.testowe.IAppDataPathProvider.AppDataDirectory
+  href: MauiApp1.testowe.IAppDataPathProvider.html#MauiApp1_testowe_IAppDataPathProvider_AppDataDirectory
+  name: AppDataDirectory
+  nameWithType: IAppDataPathProvider.AppDataDirectory
+  fullName: MauiApp1.testowe.IAppDataPathProvider.AppDataDirectory
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

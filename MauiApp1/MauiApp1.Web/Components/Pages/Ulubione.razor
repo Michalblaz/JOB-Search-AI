@@ -1,0 +1,45 @@
+﻿@page "/ulubione"
+@using MauiApp1.testowe
+@inject JobSearchService SearchService
+@implements IDisposable
+
+
+<div class="favorites-container @(SearchService.DarkModeEnabled ? "dark-theme" : "")">
+    <div class="favorites-header">
+        <h1>Twoje Ulubione Oferty</h1>
+        <div class="stats-badge">Masz zapisanych: <strong>@SearchService.FavoriteOffers.Count</strong></div>
+    </div>
+
+    @if (SearchService.FavoriteOffers.Any())
+    {
+        <div class="favorites-grid">
+            @foreach (var offer in SearchService.FavoriteOffers)
+            {
+                <div class="grid-item">
+                    <JobCard Offer="offer" />
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-state" >
+            <div class="empty-icon">❤️</div>
+            <h2>Brak ulubionych :( </h2>
+            <p>Nie zapisałeś jeszcze żadnych ofert pracy. Wróć do wyszukiwarki i kliknij przycisk "Do Ulubionych" przy ogłoszeniach, które Cię interesują!</p>
+            <NavLink href="" class="btn-go-back">Znajdź ofertę pracy</NavLink>
+        </div>
+    }
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        SearchService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        SearchService.OnChange -= StateHasChanged;
+    }
+}

@@ -1,0 +1,464 @@
+@page "/"
+@using MauiApp1.testowe
+@inject MauiApp1.testowe.JobSearchService SearchService
+@inject MauiApp1.testowe.GeminiMatchService GeminiMatchService
+@implements IDisposable
+@using MauiApp1.Components
+
+<aside class="sidebar">
+    <div class="filter-group">
+        <h3>Źródło ofert</h3>
+        @foreach (var source in SearchService.SourceFilters.Keys.ToList())
+        {
+            <div class="filter-item">
+                <input type="checkbox"
+                       checked="@SearchService.SourceFilters[source]"
+                       @onchange="@(async e => await SearchService.SetSourceFilterAsync(source, e.Value is bool value && value))" />
+                <span style="margin-left: 8px;">@source</span>
+            </div>
+        }
+    </div>
+
+    <div class="filter-group" style="margin-top: 20px;">
+        <h3>Wykształcenie</h3>
+        @foreach (var level in AvailableEducationLevels)
+        {
+            <div class="filter-item">
+                <input type="radio" name="edu"
+                       checked="@(SearchService.SelectedEducation == level)"
+                       @onchange="@(() => SearchService.SelectedEducation = level)" />
+                <span style="margin-left: 8px;">@level</span>
+            </div>
+        }
+    </div>
+
+    <div class="filter-group" style="margin-top: 20px;">
+        <h3>Doświadczenie</h3>
+        @if (ShouldShowExperienceHint)
+        {
+            <div class="filter-empty">Junior: zwykle 0-2 lata, Mid: 2-4 lata, Senior: 5+ lat, Lead: 7+ lat.</div>
+        }
+        @foreach (var level in AvailableExperienceLevels)
+        {
+            <div class="filter-item">
+                <input type="radio" name="exp"
+                       checked="@(SearchService.SelectedExperience == level)"
+                       @onchange="@(() => SearchService.SelectedExperience = level)" />
+                <span style="margin-left: 8px;">@level</span>
+            </div>
+        }
+    </div>
+
+    <div class="filter-group" style="margin-top: 20px;">
+        <h3>Znane języki</h3>
+        @foreach (var lang in AvailableLanguageLevels)
+        {
+            <div class="filter-item">
+                <input type="checkbox" @bind="SearchService.LanguageFilters[lang]" />
+                <span style="margin-left: 8px;">@lang</span>
+            </div>
+        }
+    </div>
+    @if (SearchService.CriteriaOptions.Any())
+    {
+        @foreach (var group in SearchService.CriteriaOptions
+            .GroupBy(option => option.Kind)
+            .OrderBy(group => GetCriterionGroupOrder(group.Key)))
+        {
+            <div class="filter-group dynamic-filter-group">
+                <h3>@SearchService.GetCriterionGroupLabel(group.Key)</h3>
+                @foreach (var option in group.OrderByDescending(option => option.ActiveOfferCount).ThenBy(option => option.DisplayName).Take(24))
+                {
+                    <div class="filter-item dynamic-filter-item">
+                        <input type="checkbox"
+                               checked="@SearchService.IsCriterionSelected(option.Code)"
+                               @onchange="@(e => SearchService.SetCriterionFilter(option.Code, e.Value is bool value && value))" />
+                        <span class="filter-label">@option.DisplayName</span>
+                        <span class="filter-count">@option.ActiveOfferCount</span>
+                    </div>
+                }
+            </div>
+        }
+    }
+    else if (!string.IsNullOrWhiteSpace(SearchService.SelectedCategoryCode) || !string.IsNullOrWhiteSpace(SearchService.SelectedRoleCode))
+    {
+        <div class="filter-group dynamic-filter-group">
+            <h3>Dodatkowe kryteria</h3>
+            <div class="filter-empty">Brak dodatkowych filtrów dla tego wyboru.</div>
+        </div>
+    }
+</aside>
+
+<main class="wyniki-wyszukiwania">
+    <div class="results-header">
+        <h2>Wyniki wyszukiwania (@FilteredOffers.Count)</h2>
+        <div class="sort-text">
+            <span>Sposób sortowania:</span>
+            <select class="sort-select" @bind="SelectedSortOption">
+                @foreach (var option in SortOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    @if (FilteredOffers.Any())
+    {
+        <div style="display:flex; align-items:center; gap:12px; margin: 14px 0 18px 0;">
+            <button class="btn-scan"
+                    @onclick="HandleAiMatchAsync"
+                    disabled="@(!CanUseAiMatch)">
+                Dopasuj AI
+            </button>
+            <span style="font-size:0.85rem; color:#9fb0c7;">
+                Sprawdzi pierwsze @AiOfferLimit ofert z góry aktualnej listy.
+            </span>
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(aiStatusMessage))
+    {
+        <div style="font-size: 0.85rem; margin-bottom: 14px; color: @AiStatusColor;">
+            @aiStatusMessage
+        </div>
+    }
+
+    @if (SearchService.IsLoading)
+    {
+        <div class="loader-container">
+            <div class="spinner"></div>
+            <p>@loadingMessage</p>
+        </div>
+    }
+
+    <div class="job-list-container">
+        @if (PagedOffers.Any())
+        {
+            @foreach (var offer in PagedOffers)
+            {
+                <JobCard Offer="offer" />
+            }
+        }
+        else if (!SearchService.IsLoading)
+        {
+            <div class="results-placeholder">
+                <p>Nie znaleziono żadnych ofert spełniających kryteria. Spróbuj zmienić filtry lub kliknij "Skanuj".</p>
+            </div>
+        }
+
+        @if (CanShowPagination)
+        {
+            <div class="pagination-bar">
+                <button class="pagination-button"
+                        @onclick="LoadPreviousPageAsync"
+                        disabled="@(!CanGoPrevious || SearchService.IsLoading)">
+                    Poprzednia
+                </button>
+                <span class="pagination-info">Strona @CurrentPage z @TotalPages</span>
+                <button class="pagination-button"
+                        @onclick="LoadNextPageAsync"
+                        disabled="@(!CanGoNext || SearchService.IsLoading)">
+                    Następna
+                </button>
+            </div>
+        }
+    </div>
+</main>
+
+@code {
+    private List<string> EducationLevels = new()
+    {
+        "Brak wymagań lub niewymagane",
+        "Student / w trakcie",
+        "Średnie",
+        "Wyższe"
+    };
+
+    private List<string> ExperienceLevels = new()
+    {
+        "Wszystkie",
+        "Staż / praktyki",
+        "Junior",
+        "Mid / Regular",
+        "Senior",
+        "Lead / Principal",
+        "Doświadczenie mile widziane",
+        "Brak doświadczenia",
+        "Młodszy specjalista",
+        "Specjalista",
+        "Starszy specjalista",
+        "Menadżer"
+    };
+
+    private List<string> SortOptions = new()
+    {
+        "Od najlepiej dopasowanych",
+        "Od najwyższej pensji",
+        "Od najniższej pensji",
+        "Od A do Z",
+        "Od Z do A"
+    };
+
+    private string SelectedSortOption { get; set; } = "Od najlepiej dopasowanych";
+    private string aiStatusMessage = string.Empty;
+    private string loadingMessage = "Pobieram oferty z bazy danych...";
+    private const int AiOfferLimit = 20;
+    private string AiStatusColor =>
+        aiStatusMessage.Contains("nie", StringComparison.OrdinalIgnoreCase) ||
+        aiStatusMessage.Contains("błąd", StringComparison.OrdinalIgnoreCase)
+            ? "#ffb3b3"
+            : "#9fe7c2";
+
+    private static int GetCriterionGroupOrder(string kind)
+    {
+        return kind switch
+        {
+            "programming_language" => 0,
+            "framework" => 1,
+            "database" => 2,
+            "cloud" => 3,
+            "devops_tool" => 4,
+            "testing_tool" => 5,
+            "data_tool" => 6,
+            "ai_tool" => 7,
+            "integration_tool" => 8,
+            "business_tool" => 9,
+            "technology" => 10,
+            "trait" => 20,
+            "work_activity" => 21,
+            "certification" => 22,
+            _ => 99
+        };
+    }
+
+    protected override void OnInitialized()
+    {
+        SearchService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        SearchService.OnChange -= StateHasChanged;
+    }
+
+    private List<JobOffer> FilteredOffers
+    {
+        get
+        {
+            var hasTitleMatches = SearchService.HasAnyTitleMatch(SearchService.AllJobOffers, SearchService.SearchText);
+
+            return ApplySorting(SearchService.AllJobOffers.Where(o =>
+                SearchService.IsSearchMatchForDisplay(o, SearchService.SearchText, hasTitleMatches) &&
+                SearchService.MatchesLocationFilter(o) &&
+                SearchService.MatchesMinimumSalary(o.Salary, SearchService.MinSalary) &&
+                SearchService.MatchesMaximumSalary(o.Salary, SearchService.MaxSalary) &&
+                (SearchService.SelectedEducation == "Brak wymagań lub niewymagane"
+                    ? o.Education == "Brak wymagań lub niewymagane"
+                    : o.Education == "Brak wymagań lub niewymagane" || o.Education == SearchService.SelectedEducation) &&
+                IsExperienceMatch(o) &&
+                (SearchService.JobRange == "Wszystkie" ||
+                 o.ContractTime.Equals(SearchService.JobRange, StringComparison.OrdinalIgnoreCase) ||
+                 o.ContractType.Equals(SearchService.JobRange, StringComparison.OrdinalIgnoreCase)) &&
+                SearchService.MatchesSelectedRoleAndCriteria(o) &&
+                SearchService.MatchesOfferTextLanguage(o) &&
+                (!SearchService.SourceFilters.ContainsKey(o.Source) || SearchService.SourceFilters[o.Source]) &&
+                (
+                    !o.Languages.Any() ||
+                    o.Languages.Any(l => SearchService.LanguageFilters.ContainsKey(l) && SearchService.LanguageFilters[l])
+                )
+            )).ToList();
+        }
+    }
+
+    private int TotalPages => Math.Max(1, (int)Math.Ceiling(FilteredOffers.Count / (double)SearchService.ResultsPerPage));
+
+    private List<string> AvailableEducationLevels
+    {
+        get
+        {
+            var levels = EducationLevels
+                .Where(level => level != "Brak wymagań lub niewymagane" &&
+                    RoleScopedOffers.Any(offer => string.Equals(offer.Education, level, StringComparison.OrdinalIgnoreCase)))
+                .ToList();
+
+            return levels.Any()
+                ? new[] { "Brak wymagań lub niewymagane" }.Concat(levels).ToList()
+                : EducationLevels;
+        }
+    }
+
+    private List<string> AvailableExperienceLevels
+    {
+        get
+        {
+            var levels = ExperienceLevels
+                .Where(level => level != "Wszystkie" &&
+                    IsExperienceLevelAllowedForScope(level) &&
+                    RoleScopedOffers.Any(offer => string.Equals(offer.Experience, level, StringComparison.OrdinalIgnoreCase) || MatchesExperienceAlias(offer, level)))
+                .ToList();
+
+            return levels.Any()
+                ? new[] { "Wszystkie" }.Concat(levels).ToList()
+                : ExperienceLevels;
+        }
+    }
+
+    private List<string> AvailableLanguageLevels => SearchService.LanguageFilters.Keys
+        .Where(language => RoleScopedOffers.Any(offer => offer.Languages.Contains(language, StringComparer.OrdinalIgnoreCase)))
+        .ToList();
+
+    private bool ShouldShowExperienceHint => AvailableExperienceLevels.Any(level =>
+        level is "Junior" or "Mid / Regular" or "Senior" or "Lead / Principal");
+
+    private bool UsesCareerLevelLabels =>
+        string.IsNullOrWhiteSpace(SearchService.SelectedCategoryCode) ||
+        string.Equals(SearchService.SelectedCategoryCode, "it", StringComparison.OrdinalIgnoreCase) ||
+        RoleScopedOffers.Any(offer => offer.CategoryCodes.Contains("it", StringComparer.OrdinalIgnoreCase));
+
+    private bool IsExperienceLevelAllowedForScope(string level)
+    {
+        if (level is "Staż / praktyki" or "Junior" or "Mid / Regular" or "Senior" or "Lead / Principal")
+        {
+            return UsesCareerLevelLabels;
+        }
+
+        return true;
+    }
+
+    private bool IsExperienceMatch(JobOffer offer)
+    {
+        var selected = SearchService.SelectedExperience;
+        if (selected == "Wszystkie" || !AvailableExperienceLevels.Contains(selected) || offer.Experience == "Wszystkie")
+        {
+            return true;
+        }
+
+        return string.Equals(offer.Experience, selected, StringComparison.OrdinalIgnoreCase) || MatchesExperienceAlias(offer, selected);
+    }
+
+    private static bool MatchesExperienceAlias(JobOffer offer, string selected)
+    {
+        return selected switch
+        {
+            "Brak doświadczenia" => offer.NoExperienceAllowed || offer.ExperienceMinYears == 0,
+            "Staż / praktyki" => offer.Experience is "Staż / praktyki" || (offer.NoExperienceAllowed && offer.ExperienceMaxYears is <= 1),
+            "Junior" => offer.Experience is "Młodszy specjalista" || (offer.ExperienceMinYears is >= 0 and < 2),
+            "Mid / Regular" => offer.Experience is "Specjalista" || (offer.ExperienceMinYears is >= 2 and < 5),
+            "Senior" => offer.Experience is "Starszy specjalista" || (offer.ExperienceMinYears is >= 5 and < 7),
+            "Lead / Principal" => offer.ExperienceMinYears >= 7,
+            "Młodszy specjalista" => offer.Experience == "Junior",
+            "Specjalista" => offer.Experience == "Mid / Regular",
+            "Starszy specjalista" => offer.Experience == "Senior",
+            _ => false
+        };
+    }
+
+    private List<JobOffer> RoleScopedOffers => SearchService.AllJobOffers
+        .Where(offer =>
+            (string.IsNullOrWhiteSpace(SearchService.SelectedRoleCode) ||
+             offer.RoleCodes.Contains(SearchService.SelectedRoleCode, StringComparer.OrdinalIgnoreCase)) &&
+            (!string.IsNullOrWhiteSpace(SearchService.SelectedRoleCode) ||
+             string.IsNullOrWhiteSpace(SearchService.SelectedCategoryCode) ||
+             offer.CategoryCodes.Contains(SearchService.SelectedCategoryCode, StringComparer.OrdinalIgnoreCase)))
+        .ToList();
+
+    private int CurrentPage
+    {
+        get
+        {
+            var currentPage = Math.Min(SearchService.CurrentResultsPage, TotalPages);
+            if (currentPage != SearchService.CurrentResultsPage)
+            {
+                SearchService.SetCurrentResultsPage(currentPage);
+            }
+
+            return currentPage;
+        }
+    }
+
+    private List<JobOffer> PagedOffers => FilteredOffers
+        .Skip((CurrentPage - 1) * SearchService.ResultsPerPage)
+        .Take(SearchService.ResultsPerPage)
+        .ToList();
+
+    private IEnumerable<JobOffer> ApplySorting(IEnumerable<JobOffer> offers)
+    {
+        return SelectedSortOption switch
+        {
+            "Od najwyższej pensji" => offers.OrderByDescending(o => SearchService.SafeParseSalary(o.Salary)),
+            "Od najniższej pensji" => offers.OrderBy(o => SearchService.SafeParseSalary(o.Salary) == 0 ? int.MaxValue : SearchService.SafeParseSalary(o.Salary)),
+            "Od A do Z" => offers.OrderBy(o => o.Title),
+            "Od Z do A" => offers.OrderByDescending(o => o.Title),
+            _ => offers.OrderByDescending(o => o.MatchScore)
+        };
+    }
+
+    private bool CanShowPagination => FilteredOffers.Any() && TotalPages > 1;
+
+    private bool CanGoPrevious => CurrentPage > 1;
+
+    private bool CanGoNext => CurrentPage < TotalPages;
+
+    private async Task LoadNextPageAsync()
+    {
+        await SearchService.LoadNextPageAsync();
+    }
+
+    private async Task LoadPreviousPageAsync()
+    {
+        await SearchService.LoadPreviousPageAsync();
+    }
+
+    private bool CanUseAiMatch => !SearchService.IsLoading && GeminiMatchService.IsConfigured && FilteredOffers.Any();
+
+    private async Task HandleAiMatchAsync()
+    {
+        if (!FilteredOffers.Any())
+        {
+            aiStatusMessage = "Najpierw zeskanuj i wyświetl oferty.";
+            return;
+        }
+
+        if (!GeminiMatchService.IsConfigured)
+        {
+            aiStatusMessage = "Brak konfiguracji Gemini.";
+            return;
+        }
+
+        try
+        {
+            SearchService.IsLoading = true;
+            loadingMessage = $"Dopasowuję pierwsze {Math.Min(AiOfferLimit, FilteredOffers.Count)} ofert przez Gemini...";
+            aiStatusMessage = string.Empty;
+            StateHasChanged();
+
+            var topOffers = FilteredOffers
+                .Take(AiOfferLimit)
+                .ToList();
+
+            var aiScored = await GeminiMatchService.ScoreOffersAsync(SearchService, topOffers);
+
+            SearchService.IsLoading = false;
+            loadingMessage = "Pobieram oferty z bazy danych...";
+
+            if (aiScored)
+            {
+                SearchService.NotifyStateChanged();
+                aiStatusMessage = $"Gemini sprawdziło {topOffers.Count} ofert z góry aktualnej listy.";
+            }
+            else
+            {
+                aiStatusMessage = string.IsNullOrWhiteSpace(GeminiMatchService.LastError)
+                    ? "Gemini nie zwróciło ocen. Pozostawiono dopasowanie lokalne."
+                    : $"Gemini nie zadziałało: {GeminiMatchService.LastError}";
+            }
+        }
+        catch
+        {
+            SearchService.IsLoading = false;
+            loadingMessage = "Pobieram oferty z bazy danych...";
+            aiStatusMessage = "Błąd podczas dopasowania AI.";
+        }
+    }
+}

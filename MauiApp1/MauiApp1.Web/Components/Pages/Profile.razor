@@ -1,0 +1,281 @@
+﻿@page "/profile"
+@inject MauiApp1.testowe.JobSearchService SearchService
+@inject NavigationManager Nav
+
+<div class="profile-container">
+    <div class="profile-card">
+        <h2>Twój Profil i Preferencje</h2>
+        <p class="hint">Konto logowania: <strong>@SearchService.CurrentUser.AccountLogin</strong></p>
+
+        <div class="form-group">
+            <label>Imię / Nick:</label>
+            <input type="text" @bind="SearchService.CurrentUser.Username" class="form-input" />
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <label>Domyślna lokalizacja:</label>
+            <select @bind="SearchService.CurrentUser.Settings.DefaultLocation" class="form-input">
+                @foreach (var city in LocationOptions)
+                {
+                    <option value="@city">@city</option>
+                }
+            </select>
+        </div>
+
+        <h3>Twoje Preferencje wyszukiwania</h3>
+        <p class="hint">Te dane pomogą nam obliczać dopasowanie i szybko ustawić filtry wyszukiwarki.</p>
+
+        <div class="form-group">
+            <label>Stanowisko (np. React Developer):</label>
+            <input type="text" @bind="SearchService.CurrentUser.Settings.JobTitle" class="form-input" />
+        </div>
+
+        <div class="form-group">
+            <label>Minimalne oczekiwania finansowe (zł/h):</label>
+            <input type="text" @bind="SearchService.CurrentUser.Settings.ExpectedSalary" class="form-input" placeholder="np. 60 zł/h" />
+        </div>
+
+        <div class="form-group">
+            <label>Wykształcenie:</label>
+            <select @bind="SearchService.CurrentUser.Settings.Education" class="form-input">
+                <option value="Brak wymagań lub niewymagane">Brak wymagań lub niewymagane</option>
+                <option value="Student / w trakcie">Student / w trakcie</option>
+                <option value="Średnie">Średnie</option>
+                <option value="Wyższe">Wyższe</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Twoje doświadczenie:</label>
+            <select @bind="SearchService.CurrentUser.Settings.Experience" class="form-input">
+                <option value="Wszystkie">Wszystkie</option>
+                <option value="Brak doświadczenia">Brak doświadczenia</option>
+                <option value="Młodszy specjalista">Młodszy specjalista</option>
+                <option value="Specjalista">Specjalista</option>
+                <option value="Starszy specjalista">Starszy specjalista</option>
+                <option value="Menadżer">Menadżer</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <h3>Preferowane rodzaje umów:</h3>
+            <div class="profile-pill-group">
+                @foreach (var type in ContractOptions)
+                {
+                    <label class="profile-pill">
+                        <input type="checkbox"
+                               checked="@(SearchService.CurrentUser.Settings.PreferredContractTypes?.Contains(type) ?? false)"
+                               @onchange="@((e) => ToggleContract(type, (bool)e.Value))" />
+                        @type
+                    </label>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h3>Znam języki</h3>
+            <div class="checkbox-group profile-pill-group">
+                @foreach (var lang in LanguageOptions)
+                {
+                    <label class="profile-pill profile-pill-light">
+                        <input type="checkbox"
+                               checked="@SearchService.CurrentUser.Settings.KnownLanguages.Contains(lang)"
+                               @onchange="@((e) => ToggleLanguage(lang, (bool)e.Value))" />
+                        @lang
+                    </label>
+                }
+            </div>
+        </div>
+
+        <button class="btn-save" @onclick="SaveProfile">Zapisz zmiany profilu</button>
+
+        @if (saved)
+        {
+            <p class="success">Profil zaktualizowany!</p>
+        }
+    </div>
+
+    <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+        <button class="btn-search-profile" @onclick="SearchWithProfile">
+            Szukaj na podstawie mojego profilu
+        </button>
+    </div>
+</div>
+
+@code {
+    private bool saved = false;
+
+    private List<string> LocationOptions = new()
+    {
+        "Rzeszów",
+        "Kraków",
+        "Warszawa",
+        "Wrocław",
+        "Gdańsk",
+        "Poznań",
+        "Łódź",
+        "Katowice",
+        "Lublin",
+        "Szczecin",
+        "Białystok",
+        "Bydgoszcz",
+        "Toruń",
+        "Gdynia",
+        "Częstochowa"
+    };
+
+    private List<string> ContractOptions = new()
+    {
+        "Umowa o Pracę",
+        "Zlecenie",
+        "1/2 etatu",
+        "1/4 etatu",
+        "Pełny etat"
+    };
+
+    private List<string> LanguageOptions = new()
+    {
+        "Angielski",
+        "Niemiecki",
+        "Ukraiński",
+        "Francuski"
+    };
+
+    private async Task SaveProfile()
+    {
+        SearchService.SaveDataToDevice();
+        saved = true;
+        StateHasChanged();
+        await Task.Delay(2000);
+        saved = false;
+        StateHasChanged();
+    }
+
+    private void SearchWithProfile()
+    {
+        SearchService.SaveDataToDevice();
+        SearchService.ApplyProfileFilters();
+        Nav.NavigateTo("/");
+    }
+
+    private void ToggleContract(string type, bool isChecked)
+    {
+        if (SearchService.CurrentUser.Settings.PreferredContractTypes == null)
+        {
+            SearchService.CurrentUser.Settings.PreferredContractTypes = new List<string>();
+        }
+
+        if (isChecked)
+        {
+            if (!SearchService.CurrentUser.Settings.PreferredContractTypes.Contains(type))
+            {
+                SearchService.CurrentUser.Settings.PreferredContractTypes.Add(type);
+            }
+        }
+        else
+        {
+            SearchService.CurrentUser.Settings.PreferredContractTypes.Remove(type);
+        }
+    }
+
+    private void ToggleLanguage(string lang, bool isChecked)
+    {
+        if (isChecked)
+        {
+            if (!SearchService.CurrentUser.Settings.KnownLanguages.Contains(lang))
+            {
+                SearchService.CurrentUser.Settings.KnownLanguages.Add(lang);
+            }
+        }
+        else
+        {
+            SearchService.CurrentUser.Settings.KnownLanguages.Remove(lang);
+        }
+    }
+}
+
+<style>
+    .profile-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        color: #333;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .form-input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        margin-top: 5px;
+    }
+
+    .hint {
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .profile-pill-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .profile-pill {
+        background: #f0f0f0;
+        padding: 7px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+    }
+
+    .profile-pill-light {
+        background: #f7f9fb;
+    }
+
+    .btn-save {
+        background: #6c5ce7;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        width: 100%;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .success {
+        color: green;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .btn-search-profile {
+        background: #00ced1;
+        color: #1a1a1a;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        width: 100%;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: 0.3s;
+    }
+
+    .btn-search-profile:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 206, 209, 0.3);
+    }
+</style>

@@ -1,0 +1,909 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.testowe.AdzunaResult
+  commentId: T:MauiApp1.testowe.AdzunaResult
+  id: AdzunaResult
+  parent: MauiApp1.testowe
+  children:
+  - MauiApp1.testowe.AdzunaResult.Category
+  - MauiApp1.testowe.AdzunaResult.Company
+  - MauiApp1.testowe.AdzunaResult.Contract_Time
+  - MauiApp1.testowe.AdzunaResult.Contract_Type
+  - MauiApp1.testowe.AdzunaResult.Created
+  - MauiApp1.testowe.AdzunaResult.Description
+  - MauiApp1.testowe.AdzunaResult.Location
+  - MauiApp1.testowe.AdzunaResult.Redirect_Url
+  - MauiApp1.testowe.AdzunaResult.Salary_Max
+  - MauiApp1.testowe.AdzunaResult.Salary_Min
+  - MauiApp1.testowe.AdzunaResult.Title
+  langs:
+  - csharp
+  - vb
+  name: AdzunaResult
+  nameWithType: AdzunaResult
+  fullName: MauiApp1.testowe.AdzunaResult
+  type: Class
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: AdzunaResult
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 14
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public class AdzunaResult
+    content.vb: Public Class AdzunaResult
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.testowe.AdzunaResult.Title
+  commentId: P:MauiApp1.testowe.AdzunaResult.Title
+  id: Title
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Title
+  nameWithType: AdzunaResult.Title
+  fullName: MauiApp1.testowe.AdzunaResult.Title
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Title
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 16
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("title")]
+
+      public string? Title { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("title")>
+
+      Public Property Title As String
+  overload: MauiApp1.testowe.AdzunaResult.Title*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: title
+- uid: MauiApp1.testowe.AdzunaResult.Company
+  commentId: P:MauiApp1.testowe.AdzunaResult.Company
+  id: Company
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Company
+  nameWithType: AdzunaResult.Company
+  fullName: MauiApp1.testowe.AdzunaResult.Company
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Company
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 17
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("company")]
+
+      public CompanyInfo? Company { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.testowe.CompanyInfo
+    content.vb: >-
+      <JsonProperty("company")>
+
+      Public Property Company As CompanyInfo
+  overload: MauiApp1.testowe.AdzunaResult.Company*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: company
+- uid: MauiApp1.testowe.AdzunaResult.Location
+  commentId: P:MauiApp1.testowe.AdzunaResult.Location
+  id: Location
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Location
+  nameWithType: AdzunaResult.Location
+  fullName: MauiApp1.testowe.AdzunaResult.Location
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Location
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 18
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("location")]
+
+      public LocationInfo? Location { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.testowe.LocationInfo
+    content.vb: >-
+      <JsonProperty("location")>
+
+      Public Property Location As LocationInfo
+  overload: MauiApp1.testowe.AdzunaResult.Location*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: location
+- uid: MauiApp1.testowe.AdzunaResult.Salary_Min
+  commentId: P:MauiApp1.testowe.AdzunaResult.Salary_Min
+  id: Salary_Min
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Salary_Min
+  nameWithType: AdzunaResult.Salary_Min
+  fullName: MauiApp1.testowe.AdzunaResult.Salary_Min
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Salary_Min
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 19
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("salary_min")]
+
+      public double? Salary_Min { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Double}
+    content.vb: >-
+      <JsonProperty("salary_min")>
+
+      Public Property Salary_Min As Double?
+  overload: MauiApp1.testowe.AdzunaResult.Salary_Min*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: salary_min
+- uid: MauiApp1.testowe.AdzunaResult.Salary_Max
+  commentId: P:MauiApp1.testowe.AdzunaResult.Salary_Max
+  id: Salary_Max
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Salary_Max
+  nameWithType: AdzunaResult.Salary_Max
+  fullName: MauiApp1.testowe.AdzunaResult.Salary_Max
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Salary_Max
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 20
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("salary_max")]
+
+      public double? Salary_Max { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Double}
+    content.vb: >-
+      <JsonProperty("salary_max")>
+
+      Public Property Salary_Max As Double?
+  overload: MauiApp1.testowe.AdzunaResult.Salary_Max*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: salary_max
+- uid: MauiApp1.testowe.AdzunaResult.Redirect_Url
+  commentId: P:MauiApp1.testowe.AdzunaResult.Redirect_Url
+  id: Redirect_Url
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Redirect_Url
+  nameWithType: AdzunaResult.Redirect_Url
+  fullName: MauiApp1.testowe.AdzunaResult.Redirect_Url
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Redirect_Url
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 21
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("redirect_url")]
+
+      public string? Redirect_Url { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("redirect_url")>
+
+      Public Property Redirect_Url As String
+  overload: MauiApp1.testowe.AdzunaResult.Redirect_Url*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: redirect_url
+- uid: MauiApp1.testowe.AdzunaResult.Description
+  commentId: P:MauiApp1.testowe.AdzunaResult.Description
+  id: Description
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: AdzunaResult.Description
+  fullName: MauiApp1.testowe.AdzunaResult.Description
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Description
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 22
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("description")]
+
+      public string? Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("description")>
+
+      Public Property Description As String
+  overload: MauiApp1.testowe.AdzunaResult.Description*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: description
+- uid: MauiApp1.testowe.AdzunaResult.Created
+  commentId: P:MauiApp1.testowe.AdzunaResult.Created
+  id: Created
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Created
+  nameWithType: AdzunaResult.Created
+  fullName: MauiApp1.testowe.AdzunaResult.Created
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Created
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 23
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("created")]
+
+      public string? Created { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("created")>
+
+      Public Property Created As String
+  overload: MauiApp1.testowe.AdzunaResult.Created*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: created
+- uid: MauiApp1.testowe.AdzunaResult.Contract_Time
+  commentId: P:MauiApp1.testowe.AdzunaResult.Contract_Time
+  id: Contract_Time
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Contract_Time
+  nameWithType: AdzunaResult.Contract_Time
+  fullName: MauiApp1.testowe.AdzunaResult.Contract_Time
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Contract_Time
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 24
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("contract_time")]
+
+      public string? Contract_Time { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("contract_time")>
+
+      Public Property Contract_Time As String
+  overload: MauiApp1.testowe.AdzunaResult.Contract_Time*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: contract_time
+- uid: MauiApp1.testowe.AdzunaResult.Contract_Type
+  commentId: P:MauiApp1.testowe.AdzunaResult.Contract_Type
+  id: Contract_Type
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Contract_Type
+  nameWithType: AdzunaResult.Contract_Type
+  fullName: MauiApp1.testowe.AdzunaResult.Contract_Type
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Contract_Type
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 25
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("contract_type")]
+
+      public string? Contract_Type { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("contract_type")>
+
+      Public Property Contract_Type As String
+  overload: MauiApp1.testowe.AdzunaResult.Contract_Type*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: contract_type
+- uid: MauiApp1.testowe.AdzunaResult.Category
+  commentId: P:MauiApp1.testowe.AdzunaResult.Category
+  id: Category
+  parent: MauiApp1.testowe.AdzunaResult
+  langs:
+  - csharp
+  - vb
+  name: Category
+  nameWithType: AdzunaResult.Category
+  fullName: MauiApp1.testowe.AdzunaResult.Category
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Category
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 26
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("category")]
+
+      public CategoryInfo? Category { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.testowe.CategoryInfo
+    content.vb: >-
+      <JsonProperty("category")>
+
+      Public Property Category As CategoryInfo
+  overload: MauiApp1.testowe.AdzunaResult.Category*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: category
+references:
+- uid: MauiApp1.testowe
+  commentId: N:MauiApp1.testowe
+  href: MauiApp1.html
+  name: MauiApp1.testowe
+  nameWithType: MauiApp1.testowe
+  fullName: MauiApp1.testowe
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.testowe.AdzunaResult.Title*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Title
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Title
+  name: Title
+  nameWithType: AdzunaResult.Title
+  fullName: MauiApp1.testowe.AdzunaResult.Title
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MauiApp1.testowe.AdzunaResult.Company*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Company
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Company
+  name: Company
+  nameWithType: AdzunaResult.Company
+  fullName: MauiApp1.testowe.AdzunaResult.Company
+- uid: MauiApp1.testowe.CompanyInfo
+  commentId: T:MauiApp1.testowe.CompanyInfo
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.CompanyInfo.html
+  name: CompanyInfo
+  nameWithType: CompanyInfo
+  fullName: MauiApp1.testowe.CompanyInfo
+- uid: MauiApp1.testowe.AdzunaResult.Location*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Location
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Location
+  name: Location
+  nameWithType: AdzunaResult.Location
+  fullName: MauiApp1.testowe.AdzunaResult.Location
+- uid: MauiApp1.testowe.LocationInfo
+  commentId: T:MauiApp1.testowe.LocationInfo
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.LocationInfo.html
+  name: LocationInfo
+  nameWithType: LocationInfo
+  fullName: MauiApp1.testowe.LocationInfo
+- uid: MauiApp1.testowe.AdzunaResult.Salary_Min*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Salary_Min
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Salary_Min
+  name: Salary_Min
+  nameWithType: AdzunaResult.Salary_Min
+  fullName: MauiApp1.testowe.AdzunaResult.Salary_Min
+- uid: System.Nullable{System.Double}
+  commentId: T:System.Nullable{System.Double}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double?
+  nameWithType: double?
+  fullName: double?
+  nameWithType.vb: Double?
+  fullName.vb: Double?
+  name.vb: Double?
+  spec.csharp:
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: '?'
+  spec.vb:
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MauiApp1.testowe.AdzunaResult.Salary_Max*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Salary_Max
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Salary_Max
+  name: Salary_Max
+  nameWithType: AdzunaResult.Salary_Max
+  fullName: MauiApp1.testowe.AdzunaResult.Salary_Max
+- uid: MauiApp1.testowe.AdzunaResult.Redirect_Url*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Redirect_Url
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Redirect_Url
+  name: Redirect_Url
+  nameWithType: AdzunaResult.Redirect_Url
+  fullName: MauiApp1.testowe.AdzunaResult.Redirect_Url
+- uid: MauiApp1.testowe.AdzunaResult.Description*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Description
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Description
+  name: Description
+  nameWithType: AdzunaResult.Description
+  fullName: MauiApp1.testowe.AdzunaResult.Description
+- uid: MauiApp1.testowe.AdzunaResult.Created*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Created
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Created
+  name: Created
+  nameWithType: AdzunaResult.Created
+  fullName: MauiApp1.testowe.AdzunaResult.Created
+- uid: MauiApp1.testowe.AdzunaResult.Contract_Time*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Contract_Time
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Contract_Time
+  name: Contract_Time
+  nameWithType: AdzunaResult.Contract_Time
+  fullName: MauiApp1.testowe.AdzunaResult.Contract_Time
+- uid: MauiApp1.testowe.AdzunaResult.Contract_Type*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Contract_Type
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Contract_Type
+  name: Contract_Type
+  nameWithType: AdzunaResult.Contract_Type
+  fullName: MauiApp1.testowe.AdzunaResult.Contract_Type
+- uid: MauiApp1.testowe.AdzunaResult.Category*
+  commentId: Overload:MauiApp1.testowe.AdzunaResult.Category
+  href: MauiApp1.testowe.AdzunaResult.html#MauiApp1_testowe_AdzunaResult_Category
+  name: Category
+  nameWithType: AdzunaResult.Category
+  fullName: MauiApp1.testowe.AdzunaResult.Category
+- uid: MauiApp1.testowe.CategoryInfo
+  commentId: T:MauiApp1.testowe.CategoryInfo
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.CategoryInfo.html
+  name: CategoryInfo
+  nameWithType: CategoryInfo
+  fullName: MauiApp1.testowe.CategoryInfo

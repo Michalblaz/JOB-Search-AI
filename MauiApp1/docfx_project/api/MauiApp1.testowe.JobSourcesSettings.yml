@@ -1,0 +1,427 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.testowe.JobSourcesSettings
+  commentId: T:MauiApp1.testowe.JobSourcesSettings
+  id: JobSourcesSettings
+  parent: MauiApp1.testowe
+  children:
+  - MauiApp1.testowe.JobSourcesSettings.Adzuna
+  - MauiApp1.testowe.JobSourcesSettings.EPraca
+  - MauiApp1.testowe.JobSourcesSettings.Jooble
+  langs:
+  - csharp
+  - vb
+  name: JobSourcesSettings
+  nameWithType: JobSourcesSettings
+  fullName: MauiApp1.testowe.JobSourcesSettings
+  type: Class
+  source:
+    remote:
+      path: MauiApp1/testowe/AppSettings.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: JobSourcesSettings
+    path: ../MauiApp1/testowe/AppSettings.cs
+    startLine: 18
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public class JobSourcesSettings
+    content.vb: Public Class JobSourcesSettings
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.testowe.JobSourcesSettings.Adzuna
+  commentId: P:MauiApp1.testowe.JobSourcesSettings.Adzuna
+  id: Adzuna
+  parent: MauiApp1.testowe.JobSourcesSettings
+  langs:
+  - csharp
+  - vb
+  name: Adzuna
+  nameWithType: JobSourcesSettings.Adzuna
+  fullName: MauiApp1.testowe.JobSourcesSettings.Adzuna
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/AppSettings.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Adzuna
+    path: ../MauiApp1/testowe/AppSettings.cs
+    startLine: 20
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public AdzunaSettings Adzuna { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.testowe.AdzunaSettings
+    content.vb: Public Property Adzuna As AdzunaSettings
+  overload: MauiApp1.testowe.JobSourcesSettings.Adzuna*
+- uid: MauiApp1.testowe.JobSourcesSettings.Jooble
+  commentId: P:MauiApp1.testowe.JobSourcesSettings.Jooble
+  id: Jooble
+  parent: MauiApp1.testowe.JobSourcesSettings
+  langs:
+  - csharp
+  - vb
+  name: Jooble
+  nameWithType: JobSourcesSettings.Jooble
+  fullName: MauiApp1.testowe.JobSourcesSettings.Jooble
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/AppSettings.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Jooble
+    path: ../MauiApp1/testowe/AppSettings.cs
+    startLine: 21
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public JoobleSettings Jooble { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.testowe.JoobleSettings
+    content.vb: Public Property Jooble As JoobleSettings
+  overload: MauiApp1.testowe.JobSourcesSettings.Jooble*
+- uid: MauiApp1.testowe.JobSourcesSettings.EPraca
+  commentId: P:MauiApp1.testowe.JobSourcesSettings.EPraca
+  id: EPraca
+  parent: MauiApp1.testowe.JobSourcesSettings
+  langs:
+  - csharp
+  - vb
+  name: EPraca
+  nameWithType: JobSourcesSettings.EPraca
+  fullName: MauiApp1.testowe.JobSourcesSettings.EPraca
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/AppSettings.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: EPraca
+    path: ../MauiApp1/testowe/AppSettings.cs
+    startLine: 22
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public EPracaSettings EPraca { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.testowe.EPracaSettings
+    content.vb: Public Property EPraca As EPracaSettings
+  overload: MauiApp1.testowe.JobSourcesSettings.EPraca*
+references:
+- uid: MauiApp1.testowe
+  commentId: N:MauiApp1.testowe
+  href: MauiApp1.html
+  name: MauiApp1.testowe
+  nameWithType: MauiApp1.testowe
+  fullName: MauiApp1.testowe
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.testowe.JobSourcesSettings.Adzuna*
+  commentId: Overload:MauiApp1.testowe.JobSourcesSettings.Adzuna
+  href: MauiApp1.testowe.JobSourcesSettings.html#MauiApp1_testowe_JobSourcesSettings_Adzuna
+  name: Adzuna
+  nameWithType: JobSourcesSettings.Adzuna
+  fullName: MauiApp1.testowe.JobSourcesSettings.Adzuna
+- uid: MauiApp1.testowe.AdzunaSettings
+  commentId: T:MauiApp1.testowe.AdzunaSettings
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.AdzunaSettings.html
+  name: AdzunaSettings
+  nameWithType: AdzunaSettings
+  fullName: MauiApp1.testowe.AdzunaSettings
+- uid: MauiApp1.testowe.JobSourcesSettings.Jooble*
+  commentId: Overload:MauiApp1.testowe.JobSourcesSettings.Jooble
+  href: MauiApp1.testowe.JobSourcesSettings.html#MauiApp1_testowe_JobSourcesSettings_Jooble
+  name: Jooble
+  nameWithType: JobSourcesSettings.Jooble
+  fullName: MauiApp1.testowe.JobSourcesSettings.Jooble
+- uid: MauiApp1.testowe.JoobleSettings
+  commentId: T:MauiApp1.testowe.JoobleSettings
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.JoobleSettings.html
+  name: JoobleSettings
+  nameWithType: JoobleSettings
+  fullName: MauiApp1.testowe.JoobleSettings
+- uid: MauiApp1.testowe.JobSourcesSettings.EPraca*
+  commentId: Overload:MauiApp1.testowe.JobSourcesSettings.EPraca
+  href: MauiApp1.testowe.JobSourcesSettings.html#MauiApp1_testowe_JobSourcesSettings_EPraca
+  name: EPraca
+  nameWithType: JobSourcesSettings.EPraca
+  fullName: MauiApp1.testowe.JobSourcesSettings.EPraca
+- uid: MauiApp1.testowe.EPracaSettings
+  commentId: T:MauiApp1.testowe.EPracaSettings
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.EPracaSettings.html
+  name: EPracaSettings
+  nameWithType: EPracaSettings
+  fullName: MauiApp1.testowe.EPracaSettings

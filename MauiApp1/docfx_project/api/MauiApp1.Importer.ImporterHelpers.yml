@@ -1,0 +1,890 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.Importer.ImporterHelpers
+  commentId: T:MauiApp1.Importer.ImporterHelpers
+  id: ImporterHelpers
+  parent: MauiApp1.Importer
+  children:
+  - MauiApp1.Importer.ImporterHelpers.BuildShortDescription(System.String)
+  - MauiApp1.Importer.ImporterHelpers.ComputeContentHash(System.String)
+  - MauiApp1.Importer.ImporterHelpers.DetectEducationLevel(System.String,System.String)
+  - MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel(System.String,System.String)
+  - MauiApp1.Importer.ImporterHelpers.DetectLanguages(System.String,System.String)
+  - MauiApp1.Importer.ImporterHelpers.DetectRemote(System.String,System.String,System.String)
+  - MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode(System.String)
+  - MauiApp1.Importer.ImporterHelpers.SplitLocation(System.String)
+  langs:
+  - csharp
+  - vb
+  name: ImporterHelpers
+  nameWithType: ImporterHelpers
+  fullName: MauiApp1.Importer.ImporterHelpers
+  type: Class
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ImporterHelpers
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 120
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Zestaw funkcji normalizujących tekst oferty, lokalizację i sygnały dopasowania podczas importu.
+  remarks: Helpery są celowo bezstanowe, ponieważ działają na pojedynczych polach z API i muszą być łatwe do użycia w mapowaniu różnych źródeł.
+  example: []
+  syntax:
+    content: public static class ImporterHelpers
+    content.vb: Public Module ImporterHelpers
+  seealso:
+  - linkId: MauiApp1.Importer.JobImportCoordinator
+    commentId: T:MauiApp1.Importer.JobImportCoordinator
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.Importer.ImporterHelpers.BuildShortDescription(System.String)
+  commentId: M:MauiApp1.Importer.ImporterHelpers.BuildShortDescription(System.String)
+  id: BuildShortDescription(System.String)
+  parent: MauiApp1.Importer.ImporterHelpers
+  langs:
+  - csharp
+  - vb
+  name: BuildShortDescription(string?)
+  nameWithType: ImporterHelpers.BuildShortDescription(string?)
+  fullName: MauiApp1.Importer.ImporterHelpers.BuildShortDescription(string?)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: BuildShortDescription
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 127
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Skraca i czyści opis oferty do wersji wygodnej do szybkiego wyświetlania.
+  example: []
+  syntax:
+    content: public static string BuildShortDescription(string? description)
+    parameters:
+    - id: description
+      type: System.String
+      description: Pełny opis HTML lub tekst pobrany ze źródła.
+    return:
+      type: System.String
+      description: Opis bez tagów HTML, ograniczony do krótkiego fragmentu.
+    content.vb: Public Shared Function BuildShortDescription(description As String) As String
+  overload: MauiApp1.Importer.ImporterHelpers.BuildShortDescription*
+  nameWithType.vb: ImporterHelpers.BuildShortDescription(String)
+  fullName.vb: MauiApp1.Importer.ImporterHelpers.BuildShortDescription(String)
+  name.vb: BuildShortDescription(String)
+- uid: MauiApp1.Importer.ImporterHelpers.ComputeContentHash(System.String)
+  commentId: M:MauiApp1.Importer.ImporterHelpers.ComputeContentHash(System.String)
+  id: ComputeContentHash(System.String)
+  parent: MauiApp1.Importer.ImporterHelpers
+  langs:
+  - csharp
+  - vb
+  name: ComputeContentHash(string)
+  nameWithType: ImporterHelpers.ComputeContentHash(string)
+  fullName: MauiApp1.Importer.ImporterHelpers.ComputeContentHash(string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ComputeContentHash
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 146
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Wylicza skrót treści używany do wykrywania zmian w ofercie między importami.
+  example: []
+  syntax:
+    content: public static string ComputeContentHash(string value)
+    parameters:
+    - id: value
+      type: System.String
+      description: Zserializowana treść źródłowej oferty.
+    return:
+      type: System.String
+      description: Szesnastkowy skrót SHA-256.
+    content.vb: Public Shared Function ComputeContentHash(value As String) As String
+  overload: MauiApp1.Importer.ImporterHelpers.ComputeContentHash*
+  nameWithType.vb: ImporterHelpers.ComputeContentHash(String)
+  fullName.vb: MauiApp1.Importer.ImporterHelpers.ComputeContentHash(String)
+  name.vb: ComputeContentHash(String)
+- uid: MauiApp1.Importer.ImporterHelpers.SplitLocation(System.String)
+  commentId: M:MauiApp1.Importer.ImporterHelpers.SplitLocation(System.String)
+  id: SplitLocation(System.String)
+  parent: MauiApp1.Importer.ImporterHelpers
+  langs:
+  - csharp
+  - vb
+  name: SplitLocation(string?)
+  nameWithType: ImporterHelpers.SplitLocation(string?)
+  fullName: MauiApp1.Importer.ImporterHelpers.SplitLocation(string?)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SplitLocation
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 157
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Dzieli tekst lokalizacji na miasto, region i kraj, jeśli źródło zwróciło wartości rozdzielone przecinkami.
+  example: []
+  syntax:
+    content: public static (string? City, string? Region, string? Country) SplitLocation(string? location)
+    parameters:
+    - id: location
+      type: System.String
+      description: Surowy tekst lokalizacji ze źródła zewnętrznego.
+    return:
+      type: System.ValueTuple{System.String,System.String,System.String}
+      description: Krotka z rozpoznanymi częściami lokalizacji; brakujące elementy są <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    content.vb: Public Shared Function SplitLocation(location As String) As (City As String, Region As String, Country As String)
+  overload: MauiApp1.Importer.ImporterHelpers.SplitLocation*
+  nameWithType.vb: ImporterHelpers.SplitLocation(String)
+  fullName.vb: MauiApp1.Importer.ImporterHelpers.SplitLocation(String)
+  name.vb: SplitLocation(String)
+- uid: MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode(System.String)
+  commentId: M:MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode(System.String)
+  id: NormalizeCountryCode(System.String)
+  parent: MauiApp1.Importer.ImporterHelpers
+  langs:
+  - csharp
+  - vb
+  name: NormalizeCountryCode(string?)
+  nameWithType: ImporterHelpers.NormalizeCountryCode(string?)
+  fullName: MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode(string?)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: NormalizeCountryCode
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 173
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public static string? NormalizeCountryCode(string? value)
+    parameters:
+    - id: value
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function NormalizeCountryCode(value As String) As String
+  overload: MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode*
+  nameWithType.vb: ImporterHelpers.NormalizeCountryCode(String)
+  fullName.vb: MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode(String)
+  name.vb: NormalizeCountryCode(String)
+- uid: MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel(System.String,System.String)
+  commentId: M:MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel(System.String,System.String)
+  id: DetectExperienceLevel(System.String,System.String)
+  parent: MauiApp1.Importer.ImporterHelpers
+  langs:
+  - csharp
+  - vb
+  name: DetectExperienceLevel(string?, string?)
+  nameWithType: ImporterHelpers.DetectExperienceLevel(string?, string?)
+  fullName: MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel(string?, string?)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: DetectExperienceLevel
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 220
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Rozpoznaje poziom doświadczenia na podstawie tytułu i opisu oferty.
+  example:
+  - <pre><code class="lang-csharp">var level = ImporterHelpers.DetectExperienceLevel("Junior .NET Developer", description);</code></pre>
+  syntax:
+    content: public static string DetectExperienceLevel(string? title, string? description)
+    parameters:
+    - id: title
+      type: System.String
+      description: Tytuł stanowiska.
+    - id: description
+      type: System.String
+      description: Opis stanowiska.
+    return:
+      type: System.String
+      description: Jedna z etykiet używanych później przez filtry aplikacji.
+    content.vb: Public Shared Function DetectExperienceLevel(title As String, description As String) As String
+  overload: MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel*
+  nameWithType.vb: ImporterHelpers.DetectExperienceLevel(String, String)
+  fullName.vb: MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel(String, String)
+  name.vb: DetectExperienceLevel(String, String)
+- uid: MauiApp1.Importer.ImporterHelpers.DetectEducationLevel(System.String,System.String)
+  commentId: M:MauiApp1.Importer.ImporterHelpers.DetectEducationLevel(System.String,System.String)
+  id: DetectEducationLevel(System.String,System.String)
+  parent: MauiApp1.Importer.ImporterHelpers
+  langs:
+  - csharp
+  - vb
+  name: DetectEducationLevel(string?, string?)
+  nameWithType: ImporterHelpers.DetectEducationLevel(string?, string?)
+  fullName: MauiApp1.Importer.ImporterHelpers.DetectEducationLevel(string?, string?)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: DetectEducationLevel
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 251
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public static string DetectEducationLevel(string? title, string? description)
+    parameters:
+    - id: title
+      type: System.String
+    - id: description
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function DetectEducationLevel(title As String, description As String) As String
+  overload: MauiApp1.Importer.ImporterHelpers.DetectEducationLevel*
+  nameWithType.vb: ImporterHelpers.DetectEducationLevel(String, String)
+  fullName.vb: MauiApp1.Importer.ImporterHelpers.DetectEducationLevel(String, String)
+  name.vb: DetectEducationLevel(String, String)
+- uid: MauiApp1.Importer.ImporterHelpers.DetectRemote(System.String,System.String,System.String)
+  commentId: M:MauiApp1.Importer.ImporterHelpers.DetectRemote(System.String,System.String,System.String)
+  id: DetectRemote(System.String,System.String,System.String)
+  parent: MauiApp1.Importer.ImporterHelpers
+  langs:
+  - csharp
+  - vb
+  name: DetectRemote(string?, string?, string?)
+  nameWithType: ImporterHelpers.DetectRemote(string?, string?, string?)
+  fullName: MauiApp1.Importer.ImporterHelpers.DetectRemote(string?, string?, string?)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: DetectRemote
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 272
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public static bool DetectRemote(string? title, string? description, string? location)
+    parameters:
+    - id: title
+      type: System.String
+    - id: description
+      type: System.String
+    - id: location
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function DetectRemote(title As String, description As String, location As String) As Boolean
+  overload: MauiApp1.Importer.ImporterHelpers.DetectRemote*
+  nameWithType.vb: ImporterHelpers.DetectRemote(String, String, String)
+  fullName.vb: MauiApp1.Importer.ImporterHelpers.DetectRemote(String, String, String)
+  name.vb: DetectRemote(String, String, String)
+- uid: MauiApp1.Importer.ImporterHelpers.DetectLanguages(System.String,System.String)
+  commentId: M:MauiApp1.Importer.ImporterHelpers.DetectLanguages(System.String,System.String)
+  id: DetectLanguages(System.String,System.String)
+  parent: MauiApp1.Importer.ImporterHelpers
+  langs:
+  - csharp
+  - vb
+  name: DetectLanguages(string?, string?)
+  nameWithType: ImporterHelpers.DetectLanguages(string?, string?)
+  fullName: MauiApp1.Importer.ImporterHelpers.DetectLanguages(string?, string?)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: DetectLanguages
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 278
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public static List<OfferLanguage> DetectLanguages(string? title, string? description)
+    parameters:
+    - id: title
+      type: System.String
+    - id: description
+      type: System.String
+    return:
+      type: System.Collections.Generic.List{MauiApp1.Importer.OfferLanguage}
+    content.vb: Public Shared Function DetectLanguages(title As String, description As String) As List(Of OfferLanguage)
+  overload: MauiApp1.Importer.ImporterHelpers.DetectLanguages*
+  nameWithType.vb: ImporterHelpers.DetectLanguages(String, String)
+  fullName.vb: MauiApp1.Importer.ImporterHelpers.DetectLanguages(String, String)
+  name.vb: DetectLanguages(String, String)
+references:
+- uid: MauiApp1.Importer.JobImportCoordinator
+  commentId: T:MauiApp1.Importer.JobImportCoordinator
+  href: MauiApp1.Importer.JobImportCoordinator.html
+  name: JobImportCoordinator
+  nameWithType: JobImportCoordinator
+  fullName: MauiApp1.Importer.JobImportCoordinator
+- uid: MauiApp1.Importer
+  commentId: N:MauiApp1.Importer
+  href: MauiApp1.html
+  name: MauiApp1.Importer
+  nameWithType: MauiApp1.Importer
+  fullName: MauiApp1.Importer
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.Importer.ImporterHelpers.BuildShortDescription*
+  commentId: Overload:MauiApp1.Importer.ImporterHelpers.BuildShortDescription
+  href: MauiApp1.Importer.ImporterHelpers.html#MauiApp1_Importer_ImporterHelpers_BuildShortDescription_System_String_
+  name: BuildShortDescription
+  nameWithType: ImporterHelpers.BuildShortDescription
+  fullName: MauiApp1.Importer.ImporterHelpers.BuildShortDescription
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MauiApp1.Importer.ImporterHelpers.ComputeContentHash*
+  commentId: Overload:MauiApp1.Importer.ImporterHelpers.ComputeContentHash
+  href: MauiApp1.Importer.ImporterHelpers.html#MauiApp1_Importer_ImporterHelpers_ComputeContentHash_System_String_
+  name: ComputeContentHash
+  nameWithType: ImporterHelpers.ComputeContentHash
+  fullName: MauiApp1.Importer.ImporterHelpers.ComputeContentHash
+- uid: MauiApp1.Importer.ImporterHelpers.SplitLocation*
+  commentId: Overload:MauiApp1.Importer.ImporterHelpers.SplitLocation
+  href: MauiApp1.Importer.ImporterHelpers.html#MauiApp1_Importer_ImporterHelpers_SplitLocation_System_String_
+  name: SplitLocation
+  nameWithType: ImporterHelpers.SplitLocation
+  fullName: MauiApp1.Importer.ImporterHelpers.SplitLocation
+- uid: System.ValueTuple{System.String,System.String,System.String}
+  commentId: T:System.ValueTuple{System.String,System.String,System.String}
+  parent: System
+  definition: System.ValueTuple`3
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: (string City, string Region, string Country)
+  nameWithType: (string City, string Region, string Country)
+  fullName: (string City, string Region, string Country)
+  nameWithType.vb: (City As String, Region As String, Country As String)
+  fullName.vb: (City As String, Region As String, Country As String)
+  name.vb: (City As String, Region As String, Country As String)
+  spec.csharp:
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: " "
+  - uid: System.ValueTuple{System.String,System.String,System.String}.City
+    name: City
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.city
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: " "
+  - uid: System.ValueTuple{System.String,System.String,System.String}.Region
+    name: Region
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.region
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: " "
+  - uid: System.ValueTuple{System.String,System.String,System.String}.Country
+    name: Country
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.country
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.String,System.String,System.String}.City
+    name: City
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.city
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.String,System.String,System.String}.Region
+    name: Region
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.region
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.String,System.String,System.String}.Country
+    name: Country
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.country
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.ValueTuple`3
+  commentId: T:System.ValueTuple`3
+  name: (T1, T2, T3)
+  nameWithType: (T1, T2, T3)
+  fullName: (T1, T2, T3)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: T3
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: T3
+  - name: )
+- uid: MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode*
+  commentId: Overload:MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode
+  href: MauiApp1.Importer.ImporterHelpers.html#MauiApp1_Importer_ImporterHelpers_NormalizeCountryCode_System_String_
+  name: NormalizeCountryCode
+  nameWithType: ImporterHelpers.NormalizeCountryCode
+  fullName: MauiApp1.Importer.ImporterHelpers.NormalizeCountryCode
+- uid: MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel*
+  commentId: Overload:MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel
+  href: MauiApp1.Importer.ImporterHelpers.html#MauiApp1_Importer_ImporterHelpers_DetectExperienceLevel_System_String_System_String_
+  name: DetectExperienceLevel
+  nameWithType: ImporterHelpers.DetectExperienceLevel
+  fullName: MauiApp1.Importer.ImporterHelpers.DetectExperienceLevel
+- uid: MauiApp1.Importer.ImporterHelpers.DetectEducationLevel*
+  commentId: Overload:MauiApp1.Importer.ImporterHelpers.DetectEducationLevel
+  href: MauiApp1.Importer.ImporterHelpers.html#MauiApp1_Importer_ImporterHelpers_DetectEducationLevel_System_String_System_String_
+  name: DetectEducationLevel
+  nameWithType: ImporterHelpers.DetectEducationLevel
+  fullName: MauiApp1.Importer.ImporterHelpers.DetectEducationLevel
+- uid: MauiApp1.Importer.ImporterHelpers.DetectRemote*
+  commentId: Overload:MauiApp1.Importer.ImporterHelpers.DetectRemote
+  href: MauiApp1.Importer.ImporterHelpers.html#MauiApp1_Importer_ImporterHelpers_DetectRemote_System_String_System_String_System_String_
+  name: DetectRemote
+  nameWithType: ImporterHelpers.DetectRemote
+  fullName: MauiApp1.Importer.ImporterHelpers.DetectRemote
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MauiApp1.Importer.ImporterHelpers.DetectLanguages*
+  commentId: Overload:MauiApp1.Importer.ImporterHelpers.DetectLanguages
+  href: MauiApp1.Importer.ImporterHelpers.html#MauiApp1_Importer_ImporterHelpers_DetectLanguages_System_String_System_String_
+  name: DetectLanguages
+  nameWithType: ImporterHelpers.DetectLanguages
+  fullName: MauiApp1.Importer.ImporterHelpers.DetectLanguages
+- uid: System.Collections.Generic.List{MauiApp1.Importer.OfferLanguage}
+  commentId: T:System.Collections.Generic.List{MauiApp1.Importer.OfferLanguage}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<OfferLanguage>
+  nameWithType: List<OfferLanguage>
+  fullName: System.Collections.Generic.List<MauiApp1.Importer.OfferLanguage>
+  nameWithType.vb: List(Of OfferLanguage)
+  fullName.vb: System.Collections.Generic.List(Of MauiApp1.Importer.OfferLanguage)
+  name.vb: List(Of OfferLanguage)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: MauiApp1.Importer.OfferLanguage
+    name: OfferLanguage
+    href: MauiApp1.Importer.OfferLanguage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MauiApp1.Importer.OfferLanguage
+    name: OfferLanguage
+    href: MauiApp1.Importer.OfferLanguage.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

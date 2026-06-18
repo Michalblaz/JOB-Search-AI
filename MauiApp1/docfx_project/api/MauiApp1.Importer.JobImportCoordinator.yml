@@ -1,0 +1,534 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.Importer.JobImportCoordinator
+  commentId: T:MauiApp1.Importer.JobImportCoordinator
+  id: JobImportCoordinator
+  parent: MauiApp1.Importer
+  children:
+  - MauiApp1.Importer.JobImportCoordinator.#ctor(MauiApp1.Importer.ImporterSettings)
+  - MauiApp1.Importer.JobImportCoordinator.FetchAllAsync
+  langs:
+  - csharp
+  - vb
+  name: JobImportCoordinator
+  nameWithType: JobImportCoordinator
+  fullName: MauiApp1.Importer.JobImportCoordinator
+  type: Class
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: JobImportCoordinator
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 14
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Pobiera oferty z włączonych źródeł zewnętrznych i normalizuje je do wspólnego modelu importu.
+  remarks: >-
+    Koordynator jest częścią procesu wsadowego: nie zapisuje danych samodzielnie, tylko przygotowuje słownik ofert dla
+
+    <xref href="MauiApp1.Importer.PostgresJobRepository" data-throw-if-not-resolved="false"></xref>. Dzięki temu pobieranie z API i zapis do bazy pozostają osobnymi odpowiedzialnościami.
+  example: []
+  syntax:
+    content: public sealed class JobImportCoordinator
+    content.vb: Public NotInheritable Class JobImportCoordinator
+  seealso:
+  - linkId: MauiApp1.Importer.NormalizedJobOffer
+    commentId: T:MauiApp1.Importer.NormalizedJobOffer
+  - linkId: MauiApp1.Importer.ImporterHelpers
+    commentId: T:MauiApp1.Importer.ImporterHelpers
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.Importer.JobImportCoordinator.#ctor(MauiApp1.Importer.ImporterSettings)
+  commentId: M:MauiApp1.Importer.JobImportCoordinator.#ctor(MauiApp1.Importer.ImporterSettings)
+  id: '#ctor(MauiApp1.Importer.ImporterSettings)'
+  parent: MauiApp1.Importer.JobImportCoordinator
+  langs:
+  - csharp
+  - vb
+  name: JobImportCoordinator(ImporterSettings)
+  nameWithType: JobImportCoordinator.JobImportCoordinator(ImporterSettings)
+  fullName: MauiApp1.Importer.JobImportCoordinator.JobImportCoordinator(MauiApp1.Importer.ImporterSettings)
+  type: Constructor
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: .ctor
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 23
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Tworzy koordynator importu na podstawie konfiguracji źródeł i limitów pobierania.
+  example: []
+  syntax:
+    content: public JobImportCoordinator(ImporterSettings settings)
+    parameters:
+    - id: settings
+      type: MauiApp1.Importer.ImporterSettings
+      description: Ustawienia importera odczytane z pliku konfiguracyjnego.
+    content.vb: Public Sub New(settings As ImporterSettings)
+  overload: MauiApp1.Importer.JobImportCoordinator.#ctor*
+  nameWithType.vb: JobImportCoordinator.New(ImporterSettings)
+  fullName.vb: MauiApp1.Importer.JobImportCoordinator.New(MauiApp1.Importer.ImporterSettings)
+  name.vb: New(ImporterSettings)
+- uid: MauiApp1.Importer.JobImportCoordinator.FetchAllAsync
+  commentId: M:MauiApp1.Importer.JobImportCoordinator.FetchAllAsync
+  id: FetchAllAsync
+  parent: MauiApp1.Importer.JobImportCoordinator
+  langs:
+  - csharp
+  - vb
+  name: FetchAllAsync()
+  nameWithType: JobImportCoordinator.FetchAllAsync()
+  fullName: MauiApp1.Importer.JobImportCoordinator.FetchAllAsync()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: FetchAllAsync
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 36
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  summary: Pobiera oferty ze wszystkich źródeł oznaczonych jako aktywne.
+  remarks: >-
+    Jeżeli dane źródło nie ma wymaganych kluczy API albo zwróci pustą odpowiedź, wynik dla niego pozostanie pusty lub nie zostanie
+
+    dodany. Pozwala to kontynuować import pozostałych źródeł bez przerywania całego procesu.
+  example: []
+  syntax:
+    content: public Task<Dictionary<string, List<NormalizedJobOffer>>> FetchAllAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{MauiApp1.Importer.NormalizedJobOffer}}}
+      description: Słownik, w którym kluczem jest kod źródła, a wartością lista znormalizowanych ofert.
+    content.vb: Public Function FetchAllAsync() As Task(Of Dictionary(Of String, List(Of NormalizedJobOffer)))
+  overload: MauiApp1.Importer.JobImportCoordinator.FetchAllAsync*
+references:
+- uid: MauiApp1.Importer.NormalizedJobOffer
+  commentId: T:MauiApp1.Importer.NormalizedJobOffer
+  href: MauiApp1.Importer.NormalizedJobOffer.html
+  name: NormalizedJobOffer
+  nameWithType: NormalizedJobOffer
+  fullName: MauiApp1.Importer.NormalizedJobOffer
+- uid: MauiApp1.Importer.ImporterHelpers
+  commentId: T:MauiApp1.Importer.ImporterHelpers
+  href: MauiApp1.Importer.ImporterHelpers.html
+  name: ImporterHelpers
+  nameWithType: ImporterHelpers
+  fullName: MauiApp1.Importer.ImporterHelpers
+- uid: MauiApp1.Importer.PostgresJobRepository
+  commentId: T:MauiApp1.Importer.PostgresJobRepository
+  href: MauiApp1.Importer.PostgresJobRepository.html
+  name: PostgresJobRepository
+  nameWithType: PostgresJobRepository
+  fullName: MauiApp1.Importer.PostgresJobRepository
+- uid: MauiApp1.Importer
+  commentId: N:MauiApp1.Importer
+  href: MauiApp1.html
+  name: MauiApp1.Importer
+  nameWithType: MauiApp1.Importer
+  fullName: MauiApp1.Importer
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.Importer.JobImportCoordinator.#ctor*
+  commentId: Overload:MauiApp1.Importer.JobImportCoordinator.#ctor
+  href: MauiApp1.Importer.JobImportCoordinator.html#MauiApp1_Importer_JobImportCoordinator__ctor_MauiApp1_Importer_ImporterSettings_
+  name: JobImportCoordinator
+  nameWithType: JobImportCoordinator.JobImportCoordinator
+  fullName: MauiApp1.Importer.JobImportCoordinator.JobImportCoordinator
+  nameWithType.vb: JobImportCoordinator.New
+  fullName.vb: MauiApp1.Importer.JobImportCoordinator.New
+  name.vb: New
+- uid: MauiApp1.Importer.ImporterSettings
+  commentId: T:MauiApp1.Importer.ImporterSettings
+  parent: MauiApp1.Importer
+  href: MauiApp1.Importer.ImporterSettings.html
+  name: ImporterSettings
+  nameWithType: ImporterSettings
+  fullName: MauiApp1.Importer.ImporterSettings
+- uid: MauiApp1.Importer.JobImportCoordinator.FetchAllAsync*
+  commentId: Overload:MauiApp1.Importer.JobImportCoordinator.FetchAllAsync
+  href: MauiApp1.Importer.JobImportCoordinator.html#MauiApp1_Importer_JobImportCoordinator_FetchAllAsync
+  name: FetchAllAsync
+  nameWithType: JobImportCoordinator.FetchAllAsync
+  fullName: MauiApp1.Importer.JobImportCoordinator.FetchAllAsync
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{MauiApp1.Importer.NormalizedJobOffer}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{MauiApp1.Importer.NormalizedJobOffer}}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Dictionary<string, List<NormalizedJobOffer>>>
+  nameWithType: Task<Dictionary<string, List<NormalizedJobOffer>>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<MauiApp1.Importer.NormalizedJobOffer>>>
+  nameWithType.vb: Task(Of Dictionary(Of String, List(Of NormalizedJobOffer)))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.Dictionary(Of String, System.Collections.Generic.List(Of MauiApp1.Importer.NormalizedJobOffer)))
+  name.vb: Task(Of Dictionary(Of String, List(Of NormalizedJobOffer)))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: MauiApp1.Importer.NormalizedJobOffer
+    name: NormalizedJobOffer
+    href: MauiApp1.Importer.NormalizedJobOffer.html
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MauiApp1.Importer.NormalizedJobOffer
+    name: NormalizedJobOffer
+    href: MauiApp1.Importer.NormalizedJobOffer.html
+  - name: )
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

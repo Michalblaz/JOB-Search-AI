@@ -1,0 +1,147 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.testowe.IAppPackageFileProvider
+  commentId: T:MauiApp1.testowe.IAppPackageFileProvider
+  id: IAppPackageFileProvider
+  parent: MauiApp1.testowe
+  children:
+  - MauiApp1.testowe.IAppPackageFileProvider.OpenRead(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IAppPackageFileProvider
+  nameWithType: IAppPackageFileProvider
+  fullName: MauiApp1.testowe.IAppPackageFileProvider
+  type: Interface
+  source:
+    remote:
+      path: MauiApp1/testowe/IAppPackageFileProvider.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: IAppPackageFileProvider
+    path: ../MauiApp1/testowe/IAppPackageFileProvider.cs
+    startLine: 4
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public interface IAppPackageFileProvider
+    content.vb: Public Interface IAppPackageFileProvider
+  derivedClasses:
+  - MauiApp1.testowe.MauiAppPackageFileProvider
+- uid: MauiApp1.testowe.IAppPackageFileProvider.OpenRead(System.String)
+  commentId: M:MauiApp1.testowe.IAppPackageFileProvider.OpenRead(System.String)
+  id: OpenRead(System.String)
+  parent: MauiApp1.testowe.IAppPackageFileProvider
+  langs:
+  - csharp
+  - vb
+  name: OpenRead(string)
+  nameWithType: IAppPackageFileProvider.OpenRead(string)
+  fullName: MauiApp1.testowe.IAppPackageFileProvider.OpenRead(string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/IAppPackageFileProvider.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: OpenRead
+    path: ../MauiApp1/testowe/IAppPackageFileProvider.cs
+    startLine: 6
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: Stream OpenRead(string fileName)
+    parameters:
+    - id: fileName
+      type: System.String
+    return:
+      type: System.IO.Stream
+    content.vb: Function OpenRead(fileName As String) As Stream
+  overload: MauiApp1.testowe.IAppPackageFileProvider.OpenRead*
+  nameWithType.vb: IAppPackageFileProvider.OpenRead(String)
+  fullName.vb: MauiApp1.testowe.IAppPackageFileProvider.OpenRead(String)
+  name.vb: OpenRead(String)
+references:
+- uid: MauiApp1.testowe
+  commentId: N:MauiApp1.testowe
+  href: MauiApp1.html
+  name: MauiApp1.testowe
+  nameWithType: MauiApp1.testowe
+  fullName: MauiApp1.testowe
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+- uid: MauiApp1.testowe.IAppPackageFileProvider.OpenRead*
+  commentId: Overload:MauiApp1.testowe.IAppPackageFileProvider.OpenRead
+  href: MauiApp1.testowe.IAppPackageFileProvider.html#MauiApp1_testowe_IAppPackageFileProvider_OpenRead_System_String_
+  name: OpenRead
+  nameWithType: IAppPackageFileProvider.OpenRead
+  fullName: MauiApp1.testowe.IAppPackageFileProvider.OpenRead
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io

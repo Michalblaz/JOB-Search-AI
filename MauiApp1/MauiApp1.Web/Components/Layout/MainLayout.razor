@@ -1,0 +1,254 @@
+﻿@inherits LayoutComponentBase
+@inject MauiApp1.testowe.JobSearchService SearchService
+@implements IDisposable
+@inject NavigationManager NavManager
+
+<div class="page @(SearchService.CurrentUser.Settings.DarkMode ? "dark-theme" : "")">
+    @if (ShowApplicationChrome)
+    {
+        <header>
+            <div class="logo">
+                <span class="logo-icon">B</span> JOB Search
+            </div>
+            <nav>
+                <NavLink href="ulubione">Ulubione</NavLink>
+                <NavLink href="" Match="NavLinkMatch.All">Wyszukiwarka</NavLink>
+                <NavLink class="nav-link" href="history">Historia</NavLink>
+                <NavLink href="ustawienia">Ustawienia</NavLink>
+                <NavLink class="nav-link" href="profile">
+                    <span class="user-icon">👤</span> @SearchService.CurrentUser.Username
+                </NavLink>
+                <button class="nav-logout" @onclick="HandleLogout">Wyloguj</button>
+            </nav>
+        </header>
+    }
+
+    @if (ShowApplicationChrome && IsHomePage)
+    {
+        <div class="search-panel">
+            <div class="search-primary-grid">
+                <div class="control-group">
+                    <label>Kategoria</label>
+                    <select class="category-select"
+                            value="@SearchService.SelectedCategoryCode"
+                            @onchange="HandleCategoryChanged">
+                        <option value="">Wszystkie kategorie</option>
+                        @foreach (var category in SearchService.CategoryOptions)
+                        {
+                            <option value="@category.CategoryCode">@category.CategoryName (@category.ActiveOfferCount)</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="control-group role-control">
+                    <label>Rola / stanowisko</label>
+                    <select class="role-select"
+                            value="@SearchService.SelectedRoleCode"
+                            @onchange="HandleRoleChanged">
+                        <option value="">Wszystkie role</option>
+                        @foreach (var role in SearchService.VisibleRoleOptions)
+                        {
+                            <option value="@role.RoleCode">@role.RoleName (@role.ActiveOfferCount)</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="control-group keyword-control">
+                    <label>Dodatkowe słowa</label>
+                    <input type="text" placeholder="np. SQL, nocna, junior" class="keyword-input" @bind="SearchService.SearchText">
+                </div>
+            </div>
+
+            <div class="controls-line">
+                <div class="control-group" style="flex: 1.2;">
+                    <label>Lokalizacja</label>
+                    <select @bind="SearchService.Location">
+                        @foreach (var city in LocationOptions)
+                        {
+                            <option value="@city">@city</option>
+                        }
+                    </select>
+
+                    <div class="distance-wrapper" style="margin-top: 10px;">
+                        <label style="font-size: 0.8rem;">Odległość</label>
+
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="flex: 1;">
+                                <input type="range" min="0" max="100" step="5"
+                                       @bind="SearchService.Distance"
+                                       @bind:event="oninput"
+                                       style="width: 100%; cursor: pointer;" />
+
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #ccc; margin-top: 5px;">
+                                    <span>0</span>
+                                    <span>15</span>
+                                    <span>35</span>
+                                    <span>55</span>
+                                    <span>70</span>
+                                    <span>100+km</span>
+                                </div>
+                            </div>
+
+                            <div style="position: relative; display: flex; align-items: center;">
+                                <input type="number"
+                                       @bind="SearchService.Distance"
+                                       @bind:event="oninput"
+                                       min="0" max="100"
+                                       style="width: 75px; background: white; color: black; padding: 5px; border-radius: 4px; font-weight: bold; text-align: center; border: 1px solid #444;" />
+                                <span style="margin-left: 5px; font-size: 0.8rem; font-weight: bold;">KM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group" style="flex: 1;">
+                    <label>Zakres pracy</label>
+                    <select @bind="SearchService.JobRange">
+                        <option>Wszystkie</option>
+                        <option>Pełny etat</option>
+                        <option>Część etatu</option>
+                        <option>Umowa o pracę</option>
+                        <option>Umowa zlecenie</option>
+                        <option>B2B</option>
+                        <option>Kontrakt</option>
+                    </select>
+                    <label style="display: flex; align-items: center; gap: 5px; margin-top: 5px; cursor: pointer;">
+                        <input type="checkbox" @bind="SearchService.RemoteOnly" id="remoteCheck" />
+                        <label for="remoteCheck">Praca zdalna</label>
+                    </label>
+                </div>
+
+                <div class="control-group" style="flex: 1.5;">
+                    <label>Widełki Płacowe (PLN/h)</label>
+                    <div class="simple-inputs" style="display: flex; align-items: center; gap: 5px;">
+                        <input type="number" @bind="SearchService.MinSalary" min="0" placeholder="MIN" style="width: 70px;">
+                        <span>-</span>
+                        <input type="number" @bind="SearchService.MaxSalary" min="0" placeholder="MAX" style="width: 70px;">
+                    </div>
+                </div>
+
+                <div class="control-group btn-container" style="flex: 0.8;">
+                    <button class="btn-scan" @onclick="HandleScan">Skanuj ogłoszenia</button>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(statusMessage) && ShouldShowStatusMessage)
+            {
+                <div style="color: @(SearchService.IsLoading ? "#00ffcc" : "#ffb3b3"); font-size: 0.8rem; margin-top: 10px; text-align: center;">
+                    @statusMessage
+                </div>
+            }
+        </div>
+    }
+
+    @if (!SearchService.IsLoggedIn && !IsLoginPage)
+    {
+        <div class="main-container auth-main-container"></div>
+    }
+    else
+    {
+        <div class="main-container @(ShowApplicationChrome ? string.Empty : "auth-main-container")">
+            @Body
+        </div>
+    }
+</div>
+
+@code {
+    private string statusMessage = "";
+    private List<string> LocationOptions = new()
+    {
+        "Rzeszów",
+        "Kraków",
+        "Warszawa",
+        "Wrocław",
+        "Gdańsk",
+        "Poznań",
+        "Łódź",
+        "Katowice",
+        "Lublin",
+        "Szczecin",
+        "Białystok",
+        "Bydgoszcz",
+        "Toruń",
+        "Gdynia",
+        "Częstochowa",
+        "Wszystkie"
+    };
+
+    private bool IsHomePage => NavManager.ToBaseRelativePath(NavManager.Uri) == "";
+    private bool IsLoginPage => NavManager.ToBaseRelativePath(NavManager.Uri).StartsWith("login", StringComparison.OrdinalIgnoreCase);
+    private bool ShowApplicationChrome => SearchService.IsLoggedIn && !IsLoginPage;
+    private bool ShouldShowStatusMessage =>
+        SearchService.IsLoading ||
+        (!string.IsNullOrWhiteSpace(statusMessage) &&
+         (statusMessage.Contains("Gemini", StringComparison.OrdinalIgnoreCase) ||
+          statusMessage.Contains("Błąd", StringComparison.OrdinalIgnoreCase) ||
+          statusMessage.Contains("Nie udało", StringComparison.OrdinalIgnoreCase)));
+
+    protected override async Task OnInitializedAsync()
+    {
+        SearchService.OnChange += StateHasChanged;
+        NavManager.LocationChanged += HandleLocationChanged;
+        SearchService.LoadDataFromDevice();
+        await SearchService.LoadSearchOptionsAsync();
+    }
+
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e) => StateHasChanged();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var currentPath = NavManager.ToBaseRelativePath(NavManager.Uri);
+
+        if (!SearchService.IsLoggedIn && !currentPath.StartsWith("login", StringComparison.OrdinalIgnoreCase))
+        {
+            NavManager.NavigateTo("/login");
+            return;
+        }
+
+        if (SearchService.IsLoggedIn && currentPath.StartsWith("login", StringComparison.OrdinalIgnoreCase))
+        {
+            NavManager.NavigateTo("/");
+        }
+    }
+
+    public void Dispose()
+    {
+        SearchService.OnChange -= StateHasChanged;
+        NavManager.LocationChanged -= HandleLocationChanged;
+    }
+
+    private async Task HandleScan()
+    {
+        try
+        {
+            statusMessage = "Pobieram oferty z wybranych źródeł...";
+            StateHasChanged();
+
+            await SearchService.LoadSearchOptionsAsync();
+            await SearchService.SearchJobsOnlineAsync(SearchService.SearchText, SearchService.Location);
+            statusMessage = SearchService.StatusMessage;
+        }
+        catch (Exception)
+        {
+            SearchService.IsLoading = false;
+            statusMessage = "Błąd podczas skanowania.";
+        }
+    }
+
+    private async Task HandleCategoryChanged(ChangeEventArgs e)
+    {
+        await SearchService.SelectCategoryAsync(e.Value?.ToString() ?? string.Empty);
+    }
+
+    private async Task HandleRoleChanged(ChangeEventArgs e)
+    {
+        await SearchService.SelectRoleAsync(e.Value?.ToString() ?? string.Empty);
+    }
+
+    private void HandleLogout()
+    {
+        SearchService.Logout();
+        statusMessage = string.Empty;
+        NavManager.NavigateTo("/login");
+    }
+}

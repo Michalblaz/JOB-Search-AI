@@ -1,0 +1,815 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.Importer.JoobleJob
+  commentId: T:MauiApp1.Importer.JoobleJob
+  id: JoobleJob
+  parent: MauiApp1.Importer
+  children:
+  - MauiApp1.Importer.JoobleJob.Company
+  - MauiApp1.Importer.JoobleJob.Id
+  - MauiApp1.Importer.JoobleJob.Link
+  - MauiApp1.Importer.JoobleJob.Location
+  - MauiApp1.Importer.JoobleJob.Salary
+  - MauiApp1.Importer.JoobleJob.Snippet
+  - MauiApp1.Importer.JoobleJob.Source
+  - MauiApp1.Importer.JoobleJob.Title
+  - MauiApp1.Importer.JoobleJob.Type
+  - MauiApp1.Importer.JoobleJob.Updated
+  langs:
+  - csharp
+  - vb
+  name: JoobleJob
+  nameWithType: JoobleJob
+  fullName: MauiApp1.Importer.JoobleJob
+  type: Class
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: JoobleJob
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 457
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public sealed class JoobleJob
+    content.vb: Public NotInheritable Class JoobleJob
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.Importer.JoobleJob.Id
+  commentId: P:MauiApp1.Importer.JoobleJob.Id
+  id: Id
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: JoobleJob.Id
+  fullName: MauiApp1.Importer.JoobleJob.Id
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Id
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 459
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("id")]
+
+      public long? Id { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int64}
+    content.vb: >-
+      <JsonProperty("id")>
+
+      Public Property Id As Long?
+  overload: MauiApp1.Importer.JoobleJob.Id*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: id
+- uid: MauiApp1.Importer.JoobleJob.Title
+  commentId: P:MauiApp1.Importer.JoobleJob.Title
+  id: Title
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Title
+  nameWithType: JoobleJob.Title
+  fullName: MauiApp1.Importer.JoobleJob.Title
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Title
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 460
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("title")]
+
+      public string? Title { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("title")>
+
+      Public Property Title As String
+  overload: MauiApp1.Importer.JoobleJob.Title*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: title
+- uid: MauiApp1.Importer.JoobleJob.Location
+  commentId: P:MauiApp1.Importer.JoobleJob.Location
+  id: Location
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Location
+  nameWithType: JoobleJob.Location
+  fullName: MauiApp1.Importer.JoobleJob.Location
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Location
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 461
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("location")]
+
+      public string? Location { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("location")>
+
+      Public Property Location As String
+  overload: MauiApp1.Importer.JoobleJob.Location*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: location
+- uid: MauiApp1.Importer.JoobleJob.Snippet
+  commentId: P:MauiApp1.Importer.JoobleJob.Snippet
+  id: Snippet
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Snippet
+  nameWithType: JoobleJob.Snippet
+  fullName: MauiApp1.Importer.JoobleJob.Snippet
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Snippet
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 462
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("snippet")]
+
+      public string? Snippet { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("snippet")>
+
+      Public Property Snippet As String
+  overload: MauiApp1.Importer.JoobleJob.Snippet*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: snippet
+- uid: MauiApp1.Importer.JoobleJob.Salary
+  commentId: P:MauiApp1.Importer.JoobleJob.Salary
+  id: Salary
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Salary
+  nameWithType: JoobleJob.Salary
+  fullName: MauiApp1.Importer.JoobleJob.Salary
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Salary
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 463
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("salary")]
+
+      public string? Salary { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("salary")>
+
+      Public Property Salary As String
+  overload: MauiApp1.Importer.JoobleJob.Salary*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: salary
+- uid: MauiApp1.Importer.JoobleJob.Source
+  commentId: P:MauiApp1.Importer.JoobleJob.Source
+  id: Source
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Source
+  nameWithType: JoobleJob.Source
+  fullName: MauiApp1.Importer.JoobleJob.Source
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Source
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 464
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("source")]
+
+      public string? Source { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("source")>
+
+      Public Property Source As String
+  overload: MauiApp1.Importer.JoobleJob.Source*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: source
+- uid: MauiApp1.Importer.JoobleJob.Type
+  commentId: P:MauiApp1.Importer.JoobleJob.Type
+  id: Type
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: JoobleJob.Type
+  fullName: MauiApp1.Importer.JoobleJob.Type
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Type
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 465
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("type")]
+
+      public string? Type { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("type")>
+
+      Public Property Type As String
+  overload: MauiApp1.Importer.JoobleJob.Type*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: type
+- uid: MauiApp1.Importer.JoobleJob.Link
+  commentId: P:MauiApp1.Importer.JoobleJob.Link
+  id: Link
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Link
+  nameWithType: JoobleJob.Link
+  fullName: MauiApp1.Importer.JoobleJob.Link
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Link
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 466
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("link")]
+
+      public string? Link { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("link")>
+
+      Public Property Link As String
+  overload: MauiApp1.Importer.JoobleJob.Link*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: link
+- uid: MauiApp1.Importer.JoobleJob.Company
+  commentId: P:MauiApp1.Importer.JoobleJob.Company
+  id: Company
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Company
+  nameWithType: JoobleJob.Company
+  fullName: MauiApp1.Importer.JoobleJob.Company
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Company
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 467
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("company")]
+
+      public string? Company { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("company")>
+
+      Public Property Company As String
+  overload: MauiApp1.Importer.JoobleJob.Company*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: company
+- uid: MauiApp1.Importer.JoobleJob.Updated
+  commentId: P:MauiApp1.Importer.JoobleJob.Updated
+  id: Updated
+  parent: MauiApp1.Importer.JoobleJob
+  langs:
+  - csharp
+  - vb
+  name: Updated
+  nameWithType: JoobleJob.Updated
+  fullName: MauiApp1.Importer.JoobleJob.Updated
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/SourceClients.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Updated
+    path: ../MauiApp1.Importer/SourceClients.cs
+    startLine: 468
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: >-
+      [JsonProperty("updated")]
+
+      public string? Updated { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonProperty("updated")>
+
+      Public Property Updated As String
+  overload: MauiApp1.Importer.JoobleJob.Updated*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: updated
+references:
+- uid: MauiApp1.Importer
+  commentId: N:MauiApp1.Importer
+  href: MauiApp1.html
+  name: MauiApp1.Importer
+  nameWithType: MauiApp1.Importer
+  fullName: MauiApp1.Importer
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.Importer.JoobleJob.Id*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Id
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Id
+  name: Id
+  nameWithType: JoobleJob.Id
+  fullName: MauiApp1.Importer.JoobleJob.Id
+- uid: System.Nullable{System.Int64}
+  commentId: T:System.Nullable{System.Int64}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long?
+  nameWithType: long?
+  fullName: long?
+  nameWithType.vb: Long?
+  fullName.vb: Long?
+  name.vb: Long?
+  spec.csharp:
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: '?'
+  spec.vb:
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MauiApp1.Importer.JoobleJob.Title*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Title
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Title
+  name: Title
+  nameWithType: JoobleJob.Title
+  fullName: MauiApp1.Importer.JoobleJob.Title
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MauiApp1.Importer.JoobleJob.Location*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Location
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Location
+  name: Location
+  nameWithType: JoobleJob.Location
+  fullName: MauiApp1.Importer.JoobleJob.Location
+- uid: MauiApp1.Importer.JoobleJob.Snippet*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Snippet
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Snippet
+  name: Snippet
+  nameWithType: JoobleJob.Snippet
+  fullName: MauiApp1.Importer.JoobleJob.Snippet
+- uid: MauiApp1.Importer.JoobleJob.Salary*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Salary
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Salary
+  name: Salary
+  nameWithType: JoobleJob.Salary
+  fullName: MauiApp1.Importer.JoobleJob.Salary
+- uid: MauiApp1.Importer.JoobleJob.Source*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Source
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Source
+  name: Source
+  nameWithType: JoobleJob.Source
+  fullName: MauiApp1.Importer.JoobleJob.Source
+- uid: MauiApp1.Importer.JoobleJob.Type*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Type
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Type
+  name: Type
+  nameWithType: JoobleJob.Type
+  fullName: MauiApp1.Importer.JoobleJob.Type
+- uid: MauiApp1.Importer.JoobleJob.Link*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Link
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Link
+  name: Link
+  nameWithType: JoobleJob.Link
+  fullName: MauiApp1.Importer.JoobleJob.Link
+- uid: MauiApp1.Importer.JoobleJob.Company*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Company
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Company
+  name: Company
+  nameWithType: JoobleJob.Company
+  fullName: MauiApp1.Importer.JoobleJob.Company
+- uid: MauiApp1.Importer.JoobleJob.Updated*
+  commentId: Overload:MauiApp1.Importer.JoobleJob.Updated
+  href: MauiApp1.Importer.JoobleJob.html#MauiApp1_Importer_JoobleJob_Updated
+  name: Updated
+  nameWithType: JoobleJob.Updated
+  fullName: MauiApp1.Importer.JoobleJob.Updated

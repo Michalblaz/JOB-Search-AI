@@ -1,0 +1,499 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.testowe.GeminiRequest
+  commentId: T:MauiApp1.testowe.GeminiRequest
+  id: GeminiRequest
+  parent: MauiApp1.testowe
+  children:
+  - MauiApp1.testowe.GeminiRequest.Contents
+  - MauiApp1.testowe.GeminiRequest.GenerationConfig
+  langs:
+  - csharp
+  - vb
+  name: GeminiRequest
+  nameWithType: GeminiRequest
+  fullName: MauiApp1.testowe.GeminiRequest
+  type: Class
+  source:
+    remote:
+      path: MauiApp1/testowe/GeminiMatchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: GeminiRequest
+    path: ../MauiApp1/testowe/GeminiMatchService.cs
+    startLine: 354
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public class GeminiRequest
+    content.vb: Public Class GeminiRequest
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.testowe.GeminiRequest.Contents
+  commentId: P:MauiApp1.testowe.GeminiRequest.Contents
+  id: Contents
+  parent: MauiApp1.testowe.GeminiRequest
+  langs:
+  - csharp
+  - vb
+  name: Contents
+  nameWithType: GeminiRequest.Contents
+  fullName: MauiApp1.testowe.GeminiRequest.Contents
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/GeminiMatchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Contents
+    path: ../MauiApp1/testowe/GeminiMatchService.cs
+    startLine: 356
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("contents")]
+
+      public List<GeminiContent> Contents { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{MauiApp1.testowe.GeminiContent}
+    content.vb: >-
+      <JsonProperty("contents")>
+
+      Public Property Contents As List(Of GeminiContent)
+  overload: MauiApp1.testowe.GeminiRequest.Contents*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: contents
+- uid: MauiApp1.testowe.GeminiRequest.GenerationConfig
+  commentId: P:MauiApp1.testowe.GeminiRequest.GenerationConfig
+  id: GenerationConfig
+  parent: MauiApp1.testowe.GeminiRequest
+  langs:
+  - csharp
+  - vb
+  name: GenerationConfig
+  nameWithType: GeminiRequest.GenerationConfig
+  fullName: MauiApp1.testowe.GeminiRequest.GenerationConfig
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/GeminiMatchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: GenerationConfig
+    path: ../MauiApp1/testowe/GeminiMatchService.cs
+    startLine: 359
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: >-
+      [JsonProperty("generationConfig")]
+
+      public GeminiGenerationConfig GenerationConfig { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.testowe.GeminiGenerationConfig
+    content.vb: >-
+      <JsonProperty("generationConfig")>
+
+      Public Property GenerationConfig As GeminiGenerationConfig
+  overload: MauiApp1.testowe.GeminiRequest.GenerationConfig*
+  attributes:
+  - type: Newtonsoft.Json.JsonPropertyAttribute
+    ctor: Newtonsoft.Json.JsonPropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: generationConfig
+references:
+- uid: MauiApp1.testowe
+  commentId: N:MauiApp1.testowe
+  href: MauiApp1.html
+  name: MauiApp1.testowe
+  nameWithType: MauiApp1.testowe
+  fullName: MauiApp1.testowe
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.testowe.GeminiRequest.Contents*
+  commentId: Overload:MauiApp1.testowe.GeminiRequest.Contents
+  href: MauiApp1.testowe.GeminiRequest.html#MauiApp1_testowe_GeminiRequest_Contents
+  name: Contents
+  nameWithType: GeminiRequest.Contents
+  fullName: MauiApp1.testowe.GeminiRequest.Contents
+- uid: System.Collections.Generic.List{MauiApp1.testowe.GeminiContent}
+  commentId: T:System.Collections.Generic.List{MauiApp1.testowe.GeminiContent}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<GeminiContent>
+  nameWithType: List<GeminiContent>
+  fullName: System.Collections.Generic.List<MauiApp1.testowe.GeminiContent>
+  nameWithType.vb: List(Of GeminiContent)
+  fullName.vb: System.Collections.Generic.List(Of MauiApp1.testowe.GeminiContent)
+  name.vb: List(Of GeminiContent)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: MauiApp1.testowe.GeminiContent
+    name: GeminiContent
+    href: MauiApp1.testowe.GeminiContent.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MauiApp1.testowe.GeminiContent
+    name: GeminiContent
+    href: MauiApp1.testowe.GeminiContent.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: MauiApp1.testowe.GeminiRequest.GenerationConfig*
+  commentId: Overload:MauiApp1.testowe.GeminiRequest.GenerationConfig
+  href: MauiApp1.testowe.GeminiRequest.html#MauiApp1_testowe_GeminiRequest_GenerationConfig
+  name: GenerationConfig
+  nameWithType: GeminiRequest.GenerationConfig
+  fullName: MauiApp1.testowe.GeminiRequest.GenerationConfig
+- uid: MauiApp1.testowe.GeminiGenerationConfig
+  commentId: T:MauiApp1.testowe.GeminiGenerationConfig
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.GeminiGenerationConfig.html
+  name: GeminiGenerationConfig
+  nameWithType: GeminiGenerationConfig
+  fullName: MauiApp1.testowe.GeminiGenerationConfig

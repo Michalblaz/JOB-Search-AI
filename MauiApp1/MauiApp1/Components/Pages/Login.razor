@@ -1,0 +1,70 @@
+@page "/login"
+@inject MauiApp1.testowe.JobSearchService SearchService
+@inject NavigationManager Nav
+
+<div class="auth-screen">
+    <div class="auth-card">
+        <div class="auth-badge">JOB Search</div>
+        <h1>Zaloguj się do aplikacji</h1>
+        <p class="auth-subtitle">
+            @if (SearchService.HasRegisteredAccount)
+            {
+                <span>Wpisz login i hasło, aby wrócić do swojego profilu oraz zapisanych ustawień.</span>
+            }
+            else
+            {
+                <span>To pierwsze logowanie na tym urządzeniu. Podane dane utworzą Twoje lokalne konto.</span>
+            }
+        </p>
+
+        <div class="auth-field">
+            <label for="loginField">Login</label>
+            <input id="loginField" type="text" @bind="tempUsername" placeholder="np. michal123" class="auth-input" autocomplete="off" />
+        </div>
+
+        <div class="auth-field">
+            <label for="passwordField">Hasło</label>
+            <input id="passwordField" type="password" @bind="tempPassword" placeholder="Wpisz hasło" class="auth-input" autocomplete="new-password" />
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(errorMessage))
+        {
+            <p class="auth-error">@errorMessage</p>
+        }
+
+        <div class="auth-actions">
+            <button class="auth-button" @onclick="HandleLogin">Zaloguj się</button>
+            <button class="auth-button auth-button-secondary" @onclick="HandleRegister">Załóż konto</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string tempUsername = string.Empty;
+    private string tempPassword = string.Empty;
+    private string errorMessage = string.Empty;
+
+    private void HandleLogin()
+    {
+        if (SearchService.Login(tempUsername, tempPassword, out var loginError))
+        {
+            errorMessage = string.Empty;
+            Nav.NavigateTo("/");
+            return;
+        }
+
+        errorMessage = loginError;
+    }
+
+    private void HandleRegister()
+    {
+        if (SearchService.Register(tempUsername, tempPassword, out var registerError))
+        {
+            errorMessage = string.Empty;
+            Nav.NavigateTo("/");
+            return;
+        }
+
+        errorMessage = registerError;
+    }
+}

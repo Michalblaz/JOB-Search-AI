@@ -1,0 +1,74 @@
+@page "/history"
+@inject MauiApp1.testowe.JobSearchService SearchService
+@implements IDisposable
+
+<div class="history-page">
+    <h2>Twoja historia przegl¹dania</h2>
+    <p>Ostatnio ogl¹dane oferty (max 20):</p>
+
+    <div class="history-list">
+        @if (SearchService.CurrentUser.SearchHistory.Any())
+        {
+            @foreach (var offer in SearchService.CurrentUser.SearchHistory)
+            {
+                <div class="history-item">
+                    <div class="history-info">
+                        <strong>@offer.Title</strong>
+                        <span>@offer.Company • @offer.Location</span>
+                    </div>
+                    <span class="history-source">@offer.Source</span>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="empty-state">
+                <p>Nie przegl¹da³eœ jeszcze ¿adnych ofert. Kliknij "Szczegó³y" w wyszukiwarce!</p>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .history-page {
+        padding: 30px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .history-item {
+        background: white;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        color: #333;
+    }
+
+    .history-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .history-source {
+        font-size: 0.8rem;
+        color: #6c5ce7;
+        font-weight: bold;
+    }
+</style>
+@code {
+    protected override void OnInitialized()
+    {
+        // Subskrypcja zmian w serwisie
+        SearchService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        // Odpiêcie subskrypcji przy wychodzeniu ze strony
+        SearchService.OnChange -= StateHasChanged;
+    }
+}

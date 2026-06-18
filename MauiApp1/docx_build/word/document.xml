@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+ xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+ xmlns:v="urn:schemas-microsoft-com:vml"
+ xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
+ xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+ xmlns:w10="urn:schemas-microsoft-com:office:word"
+ xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+ xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+ xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"
+ xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+ xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
+ xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
+ mc:Ignorable="w14 wp14">
+  <w:body>
+    <w:p><w:pPr><w:jc w:val='center'/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val='32'/></w:rPr><w:t xml:space='preserve'>Dokumentacja projektu Job Search AI</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val='center'/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>Wersja rozszerzona</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val='center'/></w:pPr><w:r><w:t xml:space='preserve'>Autor dokumentacji: OpenAI Codex</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val='center'/></w:pPr><w:r><w:t xml:space='preserve'>Data opracowania: 22.04.2026</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val='center'/></w:pPr><w:r><w:t xml:space='preserve'>Typ dokumentu: dokumentacja studencka projektu aplikacji webowej do wyszukiwania ofert pracy.</w:t></w:r></w:p>
+<w:p><w:r><w:br w:type='page'/></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>1. Wst&#281;p</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Projekt Job Search AI zosta&#322; przygotowany jako aplikacja wspomagaj&#261;ca wyszukiwanie ofert pracy z wielu &#378;r&#243;de&#322; zewn&#281;trznych. G&#322;&#243;wnym celem systemu jest zebranie ofert pracy w jednym miejscu, zapisanie ich w lokalnej bazie danych oraz udost&#281;pnienie wygodnego interfejsu do filtrowania, przegl&#261;dania i oceniania dopasowania ofert do preferencji konkretnego u&#380;ytkownika.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Aplikacja zosta&#322;a przygotowana w technologii .NET z warstw&#261; webow&#261; opart&#261; o Blazor. W aktualnej wersji dane ofert s&#261; pobierane przez osobny importer, a nast&#281;pnie zapisywane do lokalnej bazy PostgreSQL. Oznacza to, &#380;e aplikacja u&#380;ytkownika nie obci&#261;&#380;a stale zewn&#281;trznych API i korzysta g&#322;&#243;wnie z danych zapisanych lokalnie.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Dokumentacja ma charakter praktyczny i opisuje najwa&#380;niejsze elementy projektu, jego funkcje, przep&#322;yw danych, struktur&#281; bazy danych oraz przyk&#322;adowy scenariusz u&#380;ycia. Dokument zosta&#322; przygotowany w wersji rozszerzonej, ale nadal w mo&#380;liwie prosty i zrozumia&#322;y spos&#243;b.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>2. Cel i zakres projektu</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Najwa&#380;niejszym celem projektu jest stworzenie systemu, kt&#243;ry pomaga u&#380;ytkownikowi szybciej wyszuka&#263; interesuj&#261;ce oferty pracy. Zamiast odwiedza&#263; wiele portali osobno, u&#380;ytkownik korzysta z jednego interfejsu, w kt&#243;rym mo&#380;e ustawi&#263; w&#322;asne preferencje i filtrowa&#263; og&#322;oszenia wed&#322;ug wybranych kryteri&#243;w.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Zakres projektu obejmuje: import ofert pracy do lokalnej bazy, wy&#347;wietlanie ofert w aplikacji webowej, logowanie i rejestracj&#281; u&#380;ytkownik&#243;w, zarz&#261;dzanie profilem, zapisywanie ulubionych ofert, histori&#281; przegl&#261;dania oraz lokalne dopasowanie ofert do profilu i filtr&#243;w.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W projekcie uwzgl&#281;dniono tak&#380;e mo&#380;liwo&#347;&#263; dalszej rozbudowy, na przyk&#322;ad o pe&#322;ne dopasowanie AI, bardziej rozbudowane raporty lub dodatkowe &#378;r&#243;d&#322;a danych. W aktualnym stanie system jest ju&#380; funkcjonalny i mo&#380;e by&#263; wykorzystywany jako prototyp albo baza do dalszego rozwoju.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>3. Scenariusz przyk&#322;adowego u&#380;ytkownika</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W celu lepszego pokazania sposobu dzia&#322;ania systemu przyj&#281;to prosty scenariusz testowy. U&#380;ytkownikiem jest Micha&#322;, czyli student szukaj&#261;cy pierwszej pracy lub sta&#380;u w bran&#380;y IT. Micha&#322; nie posiada jeszcze do&#347;wiadczenia zawodowego, ale zna j&#281;zyk angielski i chce wyszukiwa&#263; oferty zwi&#261;zane z informatyk&#261;, programowaniem, administracj&#261; system&#243;w lub wsparciem technicznym.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W takim scenariuszu Micha&#322; po zalogowaniu uzupe&#322;nia w swoim profilu podstawowe preferencje, takie jak stanowisko docelowe, oczekiwania finansowe, poziom wykszta&#322;cenia, poziom do&#347;wiadczenia oraz j&#281;zyki. Nast&#281;pnie przechodzi do wyszukiwarki, gdzie wpisuje has&#322;o IT i ustawia lokalizacj&#281;, na przyk&#322;ad Rzesz&#243;w lub prac&#281; zdaln&#261;.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>System powinien w takim przypadku pokaza&#263; g&#322;&#243;wnie oferty z tytu&#322;ami typu Informatyk, Programista, Developer, Helpdesk, Administrator lub podobne. Je&#380;eli u&#380;ytkownik znajdzie interesuj&#261;ce oferty, mo&#380;e doda&#263; je do ulubionych, otworzy&#263; szczeg&#243;&#322;y oferty oraz zachowa&#263; histori&#281; przegl&#261;dania.</w:t></w:r></w:p>
+<w:p><w:r><w:br w:type='page'/></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>4. Technologie wykorzystane w projekcie</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Projekt zosta&#322; wykonany przede wszystkim w ekosystemie .NET. Warstwa interfejsu dzia&#322;a jako aplikacja webowa oparta o Blazor, co umo&#380;liwia uruchamianie systemu lokalnie w przegl&#261;darce internetowej. Do obs&#322;ugi danych u&#380;ytkownika i ofert pracy zastosowano PostgreSQL.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Dane o ofertach pracy s&#261; pobierane przez osobny importer. Importer korzysta z API takich serwis&#243;w jak Adzuna, Jooble, Remotive i Arbeitnow. Nast&#281;pnie normalizuje otrzymane dane do wsp&#243;lnego modelu i zapisuje je do lokalnej bazy danych.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Do po&#322;&#261;czenia z PostgreSQL wykorzystano bibliotek&#281; Npgsql. Dodatkowo w projekcie wyst&#281;puje warstwa konfiguracji oparta o pliki appsettings.json. Pozwala to stosunkowo wygodnie zmienia&#263; connection string, ustawienia importera oraz konfiguracj&#281; modelu Gemini.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>5. Og&#243;lna architektura systemu</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Architektura projektu jest podzielona na dwie g&#322;&#243;wne cz&#281;&#347;ci. Pierwsza z nich to importer, kt&#243;ry odpowiada za pobranie ofert z zewn&#281;trznych API i zapis do bazy danych. Druga cz&#281;&#347;&#263; to aplikacja webowa, kt&#243;ra odczytuje dane z lokalnej bazy PostgreSQL i prezentuje je u&#380;ytkownikowi.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Takie rozdzielenie ma du&#380;&#261; zalet&#281;: aplikacja webowa nie musi przy ka&#380;dym wyszukaniu pyta&#263; zewn&#281;trznych serwis&#243;w o dane. Zamiast tego pracuje na bazie lokalnej, co poprawia szybko&#347;&#263;, stabilno&#347;&#263; oraz zmniejsza ryzyko problem&#243;w zwi&#261;zanych z limitami API.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Warstwa logowania i profilu u&#380;ytkownika tak&#380;e zosta&#322;a stopniowo przenoszona z pliku lokalnego do bazy danych, co tworzy fundament pod dalsze rozszerzenie aplikacji o pe&#322;ne zarz&#261;dzanie kontami.</w:t></w:r></w:p>
+<w:p><w:r><w:br w:type='page'/></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>6. Najwa&#380;niejsze funkcje aplikacji</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>6.1. Logowanie i rejestracja</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Po wej&#347;ciu do aplikacji u&#380;ytkownik widzi ekran logowania. Mo&#380;e zalogowa&#263; si&#281; na istniej&#261;ce konto albo za&#322;o&#380;y&#263; nowe konto. Dane konta s&#261; zapisywane w bazie PostgreSQL, a nie tylko w lokalnym pliku.</w:t></w:r></w:p>
+<w:p>
+  <w:r>
+    <w:drawing>
+      <wp:inline distT="0" distB="0" distL="0" distR="0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+        <wp:extent cx="5486400" cy="5334000"/>
+        <wp:docPr id="1" name="Ekran logowania"/>
+        <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+          <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+            <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+              <pic:nvPicPr>
+                <pic:cNvPr id="0" name="screen_login.png"/>
+                <pic:cNvPicPr/>
+              </pic:nvPicPr>
+              <pic:blipFill>
+                <a:blip r:embed="rId1" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>
+                <a:stretch><a:fillRect/></a:stretch>
+              </pic:blipFill>
+              <pic:spPr>
+                <a:xfrm>
+                  <a:off x="0" y="0"/>
+                  <a:ext cx="5486400" cy="5334000"/>
+                </a:xfrm>
+                <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+              </pic:spPr>
+            </pic:pic>
+          </a:graphicData>
+        </a:graphic>
+      </wp:inline>
+    </w:drawing>
+  </w:r>
+</w:p>
+<w:p><w:r><w:t xml:space='preserve'>Rysunek 1. Ekran logowania aplikacji webowej.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>6.2. Wyszukiwanie ofert pracy</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W g&#322;&#243;wnej wyszukiwarce u&#380;ytkownik mo&#380;e wpisa&#263; stanowisko lub s&#322;owa kluczowe. Nast&#281;pnie mo&#380;e ograniczy&#263; wyniki po lokalizacji, rodzaju pracy, wymaganym do&#347;wiadczeniu, wykszta&#322;ceniu i j&#281;zykach. Dla przyk&#322;adowego u&#380;ytkownika Micha&#322;a jednym z g&#322;&#243;wnych przypadk&#243;w jest wyszukiwanie pracy w IT dla studenta bez do&#347;wiadczenia.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Wyszukiwanie zosta&#322;o poprawione tak, aby najpierw analizowa&#263; tytu&#322; oferty. Oznacza to, &#380;e przy ha&#347;le IT aplikacja w pierwszej kolejno&#347;ci szuka tytu&#322;&#243;w takich jak Informatyk, Programista, Developer, Helpdesk lub Administrator. Dopiero gdy nie ma pasuj&#261;cych tytu&#322;&#243;w, system mo&#380;e si&#281;gn&#261;&#263; po opis oferty.</w:t></w:r></w:p>
+<w:p>
+  <w:r>
+    <w:drawing>
+      <wp:inline distT="0" distB="0" distL="0" distR="0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+        <wp:extent cx="5486400" cy="3257550"/>
+        <wp:docPr id="1" name="Widok wyszukiwania"/>
+        <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+          <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+            <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+              <pic:nvPicPr>
+                <pic:cNvPr id="0" name="screen_search.png"/>
+                <pic:cNvPicPr/>
+              </pic:nvPicPr>
+              <pic:blipFill>
+                <a:blip r:embed="rId2" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>
+                <a:stretch><a:fillRect/></a:stretch>
+              </pic:blipFill>
+              <pic:spPr>
+                <a:xfrm>
+                  <a:off x="0" y="0"/>
+                  <a:ext cx="5486400" cy="3257550"/>
+                </a:xfrm>
+                <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+              </pic:spPr>
+            </pic:pic>
+          </a:graphicData>
+        </a:graphic>
+      </wp:inline>
+    </w:drawing>
+  </w:r>
+</w:p>
+<w:p><w:r><w:t xml:space='preserve'>Rysunek 2. Miejsce na zrzut ekranu z przyk&#322;adowego wyszukiwania.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>6.3. Profil u&#380;ytkownika</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W profilu u&#380;ytkownik mo&#380;e poda&#263; domy&#347;ln&#261; lokalizacj&#281;, stanowisko, oczekiwane wynagrodzenie, wykszta&#322;cenie, do&#347;wiadczenie, preferowane rodzaje um&#243;w oraz j&#281;zyki. Na tej podstawie mo&#380;liwe jest szybsze ustawienie filtr&#243;w i budowanie prostego dopasowania ofert.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Dla przyk&#322;adu student Micha&#322; mo&#380;e ustawi&#263;: stanowisko IT, do&#347;wiadczenie Brak do&#347;wiadczenia, wykszta&#322;cenie Student / w trakcie oraz j&#281;zyk Angielski. Taki profil mo&#380;e potem pom&#243;c podczas wyszukiwania odpowiednich ofert.</w:t></w:r></w:p>
+<w:p>
+  <w:r>
+    <w:drawing>
+      <wp:inline distT="0" distB="0" distL="0" distR="0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+        <wp:extent cx="5486400" cy="3257550"/>
+        <wp:docPr id="1" name="Widok profilu"/>
+        <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+          <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+            <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+              <pic:nvPicPr>
+                <pic:cNvPr id="0" name="screen_profile.png"/>
+                <pic:cNvPicPr/>
+              </pic:nvPicPr>
+              <pic:blipFill>
+                <a:blip r:embed="rId3" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>
+                <a:stretch><a:fillRect/></a:stretch>
+              </pic:blipFill>
+              <pic:spPr>
+                <a:xfrm>
+                  <a:off x="0" y="0"/>
+                  <a:ext cx="5486400" cy="3257550"/>
+                </a:xfrm>
+                <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+              </pic:spPr>
+            </pic:pic>
+          </a:graphicData>
+        </a:graphic>
+      </wp:inline>
+    </w:drawing>
+  </w:r>
+</w:p>
+<w:p><w:r><w:t xml:space='preserve'>Rysunek 3. Miejsce na zrzut ekranu z widoku profilu.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>6.4. Ustawienia aplikacji</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W aplikacji znajduje si&#281; tak&#380;e sekcja ustawie&#324;, kt&#243;ra pozwala na zmian&#281; wybranych parametr&#243;w dzia&#322;ania oraz dostosowanie interfejsu. W zale&#380;no&#347;ci od dalszego rozwoju projektu sekcja ta mo&#380;e by&#263; rozbudowana o kolejne opcje konfiguracyjne.</w:t></w:r></w:p>
+<w:p>
+  <w:r>
+    <w:drawing>
+      <wp:inline distT="0" distB="0" distL="0" distR="0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+        <wp:extent cx="5486400" cy="3257550"/>
+        <wp:docPr id="1" name="Widok ustawien"/>
+        <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+          <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+            <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+              <pic:nvPicPr>
+                <pic:cNvPr id="0" name="screen_settings.png"/>
+                <pic:cNvPicPr/>
+              </pic:nvPicPr>
+              <pic:blipFill>
+                <a:blip r:embed="rId4" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>
+                <a:stretch><a:fillRect/></a:stretch>
+              </pic:blipFill>
+              <pic:spPr>
+                <a:xfrm>
+                  <a:off x="0" y="0"/>
+                  <a:ext cx="5486400" cy="3257550"/>
+                </a:xfrm>
+                <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+              </pic:spPr>
+            </pic:pic>
+          </a:graphicData>
+        </a:graphic>
+      </wp:inline>
+    </w:drawing>
+  </w:r>
+</w:p>
+<w:p><w:r><w:t xml:space='preserve'>Rysunek 4. Miejsce na zrzut ekranu z ustawie&#324;.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>6.5. Ulubione i historia</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>U&#380;ytkownik mo&#380;e dodawa&#263; wybrane oferty do listy ulubionych. Dodatkowo system zapisuje histori&#281; przegl&#261;danych ofert. Obie te funkcje s&#261; istotne z punktu widzenia u&#380;yteczno&#347;ci, poniewa&#380; pozwalaj&#261; szybko wr&#243;ci&#263; do wcze&#347;niej ogl&#261;danych propozycji zatrudnienia.</w:t></w:r></w:p>
+<w:p>
+  <w:r>
+    <w:drawing>
+      <wp:inline distT="0" distB="0" distL="0" distR="0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+        <wp:extent cx="5486400" cy="3257550"/>
+        <wp:docPr id="1" name="Widok ulubionych"/>
+        <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+          <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+            <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+              <pic:nvPicPr>
+                <pic:cNvPr id="0" name="screen_favorites.png"/>
+                <pic:cNvPicPr/>
+              </pic:nvPicPr>
+              <pic:blipFill>
+                <a:blip r:embed="rId5" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>
+                <a:stretch><a:fillRect/></a:stretch>
+              </pic:blipFill>
+              <pic:spPr>
+                <a:xfrm>
+                  <a:off x="0" y="0"/>
+                  <a:ext cx="5486400" cy="3257550"/>
+                </a:xfrm>
+                <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+              </pic:spPr>
+            </pic:pic>
+          </a:graphicData>
+        </a:graphic>
+      </wp:inline>
+    </w:drawing>
+  </w:r>
+</w:p>
+<w:p><w:r><w:t xml:space='preserve'>Rysunek 5. Miejsce na zrzut ekranu z listy ulubionych ofert.</w:t></w:r></w:p>
+<w:p><w:r><w:br w:type='page'/></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>7. Baza danych</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W lokalnej bazie PostgreSQL przechowywane s&#261; przede wszystkim oferty pracy oraz dane u&#380;ytkownik&#243;w. Tabele zwi&#261;zane z ofertami obejmuj&#261; mi&#281;dzy innymi: job_sources, job_import_runs, job_offers, job_offer_languages oraz job_offer_tags. Tabele zwi&#261;zane z u&#380;ytkownikiem obejmuj&#261; app_users, user_profiles, user_profile_skills, user_profile_languages, user_profile_contract_types oraz tabele pomocnicze dla ulubionych i historii.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Zalet&#261; lokalnej bazy jest brak ogranicze&#324; typowych dla darmowych plan&#243;w us&#322;ug zewn&#281;trznych, wi&#281;ksza kontrola nad danymi oraz mo&#380;liwo&#347;&#263; rozwoju projektu bez konieczno&#347;ci p&#322;acenia za kolejne limity przechowywania.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Warto zaznaczy&#263;, &#380;e z bazy zosta&#322;o usuni&#281;te pole raw_payload_json, poniewa&#380; zajmowa&#322;o zbyt du&#380;o miejsca. W praktyce do wy&#347;wietlenia oferty w aplikacji wystarcza skr&#243;cony opis oraz link do szczeg&#243;&#322;&#243;w.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>8. Przep&#322;yw danych</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Przep&#322;yw danych w projekcie mo&#380;na opisa&#263; w kilku krokach. Najpierw importer pobiera dane z zewn&#281;trznych API. Nast&#281;pnie dane s&#261; normalizowane i zapisywane do lokalnego PostgreSQL. P&#243;&#378;niej aplikacja webowa odczytuje aktywne oferty z tej bazy i prezentuje je u&#380;ytkownikowi. Na koniec u&#380;ytkownik mo&#380;e zapisa&#263; ustawienia profilu, ulubione oferty i histori&#281;, kt&#243;re r&#243;wnie&#380; trafiaj&#261; do PostgreSQL.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Takie podej&#347;cie rozdziela warstw&#281; pobierania danych od warstwy prezentacji. DziÄ™ki temu projekt jest czytelniejszy, prostszy w rozwoju i bardziej odporny na chwilowe problemy z zewn&#281;trznymi API.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>9. Wa&#380;niejsze miejsca w kodzie</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Poni&#380;ej przedstawiono kilka najwa&#380;niejszych plik&#243;w projektu wraz z ich rol&#261;:</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>- MauiApp1.Web\\testowe\\JobSearchService.cs - g&#322;&#243;wna logika wyszukiwania, filtrowania, dopasowania i pracy z profilem.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>- MauiApp1.Web\\testowe\\PostgresJobReader.cs - odczyt ofert z lokalnej bazy PostgreSQL.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>- MauiApp1.Web\\testowe\\PostgresUserStore.cs - zapis i odczyt u&#380;ytkownik&#243;w, ulubionych ofert, historii i danych profilu.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>- MauiApp1.Web\\Components\\Pages\\Home.razor - widok wynik&#243;w wyszukiwania wraz z filtrami bocznymi.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>- MauiApp1.Web\\Components\\Pages\\Login.razor - ekran logowania i rejestracji.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>- MauiApp1.Web\\Components\\Pages\\Profile.razor - edycja profilu i preferencji u&#380;ytkownika.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>- MauiApp1.Importer\\SourceClients.cs - pobieranie ofert z Adzuna, Jooble, Remotive i Arbeitnow.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>- MauiApp1.Importer\\PostgresJobRepository.cs - zapis znormalizowanych ofert do lokalnego PostgreSQL.</w:t></w:r></w:p>
+<w:p><w:r><w:br w:type='page'/></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>10. Przyk&#322;adowy przebieg u&#380;ycia systemu</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Przyk&#322;adowy przebieg pracy z systemem mo&#380;e wygl&#261;da&#263; nast&#281;puj&#261;co:</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>1. U&#380;ytkownik Micha&#322; zak&#322;ada konto i loguje si&#281; do aplikacji.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>2. W profilu ustawia domy&#347;ln&#261; lokalizacj&#281;, stanowisko zwi&#261;zane z IT, wykszta&#322;cenie Student / w trakcie oraz j&#281;zyk Angielski.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>3. Po zapisaniu profilu przechodzi do wyszukiwarki i wpisuje has&#322;o IT.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>4. Aplikacja wy&#347;wietla oferty, kt&#243;re w pierwszej kolejno&#347;ci pasuj&#261; tytu&#322;em do bran&#380;y IT.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>5. Micha&#322; dodaje interesuj&#261;ce oferty do ulubionych i otwiera szczeg&#243;&#322;y wybranych og&#322;osze&#324;.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>6. Przy kolejnym logowaniu nadal ma dost&#281;p do swoich ulubionych ofert, historii oraz ustawie&#324; profilu.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>11. Zalety aktualnego rozwi&#261;zania</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Do najwa&#380;niejszych zalet aktualnego rozwi&#261;zania nale&#380;&#261;: lokalna baza danych, szybsze dzia&#322;anie wyszukiwania, brak konieczno&#347;ci sta&#322;ego odpytwania zewn&#281;trznych API, mo&#380;liwo&#347;&#263; przechowywania danych u&#380;ytkownika oraz modularna architektura pozwalaj&#261;ca na stopniow&#261; rozbudow&#281; projektu.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Istotne jest tak&#380;e to, &#380;e aplikacja posiada ju&#380; podstawy pod bardziej zaawansowane mechanizmy, takie jak dopasowanie ofert przez AI, rozwini&#281;te profile u&#380;ytkownik&#243;w czy dodatkowe raporty i rekomendacje.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>12. Wady i ograniczenia</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Projekt nadal ma pewne ograniczenia. Nie wszystkie dane pochodz&#261;ce z API s&#261; idealnie ujednolicone, dlatego filtrowanie po do&#347;wiadczeniu czy wykszta&#322;ceniu czasami opiera si&#281; na heurystykach. Dodatkowo cz&#281;&#347;&#263; screenshot&#243;w w dokumentacji zosta&#322;a przygotowana jako placeholdery, aby mo&#380;na by&#322;o p&#243;&#378;niej podmieni&#263; je na finalne zrzuty.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W przysz&#322;o&#347;ci warto r&#243;wnie&#380; dopracowa&#263; pe&#322;ne logowanie do bazy z bezpieczniejszym zarz&#261;dzaniem has&#322;ami, bardziej rozbudowanym systemem r&#243;l i lepszym zarz&#261;dzaniem sesj&#261;.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>13. Kierunki dalszego rozwoju</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>W dalszej kolejno&#347;ci projekt mo&#380;e zosta&#263; rozbudowany o: bardziej inteligentne dopasowanie AI, eksport wybranych ofert do PDF, powiadomienia o nowych ofertach, rozbudowany panel administracyjny, dodatkowe statystyki dotycz&#261;ce rynku pracy oraz integracj&#281; z kolejnymi API.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Mo&#380;liwe jest tak&#380;e przygotowanie pe&#322;nej wersji wdro&#380;eniowej hostowanej jako us&#322;uga sieciowa, a nie tylko lokalnie. DziÄ™ki obecnemu podzia&#322;owi na importer, baz&#281; danych i aplikacj&#281; webow&#261; projekt ma ju&#380; dobr&#261; podstaw&#281; do takiego kierunku rozwoju.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t xml:space='preserve'>14. Podsumowanie</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Job Search AI jest projektem, kt&#243;ry realizuje praktyczny problem wyszukiwania ofert pracy z wielu &#378;r&#243;de&#322; w jednym miejscu. Aktualna wersja systemu umo&#380;liwia import danych do lokalnej bazy PostgreSQL, filtrowanie i przegl&#261;danie ofert, zapis ulubionych i historii oraz budowanie profilu u&#380;ytkownika.</w:t></w:r></w:p>
+<w:p><w:r><w:t xml:space='preserve'>Z punktu widzenia projektu studenckiego jest to rozwi&#261;zanie kompletne na poziomie funkcjonalnego prototypu. Projekt posiada realn&#261; warto&#347;&#263; praktyczn&#261;, pokazuje integracj&#281; wielu technologii oraz pozostawia dobre mo&#380;liwo&#347;ci do dalszej rozbudowy.</w:t></w:r></w:p>
+    <w:sectPr>
+      <w:pgSz w:w="11906" w:h="16838"/>
+      <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708" w:gutter="0"/>
+    </w:sectPr>
+  </w:body>
+</w:document>

@@ -1,0 +1,249 @@
+### YamlMime:TableOfContent
+items:
+- uid: MauiApp1
+  name: MauiApp1
+  type: Namespace
+  items:
+  - uid: MauiApp1.App
+    name: App
+    type: Class
+  - uid: MauiApp1.MainActivity
+    name: MainActivity
+    type: Class
+  - uid: MauiApp1.MainApplication
+    name: MainApplication
+    type: Class
+  - uid: MauiApp1.MainPage
+    name: MainPage
+    type: Class
+  - uid: MauiApp1.MauiProgram
+    name: MauiProgram
+    type: Class
+  - uid: MauiApp1.Resource
+    name: Resource
+    type: Class
+- uid: MauiApp1.Importer
+  name: MauiApp1.Importer
+  type: Namespace
+  items:
+  - uid: MauiApp1.Importer.AdzunaCategory
+    name: AdzunaCategory
+    type: Class
+  - uid: MauiApp1.Importer.AdzunaCompany
+    name: AdzunaCompany
+    type: Class
+  - uid: MauiApp1.Importer.AdzunaLocation
+    name: AdzunaLocation
+    type: Class
+  - uid: MauiApp1.Importer.AdzunaResult
+    name: AdzunaResult
+    type: Class
+  - uid: MauiApp1.Importer.AdzunaRoot
+    name: AdzunaRoot
+    type: Class
+  - uid: MauiApp1.Importer.AdzunaSettings
+    name: AdzunaSettings
+    type: Class
+  - uid: MauiApp1.Importer.ApiSourceSettings
+    name: ApiSourceSettings
+    type: Class
+  - uid: MauiApp1.Importer.ArbeitnowJob
+    name: ArbeitnowJob
+    type: Class
+  - uid: MauiApp1.Importer.ArbeitnowRoot
+    name: ArbeitnowRoot
+    type: Class
+  - uid: MauiApp1.Importer.DatabaseSettings
+    name: DatabaseSettings
+    type: Class
+  - uid: MauiApp1.Importer.ImportSettings
+    name: ImportSettings
+    type: Class
+  - uid: MauiApp1.Importer.ImporterHelpers
+    name: ImporterHelpers
+    type: Class
+  - uid: MauiApp1.Importer.ImporterSettings
+    name: ImporterSettings
+    type: Class
+  - uid: MauiApp1.Importer.JobImportCoordinator
+    name: JobImportCoordinator
+    type: Class
+  - uid: MauiApp1.Importer.JoobleJob
+    name: JoobleJob
+    type: Class
+  - uid: MauiApp1.Importer.JoobleRoot
+    name: JoobleRoot
+    type: Class
+  - uid: MauiApp1.Importer.JoobleSettings
+    name: JoobleSettings
+    type: Class
+  - uid: MauiApp1.Importer.NormalizedJobOffer
+    name: NormalizedJobOffer
+    type: Class
+  - uid: MauiApp1.Importer.OfferLanguage
+    name: OfferLanguage
+    type: Class
+  - uid: MauiApp1.Importer.PostgresJobRepository
+    name: PostgresJobRepository
+    type: Class
+  - uid: MauiApp1.Importer.RemotiveJob
+    name: RemotiveJob
+    type: Class
+  - uid: MauiApp1.Importer.RemotiveRoot
+    name: RemotiveRoot
+    type: Class
+  - uid: MauiApp1.Importer.SourceImportContext
+    name: SourceImportContext
+    type: Class
+  - uid: MauiApp1.Importer.SourceImportStats
+    name: SourceImportStats
+    type: Class
+  - uid: MauiApp1.Importer.SourceSettingsContainer
+    name: SourceSettingsContainer
+    type: Class
+- uid: MauiApp1.testowe
+  name: MauiApp1.testowe
+  type: Namespace
+  items:
+  - uid: MauiApp1.testowe.AdzunaErrorResponse
+    name: AdzunaErrorResponse
+    type: Class
+  - uid: MauiApp1.testowe.AdzunaResult
+    name: AdzunaResult
+    type: Class
+  - uid: MauiApp1.testowe.AdzunaRoot
+    name: AdzunaRoot
+    type: Class
+  - uid: MauiApp1.testowe.AdzunaSettings
+    name: AdzunaSettings
+    type: Class
+  - uid: MauiApp1.testowe.AppSettings
+    name: AppSettings
+    type: Class
+  - uid: MauiApp1.testowe.AppSettingsProvider
+    name: AppSettingsProvider
+    type: Class
+  - uid: MauiApp1.testowe.ArbeitnowJob
+    name: ArbeitnowJob
+    type: Class
+  - uid: MauiApp1.testowe.ArbeitnowRoot
+    name: ArbeitnowRoot
+    type: Class
+  - uid: MauiApp1.testowe.CategoryInfo
+    name: CategoryInfo
+    type: Class
+  - uid: MauiApp1.testowe.CompanyInfo
+    name: CompanyInfo
+    type: Class
+  - uid: MauiApp1.testowe.DatabaseSettings
+    name: DatabaseSettings
+    type: Class
+  - uid: MauiApp1.testowe.EPracaSettings
+    name: EPracaSettings
+    type: Class
+  - uid: MauiApp1.testowe.GeminiCandidate
+    name: GeminiCandidate
+    type: Class
+  - uid: MauiApp1.testowe.GeminiContent
+    name: GeminiContent
+    type: Class
+  - uid: MauiApp1.testowe.GeminiGenerationConfig
+    name: GeminiGenerationConfig
+    type: Class
+  - uid: MauiApp1.testowe.GeminiMatchService
+    name: GeminiMatchService
+    type: Class
+  - uid: MauiApp1.testowe.GeminiOfferInput
+    name: GeminiOfferInput
+    type: Class
+  - uid: MauiApp1.testowe.GeminiOfferScore
+    name: GeminiOfferScore
+    type: Class
+  - uid: MauiApp1.testowe.GeminiPart
+    name: GeminiPart
+    type: Class
+  - uid: MauiApp1.testowe.GeminiRequest
+    name: GeminiRequest
+    type: Class
+  - uid: MauiApp1.testowe.GeminiResponse
+    name: GeminiResponse
+    type: Class
+  - uid: MauiApp1.testowe.GeminiSettings
+    name: GeminiSettings
+    type: Class
+  - uid: MauiApp1.testowe.IAppDataPathProvider
+    name: IAppDataPathProvider
+    type: Interface
+  - uid: MauiApp1.testowe.IAppPackageFileProvider
+    name: IAppPackageFileProvider
+    type: Interface
+  - uid: MauiApp1.testowe.IAppSessionStore
+    name: IAppSessionStore
+    type: Interface
+  - uid: MauiApp1.testowe.IUrlLauncher
+    name: IUrlLauncher
+    type: Interface
+  - uid: MauiApp1.testowe.IUserStore
+    name: IUserStore
+    type: Interface
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    type: Class
+  - uid: MauiApp1.testowe.JobSearchService
+    name: JobSearchService
+    type: Class
+  - uid: MauiApp1.testowe.JobSourcesSettings
+    name: JobSourcesSettings
+    type: Class
+  - uid: MauiApp1.testowe.JoobleJob
+    name: JoobleJob
+    type: Class
+  - uid: MauiApp1.testowe.JoobleRoot
+    name: JoobleRoot
+    type: Class
+  - uid: MauiApp1.testowe.JoobleSettings
+    name: JoobleSettings
+    type: Class
+  - uid: MauiApp1.testowe.LocalUserStore
+    name: LocalUserStore
+    type: Class
+  - uid: MauiApp1.testowe.LocationInfo
+    name: LocationInfo
+    type: Class
+  - uid: MauiApp1.testowe.MauiAppDataPathProvider
+    name: MauiAppDataPathProvider
+    type: Class
+  - uid: MauiApp1.testowe.MauiAppPackageFileProvider
+    name: MauiAppPackageFileProvider
+    type: Class
+  - uid: MauiApp1.testowe.MauiSessionStore
+    name: MauiSessionStore
+    type: Class
+  - uid: MauiApp1.testowe.MauiUrlLauncher
+    name: MauiUrlLauncher
+    type: Class
+  - uid: MauiApp1.testowe.PostgresJobReader
+    name: PostgresJobReader
+    type: Class
+  - uid: MauiApp1.testowe.PostgresUserStore
+    name: PostgresUserStore
+    type: Class
+  - uid: MauiApp1.testowe.RemotiveJob
+    name: RemotiveJob
+    type: Class
+  - uid: MauiApp1.testowe.RemotiveRoot
+    name: RemotiveRoot
+    type: Class
+  - uid: MauiApp1.testowe.UserAccountRecord
+    name: UserAccountRecord
+    type: Class
+  - uid: MauiApp1.testowe.UserDatabase
+    name: UserDatabase
+    type: Class
+  - uid: MauiApp1.testowe.UserProfile
+    name: UserProfile
+    type: Class
+  - uid: MauiApp1.testowe.UserSettings
+    name: UserSettings
+    type: Class
+memberLayout: SamePage

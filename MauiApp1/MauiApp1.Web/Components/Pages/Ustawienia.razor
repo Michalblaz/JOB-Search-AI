@@ -1,0 +1,141 @@
+﻿@page "/ustawienia"
+@using MauiApp1.testowe
+@inject JobSearchService SearchService
+
+<div class="page-container settings-page" style="padding: 20px;">
+    <h1 class="settings-title">Ustawienia Aplikacji</h1>
+
+    <div class="settings-card" style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <h3 class="settings-section-title" style="margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+            Preferencje wyszukiwania
+        </h3>
+
+        <div class="settings-row" style="margin-top: 15px;">
+            <label class="settings-label" style="font-weight: bold;">Domyślne miasto startowe:</label>
+            <select @bind="SearchService.CurrentUser.Settings.DefaultLocation" style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Inter', sans-serif;">
+                @foreach (var city in LocationOptions)
+                {
+                    <option value="@city">@city</option>
+                }
+            </select>
+            <small class="settings-help" style="display: block; margin-top: 5px;">
+                To miasto będzie automatycznie wybrane przy włączaniu wyszukiwarki.
+            </small>
+        </div>
+    </div>
+
+    <div class="settings-card" style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <h3 class="settings-section-title" style="margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+            Powiadomienia i Wygląd
+        </h3>
+
+        <div class="settings-toggle-row" style="margin-top: 15px; display: flex; align-items: center; justify-content: space-between;">
+            <span class="settings-label" style="font-weight: bold;">Powiadomienia o nowych ofertach</span>
+            <input type="checkbox" @bind="SearchService.CurrentUser.Settings.NotificationsEnabled" style="width: 22px; height: 22px; cursor: pointer;" />
+        </div>
+
+        <div class="settings-toggle-row" style="margin-top: 15px; display: flex; align-items: center; justify-content: space-between;">
+            <span class="settings-label" style="font-weight: bold;">Ciemny motyw (Dark Mode)</span>
+            <input type="checkbox" @bind="SearchService.CurrentUser.Settings.DarkMode" style="width: 22px; height: 22px; cursor: pointer;" />
+        </div>
+    </div>
+
+    <div class="settings-card" style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <h3 class="settings-section-title" style="margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+            Bezpieczeństwo konta
+        </h3>
+
+        <div class="settings-row" style="margin-top: 15px;">
+            <label class="settings-label" style="font-weight: bold;">Obecne hasło</label>
+            <input type="password" @bind="currentPassword" class="settings-password-input" placeholder="Wpisz obecne hasło" />
+        </div>
+
+        <div class="settings-row" style="margin-top: 15px;">
+            <label class="settings-label" style="font-weight: bold;">Nowe hasło</label>
+            <input type="password" @bind="newPassword" class="settings-password-input" placeholder="Wpisz nowe hasło" />
+        </div>
+
+        <div class="settings-row" style="margin-top: 15px;">
+            <label class="settings-label" style="font-weight: bold;">Powtórz nowe hasło</label>
+            <input type="password" @bind="confirmPassword" class="settings-password-input" placeholder="Powtórz nowe hasło" />
+        </div>
+
+        <button @onclick="ChangePassword" class="settings-password-button">
+            Zmień hasło
+        </button>
+
+        @if (!string.IsNullOrWhiteSpace(passwordMessage))
+        {
+            <div class="@(passwordChangeSucceeded ? "settings-password-success" : "settings-password-error")">
+                @passwordMessage
+            </div>
+        }
+    </div>
+
+    <button @onclick="SaveSettings" style="width: 100%; padding: 15px; background-color: var(--accent-cyan, #00ced1); color: #1a1a1a; border: none; font-weight: bold; font-size: 1.1rem; border-radius: 8px; cursor: pointer; transition: 0.2s;">
+        Zapisz ustawienia
+    </button>
+
+    @if (showSavedMessage)
+    {
+        <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; font-weight: bold;">
+            Ustawienia zostały pomyślnie zapisane!
+        </div>
+    }
+</div>
+
+@code {
+    private bool showSavedMessage = false;
+    private bool passwordChangeSucceeded;
+    private string currentPassword = string.Empty;
+    private string newPassword = string.Empty;
+    private string confirmPassword = string.Empty;
+    private string passwordMessage = string.Empty;
+    private List<string> LocationOptions = new()
+    {
+        "Rzeszów",
+        "Kraków",
+        "Warszawa",
+        "Wrocław",
+        "Gdańsk",
+        "Poznań",
+        "Łódź",
+        "Katowice",
+        "Lublin",
+        "Szczecin",
+        "Białystok",
+        "Bydgoszcz",
+        "Toruń",
+        "Gdynia",
+        "Częstochowa"
+    };
+
+    private async Task SaveSettings()
+    {
+        SearchService.SaveDataToDevice();
+        SearchService.NotifyStateChanged();
+
+        showSavedMessage = true;
+        StateHasChanged();
+
+        await Task.Delay(3000);
+        showSavedMessage = false;
+        StateHasChanged();
+    }
+
+    private void ChangePassword()
+    {
+        if (SearchService.ChangePassword(currentPassword, newPassword, confirmPassword, out var errorMessage))
+        {
+            passwordChangeSucceeded = true;
+            passwordMessage = "Hasło zostało zmienione.";
+            currentPassword = string.Empty;
+            newPassword = string.Empty;
+            confirmPassword = string.Empty;
+            return;
+        }
+
+        passwordChangeSucceeded = false;
+        passwordMessage = errorMessage;
+    }
+}

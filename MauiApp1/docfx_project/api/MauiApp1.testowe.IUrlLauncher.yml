@@ -1,0 +1,157 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.testowe.IUrlLauncher
+  commentId: T:MauiApp1.testowe.IUrlLauncher
+  id: IUrlLauncher
+  parent: MauiApp1.testowe
+  children:
+  - MauiApp1.testowe.IUrlLauncher.OpenAsync(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IUrlLauncher
+  nameWithType: IUrlLauncher
+  fullName: MauiApp1.testowe.IUrlLauncher
+  type: Interface
+  source:
+    remote:
+      path: MauiApp1/testowe/IUrlLauncher.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: IUrlLauncher
+    path: ../MauiApp1/testowe/IUrlLauncher.cs
+    startLine: 4
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public interface IUrlLauncher
+    content.vb: Public Interface IUrlLauncher
+  derivedClasses:
+  - MauiApp1.testowe.MauiUrlLauncher
+- uid: MauiApp1.testowe.IUrlLauncher.OpenAsync(System.String)
+  commentId: M:MauiApp1.testowe.IUrlLauncher.OpenAsync(System.String)
+  id: OpenAsync(System.String)
+  parent: MauiApp1.testowe.IUrlLauncher
+  langs:
+  - csharp
+  - vb
+  name: OpenAsync(string)
+  nameWithType: IUrlLauncher.OpenAsync(string)
+  fullName: MauiApp1.testowe.IUrlLauncher.OpenAsync(string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/IUrlLauncher.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: OpenAsync
+    path: ../MauiApp1/testowe/IUrlLauncher.cs
+    startLine: 6
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: Task OpenAsync(string url)
+    parameters:
+    - id: url
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function OpenAsync(url As String) As Task
+  overload: MauiApp1.testowe.IUrlLauncher.OpenAsync*
+  nameWithType.vb: IUrlLauncher.OpenAsync(String)
+  fullName.vb: MauiApp1.testowe.IUrlLauncher.OpenAsync(String)
+  name.vb: OpenAsync(String)
+references:
+- uid: MauiApp1.testowe
+  commentId: N:MauiApp1.testowe
+  href: MauiApp1.html
+  name: MauiApp1.testowe
+  nameWithType: MauiApp1.testowe
+  fullName: MauiApp1.testowe
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+- uid: MauiApp1.testowe.IUrlLauncher.OpenAsync*
+  commentId: Overload:MauiApp1.testowe.IUrlLauncher.OpenAsync
+  href: MauiApp1.testowe.IUrlLauncher.html#MauiApp1_testowe_IUrlLauncher_OpenAsync_System_String_
+  name: OpenAsync
+  nameWithType: IUrlLauncher.OpenAsync
+  fullName: MauiApp1.testowe.IUrlLauncher.OpenAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

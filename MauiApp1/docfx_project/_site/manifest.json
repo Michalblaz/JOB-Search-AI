@@ -1,0 +1,1212 @@
+{
+  "source_base_path": "C:/Users/micha/source/repos/Michał_Błaż_131406_3/MauiApp1/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.App.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.App",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.AdzunaCategory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.AdzunaCategory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.AdzunaCategory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.AdzunaCompany.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.AdzunaCompany.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.AdzunaCompany",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.AdzunaLocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.AdzunaLocation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.AdzunaLocation",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.AdzunaResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.AdzunaResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.AdzunaResult",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.AdzunaRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.AdzunaRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.AdzunaRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.AdzunaSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.AdzunaSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.AdzunaSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.ApiSourceSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.ApiSourceSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.ApiSourceSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.ArbeitnowJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.ArbeitnowJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.ArbeitnowJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.ArbeitnowRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.ArbeitnowRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.ArbeitnowRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.DatabaseSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.DatabaseSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.DatabaseSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.ImportSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.ImportSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.ImportSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.ImporterHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.ImporterHelpers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.ImporterHelpers",
+      "Summary": "<p sourcefile=\"api/MauiApp1.Importer.ImporterHelpers.yml\" sourcestartlinenumber=\"1\">Zestaw funkcji normalizujących tekst oferty, lokalizację i sygnały dopasowania podczas importu.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.ImporterSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.ImporterSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.ImporterSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.JobImportCoordinator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.JobImportCoordinator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.JobImportCoordinator",
+      "Summary": "<p sourcefile=\"api/MauiApp1.Importer.JobImportCoordinator.yml\" sourcestartlinenumber=\"1\">Pobiera oferty z włączonych źródeł zewnętrznych i normalizuje je do wspólnego modelu importu.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.JoobleJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.JoobleJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.JoobleJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.JoobleRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.JoobleRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.JoobleRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.JoobleSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.JoobleSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.JoobleSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.NormalizedJobOffer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.NormalizedJobOffer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.NormalizedJobOffer",
+      "Summary": "<p sourcefile=\"api/MauiApp1.Importer.NormalizedJobOffer.yml\" sourcestartlinenumber=\"1\">Wspólny model oferty pracy przygotowany do zapisu w bazie importera.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.OfferLanguage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.OfferLanguage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.OfferLanguage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.PostgresJobRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.PostgresJobRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.PostgresJobRepository",
+      "Summary": "<p sourcefile=\"api/MauiApp1.Importer.PostgresJobRepository.yml\" sourcestartlinenumber=\"1\">Zapisuje znormalizowane oferty pracy do bazy PostgreSQL i rejestruje przebieg importu.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.RemotiveJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.RemotiveJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.RemotiveJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.RemotiveRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.RemotiveRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.RemotiveRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.SourceImportContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.SourceImportContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.SourceImportContext",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.SourceImportStats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.SourceImportStats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.SourceImportStats",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.SourceSettingsContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.SourceSettingsContainer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer.SourceSettingsContainer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Importer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Importer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Importer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.MainActivity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.MainActivity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.MainActivity",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.MainApplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.MainApplication.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.MainApplication",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.MainPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.MainPage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.MainPage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.MauiProgram.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.MauiProgram.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.MauiProgram",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.Resource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.Resource.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.Resource",
+      "Summary": "<p sourcefile=\"api/MauiApp1.Resource.yml\" sourcestartlinenumber=\"1\">Android Resource Designer class.\nExposes the Android Resource designer assembly into the project Namespace.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.AdzunaErrorResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.AdzunaErrorResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.AdzunaErrorResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.AdzunaResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.AdzunaResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.AdzunaResult",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.AdzunaRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.AdzunaRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.AdzunaRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.AdzunaSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.AdzunaSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.AdzunaSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.AppSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.AppSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.AppSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.AppSettingsProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.AppSettingsProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.AppSettingsProvider",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.AppSettingsProvider.yml\" sourcestartlinenumber=\"1\">Ładuje konfigurację aplikacji z pliku pakietu i nadpisuje ją zmiennymi środowiskowymi.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.ArbeitnowJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.ArbeitnowJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.ArbeitnowJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.ArbeitnowRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.ArbeitnowRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.ArbeitnowRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.CategoryInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.CategoryInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.CategoryInfo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.CompanyInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.CompanyInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.CompanyInfo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.DatabaseSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.DatabaseSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.DatabaseSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.EPracaSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.EPracaSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.EPracaSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiCandidate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiCandidate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiCandidate",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiContent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiContent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiContent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiGenerationConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiGenerationConfig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiGenerationConfig",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiMatchService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiMatchService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiMatchService",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.GeminiMatchService.yml\" sourcestartlinenumber=\"1\">Ocenia dopasowanie ofert pracy do preferencji użytkownika przy użyciu modelu Gemini.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiOfferInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiOfferInput.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiOfferInput",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiOfferScore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiOfferScore.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiOfferScore",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiPart.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiPart.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiPart",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.GeminiSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.GeminiSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.GeminiSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.IAppDataPathProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.IAppDataPathProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.IAppDataPathProvider",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.IAppPackageFileProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.IAppPackageFileProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.IAppPackageFileProvider",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.IAppSessionStore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.IAppSessionStore.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.IAppSessionStore",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.IUrlLauncher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.IUrlLauncher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.IUrlLauncher",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.IUserStore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.IUserStore.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.IUserStore",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.IUserStore.yml\" sourcestartlinenumber=\"1\">Definiuje minimalny kontrakt trwałego przechowywania kont użytkowników.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.JobOffer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.JobOffer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.JobOffer",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.JobOffer.yml\" sourcestartlinenumber=\"1\">Reprezentuje ujednoliconą ofertę pracy wyświetlaną w aplikacji niezależnie od źródła danych.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.JobSearchService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.JobSearchService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.JobSearchService",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.JobSearchService.yml\" sourcestartlinenumber=\"1\">Koordynuje wyszukiwanie ofert pracy, filtrowanie wyników, konta użytkowników oraz listę ulubionych.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.JobSourcesSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.JobSourcesSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.JobSourcesSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.JoobleJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.JoobleJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.JoobleJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.JoobleRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.JoobleRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.JoobleRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.JoobleSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.JoobleSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.JoobleSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.LocalUserStore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.LocalUserStore.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.LocalUserStore",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.LocalUserStore.yml\" sourcestartlinenumber=\"1\">Lokalna implementacja <xref href=\"MauiApp1.testowe.IUserStore\" data-throw-if-not-resolved=\"false\"></xref> zapisująca konta w pliku JSON w katalogu danych aplikacji.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.LocationInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.LocationInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.LocationInfo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.MauiAppDataPathProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.MauiAppDataPathProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.MauiAppDataPathProvider",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.MauiAppPackageFileProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.MauiAppPackageFileProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.MauiAppPackageFileProvider",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.MauiSessionStore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.MauiSessionStore.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.MauiSessionStore",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.MauiUrlLauncher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.MauiUrlLauncher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.MauiUrlLauncher",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.PostgresJobReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.PostgresJobReader.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.PostgresJobReader",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.PostgresJobReader.yml\" sourcestartlinenumber=\"1\">Odczytuje aktywne oferty pracy z bazy PostgreSQL i mapuje je na model aplikacji.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.PostgresUserStore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.PostgresUserStore.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.PostgresUserStore",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.PostgresUserStore.yml\" sourcestartlinenumber=\"1\">Implementacja <xref href=\"MauiApp1.testowe.IUserStore\" data-throw-if-not-resolved=\"false\"></xref> zapisująca konta, profile, ulubione i historię wyszukiwania w PostgreSQL.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.RemotiveJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.RemotiveJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.RemotiveJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.RemotiveRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.RemotiveRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.RemotiveRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.UserAccountRecord.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.UserAccountRecord.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.UserAccountRecord",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.UserAccountRecord.yml\" sourcestartlinenumber=\"1\">Pełny zapis konta użytkownika wraz z hasłem, profilem i migawkami ofert.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.UserDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.UserDatabase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.UserDatabase",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.UserDatabase.yml\" sourcestartlinenumber=\"1\">Struktura pliku JSON używanego przez <xref href=\"MauiApp1.testowe.LocalUserStore\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.UserProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.UserProfile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.UserProfile",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.UserProfile.yml\" sourcestartlinenumber=\"1\">Przechowuje dane profilu użytkownika razem z historią przeglądanych ofert.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.UserSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.UserSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe.UserSettings",
+      "Summary": "<p sourcefile=\"api/MauiApp1.testowe.UserSettings.yml\" sourcestartlinenumber=\"1\">Zestaw preferencji używanych do domyślnego filtrowania i oceniania ofert pracy.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.testowe.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.testowe.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1.testowe",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MauiApp1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MauiApp1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "MauiApp1",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

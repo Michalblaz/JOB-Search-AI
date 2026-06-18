@@ -1,0 +1,402 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.Importer.ImporterSettings
+  commentId: T:MauiApp1.Importer.ImporterSettings
+  id: ImporterSettings
+  parent: MauiApp1.Importer
+  children:
+  - MauiApp1.Importer.ImporterSettings.Database
+  - MauiApp1.Importer.ImporterSettings.Import
+  - MauiApp1.Importer.ImporterSettings.Sources
+  langs:
+  - csharp
+  - vb
+  name: ImporterSettings
+  nameWithType: ImporterSettings
+  fullName: MauiApp1.Importer.ImporterSettings
+  type: Class
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ImporterSettings
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 5
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public sealed class ImporterSettings
+    content.vb: Public NotInheritable Class ImporterSettings
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.Importer.ImporterSettings.Database
+  commentId: P:MauiApp1.Importer.ImporterSettings.Database
+  id: Database
+  parent: MauiApp1.Importer.ImporterSettings
+  langs:
+  - csharp
+  - vb
+  name: Database
+  nameWithType: ImporterSettings.Database
+  fullName: MauiApp1.Importer.ImporterSettings.Database
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Database
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 7
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public DatabaseSettings Database { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.Importer.DatabaseSettings
+    content.vb: Public Property Database As DatabaseSettings
+  overload: MauiApp1.Importer.ImporterSettings.Database*
+- uid: MauiApp1.Importer.ImporterSettings.Import
+  commentId: P:MauiApp1.Importer.ImporterSettings.Import
+  id: Import
+  parent: MauiApp1.Importer.ImporterSettings
+  langs:
+  - csharp
+  - vb
+  name: Import
+  nameWithType: ImporterSettings.Import
+  fullName: MauiApp1.Importer.ImporterSettings.Import
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Import
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 8
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public ImportSettings Import { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.Importer.ImportSettings
+    content.vb: Public Property Import As ImportSettings
+  overload: MauiApp1.Importer.ImporterSettings.Import*
+- uid: MauiApp1.Importer.ImporterSettings.Sources
+  commentId: P:MauiApp1.Importer.ImporterSettings.Sources
+  id: Sources
+  parent: MauiApp1.Importer.ImporterSettings
+  langs:
+  - csharp
+  - vb
+  name: Sources
+  nameWithType: ImporterSettings.Sources
+  fullName: MauiApp1.Importer.ImporterSettings.Sources
+  type: Property
+  source:
+    remote:
+      path: MauiApp1.Importer/Models.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Sources
+    path: ../MauiApp1.Importer/Models.cs
+    startLine: 9
+  assemblies:
+  - MauiApp1.Importer
+  namespace: MauiApp1.Importer
+  syntax:
+    content: public SourceSettingsContainer Sources { get; set; }
+    parameters: []
+    return:
+      type: MauiApp1.Importer.SourceSettingsContainer
+    content.vb: Public Property Sources As SourceSettingsContainer
+  overload: MauiApp1.Importer.ImporterSettings.Sources*
+references:
+- uid: MauiApp1.Importer
+  commentId: N:MauiApp1.Importer
+  href: MauiApp1.html
+  name: MauiApp1.Importer
+  nameWithType: MauiApp1.Importer
+  fullName: MauiApp1.Importer
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.Importer
+    name: Importer
+    href: MauiApp1.Importer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.Importer.ImporterSettings.Database*
+  commentId: Overload:MauiApp1.Importer.ImporterSettings.Database
+  href: MauiApp1.Importer.ImporterSettings.html#MauiApp1_Importer_ImporterSettings_Database
+  name: Database
+  nameWithType: ImporterSettings.Database
+  fullName: MauiApp1.Importer.ImporterSettings.Database
+- uid: MauiApp1.Importer.DatabaseSettings
+  commentId: T:MauiApp1.Importer.DatabaseSettings
+  parent: MauiApp1.Importer
+  href: MauiApp1.Importer.DatabaseSettings.html
+  name: DatabaseSettings
+  nameWithType: DatabaseSettings
+  fullName: MauiApp1.Importer.DatabaseSettings
+- uid: MauiApp1.Importer.ImporterSettings.Import*
+  commentId: Overload:MauiApp1.Importer.ImporterSettings.Import
+  href: MauiApp1.Importer.ImporterSettings.html#MauiApp1_Importer_ImporterSettings_Import
+  name: Import
+  nameWithType: ImporterSettings.Import
+  fullName: MauiApp1.Importer.ImporterSettings.Import
+- uid: MauiApp1.Importer.ImportSettings
+  commentId: T:MauiApp1.Importer.ImportSettings
+  parent: MauiApp1.Importer
+  href: MauiApp1.Importer.ImportSettings.html
+  name: ImportSettings
+  nameWithType: ImportSettings
+  fullName: MauiApp1.Importer.ImportSettings
+- uid: MauiApp1.Importer.ImporterSettings.Sources*
+  commentId: Overload:MauiApp1.Importer.ImporterSettings.Sources
+  href: MauiApp1.Importer.ImporterSettings.html#MauiApp1_Importer_ImporterSettings_Sources
+  name: Sources
+  nameWithType: ImporterSettings.Sources
+  fullName: MauiApp1.Importer.ImporterSettings.Sources
+- uid: MauiApp1.Importer.SourceSettingsContainer
+  commentId: T:MauiApp1.Importer.SourceSettingsContainer
+  parent: MauiApp1.Importer
+  href: MauiApp1.Importer.SourceSettingsContainer.html
+  name: SourceSettingsContainer
+  nameWithType: SourceSettingsContainer
+  fullName: MauiApp1.Importer.SourceSettingsContainer

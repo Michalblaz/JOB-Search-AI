@@ -1,0 +1,749 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.testowe.GeminiMatchService
+  commentId: T:MauiApp1.testowe.GeminiMatchService
+  id: GeminiMatchService
+  parent: MauiApp1.testowe
+  children:
+  - MauiApp1.testowe.GeminiMatchService.#ctor(MauiApp1.testowe.AppSettingsProvider)
+  - MauiApp1.testowe.GeminiMatchService.IsConfigured
+  - MauiApp1.testowe.GeminiMatchService.LastError
+  - MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync(MauiApp1.testowe.JobSearchService,System.Collections.Generic.IReadOnlyList{MauiApp1.testowe.JobOffer})
+  langs:
+  - csharp
+  - vb
+  name: GeminiMatchService
+  nameWithType: GeminiMatchService
+  fullName: MauiApp1.testowe.GeminiMatchService
+  type: Class
+  source:
+    remote:
+      path: MauiApp1/testowe/GeminiMatchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: GeminiMatchService
+    path: ../MauiApp1/testowe/GeminiMatchService.cs
+    startLine: 21
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Ocenia dopasowanie ofert pracy do preferencji użytkownika przy użyciu modelu Gemini.
+  remarks: >-
+    Usługa działa jako opcjonalne rozszerzenie lokalnego rankingu z <xref href="MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)" data-throw-if-not-resolved="false"></xref>.
+
+    Jeżeli klucz API nie jest skonfigurowany albo zewnętrzne API zwróci błąd, aplikacja może nadal używać lokalnych wyników.
+  example: []
+  syntax:
+    content: public class GeminiMatchService
+    content.vb: Public Class GeminiMatchService
+  seealso:
+  - linkId: MauiApp1.testowe.JobSearchService
+    commentId: T:MauiApp1.testowe.JobSearchService
+  - linkId: MauiApp1.testowe.JobOffer
+    commentId: T:MauiApp1.testowe.JobOffer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.testowe.GeminiMatchService.#ctor(MauiApp1.testowe.AppSettingsProvider)
+  commentId: M:MauiApp1.testowe.GeminiMatchService.#ctor(MauiApp1.testowe.AppSettingsProvider)
+  id: '#ctor(MauiApp1.testowe.AppSettingsProvider)'
+  parent: MauiApp1.testowe.GeminiMatchService
+  langs:
+  - csharp
+  - vb
+  name: GeminiMatchService(AppSettingsProvider)
+  nameWithType: GeminiMatchService.GeminiMatchService(AppSettingsProvider)
+  fullName: MauiApp1.testowe.GeminiMatchService.GeminiMatchService(MauiApp1.testowe.AppSettingsProvider)
+  type: Constructor
+  source:
+    remote:
+      path: MauiApp1/testowe/GeminiMatchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: .ctor
+    path: ../MauiApp1/testowe/GeminiMatchService.cs
+    startLine: 42
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Tworzy usługę scoringu AI na podstawie ustawień aplikacji.
+  example: []
+  syntax:
+    content: public GeminiMatchService(AppSettingsProvider settingsProvider)
+    parameters:
+    - id: settingsProvider
+      type: MauiApp1.testowe.AppSettingsProvider
+      description: Provider konfiguracji zawierający klucz API, model i rozmiar paczki zapytań.
+    content.vb: Public Sub New(settingsProvider As AppSettingsProvider)
+  overload: MauiApp1.testowe.GeminiMatchService.#ctor*
+  nameWithType.vb: GeminiMatchService.New(AppSettingsProvider)
+  fullName.vb: MauiApp1.testowe.GeminiMatchService.New(MauiApp1.testowe.AppSettingsProvider)
+  name.vb: New(AppSettingsProvider)
+- uid: MauiApp1.testowe.GeminiMatchService.LastError
+  commentId: P:MauiApp1.testowe.GeminiMatchService.LastError
+  id: LastError
+  parent: MauiApp1.testowe.GeminiMatchService
+  langs:
+  - csharp
+  - vb
+  name: LastError
+  nameWithType: GeminiMatchService.LastError
+  fullName: MauiApp1.testowe.GeminiMatchService.LastError
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/GeminiMatchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: LastError
+    path: ../MauiApp1/testowe/GeminiMatchService.cs
+    startLine: 51
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Ostatni błąd zwrócony przez usługę AI albo parser odpowiedzi.
+  example: []
+  syntax:
+    content: public string LastError { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: Pusty tekst oznacza, że ostatnia próba zakończyła się sukcesem albo nie była wykonywana.
+    content.vb: Public Property LastError As String
+  overload: MauiApp1.testowe.GeminiMatchService.LastError*
+- uid: MauiApp1.testowe.GeminiMatchService.IsConfigured
+  commentId: P:MauiApp1.testowe.GeminiMatchService.IsConfigured
+  id: IsConfigured
+  parent: MauiApp1.testowe.GeminiMatchService
+  langs:
+  - csharp
+  - vb
+  name: IsConfigured
+  nameWithType: GeminiMatchService.IsConfigured
+  fullName: MauiApp1.testowe.GeminiMatchService.IsConfigured
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/GeminiMatchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: IsConfigured
+    path: ../MauiApp1/testowe/GeminiMatchService.cs
+    startLine: 57
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Informuje, czy w konfiguracji dostępny jest klucz Gemini.
+  example: []
+  syntax:
+    content: public bool IsConfigured { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy można próbować zewnętrznego scoringu AI.
+    content.vb: Public ReadOnly Property IsConfigured As Boolean
+  overload: MauiApp1.testowe.GeminiMatchService.IsConfigured*
+- uid: MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync(MauiApp1.testowe.JobSearchService,System.Collections.Generic.IReadOnlyList{MauiApp1.testowe.JobOffer})
+  commentId: M:MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync(MauiApp1.testowe.JobSearchService,System.Collections.Generic.IReadOnlyList{MauiApp1.testowe.JobOffer})
+  id: ScoreOffersAsync(MauiApp1.testowe.JobSearchService,System.Collections.Generic.IReadOnlyList{MauiApp1.testowe.JobOffer})
+  parent: MauiApp1.testowe.GeminiMatchService
+  langs:
+  - csharp
+  - vb
+  name: ScoreOffersAsync(JobSearchService, IReadOnlyList<JobOffer>)
+  nameWithType: GeminiMatchService.ScoreOffersAsync(JobSearchService, IReadOnlyList<JobOffer>)
+  fullName: MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync(MauiApp1.testowe.JobSearchService, System.Collections.Generic.IReadOnlyList<MauiApp1.testowe.JobOffer>)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/GeminiMatchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ScoreOffersAsync
+    path: ../MauiApp1/testowe/GeminiMatchService.cs
+    startLine: 69
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Wysyła oferty do Gemini i zapisuje wynik oraz uzasadnienie bezpośrednio w obiektach <xref href="MauiApp1.testowe.JobOffer" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    Metoda dzieli oferty na paczki i ponawia zapytania przy limitach lub chwilowej niedostępności API. Odpowiedź modelu
+
+    musi być parsowalnym JSON-em, ponieważ UI potrzebuje stabilnych pól <code>offerId</code>, <code>score</code> i <code>reason</code>.
+  example: []
+  syntax:
+    content: public Task<bool> ScoreOffersAsync(JobSearchService searchService, IReadOnlyList<JobOffer> offers)
+    parameters:
+    - id: searchService
+      type: MauiApp1.testowe.JobSearchService
+      description: Aktualny stan wyszukiwania używany do zbudowania kontekstu preferencji użytkownika.
+    - id: offers
+      type: System.Collections.Generic.IReadOnlyList{MauiApp1.testowe.JobOffer}
+      description: Lista ofert, z której zostanie oceniona maksymalna liczba skonfigurowana w ustawieniach.
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy przynajmniej jedna paczka ofert została oceniona poprawnie.
+    content.vb: Public Function ScoreOffersAsync(searchService As JobSearchService, offers As IReadOnlyList(Of JobOffer)) As Task(Of Boolean)
+  overload: MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync*
+  nameWithType.vb: GeminiMatchService.ScoreOffersAsync(JobSearchService, IReadOnlyList(Of JobOffer))
+  fullName.vb: MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync(MauiApp1.testowe.JobSearchService, System.Collections.Generic.IReadOnlyList(Of MauiApp1.testowe.JobOffer))
+  name.vb: ScoreOffersAsync(JobSearchService, IReadOnlyList(Of JobOffer))
+references:
+- uid: MauiApp1.testowe.JobSearchService
+  commentId: T:MauiApp1.testowe.JobSearchService
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.JobSearchService.html
+  name: JobSearchService
+  nameWithType: JobSearchService
+  fullName: MauiApp1.testowe.JobSearchService
+- uid: MauiApp1.testowe.JobOffer
+  commentId: T:MauiApp1.testowe.JobOffer
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.JobOffer.html
+  name: JobOffer
+  nameWithType: JobOffer
+  fullName: MauiApp1.testowe.JobOffer
+- uid: MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+  commentId: M:MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_CalculateMatchingScore_MauiApp1_testowe_JobOffer_
+  name: CalculateMatchingScore(JobOffer)
+  nameWithType: JobSearchService.CalculateMatchingScore(JobOffer)
+  fullName: MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+  spec.csharp:
+  - uid: MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+    name: CalculateMatchingScore
+    href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_CalculateMatchingScore_MauiApp1_testowe_JobOffer_
+  - name: (
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    href: MauiApp1.testowe.JobOffer.html
+  - name: )
+  spec.vb:
+  - uid: MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+    name: CalculateMatchingScore
+    href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_CalculateMatchingScore_MauiApp1_testowe_JobOffer_
+  - name: (
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    href: MauiApp1.testowe.JobOffer.html
+  - name: )
+- uid: MauiApp1.testowe
+  commentId: N:MauiApp1.testowe
+  href: MauiApp1.html
+  name: MauiApp1.testowe
+  nameWithType: MauiApp1.testowe
+  fullName: MauiApp1.testowe
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.testowe.GeminiMatchService.#ctor*
+  commentId: Overload:MauiApp1.testowe.GeminiMatchService.#ctor
+  href: MauiApp1.testowe.GeminiMatchService.html#MauiApp1_testowe_GeminiMatchService__ctor_MauiApp1_testowe_AppSettingsProvider_
+  name: GeminiMatchService
+  nameWithType: GeminiMatchService.GeminiMatchService
+  fullName: MauiApp1.testowe.GeminiMatchService.GeminiMatchService
+  nameWithType.vb: GeminiMatchService.New
+  fullName.vb: MauiApp1.testowe.GeminiMatchService.New
+  name.vb: New
+- uid: MauiApp1.testowe.AppSettingsProvider
+  commentId: T:MauiApp1.testowe.AppSettingsProvider
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.AppSettingsProvider.html
+  name: AppSettingsProvider
+  nameWithType: AppSettingsProvider
+  fullName: MauiApp1.testowe.AppSettingsProvider
+- uid: MauiApp1.testowe.GeminiMatchService.LastError*
+  commentId: Overload:MauiApp1.testowe.GeminiMatchService.LastError
+  href: MauiApp1.testowe.GeminiMatchService.html#MauiApp1_testowe_GeminiMatchService_LastError
+  name: LastError
+  nameWithType: GeminiMatchService.LastError
+  fullName: MauiApp1.testowe.GeminiMatchService.LastError
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MauiApp1.testowe.GeminiMatchService.IsConfigured*
+  commentId: Overload:MauiApp1.testowe.GeminiMatchService.IsConfigured
+  href: MauiApp1.testowe.GeminiMatchService.html#MauiApp1_testowe_GeminiMatchService_IsConfigured
+  name: IsConfigured
+  nameWithType: GeminiMatchService.IsConfigured
+  fullName: MauiApp1.testowe.GeminiMatchService.IsConfigured
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync*
+  commentId: Overload:MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync
+  href: MauiApp1.testowe.GeminiMatchService.html#MauiApp1_testowe_GeminiMatchService_ScoreOffersAsync_MauiApp1_testowe_JobSearchService_System_Collections_Generic_IReadOnlyList_MauiApp1_testowe_JobOffer__
+  name: ScoreOffersAsync
+  nameWithType: GeminiMatchService.ScoreOffersAsync
+  fullName: MauiApp1.testowe.GeminiMatchService.ScoreOffersAsync
+- uid: System.Collections.Generic.IReadOnlyList{MauiApp1.testowe.JobOffer}
+  commentId: T:System.Collections.Generic.IReadOnlyList{MauiApp1.testowe.JobOffer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<JobOffer>
+  nameWithType: IReadOnlyList<JobOffer>
+  fullName: System.Collections.Generic.IReadOnlyList<MauiApp1.testowe.JobOffer>
+  nameWithType.vb: IReadOnlyList(Of JobOffer)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of MauiApp1.testowe.JobOffer)
+  name.vb: IReadOnlyList(Of JobOffer)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    href: MauiApp1.testowe.JobOffer.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    href: MauiApp1.testowe.JobOffer.html
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

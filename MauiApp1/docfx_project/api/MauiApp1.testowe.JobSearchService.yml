@@ -1,0 +1,3047 @@
+### YamlMime:ManagedReference
+items:
+- uid: MauiApp1.testowe.JobSearchService
+  commentId: T:MauiApp1.testowe.JobSearchService
+  id: JobSearchService
+  parent: MauiApp1.testowe
+  children:
+  - MauiApp1.testowe.JobSearchService.#ctor(MauiApp1.testowe.IUserStore,MauiApp1.testowe.AppSettingsProvider,MauiApp1.testowe.IAppSessionStore,MauiApp1.testowe.IUrlLauncher,MauiApp1.testowe.PostgresJobReader)
+  - MauiApp1.testowe.JobSearchService.AddToHistory(MauiApp1.testowe.JobOffer)
+  - MauiApp1.testowe.JobSearchService.AllJobOffers
+  - MauiApp1.testowe.JobSearchService.ApplyProfileFilters
+  - MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+  - MauiApp1.testowe.JobSearchService.ChangePassword(System.String,System.String,System.String,System.String@)
+  - MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary(System.Int32)
+  - MauiApp1.testowe.JobSearchService.CurrentResultsPage
+  - MauiApp1.testowe.JobSearchService.CurrentUser
+  - MauiApp1.testowe.JobSearchService.DarkModeEnabled
+  - MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  - MauiApp1.testowe.JobSearchService.Distance
+  - MauiApp1.testowe.JobSearchService.FavoriteOffers
+  - MauiApp1.testowe.JobSearchService.FilteredOffers
+  - MauiApp1.testowe.JobSearchService.HasAnyTitleMatch(System.Collections.Generic.IEnumerable{MauiApp1.testowe.JobOffer},System.String)
+  - MauiApp1.testowe.JobSearchService.HasNextPage
+  - MauiApp1.testowe.JobSearchService.HasPreviousPage
+  - MauiApp1.testowe.JobSearchService.HasRegisteredAccount
+  - MauiApp1.testowe.JobSearchService.IsLoading
+  - MauiApp1.testowe.JobSearchService.IsLoggedIn
+  - MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay(MauiApp1.testowe.JobOffer,System.String,System.Boolean)
+  - MauiApp1.testowe.JobSearchService.JobRange
+  - MauiApp1.testowe.JobSearchService.LanguageFilters
+  - MauiApp1.testowe.JobSearchService.LastApiError
+  - MauiApp1.testowe.JobSearchService.LoadDataFromDevice
+  - MauiApp1.testowe.JobSearchService.LoadNextPageAsync
+  - MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync
+  - MauiApp1.testowe.JobSearchService.Location
+  - MauiApp1.testowe.JobSearchService.Login(System.String,System.String,System.String@)
+  - MauiApp1.testowe.JobSearchService.Logout
+  - MauiApp1.testowe.JobSearchService.MarkAiFallback(System.String)
+  - MauiApp1.testowe.JobSearchService.MatchesLocationFilter(MauiApp1.testowe.JobOffer)
+  - MauiApp1.testowe.JobSearchService.MatchesMaximumSalary(System.String,System.Int32)
+  - MauiApp1.testowe.JobSearchService.MatchesMinimumSalary(System.String,System.Int32)
+  - MauiApp1.testowe.JobSearchService.MatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  - MauiApp1.testowe.JobSearchService.MaxSalary
+  - MauiApp1.testowe.JobSearchService.MinSalary
+  - MauiApp1.testowe.JobSearchService.NotificationsEnabled
+  - MauiApp1.testowe.JobSearchService.NotifyStateChanged
+  - MauiApp1.testowe.JobSearchService.OnChange
+  - MauiApp1.testowe.JobSearchService.OpenJobDetails(MauiApp1.testowe.JobOffer)
+  - MauiApp1.testowe.JobSearchService.RefreshOfferOrdering
+  - MauiApp1.testowe.JobSearchService.Register(System.String,System.String,System.String@)
+  - MauiApp1.testowe.JobSearchService.RemoteOnly
+  - MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights
+  - MauiApp1.testowe.JobSearchService.ResultsPerPage
+  - MauiApp1.testowe.JobSearchService.SafeParseSalary(System.String)
+  - MauiApp1.testowe.JobSearchService.SaveDataToDevice
+  - MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync(System.String,System.String)
+  - MauiApp1.testowe.JobSearchService.SearchText
+  - MauiApp1.testowe.JobSearchService.SelectedContracts
+  - MauiApp1.testowe.JobSearchService.SelectedEducation
+  - MauiApp1.testowe.JobSearchService.SelectedExperience
+  - MauiApp1.testowe.JobSearchService.SetCurrentResultsPage(System.Int32)
+  - MauiApp1.testowe.JobSearchService.SourceFilters
+  - MauiApp1.testowe.JobSearchService.SourceSupportsDistance(System.String)
+  - MauiApp1.testowe.JobSearchService.StatusMessage
+  - MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  - MauiApp1.testowe.JobSearchService.ToggleFavorite(MauiApp1.testowe.JobOffer)
+  langs:
+  - csharp
+  - vb
+  name: JobSearchService
+  nameWithType: JobSearchService
+  fullName: MauiApp1.testowe.JobSearchService
+  type: Class
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: JobSearchService
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 123
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Koordynuje wyszukiwanie ofert pracy, filtrowanie wyników, konta użytkowników oraz listę ulubionych.
+  remarks: >-
+    Serwis pełni rolę stanu aplikacji dla ekranów Blazor/MAUI. Łączy dane z wielu źródeł, normalizuje je do
+
+    <xref href="MauiApp1.testowe.JobOffer" data-throw-if-not-resolved="false"></xref>, a następnie oblicza dopasowanie względem aktywnych filtrów i profilu użytkownika.
+  example: []
+  syntax:
+    content: public class JobSearchService
+    content.vb: Public Class JobSearchService
+  seealso:
+  - linkId: MauiApp1.testowe.JobOffer
+    commentId: T:MauiApp1.testowe.JobOffer
+  - linkId: MauiApp1.testowe.GeminiMatchService
+    commentId: T:MauiApp1.testowe.GeminiMatchService
+  - linkId: MauiApp1.testowe.IUserStore
+    commentId: T:MauiApp1.testowe.IUserStore
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: MauiApp1.testowe.JobSearchService.IsLoading
+  commentId: P:MauiApp1.testowe.JobSearchService.IsLoading
+  id: IsLoading
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: IsLoading
+  nameWithType: JobSearchService.IsLoading
+  fullName: MauiApp1.testowe.JobSearchService.IsLoading
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: IsLoading
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 196
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool IsLoading { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsLoading As Boolean
+  overload: MauiApp1.testowe.JobSearchService.IsLoading*
+- uid: MauiApp1.testowe.JobSearchService.StatusMessage
+  commentId: P:MauiApp1.testowe.JobSearchService.StatusMessage
+  id: StatusMessage
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: StatusMessage
+  nameWithType: JobSearchService.StatusMessage
+  fullName: MauiApp1.testowe.JobSearchService.StatusMessage
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: StatusMessage
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 197
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public string StatusMessage { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property StatusMessage As String
+  overload: MauiApp1.testowe.JobSearchService.StatusMessage*
+- uid: MauiApp1.testowe.JobSearchService.LastApiError
+  commentId: P:MauiApp1.testowe.JobSearchService.LastApiError
+  id: LastApiError
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: LastApiError
+  nameWithType: JobSearchService.LastApiError
+  fullName: MauiApp1.testowe.JobSearchService.LastApiError
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: LastApiError
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 198
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public string LastApiError { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property LastApiError As String
+  overload: MauiApp1.testowe.JobSearchService.LastApiError*
+- uid: MauiApp1.testowe.JobSearchService.SearchText
+  commentId: P:MauiApp1.testowe.JobSearchService.SearchText
+  id: SearchText
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SearchText
+  nameWithType: JobSearchService.SearchText
+  fullName: MauiApp1.testowe.JobSearchService.SearchText
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SearchText
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 199
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public string SearchText { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SearchText As String
+  overload: MauiApp1.testowe.JobSearchService.SearchText*
+- uid: MauiApp1.testowe.JobSearchService.Location
+  commentId: P:MauiApp1.testowe.JobSearchService.Location
+  id: Location
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: Location
+  nameWithType: JobSearchService.Location
+  fullName: MauiApp1.testowe.JobSearchService.Location
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Location
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 200
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public string Location { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Location As String
+  overload: MauiApp1.testowe.JobSearchService.Location*
+- uid: MauiApp1.testowe.JobSearchService.Distance
+  commentId: P:MauiApp1.testowe.JobSearchService.Distance
+  id: Distance
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: Distance
+  nameWithType: JobSearchService.Distance
+  fullName: MauiApp1.testowe.JobSearchService.Distance
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Distance
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 201
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public int Distance { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Distance As Integer
+  overload: MauiApp1.testowe.JobSearchService.Distance*
+- uid: MauiApp1.testowe.JobSearchService.MinSalary
+  commentId: P:MauiApp1.testowe.JobSearchService.MinSalary
+  id: MinSalary
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: MinSalary
+  nameWithType: JobSearchService.MinSalary
+  fullName: MauiApp1.testowe.JobSearchService.MinSalary
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: MinSalary
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 202
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public int MinSalary { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MinSalary As Integer
+  overload: MauiApp1.testowe.JobSearchService.MinSalary*
+- uid: MauiApp1.testowe.JobSearchService.MaxSalary
+  commentId: P:MauiApp1.testowe.JobSearchService.MaxSalary
+  id: MaxSalary
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: MaxSalary
+  nameWithType: JobSearchService.MaxSalary
+  fullName: MauiApp1.testowe.JobSearchService.MaxSalary
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: MaxSalary
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 203
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public int MaxSalary { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MaxSalary As Integer
+  overload: MauiApp1.testowe.JobSearchService.MaxSalary*
+- uid: MauiApp1.testowe.JobSearchService.JobRange
+  commentId: P:MauiApp1.testowe.JobSearchService.JobRange
+  id: JobRange
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: JobRange
+  nameWithType: JobSearchService.JobRange
+  fullName: MauiApp1.testowe.JobSearchService.JobRange
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: JobRange
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 204
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public string JobRange { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property JobRange As String
+  overload: MauiApp1.testowe.JobSearchService.JobRange*
+- uid: MauiApp1.testowe.JobSearchService.RemoteOnly
+  commentId: P:MauiApp1.testowe.JobSearchService.RemoteOnly
+  id: RemoteOnly
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: RemoteOnly
+  nameWithType: JobSearchService.RemoteOnly
+  fullName: MauiApp1.testowe.JobSearchService.RemoteOnly
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: RemoteOnly
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 205
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool RemoteOnly { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property RemoteOnly As Boolean
+  overload: MauiApp1.testowe.JobSearchService.RemoteOnly*
+- uid: MauiApp1.testowe.JobSearchService.NotificationsEnabled
+  commentId: P:MauiApp1.testowe.JobSearchService.NotificationsEnabled
+  id: NotificationsEnabled
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: NotificationsEnabled
+  nameWithType: JobSearchService.NotificationsEnabled
+  fullName: MauiApp1.testowe.JobSearchService.NotificationsEnabled
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: NotificationsEnabled
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 206
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool NotificationsEnabled { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property NotificationsEnabled As Boolean
+  overload: MauiApp1.testowe.JobSearchService.NotificationsEnabled*
+- uid: MauiApp1.testowe.JobSearchService.DarkModeEnabled
+  commentId: P:MauiApp1.testowe.JobSearchService.DarkModeEnabled
+  id: DarkModeEnabled
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: DarkModeEnabled
+  nameWithType: JobSearchService.DarkModeEnabled
+  fullName: MauiApp1.testowe.JobSearchService.DarkModeEnabled
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: DarkModeEnabled
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 207
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool DarkModeEnabled { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property DarkModeEnabled As Boolean
+  overload: MauiApp1.testowe.JobSearchService.DarkModeEnabled*
+- uid: MauiApp1.testowe.JobSearchService.CurrentUser
+  commentId: P:MauiApp1.testowe.JobSearchService.CurrentUser
+  id: CurrentUser
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: CurrentUser
+  nameWithType: JobSearchService.CurrentUser
+  fullName: MauiApp1.testowe.JobSearchService.CurrentUser
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: CurrentUser
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 212
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Aktualnie zalogowany profil albo profil tymczasowy użytkownika niezalogowanego.
+  example: []
+  syntax:
+    content: public UserProfile CurrentUser { get; }
+    parameters: []
+    return:
+      type: MauiApp1.testowe.UserProfile
+      description: Wartość jest odświeżana po rejestracji, logowaniu, wylogowaniu i wczytaniu danych z magazynu.
+    content.vb: Public Property CurrentUser As UserProfile
+  overload: MauiApp1.testowe.JobSearchService.CurrentUser*
+- uid: MauiApp1.testowe.JobSearchService.IsLoggedIn
+  commentId: P:MauiApp1.testowe.JobSearchService.IsLoggedIn
+  id: IsLoggedIn
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: IsLoggedIn
+  nameWithType: JobSearchService.IsLoggedIn
+  fullName: MauiApp1.testowe.JobSearchService.IsLoggedIn
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: IsLoggedIn
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 213
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool IsLoggedIn { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsLoggedIn As Boolean
+  overload: MauiApp1.testowe.JobSearchService.IsLoggedIn*
+- uid: MauiApp1.testowe.JobSearchService.SelectedContracts
+  commentId: P:MauiApp1.testowe.JobSearchService.SelectedContracts
+  id: SelectedContracts
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SelectedContracts
+  nameWithType: JobSearchService.SelectedContracts
+  fullName: MauiApp1.testowe.JobSearchService.SelectedContracts
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SelectedContracts
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 215
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public List<string> SelectedContracts { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Property SelectedContracts As List(Of String)
+  overload: MauiApp1.testowe.JobSearchService.SelectedContracts*
+- uid: MauiApp1.testowe.JobSearchService.SelectedExperience
+  commentId: P:MauiApp1.testowe.JobSearchService.SelectedExperience
+  id: SelectedExperience
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SelectedExperience
+  nameWithType: JobSearchService.SelectedExperience
+  fullName: MauiApp1.testowe.JobSearchService.SelectedExperience
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SelectedExperience
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 216
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public string SelectedExperience { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SelectedExperience As String
+  overload: MauiApp1.testowe.JobSearchService.SelectedExperience*
+- uid: MauiApp1.testowe.JobSearchService.SelectedEducation
+  commentId: P:MauiApp1.testowe.JobSearchService.SelectedEducation
+  id: SelectedEducation
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SelectedEducation
+  nameWithType: JobSearchService.SelectedEducation
+  fullName: MauiApp1.testowe.JobSearchService.SelectedEducation
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SelectedEducation
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 217
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public string SelectedEducation { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SelectedEducation As String
+  overload: MauiApp1.testowe.JobSearchService.SelectedEducation*
+- uid: MauiApp1.testowe.JobSearchService.AllJobOffers
+  commentId: P:MauiApp1.testowe.JobSearchService.AllJobOffers
+  id: AllJobOffers
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: AllJobOffers
+  nameWithType: JobSearchService.AllJobOffers
+  fullName: MauiApp1.testowe.JobSearchService.AllJobOffers
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: AllJobOffers
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 218
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public List<JobOffer> AllJobOffers { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{MauiApp1.testowe.JobOffer}
+    content.vb: Public Property AllJobOffers As List(Of JobOffer)
+  overload: MauiApp1.testowe.JobSearchService.AllJobOffers*
+- uid: MauiApp1.testowe.JobSearchService.FavoriteOffers
+  commentId: P:MauiApp1.testowe.JobSearchService.FavoriteOffers
+  id: FavoriteOffers
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: FavoriteOffers
+  nameWithType: JobSearchService.FavoriteOffers
+  fullName: MauiApp1.testowe.JobSearchService.FavoriteOffers
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: FavoriteOffers
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 219
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public List<JobOffer> FavoriteOffers { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{MauiApp1.testowe.JobOffer}
+    content.vb: Public Property FavoriteOffers As List(Of JobOffer)
+  overload: MauiApp1.testowe.JobSearchService.FavoriteOffers*
+- uid: MauiApp1.testowe.JobSearchService.CurrentResultsPage
+  commentId: P:MauiApp1.testowe.JobSearchService.CurrentResultsPage
+  id: CurrentResultsPage
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: CurrentResultsPage
+  nameWithType: JobSearchService.CurrentResultsPage
+  fullName: MauiApp1.testowe.JobSearchService.CurrentResultsPage
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: CurrentResultsPage
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 220
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public int CurrentResultsPage { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property CurrentResultsPage As Integer
+  overload: MauiApp1.testowe.JobSearchService.CurrentResultsPage*
+- uid: MauiApp1.testowe.JobSearchService.HasNextPage
+  commentId: P:MauiApp1.testowe.JobSearchService.HasNextPage
+  id: HasNextPage
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: HasNextPage
+  nameWithType: JobSearchService.HasNextPage
+  fullName: MauiApp1.testowe.JobSearchService.HasNextPage
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: HasNextPage
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 221
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool HasNextPage { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property HasNextPage As Boolean
+  overload: MauiApp1.testowe.JobSearchService.HasNextPage*
+- uid: MauiApp1.testowe.JobSearchService.HasPreviousPage
+  commentId: P:MauiApp1.testowe.JobSearchService.HasPreviousPage
+  id: HasPreviousPage
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: HasPreviousPage
+  nameWithType: JobSearchService.HasPreviousPage
+  fullName: MauiApp1.testowe.JobSearchService.HasPreviousPage
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: HasPreviousPage
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 222
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool HasPreviousPage { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasPreviousPage As Boolean
+  overload: MauiApp1.testowe.JobSearchService.HasPreviousPage*
+- uid: MauiApp1.testowe.JobSearchService.ResultsPerPage
+  commentId: P:MauiApp1.testowe.JobSearchService.ResultsPerPage
+  id: ResultsPerPage
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: ResultsPerPage
+  nameWithType: JobSearchService.ResultsPerPage
+  fullName: MauiApp1.testowe.JobSearchService.ResultsPerPage
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ResultsPerPage
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 223
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public int ResultsPerPage { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ResultsPerPage As Integer
+  overload: MauiApp1.testowe.JobSearchService.ResultsPerPage*
+- uid: MauiApp1.testowe.JobSearchService.HasRegisteredAccount
+  commentId: P:MauiApp1.testowe.JobSearchService.HasRegisteredAccount
+  id: HasRegisteredAccount
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: HasRegisteredAccount
+  nameWithType: JobSearchService.HasRegisteredAccount
+  fullName: MauiApp1.testowe.JobSearchService.HasRegisteredAccount
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: HasRegisteredAccount
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 224
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool HasRegisteredAccount { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasRegisteredAccount As Boolean
+  overload: MauiApp1.testowe.JobSearchService.HasRegisteredAccount*
+- uid: MauiApp1.testowe.JobSearchService.SourceSupportsDistance(System.String)
+  commentId: M:MauiApp1.testowe.JobSearchService.SourceSupportsDistance(System.String)
+  id: SourceSupportsDistance(System.String)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SourceSupportsDistance(string)
+  nameWithType: JobSearchService.SourceSupportsDistance(string)
+  fullName: MauiApp1.testowe.JobSearchService.SourceSupportsDistance(string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SourceSupportsDistance
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 230
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Sprawdza, czy dane źródło obsługuje wyszukiwanie z promieniem odległości.
+  example: []
+  syntax:
+    content: public bool SourceSupportsDistance(string source)
+    parameters:
+    - id: source
+      type: System.String
+      description: Nazwa źródła widoczna w filtrach aplikacji.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy źródło przyjmuje filtr odległości bez lokalnego dopasowywania tekstu.
+    content.vb: Public Function SourceSupportsDistance(source As String) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.SourceSupportsDistance*
+  nameWithType.vb: JobSearchService.SourceSupportsDistance(String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.SourceSupportsDistance(String)
+  name.vb: SourceSupportsDistance(String)
+- uid: MauiApp1.testowe.JobSearchService.MatchesLocationFilter(MauiApp1.testowe.JobOffer)
+  commentId: M:MauiApp1.testowe.JobSearchService.MatchesLocationFilter(MauiApp1.testowe.JobOffer)
+  id: MatchesLocationFilter(MauiApp1.testowe.JobOffer)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: MatchesLocationFilter(JobOffer)
+  nameWithType: JobSearchService.MatchesLocationFilter(JobOffer)
+  fullName: MauiApp1.testowe.JobSearchService.MatchesLocationFilter(MauiApp1.testowe.JobOffer)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: MatchesLocationFilter
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 239
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Określa, czy oferta spełnia bieżące kryteria lokalizacji i trybu zdalnego.
+  example: []
+  syntax:
+    content: public bool MatchesLocationFilter(JobOffer offer)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+      description: Oferta sprawdzana względem aktualnych filtrów usługi.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy oferta powinna pozostać na liście wyników.
+    content.vb: Public Function MatchesLocationFilter(offer As JobOffer) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.MatchesLocationFilter*
+- uid: MauiApp1.testowe.JobSearchService.OnChange
+  commentId: E:MauiApp1.testowe.JobSearchService.OnChange
+  id: OnChange
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: OnChange
+  nameWithType: JobSearchService.OnChange
+  fullName: MauiApp1.testowe.JobSearchService.OnChange
+  type: Event
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: OnChange
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 264
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public event Action? OnChange
+    return:
+      type: System.Action
+    content.vb: Public Event OnChange As Action
+- uid: MauiApp1.testowe.JobSearchService.#ctor(MauiApp1.testowe.IUserStore,MauiApp1.testowe.AppSettingsProvider,MauiApp1.testowe.IAppSessionStore,MauiApp1.testowe.IUrlLauncher,MauiApp1.testowe.PostgresJobReader)
+  commentId: M:MauiApp1.testowe.JobSearchService.#ctor(MauiApp1.testowe.IUserStore,MauiApp1.testowe.AppSettingsProvider,MauiApp1.testowe.IAppSessionStore,MauiApp1.testowe.IUrlLauncher,MauiApp1.testowe.PostgresJobReader)
+  id: '#ctor(MauiApp1.testowe.IUserStore,MauiApp1.testowe.AppSettingsProvider,MauiApp1.testowe.IAppSessionStore,MauiApp1.testowe.IUrlLauncher,MauiApp1.testowe.PostgresJobReader)'
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: JobSearchService(IUserStore, AppSettingsProvider, IAppSessionStore, IUrlLauncher, PostgresJobReader)
+  nameWithType: JobSearchService.JobSearchService(IUserStore, AppSettingsProvider, IAppSessionStore, IUrlLauncher, PostgresJobReader)
+  fullName: MauiApp1.testowe.JobSearchService.JobSearchService(MauiApp1.testowe.IUserStore, MauiApp1.testowe.AppSettingsProvider, MauiApp1.testowe.IAppSessionStore, MauiApp1.testowe.IUrlLauncher, MauiApp1.testowe.PostgresJobReader)
+  type: Constructor
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: .ctor
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 274
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Tworzy usługę wyszukiwania z zależnościami odpowiednimi dla aktualnej platformy.
+  example: []
+  syntax:
+    content: public JobSearchService(IUserStore userStore, AppSettingsProvider settingsProvider, IAppSessionStore sessionStore, IUrlLauncher urlLauncher, PostgresJobReader jobReader)
+    parameters:
+    - id: userStore
+      type: MauiApp1.testowe.IUserStore
+      description: Magazyn kont użytkowników, np. lokalny JSON albo PostgreSQL.
+    - id: settingsProvider
+      type: MauiApp1.testowe.AppSettingsProvider
+      description: Provider ustawień zawierający klucze API i konfigurację bazy.
+    - id: sessionStore
+      type: MauiApp1.testowe.IAppSessionStore
+      description: Magazyn krótkotrwałej sesji logowania.
+    - id: urlLauncher
+      type: MauiApp1.testowe.IUrlLauncher
+      description: Usługa otwierająca linki zewnętrzne do ofert.
+    - id: jobReader
+      type: MauiApp1.testowe.PostgresJobReader
+      description: Czytnik ofert zaimportowanych wcześniej do PostgreSQL.
+    content.vb: Public Sub New(userStore As IUserStore, settingsProvider As AppSettingsProvider, sessionStore As IAppSessionStore, urlLauncher As IUrlLauncher, jobReader As PostgresJobReader)
+  overload: MauiApp1.testowe.JobSearchService.#ctor*
+  nameWithType.vb: JobSearchService.New(IUserStore, AppSettingsProvider, IAppSessionStore, IUrlLauncher, PostgresJobReader)
+  fullName.vb: MauiApp1.testowe.JobSearchService.New(MauiApp1.testowe.IUserStore, MauiApp1.testowe.AppSettingsProvider, MauiApp1.testowe.IAppSessionStore, MauiApp1.testowe.IUrlLauncher, MauiApp1.testowe.PostgresJobReader)
+  name.vb: New(IUserStore, AppSettingsProvider, IAppSessionStore, IUrlLauncher, PostgresJobReader)
+- uid: MauiApp1.testowe.JobSearchService.LanguageFilters
+  commentId: P:MauiApp1.testowe.JobSearchService.LanguageFilters
+  id: LanguageFilters
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: LanguageFilters
+  nameWithType: JobSearchService.LanguageFilters
+  fullName: MauiApp1.testowe.JobSearchService.LanguageFilters
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: LanguageFilters
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 287
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public Dictionary<string, bool> LanguageFilters { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Boolean}
+    content.vb: Public Property LanguageFilters As Dictionary(Of String, Boolean)
+  overload: MauiApp1.testowe.JobSearchService.LanguageFilters*
+- uid: MauiApp1.testowe.JobSearchService.SourceFilters
+  commentId: P:MauiApp1.testowe.JobSearchService.SourceFilters
+  id: SourceFilters
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SourceFilters
+  nameWithType: JobSearchService.SourceFilters
+  fullName: MauiApp1.testowe.JobSearchService.SourceFilters
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SourceFilters
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 295
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public Dictionary<string, bool> SourceFilters { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Boolean}
+    content.vb: Public Property SourceFilters As Dictionary(Of String, Boolean)
+  overload: MauiApp1.testowe.JobSearchService.SourceFilters*
+- uid: MauiApp1.testowe.JobSearchService.NotifyStateChanged
+  commentId: M:MauiApp1.testowe.JobSearchService.NotifyStateChanged
+  id: NotifyStateChanged
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: NotifyStateChanged()
+  nameWithType: JobSearchService.NotifyStateChanged()
+  fullName: MauiApp1.testowe.JobSearchService.NotifyStateChanged()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: NotifyStateChanged
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 307
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Powiadamia widoki, że stan usługi zmienił się i należy odświeżyć interfejs.
+  example: []
+  syntax:
+    content: public void NotifyStateChanged()
+    content.vb: Public Sub NotifyStateChanged()
+  overload: MauiApp1.testowe.JobSearchService.NotifyStateChanged*
+- uid: MauiApp1.testowe.JobSearchService.FilteredOffers
+  commentId: P:MauiApp1.testowe.JobSearchService.FilteredOffers
+  id: FilteredOffers
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: FilteredOffers
+  nameWithType: JobSearchService.FilteredOffers
+  fullName: MauiApp1.testowe.JobSearchService.FilteredOffers
+  type: Property
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: FilteredOffers
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 309
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public List<JobOffer> FilteredOffers { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{MauiApp1.testowe.JobOffer}
+    content.vb: Public ReadOnly Property FilteredOffers As List(Of JobOffer)
+  overload: MauiApp1.testowe.JobSearchService.FilteredOffers*
+- uid: MauiApp1.testowe.JobSearchService.Register(System.String,System.String,System.String@)
+  commentId: M:MauiApp1.testowe.JobSearchService.Register(System.String,System.String,System.String@)
+  id: Register(System.String,System.String,System.String@)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: Register(string, string, out string)
+  nameWithType: JobSearchService.Register(string, string, out string)
+  fullName: MauiApp1.testowe.JobSearchService.Register(string, string, out string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Register
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 321
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Rejestruje nowe konto i natychmiast ustawia je jako aktywną sesję.
+  remarks: Metoda resetuje stan wyszukiwania, aby nowy użytkownik nie odziedziczył historii ani ulubionych z poprzedniej sesji.
+  example: []
+  syntax:
+    content: public bool Register(string username, string password, out string errorMessage)
+    parameters:
+    - id: username
+      type: System.String
+      description: Login podany w formularzu rejestracji.
+    - id: password
+      type: System.String
+      description: Hasło użytkownika, które zostanie zapisane wyłącznie w postaci skrótu.
+    - id: errorMessage
+      type: System.String
+      description: Komunikat walidacyjny gotowy do pokazania w UI, gdy operacja się nie powiedzie.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy konto zostało utworzone i zapisane.
+    content.vb: Public Function Register(username As String, password As String, errorMessage As String) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.Register*
+  nameWithType.vb: JobSearchService.Register(String, String, String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.Register(String, String, String)
+  name.vb: Register(String, String, String)
+- uid: MauiApp1.testowe.JobSearchService.Login(System.String,System.String,System.String@)
+  commentId: M:MauiApp1.testowe.JobSearchService.Login(System.String,System.String,System.String@)
+  id: Login(System.String,System.String,System.String@)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: Login(string, string, out string)
+  nameWithType: JobSearchService.Login(string, string, out string)
+  fullName: MauiApp1.testowe.JobSearchService.Login(string, string, out string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Login
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 366
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Loguje użytkownika po porównaniu skrótu hasła z rekordem zapisanym w <xref href="MauiApp1.testowe.IUserStore" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool Login(string username, string password, out string errorMessage)
+    parameters:
+    - id: username
+      type: System.String
+      description: Login wpisany w formularzu logowania.
+    - id: password
+      type: System.String
+      description: Hasło wprowadzone przez użytkownika.
+    - id: errorMessage
+      type: System.String
+      description: Powód odmowy logowania albo pusty tekst po sukcesie.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy konto istnieje i hasło jest poprawne.
+    content.vb: Public Function Login(username As String, password As String, errorMessage As String) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.Login*
+  nameWithType.vb: JobSearchService.Login(String, String, String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.Login(String, String, String)
+  name.vb: Login(String, String, String)
+- uid: MauiApp1.testowe.JobSearchService.Logout
+  commentId: M:MauiApp1.testowe.JobSearchService.Logout
+  id: Logout
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: Logout()
+  nameWithType: JobSearchService.Logout()
+  fullName: MauiApp1.testowe.JobSearchService.Logout()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: Logout
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 403
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Kończy sesję użytkownika i usuwa z pamięci dane profilu oraz wyniki powiązane z kontem.
+  example: []
+  syntax:
+    content: public void Logout()
+    content.vb: Public Sub Logout()
+  overload: MauiApp1.testowe.JobSearchService.Logout*
+- uid: MauiApp1.testowe.JobSearchService.ChangePassword(System.String,System.String,System.String,System.String@)
+  commentId: M:MauiApp1.testowe.JobSearchService.ChangePassword(System.String,System.String,System.String,System.String@)
+  id: ChangePassword(System.String,System.String,System.String,System.String@)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: ChangePassword(string, string, string, out string)
+  nameWithType: JobSearchService.ChangePassword(string, string, string, out string)
+  fullName: MauiApp1.testowe.JobSearchService.ChangePassword(string, string, string, out string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ChangePassword
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 422
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Zmienia hasło aktualnie zalogowanego konta po walidacji obecnego hasła.
+  example: []
+  syntax:
+    content: public bool ChangePassword(string currentPassword, string newPassword, string confirmPassword, out string errorMessage)
+    parameters:
+    - id: currentPassword
+      type: System.String
+      description: Aktualne hasło służące do potwierdzenia tożsamości.
+    - id: newPassword
+      type: System.String
+      description: Nowe hasło do zapisania.
+    - id: confirmPassword
+      type: System.String
+      description: Powtórzenie nowego hasła z formularza.
+    - id: errorMessage
+      type: System.String
+      description: Komunikat błędu walidacji albo pusty tekst po sukcesie.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy hasło zostało zaktualizowane.
+    content.vb: Public Function ChangePassword(currentPassword As String, newPassword As String, confirmPassword As String, errorMessage As String) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.ChangePassword*
+  nameWithType.vb: JobSearchService.ChangePassword(String, String, String, String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.ChangePassword(String, String, String, String)
+  name.vb: ChangePassword(String, String, String, String)
+- uid: MauiApp1.testowe.JobSearchService.AddToHistory(MauiApp1.testowe.JobOffer)
+  commentId: M:MauiApp1.testowe.JobSearchService.AddToHistory(MauiApp1.testowe.JobOffer)
+  id: AddToHistory(MauiApp1.testowe.JobOffer)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: AddToHistory(JobOffer)
+  nameWithType: JobSearchService.AddToHistory(JobOffer)
+  fullName: MauiApp1.testowe.JobSearchService.AddToHistory(MauiApp1.testowe.JobOffer)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: AddToHistory
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 467
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Dodaje ofertę do historii przeglądania bieżącego użytkownika.
+  remarks: Historia jest deduplikowana po tytule i firmie oraz ograniczana, aby nie rozrastała się bez kontroli w magazynie konta.
+  example: []
+  syntax:
+    content: public void AddToHistory(JobOffer offer)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+      description: Oferta otwarta przez użytkownika.
+    content.vb: Public Sub AddToHistory(offer As JobOffer)
+  overload: MauiApp1.testowe.JobSearchService.AddToHistory*
+- uid: MauiApp1.testowe.JobSearchService.OpenJobDetails(MauiApp1.testowe.JobOffer)
+  commentId: M:MauiApp1.testowe.JobSearchService.OpenJobDetails(MauiApp1.testowe.JobOffer)
+  id: OpenJobDetails(MauiApp1.testowe.JobOffer)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: OpenJobDetails(JobOffer)
+  nameWithType: JobSearchService.OpenJobDetails(JobOffer)
+  fullName: MauiApp1.testowe.JobSearchService.OpenJobDetails(MauiApp1.testowe.JobOffer)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: OpenJobDetails
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 490
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Otwiera zewnętrzny adres oferty i zapisuje ją w historii użytkownika.
+  example: []
+  syntax:
+    content: public Task OpenJobDetails(JobOffer offer)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+      description: Oferta, której szczegóły mają zostać otwarte w przeglądarce.
+    return:
+      type: System.Threading.Tasks.Task
+      description: Zadanie reprezentujące operację uruchomienia adresu URL.
+    content.vb: Public Function OpenJobDetails(offer As JobOffer) As Task
+  overload: MauiApp1.testowe.JobSearchService.OpenJobDetails*
+- uid: MauiApp1.testowe.JobSearchService.ApplyProfileFilters
+  commentId: M:MauiApp1.testowe.JobSearchService.ApplyProfileFilters
+  id: ApplyProfileFilters
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: ApplyProfileFilters()
+  nameWithType: JobSearchService.ApplyProfileFilters()
+  fullName: MauiApp1.testowe.JobSearchService.ApplyProfileFilters()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ApplyProfileFilters
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 507
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Przenosi preferencje zapisane w profilu użytkownika na bieżące filtry wyszukiwania.
+  remarks: >-
+    Metoda jest wywoływana wtedy, gdy użytkownik chce szybko wrócić do swoich długoterminowych preferencji bez ręcznego
+
+    ustawiania lokalizacji, wynagrodzenia, doświadczenia, wykształcenia, języków i typów umowy.
+  example: []
+  syntax:
+    content: public void ApplyProfileFilters()
+    content.vb: Public Sub ApplyProfileFilters()
+  overload: MauiApp1.testowe.JobSearchService.ApplyProfileFilters*
+- uid: MauiApp1.testowe.JobSearchService.SafeParseSalary(System.String)
+  commentId: M:MauiApp1.testowe.JobSearchService.SafeParseSalary(System.String)
+  id: SafeParseSalary(System.String)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SafeParseSalary(string)
+  nameWithType: JobSearchService.SafeParseSalary(string)
+  fullName: MauiApp1.testowe.JobSearchService.SafeParseSalary(string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SafeParseSalary
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 549
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Próbuje odczytać liczbową wartość wynagrodzenia z tekstu oferty.
+  example: []
+  syntax:
+    content: public int SafeParseSalary(string salary)
+    parameters:
+    - id: salary
+      type: System.String
+      description: Tekst wynagrodzenia zwrócony przez źródło zewnętrzne.
+    return:
+      type: System.Int32
+      description: Pierwsza sensowna kwota wykryta w tekście albo <code>0</code>, gdy nie da się jej odczytać.
+    content.vb: Public Function SafeParseSalary(salary As String) As Integer
+  overload: MauiApp1.testowe.JobSearchService.SafeParseSalary*
+  nameWithType.vb: JobSearchService.SafeParseSalary(String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.SafeParseSalary(String)
+  name.vb: SafeParseSalary(String)
+- uid: MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary(System.Int32)
+  commentId: M:MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary(System.Int32)
+  id: ConvertHourlyRateToMonthlySalary(System.Int32)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: ConvertHourlyRateToMonthlySalary(int)
+  nameWithType: JobSearchService.ConvertHourlyRateToMonthlySalary(int)
+  fullName: MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary(int)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ConvertHourlyRateToMonthlySalary
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 567
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public int ConvertHourlyRateToMonthlySalary(int hourlyRate)
+    parameters:
+    - id: hourlyRate
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Function ConvertHourlyRateToMonthlySalary(hourlyRate As Integer) As Integer
+  overload: MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary*
+  nameWithType.vb: JobSearchService.ConvertHourlyRateToMonthlySalary(Integer)
+  fullName.vb: MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary(Integer)
+  name.vb: ConvertHourlyRateToMonthlySalary(Integer)
+- uid: MauiApp1.testowe.JobSearchService.MatchesMinimumSalary(System.String,System.Int32)
+  commentId: M:MauiApp1.testowe.JobSearchService.MatchesMinimumSalary(System.String,System.Int32)
+  id: MatchesMinimumSalary(System.String,System.Int32)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: MatchesMinimumSalary(string, int)
+  nameWithType: JobSearchService.MatchesMinimumSalary(string, int)
+  fullName: MauiApp1.testowe.JobSearchService.MatchesMinimumSalary(string, int)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: MatchesMinimumSalary
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 577
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool MatchesMinimumSalary(string salary, int minimumHourlyRate)
+    parameters:
+    - id: salary
+      type: System.String
+    - id: minimumHourlyRate
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function MatchesMinimumSalary(salary As String, minimumHourlyRate As Integer) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.MatchesMinimumSalary*
+  nameWithType.vb: JobSearchService.MatchesMinimumSalary(String, Integer)
+  fullName.vb: MauiApp1.testowe.JobSearchService.MatchesMinimumSalary(String, Integer)
+  name.vb: MatchesMinimumSalary(String, Integer)
+- uid: MauiApp1.testowe.JobSearchService.MatchesMaximumSalary(System.String,System.Int32)
+  commentId: M:MauiApp1.testowe.JobSearchService.MatchesMaximumSalary(System.String,System.Int32)
+  id: MatchesMaximumSalary(System.String,System.Int32)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: MatchesMaximumSalary(string, int)
+  nameWithType: JobSearchService.MatchesMaximumSalary(string, int)
+  fullName: MauiApp1.testowe.JobSearchService.MatchesMaximumSalary(string, int)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: MatchesMaximumSalary
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 593
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool MatchesMaximumSalary(string salary, int maximumHourlyRate)
+    parameters:
+    - id: salary
+      type: System.String
+    - id: maximumHourlyRate
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function MatchesMaximumSalary(salary As String, maximumHourlyRate As Integer) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.MatchesMaximumSalary*
+  nameWithType.vb: JobSearchService.MatchesMaximumSalary(String, Integer)
+  fullName.vb: MauiApp1.testowe.JobSearchService.MatchesMaximumSalary(String, Integer)
+  name.vb: MatchesMaximumSalary(String, Integer)
+- uid: MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+  commentId: M:MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+  id: CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: CalculateMatchingScore(JobOffer)
+  nameWithType: JobSearchService.CalculateMatchingScore(JobOffer)
+  fullName: MauiApp1.testowe.JobSearchService.CalculateMatchingScore(MauiApp1.testowe.JobOffer)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: CalculateMatchingScore
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 619
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Oblicza lokalny wynik dopasowania oferty do aktualnych filtrów i preferencji użytkownika.
+  remarks: >-
+    Algorytm celowo łączy kilka sygnałów: wyszukiwaną frazę, lokalizację, widełki wynagrodzenia, doświadczenie,
+
+    wykształcenie, języki, rodzaj umowy i tryb zdalny. Dzięki temu ranking nadal działa, gdy <xref href="MauiApp1.testowe.GeminiMatchService" data-throw-if-not-resolved="false"></xref>
+
+    nie jest skonfigurowany albo zewnętrzne API AI zwróci błąd.
+  example: []
+  syntax:
+    content: public int CalculateMatchingScore(JobOffer offer)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+      description: Oferta oceniana bez udziału usługi AI.
+    return:
+      type: System.Int32
+      description: Wynik w skali 0-100, gdzie większa wartość oznacza lepsze dopasowanie.
+    content.vb: Public Function CalculateMatchingScore(offer As JobOffer) As Integer
+  overload: MauiApp1.testowe.JobSearchService.CalculateMatchingScore*
+- uid: MauiApp1.testowe.JobSearchService.MatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  commentId: M:MauiApp1.testowe.JobSearchService.MatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  id: MatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: MatchesSearchQuery(JobOffer, string)
+  nameWithType: JobSearchService.MatchesSearchQuery(JobOffer, string)
+  fullName: MauiApp1.testowe.JobSearchService.MatchesSearchQuery(MauiApp1.testowe.JobOffer, string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: MatchesSearchQuery
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 703
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Sprawdza, czy oferta pasuje do wyszukiwanej frazy lub jej synonimów branżowych.
+  example: []
+  syntax:
+    content: public bool MatchesSearchQuery(JobOffer offer, string query)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+      description: Oferta sprawdzana względem zapytania.
+    - id: query
+      type: System.String
+      description: Fraza wpisana przez użytkownika.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, gdy tytuł, firma, opis lub tagi zawierają dopasowanie.
+    content.vb: Public Function MatchesSearchQuery(offer As JobOffer, query As String) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.MatchesSearchQuery*
+  nameWithType.vb: JobSearchService.MatchesSearchQuery(JobOffer, String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.MatchesSearchQuery(MauiApp1.testowe.JobOffer, String)
+  name.vb: MatchesSearchQuery(JobOffer, String)
+- uid: MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  commentId: M:MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  id: TitleMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: TitleMatchesSearchQuery(JobOffer, string)
+  nameWithType: JobSearchService.TitleMatchesSearchQuery(JobOffer, string)
+  fullName: MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery(MauiApp1.testowe.JobOffer, string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: TitleMatchesSearchQuery
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 713
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool TitleMatchesSearchQuery(JobOffer offer, string query)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+    - id: query
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function TitleMatchesSearchQuery(offer As JobOffer, query As String) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery*
+  nameWithType.vb: JobSearchService.TitleMatchesSearchQuery(JobOffer, String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery(MauiApp1.testowe.JobOffer, String)
+  name.vb: TitleMatchesSearchQuery(JobOffer, String)
+- uid: MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  commentId: M:MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  id: DescriptionMatchesSearchQuery(MauiApp1.testowe.JobOffer,System.String)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: DescriptionMatchesSearchQuery(JobOffer, string)
+  nameWithType: JobSearchService.DescriptionMatchesSearchQuery(JobOffer, string)
+  fullName: MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery(MauiApp1.testowe.JobOffer, string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: DescriptionMatchesSearchQuery
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 723
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool DescriptionMatchesSearchQuery(JobOffer offer, string query)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+    - id: query
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function DescriptionMatchesSearchQuery(offer As JobOffer, query As String) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery*
+  nameWithType.vb: JobSearchService.DescriptionMatchesSearchQuery(JobOffer, String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery(MauiApp1.testowe.JobOffer, String)
+  name.vb: DescriptionMatchesSearchQuery(JobOffer, String)
+- uid: MauiApp1.testowe.JobSearchService.HasAnyTitleMatch(System.Collections.Generic.IEnumerable{MauiApp1.testowe.JobOffer},System.String)
+  commentId: M:MauiApp1.testowe.JobSearchService.HasAnyTitleMatch(System.Collections.Generic.IEnumerable{MauiApp1.testowe.JobOffer},System.String)
+  id: HasAnyTitleMatch(System.Collections.Generic.IEnumerable{MauiApp1.testowe.JobOffer},System.String)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: HasAnyTitleMatch(IEnumerable<JobOffer>, string)
+  nameWithType: JobSearchService.HasAnyTitleMatch(IEnumerable<JobOffer>, string)
+  fullName: MauiApp1.testowe.JobSearchService.HasAnyTitleMatch(System.Collections.Generic.IEnumerable<MauiApp1.testowe.JobOffer>, string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: HasAnyTitleMatch
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 733
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool HasAnyTitleMatch(IEnumerable<JobOffer> offers, string query)
+    parameters:
+    - id: offers
+      type: System.Collections.Generic.IEnumerable{MauiApp1.testowe.JobOffer}
+    - id: query
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasAnyTitleMatch(offers As IEnumerable(Of JobOffer), query As String) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.HasAnyTitleMatch*
+  nameWithType.vb: JobSearchService.HasAnyTitleMatch(IEnumerable(Of JobOffer), String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.HasAnyTitleMatch(System.Collections.Generic.IEnumerable(Of MauiApp1.testowe.JobOffer), String)
+  name.vb: HasAnyTitleMatch(IEnumerable(Of JobOffer), String)
+- uid: MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay(MauiApp1.testowe.JobOffer,System.String,System.Boolean)
+  commentId: M:MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay(MauiApp1.testowe.JobOffer,System.String,System.Boolean)
+  id: IsSearchMatchForDisplay(MauiApp1.testowe.JobOffer,System.String,System.Boolean)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: IsSearchMatchForDisplay(JobOffer, string, bool)
+  nameWithType: JobSearchService.IsSearchMatchForDisplay(JobOffer, string, bool)
+  fullName: MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay(MauiApp1.testowe.JobOffer, string, bool)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: IsSearchMatchForDisplay
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 743
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public bool IsSearchMatchForDisplay(JobOffer offer, string query, bool hasAnyTitleMatch)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+    - id: query
+      type: System.String
+    - id: hasAnyTitleMatch
+      type: System.Boolean
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsSearchMatchForDisplay(offer As JobOffer, query As String, hasAnyTitleMatch As Boolean) As Boolean
+  overload: MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay*
+  nameWithType.vb: JobSearchService.IsSearchMatchForDisplay(JobOffer, String, Boolean)
+  fullName.vb: MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay(MauiApp1.testowe.JobOffer, String, Boolean)
+  name.vb: IsSearchMatchForDisplay(JobOffer, String, Boolean)
+- uid: MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights
+  commentId: M:MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights
+  id: ResetOfferMatchInsights
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: ResetOfferMatchInsights()
+  nameWithType: JobSearchService.ResetOfferMatchInsights()
+  fullName: MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ResetOfferMatchInsights
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 799
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Usuwa poprzednie uzasadnienia i flagi AI z aktualnej listy wyników.
+  remarks: >-
+    Reset jest wykonywany przed ponownym rankingiem, aby użytkownik nie widział starego uzasadnienia przy wynikach
+
+    przeliczonych już według innych filtrów.
+  example: []
+  syntax:
+    content: public void ResetOfferMatchInsights()
+    content.vb: Public Sub ResetOfferMatchInsights()
+  overload: MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights*
+- uid: MauiApp1.testowe.JobSearchService.MarkAiFallback(System.String)
+  commentId: M:MauiApp1.testowe.JobSearchService.MarkAiFallback(System.String)
+  id: MarkAiFallback(System.String)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: MarkAiFallback(string?)
+  nameWithType: JobSearchService.MarkAiFallback(string?)
+  fullName: MauiApp1.testowe.JobSearchService.MarkAiFallback(string?)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: MarkAiFallback
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 808
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public void MarkAiFallback(string? reason)
+    parameters:
+    - id: reason
+      type: System.String
+    content.vb: Public Sub MarkAiFallback(reason As String)
+  overload: MauiApp1.testowe.JobSearchService.MarkAiFallback*
+  nameWithType.vb: JobSearchService.MarkAiFallback(String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.MarkAiFallback(String)
+  name.vb: MarkAiFallback(String)
+- uid: MauiApp1.testowe.JobSearchService.RefreshOfferOrdering
+  commentId: M:MauiApp1.testowe.JobSearchService.RefreshOfferOrdering
+  id: RefreshOfferOrdering
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: RefreshOfferOrdering()
+  nameWithType: JobSearchService.RefreshOfferOrdering()
+  fullName: MauiApp1.testowe.JobSearchService.RefreshOfferOrdering()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: RefreshOfferOrdering
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 817
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public void RefreshOfferOrdering()
+    content.vb: Public Sub RefreshOfferOrdering()
+  overload: MauiApp1.testowe.JobSearchService.RefreshOfferOrdering*
+- uid: MauiApp1.testowe.JobSearchService.ToggleFavorite(MauiApp1.testowe.JobOffer)
+  commentId: M:MauiApp1.testowe.JobSearchService.ToggleFavorite(MauiApp1.testowe.JobOffer)
+  id: ToggleFavorite(MauiApp1.testowe.JobOffer)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: ToggleFavorite(JobOffer)
+  nameWithType: JobSearchService.ToggleFavorite(JobOffer)
+  fullName: MauiApp1.testowe.JobSearchService.ToggleFavorite(MauiApp1.testowe.JobOffer)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: ToggleFavorite
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 958
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Dodaje ofertę do ulubionych albo usuwa ją, jeżeli już była zapisana.
+  example: []
+  syntax:
+    content: public void ToggleFavorite(JobOffer offer)
+    parameters:
+    - id: offer
+      type: MauiApp1.testowe.JobOffer
+      description: Oferta przełączana na liście ulubionych bieżącego użytkownika.
+    content.vb: Public Sub ToggleFavorite(offer As JobOffer)
+  overload: MauiApp1.testowe.JobSearchService.ToggleFavorite*
+- uid: MauiApp1.testowe.JobSearchService.SaveDataToDevice
+  commentId: M:MauiApp1.testowe.JobSearchService.SaveDataToDevice
+  id: SaveDataToDevice
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SaveDataToDevice()
+  nameWithType: JobSearchService.SaveDataToDevice()
+  fullName: MauiApp1.testowe.JobSearchService.SaveDataToDevice()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SaveDataToDevice
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 974
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public void SaveDataToDevice()
+    content.vb: Public Sub SaveDataToDevice()
+  overload: MauiApp1.testowe.JobSearchService.SaveDataToDevice*
+- uid: MauiApp1.testowe.JobSearchService.LoadDataFromDevice
+  commentId: M:MauiApp1.testowe.JobSearchService.LoadDataFromDevice
+  id: LoadDataFromDevice
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: LoadDataFromDevice()
+  nameWithType: JobSearchService.LoadDataFromDevice()
+  fullName: MauiApp1.testowe.JobSearchService.LoadDataFromDevice()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: LoadDataFromDevice
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 986
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public void LoadDataFromDevice()
+    content.vb: Public Sub LoadDataFromDevice()
+  overload: MauiApp1.testowe.JobSearchService.LoadDataFromDevice*
+- uid: MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync(System.String,System.String)
+  commentId: M:MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync(System.String,System.String)
+  id: SearchJobsOnlineAsync(System.String,System.String)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SearchJobsOnlineAsync(string, string)
+  nameWithType: JobSearchService.SearchJobsOnlineAsync(string, string)
+  fullName: MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync(string, string)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SearchJobsOnlineAsync
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 1146
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  summary: Pobiera oferty pracy z aktywnych źródeł i zapisuje pierwszą stronę wyników w stanie aplikacji.
+  remarks: >-
+    Metoda łączy wyniki z bazy PostgreSQL oraz zewnętrznych API. Przy błędach pojedynczych źródeł zachowuje możliwe wyniki
+
+    z pozostałych źródeł i zapisuje komunikat w <xref href="MauiApp1.testowe.JobSearchService.LastApiError" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Task SearchJobsOnlineAsync(string query, string location)
+    parameters:
+    - id: query
+      type: System.String
+      description: Fraza stanowiska lub branży wpisana przez użytkownika.
+    - id: location
+      type: System.String
+      description: Lokalizacja przekazana do źródeł wspierających wyszukiwanie geograficzne.
+    return:
+      type: System.Threading.Tasks.Task
+      description: Zadanie kończące się po pobraniu, filtrowaniu i uporządkowaniu wyników.
+    content.vb: Public Function SearchJobsOnlineAsync(query As String, location As String) As Task
+  overload: MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync*
+  nameWithType.vb: JobSearchService.SearchJobsOnlineAsync(String, String)
+  fullName.vb: MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync(String, String)
+  name.vb: SearchJobsOnlineAsync(String, String)
+- uid: MauiApp1.testowe.JobSearchService.LoadNextPageAsync
+  commentId: M:MauiApp1.testowe.JobSearchService.LoadNextPageAsync
+  id: LoadNextPageAsync
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: LoadNextPageAsync()
+  nameWithType: JobSearchService.LoadNextPageAsync()
+  fullName: MauiApp1.testowe.JobSearchService.LoadNextPageAsync()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: LoadNextPageAsync
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 1215
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public Task LoadNextPageAsync()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function LoadNextPageAsync() As Task
+  overload: MauiApp1.testowe.JobSearchService.LoadNextPageAsync*
+- uid: MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync
+  commentId: M:MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync
+  id: LoadPreviousPageAsync
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: LoadPreviousPageAsync()
+  nameWithType: JobSearchService.LoadPreviousPageAsync()
+  fullName: MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync()
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: LoadPreviousPageAsync
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 1227
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public Task LoadPreviousPageAsync()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function LoadPreviousPageAsync() As Task
+  overload: MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync*
+- uid: MauiApp1.testowe.JobSearchService.SetCurrentResultsPage(System.Int32)
+  commentId: M:MauiApp1.testowe.JobSearchService.SetCurrentResultsPage(System.Int32)
+  id: SetCurrentResultsPage(System.Int32)
+  parent: MauiApp1.testowe.JobSearchService
+  langs:
+  - csharp
+  - vb
+  name: SetCurrentResultsPage(int)
+  nameWithType: JobSearchService.SetCurrentResultsPage(int)
+  fullName: MauiApp1.testowe.JobSearchService.SetCurrentResultsPage(int)
+  type: Method
+  source:
+    remote:
+      path: MauiApp1/testowe/JobSearchService.cs
+      branch: CODEX
+      repo: https://github.com/Michalblaz/JOB-Search-AI.git
+    id: SetCurrentResultsPage
+    path: ../MauiApp1/testowe/JobSearchService.cs
+    startLine: 1239
+  assemblies:
+  - MauiApp1
+  namespace: MauiApp1.testowe
+  syntax:
+    content: public void SetCurrentResultsPage(int pageNumber)
+    parameters:
+    - id: pageNumber
+      type: System.Int32
+    content.vb: Public Sub SetCurrentResultsPage(pageNumber As Integer)
+  overload: MauiApp1.testowe.JobSearchService.SetCurrentResultsPage*
+  nameWithType.vb: JobSearchService.SetCurrentResultsPage(Integer)
+  fullName.vb: MauiApp1.testowe.JobSearchService.SetCurrentResultsPage(Integer)
+  name.vb: SetCurrentResultsPage(Integer)
+references:
+- uid: MauiApp1.testowe.JobOffer
+  commentId: T:MauiApp1.testowe.JobOffer
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.JobOffer.html
+  name: JobOffer
+  nameWithType: JobOffer
+  fullName: MauiApp1.testowe.JobOffer
+- uid: MauiApp1.testowe.GeminiMatchService
+  commentId: T:MauiApp1.testowe.GeminiMatchService
+  href: MauiApp1.testowe.GeminiMatchService.html
+  name: GeminiMatchService
+  nameWithType: GeminiMatchService
+  fullName: MauiApp1.testowe.GeminiMatchService
+- uid: MauiApp1.testowe.IUserStore
+  commentId: T:MauiApp1.testowe.IUserStore
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.IUserStore.html
+  name: IUserStore
+  nameWithType: IUserStore
+  fullName: MauiApp1.testowe.IUserStore
+- uid: MauiApp1.testowe
+  commentId: N:MauiApp1.testowe
+  href: MauiApp1.html
+  name: MauiApp1.testowe
+  nameWithType: MauiApp1.testowe
+  fullName: MauiApp1.testowe
+  spec.csharp:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+  spec.vb:
+  - uid: MauiApp1
+    name: MauiApp1
+    href: MauiApp1.html
+  - name: .
+  - uid: MauiApp1.testowe
+    name: testowe
+    href: MauiApp1.testowe.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MauiApp1.testowe.JobSearchService.IsLoading*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.IsLoading
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_IsLoading
+  name: IsLoading
+  nameWithType: JobSearchService.IsLoading
+  fullName: MauiApp1.testowe.JobSearchService.IsLoading
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MauiApp1.testowe.JobSearchService.StatusMessage*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.StatusMessage
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_StatusMessage
+  name: StatusMessage
+  nameWithType: JobSearchService.StatusMessage
+  fullName: MauiApp1.testowe.JobSearchService.StatusMessage
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MauiApp1.testowe.JobSearchService.LastApiError*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.LastApiError
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_LastApiError
+  name: LastApiError
+  nameWithType: JobSearchService.LastApiError
+  fullName: MauiApp1.testowe.JobSearchService.LastApiError
+- uid: MauiApp1.testowe.JobSearchService.SearchText*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SearchText
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SearchText
+  name: SearchText
+  nameWithType: JobSearchService.SearchText
+  fullName: MauiApp1.testowe.JobSearchService.SearchText
+- uid: MauiApp1.testowe.JobSearchService.Location*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.Location
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_Location
+  name: Location
+  nameWithType: JobSearchService.Location
+  fullName: MauiApp1.testowe.JobSearchService.Location
+- uid: MauiApp1.testowe.JobSearchService.Distance*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.Distance
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_Distance
+  name: Distance
+  nameWithType: JobSearchService.Distance
+  fullName: MauiApp1.testowe.JobSearchService.Distance
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: MauiApp1.testowe.JobSearchService.MinSalary*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.MinSalary
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_MinSalary
+  name: MinSalary
+  nameWithType: JobSearchService.MinSalary
+  fullName: MauiApp1.testowe.JobSearchService.MinSalary
+- uid: MauiApp1.testowe.JobSearchService.MaxSalary*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.MaxSalary
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_MaxSalary
+  name: MaxSalary
+  nameWithType: JobSearchService.MaxSalary
+  fullName: MauiApp1.testowe.JobSearchService.MaxSalary
+- uid: MauiApp1.testowe.JobSearchService.JobRange*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.JobRange
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_JobRange
+  name: JobRange
+  nameWithType: JobSearchService.JobRange
+  fullName: MauiApp1.testowe.JobSearchService.JobRange
+- uid: MauiApp1.testowe.JobSearchService.RemoteOnly*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.RemoteOnly
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_RemoteOnly
+  name: RemoteOnly
+  nameWithType: JobSearchService.RemoteOnly
+  fullName: MauiApp1.testowe.JobSearchService.RemoteOnly
+- uid: MauiApp1.testowe.JobSearchService.NotificationsEnabled*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.NotificationsEnabled
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_NotificationsEnabled
+  name: NotificationsEnabled
+  nameWithType: JobSearchService.NotificationsEnabled
+  fullName: MauiApp1.testowe.JobSearchService.NotificationsEnabled
+- uid: MauiApp1.testowe.JobSearchService.DarkModeEnabled*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.DarkModeEnabled
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_DarkModeEnabled
+  name: DarkModeEnabled
+  nameWithType: JobSearchService.DarkModeEnabled
+  fullName: MauiApp1.testowe.JobSearchService.DarkModeEnabled
+- uid: MauiApp1.testowe.JobSearchService.CurrentUser*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.CurrentUser
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_CurrentUser
+  name: CurrentUser
+  nameWithType: JobSearchService.CurrentUser
+  fullName: MauiApp1.testowe.JobSearchService.CurrentUser
+- uid: MauiApp1.testowe.UserProfile
+  commentId: T:MauiApp1.testowe.UserProfile
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.UserProfile.html
+  name: UserProfile
+  nameWithType: UserProfile
+  fullName: MauiApp1.testowe.UserProfile
+- uid: MauiApp1.testowe.JobSearchService.IsLoggedIn*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.IsLoggedIn
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_IsLoggedIn
+  name: IsLoggedIn
+  nameWithType: JobSearchService.IsLoggedIn
+  fullName: MauiApp1.testowe.JobSearchService.IsLoggedIn
+- uid: MauiApp1.testowe.JobSearchService.SelectedContracts*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SelectedContracts
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SelectedContracts
+  name: SelectedContracts
+  nameWithType: JobSearchService.SelectedContracts
+  fullName: MauiApp1.testowe.JobSearchService.SelectedContracts
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<string>
+  nameWithType: List<string>
+  fullName: System.Collections.Generic.List<string>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: MauiApp1.testowe.JobSearchService.SelectedExperience*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SelectedExperience
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SelectedExperience
+  name: SelectedExperience
+  nameWithType: JobSearchService.SelectedExperience
+  fullName: MauiApp1.testowe.JobSearchService.SelectedExperience
+- uid: MauiApp1.testowe.JobSearchService.SelectedEducation*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SelectedEducation
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SelectedEducation
+  name: SelectedEducation
+  nameWithType: JobSearchService.SelectedEducation
+  fullName: MauiApp1.testowe.JobSearchService.SelectedEducation
+- uid: MauiApp1.testowe.JobSearchService.AllJobOffers*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.AllJobOffers
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_AllJobOffers
+  name: AllJobOffers
+  nameWithType: JobSearchService.AllJobOffers
+  fullName: MauiApp1.testowe.JobSearchService.AllJobOffers
+- uid: System.Collections.Generic.List{MauiApp1.testowe.JobOffer}
+  commentId: T:System.Collections.Generic.List{MauiApp1.testowe.JobOffer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<JobOffer>
+  nameWithType: List<JobOffer>
+  fullName: System.Collections.Generic.List<MauiApp1.testowe.JobOffer>
+  nameWithType.vb: List(Of JobOffer)
+  fullName.vb: System.Collections.Generic.List(Of MauiApp1.testowe.JobOffer)
+  name.vb: List(Of JobOffer)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    href: MauiApp1.testowe.JobOffer.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    href: MauiApp1.testowe.JobOffer.html
+  - name: )
+- uid: MauiApp1.testowe.JobSearchService.FavoriteOffers*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.FavoriteOffers
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_FavoriteOffers
+  name: FavoriteOffers
+  nameWithType: JobSearchService.FavoriteOffers
+  fullName: MauiApp1.testowe.JobSearchService.FavoriteOffers
+- uid: MauiApp1.testowe.JobSearchService.CurrentResultsPage*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.CurrentResultsPage
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_CurrentResultsPage
+  name: CurrentResultsPage
+  nameWithType: JobSearchService.CurrentResultsPage
+  fullName: MauiApp1.testowe.JobSearchService.CurrentResultsPage
+- uid: MauiApp1.testowe.JobSearchService.HasNextPage*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.HasNextPage
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_HasNextPage
+  name: HasNextPage
+  nameWithType: JobSearchService.HasNextPage
+  fullName: MauiApp1.testowe.JobSearchService.HasNextPage
+- uid: MauiApp1.testowe.JobSearchService.HasPreviousPage*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.HasPreviousPage
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_HasPreviousPage
+  name: HasPreviousPage
+  nameWithType: JobSearchService.HasPreviousPage
+  fullName: MauiApp1.testowe.JobSearchService.HasPreviousPage
+- uid: MauiApp1.testowe.JobSearchService.ResultsPerPage*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.ResultsPerPage
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_ResultsPerPage
+  name: ResultsPerPage
+  nameWithType: JobSearchService.ResultsPerPage
+  fullName: MauiApp1.testowe.JobSearchService.ResultsPerPage
+- uid: MauiApp1.testowe.JobSearchService.HasRegisteredAccount*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.HasRegisteredAccount
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_HasRegisteredAccount
+  name: HasRegisteredAccount
+  nameWithType: JobSearchService.HasRegisteredAccount
+  fullName: MauiApp1.testowe.JobSearchService.HasRegisteredAccount
+- uid: MauiApp1.testowe.JobSearchService.SourceSupportsDistance*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SourceSupportsDistance
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SourceSupportsDistance_System_String_
+  name: SourceSupportsDistance
+  nameWithType: JobSearchService.SourceSupportsDistance
+  fullName: MauiApp1.testowe.JobSearchService.SourceSupportsDistance
+- uid: MauiApp1.testowe.JobSearchService.MatchesLocationFilter*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.MatchesLocationFilter
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_MatchesLocationFilter_MauiApp1_testowe_JobOffer_
+  name: MatchesLocationFilter
+  nameWithType: JobSearchService.MatchesLocationFilter
+  fullName: MauiApp1.testowe.JobSearchService.MatchesLocationFilter
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: MauiApp1.testowe.JobSearchService.#ctor*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.#ctor
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService__ctor_MauiApp1_testowe_IUserStore_MauiApp1_testowe_AppSettingsProvider_MauiApp1_testowe_IAppSessionStore_MauiApp1_testowe_IUrlLauncher_MauiApp1_testowe_PostgresJobReader_
+  name: JobSearchService
+  nameWithType: JobSearchService.JobSearchService
+  fullName: MauiApp1.testowe.JobSearchService.JobSearchService
+  nameWithType.vb: JobSearchService.New
+  fullName.vb: MauiApp1.testowe.JobSearchService.New
+  name.vb: New
+- uid: MauiApp1.testowe.AppSettingsProvider
+  commentId: T:MauiApp1.testowe.AppSettingsProvider
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.AppSettingsProvider.html
+  name: AppSettingsProvider
+  nameWithType: AppSettingsProvider
+  fullName: MauiApp1.testowe.AppSettingsProvider
+- uid: MauiApp1.testowe.IAppSessionStore
+  commentId: T:MauiApp1.testowe.IAppSessionStore
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.IAppSessionStore.html
+  name: IAppSessionStore
+  nameWithType: IAppSessionStore
+  fullName: MauiApp1.testowe.IAppSessionStore
+- uid: MauiApp1.testowe.IUrlLauncher
+  commentId: T:MauiApp1.testowe.IUrlLauncher
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.IUrlLauncher.html
+  name: IUrlLauncher
+  nameWithType: IUrlLauncher
+  fullName: MauiApp1.testowe.IUrlLauncher
+- uid: MauiApp1.testowe.PostgresJobReader
+  commentId: T:MauiApp1.testowe.PostgresJobReader
+  parent: MauiApp1.testowe
+  href: MauiApp1.testowe.PostgresJobReader.html
+  name: PostgresJobReader
+  nameWithType: PostgresJobReader
+  fullName: MauiApp1.testowe.PostgresJobReader
+- uid: MauiApp1.testowe.JobSearchService.LanguageFilters*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.LanguageFilters
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_LanguageFilters
+  name: LanguageFilters
+  nameWithType: JobSearchService.LanguageFilters
+  fullName: MauiApp1.testowe.JobSearchService.LanguageFilters
+- uid: System.Collections.Generic.Dictionary{System.String,System.Boolean}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.Boolean}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<string, bool>
+  nameWithType: Dictionary<string, bool>
+  fullName: System.Collections.Generic.Dictionary<string, bool>
+  nameWithType.vb: Dictionary(Of String, Boolean)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, Boolean)
+  name.vb: Dictionary(Of String, Boolean)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: MauiApp1.testowe.JobSearchService.SourceFilters*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SourceFilters
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SourceFilters
+  name: SourceFilters
+  nameWithType: JobSearchService.SourceFilters
+  fullName: MauiApp1.testowe.JobSearchService.SourceFilters
+- uid: MauiApp1.testowe.JobSearchService.NotifyStateChanged*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.NotifyStateChanged
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_NotifyStateChanged
+  name: NotifyStateChanged
+  nameWithType: JobSearchService.NotifyStateChanged
+  fullName: MauiApp1.testowe.JobSearchService.NotifyStateChanged
+- uid: MauiApp1.testowe.JobSearchService.FilteredOffers*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.FilteredOffers
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_FilteredOffers
+  name: FilteredOffers
+  nameWithType: JobSearchService.FilteredOffers
+  fullName: MauiApp1.testowe.JobSearchService.FilteredOffers
+- uid: MauiApp1.testowe.JobSearchService.Register*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.Register
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_Register_System_String_System_String_System_String__
+  name: Register
+  nameWithType: JobSearchService.Register
+  fullName: MauiApp1.testowe.JobSearchService.Register
+- uid: MauiApp1.testowe.JobSearchService.Login*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.Login
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_Login_System_String_System_String_System_String__
+  name: Login
+  nameWithType: JobSearchService.Login
+  fullName: MauiApp1.testowe.JobSearchService.Login
+- uid: MauiApp1.testowe.JobSearchService.Logout*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.Logout
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_Logout
+  name: Logout
+  nameWithType: JobSearchService.Logout
+  fullName: MauiApp1.testowe.JobSearchService.Logout
+- uid: MauiApp1.testowe.JobSearchService.ChangePassword*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.ChangePassword
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_ChangePassword_System_String_System_String_System_String_System_String__
+  name: ChangePassword
+  nameWithType: JobSearchService.ChangePassword
+  fullName: MauiApp1.testowe.JobSearchService.ChangePassword
+- uid: MauiApp1.testowe.JobSearchService.AddToHistory*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.AddToHistory
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_AddToHistory_MauiApp1_testowe_JobOffer_
+  name: AddToHistory
+  nameWithType: JobSearchService.AddToHistory
+  fullName: MauiApp1.testowe.JobSearchService.AddToHistory
+- uid: MauiApp1.testowe.JobSearchService.OpenJobDetails*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.OpenJobDetails
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_OpenJobDetails_MauiApp1_testowe_JobOffer_
+  name: OpenJobDetails
+  nameWithType: JobSearchService.OpenJobDetails
+  fullName: MauiApp1.testowe.JobSearchService.OpenJobDetails
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: MauiApp1.testowe.JobSearchService.ApplyProfileFilters*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.ApplyProfileFilters
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_ApplyProfileFilters
+  name: ApplyProfileFilters
+  nameWithType: JobSearchService.ApplyProfileFilters
+  fullName: MauiApp1.testowe.JobSearchService.ApplyProfileFilters
+- uid: MauiApp1.testowe.JobSearchService.SafeParseSalary*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SafeParseSalary
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SafeParseSalary_System_String_
+  name: SafeParseSalary
+  nameWithType: JobSearchService.SafeParseSalary
+  fullName: MauiApp1.testowe.JobSearchService.SafeParseSalary
+- uid: MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_ConvertHourlyRateToMonthlySalary_System_Int32_
+  name: ConvertHourlyRateToMonthlySalary
+  nameWithType: JobSearchService.ConvertHourlyRateToMonthlySalary
+  fullName: MauiApp1.testowe.JobSearchService.ConvertHourlyRateToMonthlySalary
+- uid: MauiApp1.testowe.JobSearchService.MatchesMinimumSalary*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.MatchesMinimumSalary
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_MatchesMinimumSalary_System_String_System_Int32_
+  name: MatchesMinimumSalary
+  nameWithType: JobSearchService.MatchesMinimumSalary
+  fullName: MauiApp1.testowe.JobSearchService.MatchesMinimumSalary
+- uid: MauiApp1.testowe.JobSearchService.MatchesMaximumSalary*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.MatchesMaximumSalary
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_MatchesMaximumSalary_System_String_System_Int32_
+  name: MatchesMaximumSalary
+  nameWithType: JobSearchService.MatchesMaximumSalary
+  fullName: MauiApp1.testowe.JobSearchService.MatchesMaximumSalary
+- uid: MauiApp1.testowe.JobSearchService.CalculateMatchingScore*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.CalculateMatchingScore
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_CalculateMatchingScore_MauiApp1_testowe_JobOffer_
+  name: CalculateMatchingScore
+  nameWithType: JobSearchService.CalculateMatchingScore
+  fullName: MauiApp1.testowe.JobSearchService.CalculateMatchingScore
+- uid: MauiApp1.testowe.JobSearchService.MatchesSearchQuery*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.MatchesSearchQuery
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_MatchesSearchQuery_MauiApp1_testowe_JobOffer_System_String_
+  name: MatchesSearchQuery
+  nameWithType: JobSearchService.MatchesSearchQuery
+  fullName: MauiApp1.testowe.JobSearchService.MatchesSearchQuery
+- uid: MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_TitleMatchesSearchQuery_MauiApp1_testowe_JobOffer_System_String_
+  name: TitleMatchesSearchQuery
+  nameWithType: JobSearchService.TitleMatchesSearchQuery
+  fullName: MauiApp1.testowe.JobSearchService.TitleMatchesSearchQuery
+- uid: MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_DescriptionMatchesSearchQuery_MauiApp1_testowe_JobOffer_System_String_
+  name: DescriptionMatchesSearchQuery
+  nameWithType: JobSearchService.DescriptionMatchesSearchQuery
+  fullName: MauiApp1.testowe.JobSearchService.DescriptionMatchesSearchQuery
+- uid: MauiApp1.testowe.JobSearchService.HasAnyTitleMatch*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.HasAnyTitleMatch
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_HasAnyTitleMatch_System_Collections_Generic_IEnumerable_MauiApp1_testowe_JobOffer__System_String_
+  name: HasAnyTitleMatch
+  nameWithType: JobSearchService.HasAnyTitleMatch
+  fullName: MauiApp1.testowe.JobSearchService.HasAnyTitleMatch
+- uid: System.Collections.Generic.IEnumerable{MauiApp1.testowe.JobOffer}
+  commentId: T:System.Collections.Generic.IEnumerable{MauiApp1.testowe.JobOffer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<JobOffer>
+  nameWithType: IEnumerable<JobOffer>
+  fullName: System.Collections.Generic.IEnumerable<MauiApp1.testowe.JobOffer>
+  nameWithType.vb: IEnumerable(Of JobOffer)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MauiApp1.testowe.JobOffer)
+  name.vb: IEnumerable(Of JobOffer)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    href: MauiApp1.testowe.JobOffer.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MauiApp1.testowe.JobOffer
+    name: JobOffer
+    href: MauiApp1.testowe.JobOffer.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_IsSearchMatchForDisplay_MauiApp1_testowe_JobOffer_System_String_System_Boolean_
+  name: IsSearchMatchForDisplay
+  nameWithType: JobSearchService.IsSearchMatchForDisplay
+  fullName: MauiApp1.testowe.JobSearchService.IsSearchMatchForDisplay
+- uid: MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_ResetOfferMatchInsights
+  name: ResetOfferMatchInsights
+  nameWithType: JobSearchService.ResetOfferMatchInsights
+  fullName: MauiApp1.testowe.JobSearchService.ResetOfferMatchInsights
+- uid: MauiApp1.testowe.JobSearchService.MarkAiFallback*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.MarkAiFallback
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_MarkAiFallback_System_String_
+  name: MarkAiFallback
+  nameWithType: JobSearchService.MarkAiFallback
+  fullName: MauiApp1.testowe.JobSearchService.MarkAiFallback
+- uid: MauiApp1.testowe.JobSearchService.RefreshOfferOrdering*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.RefreshOfferOrdering
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_RefreshOfferOrdering
+  name: RefreshOfferOrdering
+  nameWithType: JobSearchService.RefreshOfferOrdering
+  fullName: MauiApp1.testowe.JobSearchService.RefreshOfferOrdering
+- uid: MauiApp1.testowe.JobSearchService.ToggleFavorite*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.ToggleFavorite
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_ToggleFavorite_MauiApp1_testowe_JobOffer_
+  name: ToggleFavorite
+  nameWithType: JobSearchService.ToggleFavorite
+  fullName: MauiApp1.testowe.JobSearchService.ToggleFavorite
+- uid: MauiApp1.testowe.JobSearchService.SaveDataToDevice*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SaveDataToDevice
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SaveDataToDevice
+  name: SaveDataToDevice
+  nameWithType: JobSearchService.SaveDataToDevice
+  fullName: MauiApp1.testowe.JobSearchService.SaveDataToDevice
+- uid: MauiApp1.testowe.JobSearchService.LoadDataFromDevice*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.LoadDataFromDevice
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_LoadDataFromDevice
+  name: LoadDataFromDevice
+  nameWithType: JobSearchService.LoadDataFromDevice
+  fullName: MauiApp1.testowe.JobSearchService.LoadDataFromDevice
+- uid: MauiApp1.testowe.JobSearchService.LastApiError
+  commentId: P:MauiApp1.testowe.JobSearchService.LastApiError
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_LastApiError
+  name: LastApiError
+  nameWithType: JobSearchService.LastApiError
+  fullName: MauiApp1.testowe.JobSearchService.LastApiError
+- uid: MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SearchJobsOnlineAsync_System_String_System_String_
+  name: SearchJobsOnlineAsync
+  nameWithType: JobSearchService.SearchJobsOnlineAsync
+  fullName: MauiApp1.testowe.JobSearchService.SearchJobsOnlineAsync
+- uid: MauiApp1.testowe.JobSearchService.LoadNextPageAsync*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.LoadNextPageAsync
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_LoadNextPageAsync
+  name: LoadNextPageAsync
+  nameWithType: JobSearchService.LoadNextPageAsync
+  fullName: MauiApp1.testowe.JobSearchService.LoadNextPageAsync
+- uid: MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_LoadPreviousPageAsync
+  name: LoadPreviousPageAsync
+  nameWithType: JobSearchService.LoadPreviousPageAsync
+  fullName: MauiApp1.testowe.JobSearchService.LoadPreviousPageAsync
+- uid: MauiApp1.testowe.JobSearchService.SetCurrentResultsPage*
+  commentId: Overload:MauiApp1.testowe.JobSearchService.SetCurrentResultsPage
+  href: MauiApp1.testowe.JobSearchService.html#MauiApp1_testowe_JobSearchService_SetCurrentResultsPage_System_Int32_
+  name: SetCurrentResultsPage
+  nameWithType: JobSearchService.SetCurrentResultsPage
+  fullName: MauiApp1.testowe.JobSearchService.SetCurrentResultsPage

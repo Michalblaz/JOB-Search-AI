@@ -1,0 +1,93 @@
+﻿@using MauiApp1.testowe
+@inject MauiApp1.testowe.JobSearchService SearchService
+
+@{
+    var uniqueId = $"offer-{Offer.Title?.Replace(" ", "-").ToLower()}-{Offer.Company?.Replace(" ", "-").ToLower()}";
+}
+
+<div class="job-card" id="@uniqueId">
+    <div class="card-header">
+        <div class="logo-placeholder">LOGO</div>
+        <div class="header-text">
+            <h2>@Offer.Title</h2>
+            <p class="company-name">@Offer.Company</p>
+            <p class="location">@Offer.Location</p>
+            <p class="meta-line">@Offer.Category</p>
+        </div>
+    </div>
+
+    <div class="card-tags">
+        @if (Offer.Tags != null)
+        {
+            @foreach (var tag in Offer.Tags)
+            {
+                <span class="tag">@tag</span>
+            }
+        }
+    </div>
+
+    <div class="card-details">
+        <p class="description">@Offer.Description</p>
+
+        <div class="offer-meta-grid">
+            <p><strong>Typ:</strong> @Offer.ContractType</p>
+            <p><strong>Wymiar:</strong> @Offer.ContractTime</p>
+            <p><strong>Publikacja:</strong> @Offer.PublishedAt</p>
+            <p><strong>Źródło:</strong> @Offer.Source</p>
+        </div>
+
+        <div class="circular-progress-container"
+             title="@matchReason"
+             style="display: flex !important; justify-content: flex-start !important; align-items: center !important; gap: 10px !important; width: fit-content !important;">
+            <span class="match-label" style="margin: 0 !important; white-space: nowrap !important;">Dopasowanie</span>
+
+            <div style="position: relative; width: 45px; height: 45px; flex-shrink: 0;">
+                <svg class="circular-progress" viewBox="0 0 36 36" style="width: 45px; height: 45px;">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle-progress-bar @(matchPercent < 40 ? "bar-low" : matchPercent < 70 ? "bar-mid" : "bar-high")"
+                          stroke-dasharray="100, 100"
+                          stroke-dashoffset="@(100 - matchPercent)"
+                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="match-percentage-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.75rem; font-weight: bold;">
+                    @(matchPercent)%
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <div class="salary-source">
+            <p class="salary">@Offer.SalaryDetails</p>
+            <span class="source-tag">Znaleziono na @Offer.Source</span>
+        </div>
+
+        <div class="card-actions">
+            <button type="button"
+                    class="btn-fav @(IsFavorite ? "active" : "")"
+                    @onclick="HandleFavoriteClick"
+                    @onclick:stopPropagation="true">
+                @(IsFavorite ? "❤️ Usuń" : "🤍 Do Ulubionych")
+            </button>
+            <button @onclick="() => SearchService.OpenJobDetails(Offer)">Szczegóły</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public JobOffer Offer { get; set; } = new();
+
+    private int matchPercent => Offer.MatchScore;
+
+    private string matchReason => !string.IsNullOrWhiteSpace(Offer.MatchReason)
+        ? Offer.MatchReason
+        : "Dopasowanie obliczone lokalnie. Po skonfigurowaniu Gemini zobaczysz tu krótkie uzasadnienie AI.";
+
+    private bool IsFavorite => SearchService.FavoriteOffers.Any(o => o.Title == Offer.Title && o.Company == Offer.Company);
+
+    private void HandleFavoriteClick()
+    {
+        SearchService.ToggleFavorite(Offer);
+        StateHasChanged();
+    }
+}

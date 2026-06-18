@@ -1,0 +1,194 @@
+﻿.job-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+    color: black;
+    border: 1px solid #e0e0e0;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.logo-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #f0f0f0;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+.header-text h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.company-name {
+    margin: 2px 0;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.location {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.meta-line {
+    margin: 4px 0 0;
+    font-size: 0.8rem;
+    color: #0f766e;
+    font-weight: 600;
+}
+
+.card-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.card-details {
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+}
+
+.description {
+    margin: 8px 0 12px;
+    color: #333;
+}
+
+.offer-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 14px;
+    margin-bottom: 14px;
+}
+
+.offer-meta-grid p {
+    margin: 0;
+}
+
+.circular-progress {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    pointer-events: none;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.salary {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+}
+
+.source-tag {
+    font-size: 0.8rem;
+    color: #666;
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-fav {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #6c5ce7;
+    color: white;
+    transition: 0.2s;
+    position: relative;
+    z-index: 999 !important;
+    pointer-events: auto !important;
+}
+
+.btn-fav:hover {
+    filter: brightness(1.1);
+}
+
+.btn-fav:active {
+    transform: scale(0.98);
+}
+
+.btn-fav.active {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+@media (max-width: 700px) {
+    .card-header,
+    .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .offer-meta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-actions {
+        width: 100%;
+    }
+}
