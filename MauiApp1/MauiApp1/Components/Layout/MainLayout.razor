@@ -3,7 +3,7 @@
 @implements IDisposable
 @inject NavigationManager NavManager
 
-<div class="page @(SearchService.CurrentUser.Settings.DarkMode ? "dark-theme" : "")">
+<div class="page @SearchService.CurrentUser.Settings.ThemeCssClass">
     @if (ShowApplicationChrome)
     {
         <header>

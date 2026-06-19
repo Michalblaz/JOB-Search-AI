@@ -29,6 +29,11 @@ namespace MauiApp1.testowe
         public string PostedAgo { get; set; } = "";
         public string ContractType { get; set; } = "";
         public string ContractTime { get; set; } = "";
+        public string WorkMode { get; set; } = "unknown";
+        public string WorkTimeType { get; set; } = "unknown";
+        public string DescriptionQuality { get; set; } = "unknown";
+        public decimal DataQualityScore { get; set; }
+        public decimal ExtractionScore { get; set; }
         public string Category { get; set; } = "";
         public string PublishedAt { get; set; } = "";
         public bool IsRemote { get; set; }
@@ -41,6 +46,9 @@ namespace MauiApp1.testowe
         public List<string> CategoryCodes { get; set; } = new();
         public List<string> RoleCodes { get; set; } = new();
         public List<string> CriterionCodes { get; set; } = new();
+        public List<string> ContractTypes { get; set; } = new();
+        public List<string> BenefitCodes { get; set; } = new();
+        public List<string> ScheduleFlags { get; set; } = new();
         public List<JobOfferCriterionMatch> Criteria { get; set; } = new();
         public string Description { get; set; } = "";
     }
@@ -62,6 +70,14 @@ namespace MauiApp1.testowe
     }
 
     public class JobCriterionOption
+    {
+        public string Kind { get; set; } = "";
+        public string Code { get; set; } = "";
+        public string DisplayName { get; set; } = "";
+        public int ActiveOfferCount { get; set; }
+    }
+
+    public class JobFilterOption
     {
         public string Kind { get; set; } = "";
         public string Code { get; set; } = "";

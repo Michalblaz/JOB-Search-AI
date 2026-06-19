@@ -12,6 +12,11 @@ public sealed class ImporterSettings
     public SourceSettingsContainer Sources { get; set; } = new();
 }
 
+public static class ExtractorVersionProvider
+{
+    public const string Current = "rules_v3";
+}
+
 public sealed class DatabaseSettings
 {
     public string ConnectionString { get; set; } = string.Empty;
@@ -161,6 +166,9 @@ public sealed class SalaryInfo
     public string SalaryPeriod { get; set; } = "unknown";
     public string SalaryTaxType { get; set; } = "unknown";
     public string SalaryRateType { get; set; } = "unknown";
+    public decimal? ParsedMin { get; set; }
+    public decimal? ParsedMax { get; set; }
+    public string? ParsedCurrency { get; set; }
     public decimal Confidence { get; set; } = 0.5m;
     public string? Evidence { get; set; }
 }
@@ -200,6 +208,9 @@ public sealed class OfferDomain
     public string DomainName { get; set; } = string.Empty;
     public decimal Confidence { get; set; } = 0.5m;
     public string? Evidence { get; set; }
+    public string SourceField { get; set; } = "description";
+    public string? SourceSection { get; set; }
+    public string ExtractorVersion { get; set; } = ExtractorVersionProvider.Current;
 }
 
 public sealed class OfferFormalRequirement
@@ -208,6 +219,9 @@ public sealed class OfferFormalRequirement
     public bool IsRequired { get; set; } = true;
     public decimal Confidence { get; set; } = 0.5m;
     public string? Evidence { get; set; }
+    public string SourceField { get; set; } = "description";
+    public string? SourceSection { get; set; }
+    public string ExtractorVersion { get; set; } = ExtractorVersionProvider.Current;
 }
 
 public sealed class OfferClassification
@@ -236,13 +250,55 @@ public sealed class OfferCriterion
     public int? EvidenceStart { get; set; }
     public int? EvidenceEnd { get; set; }
     public string? MatchedAlias { get; set; }
-    public string ExtractorVersion { get; set; } = "rules_v2";
+    public string ExtractorVersion { get; set; } = ExtractorVersionProvider.Current;
 }
 
 public sealed class OfferLanguage
 {
     public string Code { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
+    public string LevelMin { get; set; } = "unknown";
+    public bool? IsRequired { get; set; }
+    public decimal Confidence { get; set; } = 0.5m;
+    public string? Evidence { get; set; }
+    public string SourceField { get; set; } = "description";
+    public string? SourceSection { get; set; }
+    public string ExtractorVersion { get; set; } = ExtractorVersionProvider.Current;
+}
+
+public sealed class CriterionAliasSeed
+{
+    public string Kind { get; set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
+    public string DisplayName { get; set; } = string.Empty;
+    public string Alias { get; set; } = string.Empty;
+    public bool IsShortAmbiguous { get; set; }
+    public bool RequiresTechContext { get; set; }
+    public bool RequiresWholeToken { get; set; } = true;
+    public int Priority { get; set; } = 100;
+    public bool IsActive { get; set; } = true;
+}
+
+public sealed class MatchScoreInfo
+{
+    public long JobOfferId { get; set; }
+    public long? UserId { get; set; }
+    public decimal TotalScore { get; set; }
+    public decimal SalaryScore { get; set; }
+    public decimal LocationScore { get; set; }
+    public decimal SkillsScore { get; set; }
+    public decimal ExperienceScore { get; set; }
+    public decimal EducationScore { get; set; }
+    public decimal LanguageScore { get; set; }
+    public decimal ContractScore { get; set; }
+    public decimal WorkModeScore { get; set; }
+    public decimal WorkTimeScore { get; set; }
+    public decimal BenefitsScore { get; set; }
+    public decimal ScheduleScore { get; set; }
+    public int MissingRequiredSkillsCount { get; set; }
+    public int MatchedRequiredSkillsCount { get; set; }
+    public int MatchedOptionalSkillsCount { get; set; }
+    public string Explanation { get; set; } = string.Empty;
 }
 
 public sealed class SourceImportStats
@@ -382,7 +438,7 @@ public static class ImporterHelpers
         var text = $"{titleText} {descriptionText}".Trim();
 
         var noExperienceMatch = MatchFirst(text,
-            @"\b(bez doswiadczenia|brak doswiadczenia|nie wymagamy doswiadczenia|doswiadczenie (nie jest wymagane|niewymagane)|pelne szkolenie|zapewniamy szkolenie|przyuczenie|entry[- ]?level|no experience required|no prior experience)\b");
+            @"\b(bez doswiadczenia|brak doswiadczenia|nie wymagamy doswiadczenia|doswiadczenie (nie jest wymagane|niewymagane)|pelne szkolenie|zapewniamy szkolenie|przyuczenie|entry[- ]?level|no experience required|no prior experience|berufseinstieg|quereinsteiger|ohne berufserfahrung)\b");
 
         if (noExperienceMatch.Success)
         {
@@ -395,6 +451,41 @@ public static class ImporterHelpers
                 NoExperienceAllowed = true,
                 Confidence = 0.95m,
                 Evidence = ExtractEvidence(text, noExperienceMatch)
+            };
+        }
+
+        var germanRangeMatch = MatchFirst(text,
+            @"(?<min>\d+(?:[,.]\d+)?)\s*(?:-|bis|to)\s*(?<max>\d+(?:[,.]\d+)?)\s*jahre\s+berufserfahrung");
+
+        if (germanRangeMatch.Success && TryGetDecimal(germanRangeMatch, "min", out var germanRangeMin) && TryGetDecimal(germanRangeMatch, "max", out var germanRangeMax))
+        {
+            return new ExperienceInfo
+            {
+                Level = MapYearsToExperienceLevel(germanRangeMin),
+                MinYears = germanRangeMin,
+                MaxYears = germanRangeMax,
+                IsRequired = ResolveRequirementFromContext(text, germanRangeMatch),
+                NoExperienceAllowed = germanRangeMin <= 0,
+                Confidence = 0.88m,
+                Evidence = ExtractEvidence(text, germanRangeMatch)
+            };
+        }
+
+        var germanMinMatch = MatchFirst(text,
+            @"(?:mindestens)\s*(?<min>\d+(?:[,.]\d+)?)\s*jahre",
+            @"(?<min>\d+(?:[,.]\d+)?)\+\s*jahre\s+berufserfahrung",
+            @"(?<min>\d+(?:[,.]\d+)?)\s*jahre\s+berufserfahrung");
+
+        if (germanMinMatch.Success && TryGetDecimal(germanMinMatch, "min", out var germanMinYears))
+        {
+            return new ExperienceInfo
+            {
+                Level = MapYearsToExperienceLevel(germanMinYears),
+                MinYears = germanMinYears,
+                IsRequired = ResolveRequirementFromContext(text, germanMinMatch),
+                NoExperienceAllowed = germanMinYears <= 0,
+                Confidence = 0.86m,
+                Evidence = ExtractEvidence(text, germanMinMatch)
             };
         }
 
@@ -435,7 +526,7 @@ public static class ImporterHelpers
         }
 
         var optionalExperienceMatch = MatchFirst(text,
-            @"\b(mile widziane|dodatkowy atut|atutem bedzie|nice to have|optional|preferred|would be a plus|is a plus)\b.{0,120}\b(doswiadczenie|experience)\b");
+            @"\b(mile widziane|dodatkowy atut|atutem bedzie|nice to have|optional|preferred|would be a plus|is a plus|von vorteil|wunsch|idealerweise)\b.{0,120}\b(doswiadczenie|experience|berufserfahrung)\b");
 
         if (optionalExperienceMatch.Success)
         {
@@ -544,19 +635,19 @@ public static class ImporterHelpers
     public static string DetectEducationLevel(string? title, string? description)
         => DetectEducationInfo(title, description).Level;
 
-    public static List<OfferContractType> DetectContractTypes(string? title, string? description, string? contractTypeRaw, IEnumerable<string>? tags = null)
+    public static List<OfferContractType> DetectContractTypes(string? title, string? description, string? contractTypeRaw, IEnumerable<string>? tags = null, string? rawPayloadJson = null, string? employmentTypeRaw = null)
     {
-        var text = BuildDetectionText(title, description, contractTypeRaw, tags);
+        var text = BuildDetectionText(title, description, $"{contractTypeRaw} {employmentTypeRaw} {rawPayloadJson}", tags);
         var rules = new (string Code, string Pattern)[]
         {
-            ("employment_contract", @"\b(umowa o prace|uop|employment contract|permanent contract)\b"),
+            ("employment_contract", @"\b(umowa o prace|uop|employment contract|arbeitsvertrag|permanent contract|permanent employment|festanstellung|festeinstellung|unbefristet|direktvermittlung)\b"),
             ("b2b", @"\b(b2b|kontrakt b2b|business to business)\b"),
             ("mandate_contract", @"\b(umowa zlecenie|zlecenie|mandate contract)\b"),
             ("specific_task_contract", @"\b(umowa o dzielo|specific task contract)\b"),
-            ("temporary_contract", @"\b(praca tymczasowa|temporary contract|temporary job)\b"),
-            ("internship_contract", @"\b(staz|praktyki|internship|traineeship)\b"),
-            ("freelance", @"\b(freelance|freelancer)\b"),
-            ("agency_contract", @"\b(agencja pracy|przez agencje|agency contract)\b"),
+            ("temporary_contract", @"\b(praca tymczasowa|temporary work|temporary contract|temporary job)\b"),
+            ("internship_contract", @"\b(staz|praktyki|internship|trainee|traineeship)\b"),
+            ("freelance", @"\b(freelance|freelancer|freiberuflich|contract work)\b"),
+            ("agency_contract", @"\b(agencja pracy|przez agencje|agency contract|personalvermittlung)\b"),
             ("civil_contract", @"\b(umowa cywilnoprawna|civil contract)\b"),
             ("apprenticeship", @"\b(praktyki zawodowe|nauka zawodu|apprenticeship)\b")
         };
@@ -585,9 +676,9 @@ public static class ImporterHelpers
             .ToList();
     }
 
-    public static WorkTimeInfo DetectWorkTimeInfo(string? title, string? description, string? employmentTypeRaw, IEnumerable<string>? tags = null)
+    public static WorkTimeInfo DetectWorkTimeInfo(string? title, string? description, string? employmentTypeRaw, IEnumerable<string>? tags = null, string? rawPayloadJson = null, string? contractTypeRaw = null)
     {
-        var text = BuildDetectionText(title, description, employmentTypeRaw, tags);
+        var text = BuildDetectionText(title, description, $"{employmentTypeRaw} {contractTypeRaw} {rawPayloadJson}", tags);
 
         var hoursRange = MatchFirst(text, @"(?<min>\d+(?:[,.]\d+)?)\s*(?:-|–|—|do|to)\s*(?<max>\d+(?:[,.]\d+)?)\s*(?:godzin|h|hours?)\s*(?:tygodniowo|weekly|per week)?");
         if (hoursRange.Success && TryGetDecimal(hoursRange, "min", out var hoursMin) && TryGetDecimal(hoursRange, "max", out var hoursMax))
@@ -601,16 +692,40 @@ public static class ImporterHelpers
             return new WorkTimeInfo { WorkTimeType = hoursValue >= 35 ? "full_time" : "part_time", HoursPerWeekMin = hoursValue, HoursPerWeekMax = hoursValue, Confidence = 0.88m, Evidence = ExtractEvidence(text, hours) };
         }
 
-        var half = MatchFirst(text, @"\b(1/2 etatu|pol etatu|half[- ]?time)\b");
+        var half = MatchFirst(text, @"\b(1/2 etatu|pol etatu|half[- ]?time|halbtags)\b");
         if (half.Success)
         {
             return new WorkTimeInfo { WorkTimeType = "part_time", FteMin = 0.5m, FteMax = 0.5m, Confidence = 0.9m, Evidence = ExtractEvidence(text, half) };
         }
 
-        var threeQuarters = MatchFirst(text, @"\b(3/4 etatu)\b");
+        var threeQuarters = MatchFirst(text, @"\b(3/4 etatu|75%\s*stelle)\b");
         if (threeQuarters.Success)
         {
             return new WorkTimeInfo { WorkTimeType = "part_time", FteMin = 0.75m, FteMax = 0.75m, Confidence = 0.9m, Evidence = ExtractEvidence(text, threeQuarters) };
+        }
+
+        var quarter = MatchFirst(text, @"\b(1/4 etatu|25%\s*stelle)\b");
+        if (quarter.Success)
+        {
+            return new WorkTimeInfo { WorkTimeType = "part_time", FteMin = 0.25m, FteMax = 0.25m, Confidence = 0.9m, Evidence = ExtractEvidence(text, quarter) };
+        }
+
+        var germanFull = MatchFirst(text, @"\b(vollzeit)\b");
+        if (germanFull.Success)
+        {
+            return new WorkTimeInfo { WorkTimeType = "full_time", FteMin = 1m, FteMax = 1m, Confidence = ComesFromRaw(employmentTypeRaw, germanFull.Value) ? 0.95m : 0.86m, Evidence = ExtractEvidence(text, germanFull) };
+        }
+
+        var germanPart = MatchFirst(text, @"\b(teilzeit)\b");
+        if (germanPart.Success)
+        {
+            return new WorkTimeInfo { WorkTimeType = "part_time", Confidence = ComesFromRaw(employmentTypeRaw, germanPart.Value) ? 0.95m : 0.84m, Evidence = ExtractEvidence(text, germanPart) };
+        }
+
+        var germanFlexible = MatchFirst(text, @"\b(flexible arbeitszeiten|flexible arbeitszeit)\b");
+        if (germanFlexible.Success)
+        {
+            return new WorkTimeInfo { WorkTimeType = "flexible", Confidence = 0.78m, Evidence = ExtractEvidence(text, germanFlexible) };
         }
 
         var full = MatchFirst(text, @"\b(pelny etat|full[- ]?time|pełny etat)\b");
@@ -625,44 +740,52 @@ public static class ImporterHelpers
             return new WorkTimeInfo { WorkTimeType = "part_time", Confidence = ComesFromRaw(employmentTypeRaw, part.Value) ? 0.95m : 0.86m, Evidence = ExtractEvidence(text, part) };
         }
 
-        var flexible = MatchFirst(text, @"\b(elastyczny wymiar|flexible working hours|flexible hours|elastyczne godziny)\b");
+        var flexible = MatchFirst(text, @"\b(elastyczny wymiar|elastyczny czas pracy|flexible working time|flexible working hours|flexible hours|elastyczne godziny)\b");
         if (flexible.Success)
         {
             return new WorkTimeInfo { WorkTimeType = "flexible", Confidence = 0.78m, Evidence = ExtractEvidence(text, flexible) };
         }
 
+        var casual = MatchFirst(text, @"\b(dorywcza|praca dodatkowa|casual)\b");
+        if (casual.Success)
+        {
+            return new WorkTimeInfo { WorkTimeType = "casual", Confidence = 0.78m, Evidence = ExtractEvidence(text, casual) };
+        }
+
         return new WorkTimeInfo();
     }
 
-    public static WorkModeInfo DetectWorkModeInfo(string? title, string? description, string? location, IEnumerable<string>? tags, bool isRemoteHint)
+    public static WorkModeInfo DetectWorkModeInfo(string? title, string? description, string? location, IEnumerable<string>? tags, bool isRemoteHint, string? rawPayloadJson = null, string? employmentTypeRaw = null, string? contractTypeRaw = null)
     {
-        var text = BuildDetectionText(title, description, location, tags);
+        var text = BuildDetectionText(title, description, $"{location} {employmentTypeRaw} {contractTypeRaw} {rawPayloadJson}", tags);
 
-        var officeDays = MatchFirst(text, @"(?<days>\d+(?:[,.]\d+)?)\s*(?:dni|days?)\s+w\s+biurze");
+        var officeDays = MatchFirst(text,
+            @"(?<days>\d+(?:[,.]\d+)?)\s*(?:dni|days?)\s+w\s+biurze",
+            @"(?<days>\d+(?:[,.]\d+)?)\s*(?:office days?|days?)\s*(?:in|at)?\s*(?:the\s*)?office");
         if (officeDays.Success && TryGetDecimal(officeDays, "days", out var days))
         {
             return new WorkModeInfo { WorkMode = "hybrid", RemoteScope = "hybrid", OfficeDaysPerWeekMin = days, OfficeDaysPerWeekMax = days, Confidence = 0.92m, Evidence = ExtractEvidence(text, officeDays) };
         }
 
-        var fullyRemote = MatchFirst(text, @"\b(100%\s*remote|fully remote|praca w 100%\s*zdalna|praca zdalna|zdalnie|remote)\b");
+        var fullyRemote = MatchFirst(text, @"\b(100%\s*remote|fully remote|remote-first|praca w 100%\s*zdalna|praca zdalna|zdalnie|zdalna z polski|remote|home office|homeoffice|remote work)\b");
         if (fullyRemote.Success)
         {
             return new WorkModeInfo { WorkMode = "remote", RemoteScope = "fully_remote", Confidence = isRemoteHint ? 0.95m : 0.88m, Evidence = ExtractEvidence(text, fullyRemote) };
         }
 
-        var hybrid = MatchFirst(text, @"\b(hybrid|hybrydowa|hybrydowo|praca hybrydowa)\b");
+        var hybrid = MatchFirst(text, @"\b(hybrid|hybrid work|hybrydowa|hybrydowo|praca hybrydowa|czesciowo zdalnie|partly remote|hybride arbeit|hybrides arbeiten)\b");
         if (hybrid.Success)
         {
             return new WorkModeInfo { WorkMode = "hybrid", RemoteScope = "hybrid", Confidence = 0.88m, Evidence = ExtractEvidence(text, hybrid) };
         }
 
-        var onsite = MatchFirst(text, @"\b(stacjonarna|stacjonarnie|onsite|on-site|praca w biurze)\b");
+        var onsite = MatchFirst(text, @"\b(stacjonarna|stacjonarnie|onsite|on-site|praca w biurze|stationary|vor ort|am standort)\b");
         if (onsite.Success)
         {
             return new WorkModeInfo { WorkMode = "onsite", RemoteScope = "not_remote", Confidence = 0.84m, Evidence = ExtractEvidence(text, onsite) };
         }
 
-        var field = MatchFirst(text, @"\b(praca terenowa|praca mobilna|w terenie|field work|mobile work)\b");
+        var field = MatchFirst(text, @"\b(praca terenowa|praca mobilna|mobilnie|terenowo|w terenie|field work|mobile work|aussendienst)\b");
         if (field.Success)
         {
             return new WorkModeInfo { WorkMode = "field", RemoteScope = "not_remote", Confidence = 0.84m, Evidence = ExtractEvidence(text, field) };
@@ -676,10 +799,14 @@ public static class ImporterHelpers
         return new WorkModeInfo();
     }
 
-    public static SalaryInfo DetectSalaryInfo(decimal? salaryMin, decimal? salaryMax, string? salaryRaw)
+    public static SalaryInfo DetectSalaryInfo(decimal? salaryMin, decimal? salaryMax, string? salaryRaw, string? description = null)
     {
-        var text = NormalizeForDetection(salaryRaw);
+        var usesDescriptionFallback = string.IsNullOrWhiteSpace(salaryRaw) && !string.IsNullOrWhiteSpace(description);
+        var rawText = usesDescriptionFallback ? description : salaryRaw;
+        var text = NormalizeForDetection(rawText);
         var info = new SalaryInfo();
+        var hasSalarySignal = !usesDescriptionFallback ||
+            Regex.IsMatch(text, @"\b(wynagrodzenie|salary|pay|stawka|rate|brutto|netto|gross|net|zl|zł|pln|eur|usd)\b|€|\$");
 
         if (salaryMin.HasValue && salaryMax.HasValue)
         {
@@ -697,21 +824,83 @@ public static class ImporterHelpers
             info.Confidence = 0.9m;
         }
 
-        if (Regex.IsMatch(text, @"\b(do uzgodnienia|negotiable)\b"))
+        var negotiable = MatchFirst(text, @"\b(do uzgodnienia|wynagrodzenie do uzgodnienia|negotiable|competitive salary)\b");
+        if (negotiable.Success)
         {
             info.SalaryRateType = "negotiable";
             info.Confidence = Math.Max(info.Confidence, 0.8m);
+            info.Evidence = ExtractEvidence(text, negotiable);
         }
 
-        if (Regex.IsMatch(text, @"\b(godz|godzin|/h|hour|hourly)\b"))
+        var range = MatchFirst(text,
+            @"(?<min>\d[\d\s.,]*)\s*(?:-|–|—|do|to)\s*(?<max>\d[\d\s.,]*)\s*(?<currency>zl|zł|pln|eur|€|usd|\$)?",
+            @"(?<currency>zl|zł|pln|eur|€|usd|\$)\s*(?<min>\d[\d\s.,]*)\s*(?:-|–|—|do|to)\s*(?<max>\d[\d\s.,]*)");
+        if (range.Success &&
+            hasSalarySignal &&
+            TryParseSalaryAmount(range.Groups["min"].Value, out var parsedMin) &&
+            TryParseSalaryAmount(range.Groups["max"].Value, out var parsedMax))
+        {
+            info.ParsedMin = parsedMin;
+            info.ParsedMax = parsedMax;
+            info.SalaryRateType = "range";
+            info.ParsedCurrency = NormalizeCurrency(range.Groups["currency"].Value);
+            info.Confidence = Math.Max(info.Confidence, 0.88m);
+            info.Evidence ??= ExtractEvidence(text, range);
+        }
+
+        var fixedAmount = MatchFirst(text,
+            @"(?<!\d)(?<amount>\d[\d\s.,]*)\s*(?<currency>zl|zł|pln|eur|€|usd|\$)\b",
+            @"\b(?<currency>zl|zł|pln|eur|€|usd|\$)\s*(?<amount>\d[\d\s.,]*)");
+        if (!info.ParsedMin.HasValue &&
+            hasSalarySignal &&
+            fixedAmount.Success &&
+            TryParseSalaryAmount(fixedAmount.Groups["amount"].Value, out var parsedFixed))
+        {
+            info.ParsedMin = parsedFixed;
+            info.ParsedMax = parsedFixed;
+            info.SalaryRateType = "fixed";
+            info.ParsedCurrency = NormalizeCurrency(fixedAmount.Groups["currency"].Value);
+            info.Confidence = Math.Max(info.Confidence, 0.84m);
+            info.Evidence ??= ExtractEvidence(text, fixedAmount);
+        }
+
+        var from = MatchFirst(text, @"\b(?:od|from)\s*(?<amount>\d[\d\s.,]*)\s*(?<currency>zl|zł|pln|eur|€|usd|\$)?");
+        if (!info.ParsedMin.HasValue &&
+            hasSalarySignal &&
+            from.Success &&
+            TryParseSalaryAmount(from.Groups["amount"].Value, out var parsedFrom))
+        {
+            info.ParsedMin = parsedFrom;
+            info.SalaryRateType = "from";
+            info.ParsedCurrency = NormalizeCurrency(from.Groups["currency"].Value);
+            info.Confidence = Math.Max(info.Confidence, 0.82m);
+            info.Evidence ??= ExtractEvidence(text, from);
+        }
+
+        var to = MatchFirst(text, @"\b(?:do|up to)\s*(?<amount>\d[\d\s.,]*)\s*(?<currency>zl|zł|pln|eur|€|usd|\$)?");
+        if (!info.ParsedMax.HasValue &&
+            hasSalarySignal &&
+            to.Success &&
+            TryParseSalaryAmount(to.Groups["amount"].Value, out var parsedTo))
+        {
+            info.ParsedMax = parsedTo;
+            info.SalaryRateType = "to";
+            info.ParsedCurrency = NormalizeCurrency(to.Groups["currency"].Value);
+            info.Confidence = Math.Max(info.Confidence, 0.82m);
+            info.Evidence ??= ExtractEvidence(text, to);
+        }
+
+        info.ParsedCurrency ??= DetectCurrency(text);
+
+        if (Regex.IsMatch(text, @"(\b(godz|godzin|hour|hourly)\b|/h|zl/h|zł/h|pln/h)"))
         {
             info.SalaryPeriod = "hour";
         }
-        else if (Regex.IsMatch(text, @"\b(year|rocznie|rok)\b"))
+        else if (Regex.IsMatch(text, @"\b(year|annually|annual|rocznie|rok)\b"))
         {
             info.SalaryPeriod = "year";
         }
-        else if (salaryMin.HasValue || salaryMax.HasValue || Regex.IsMatch(text, @"\b(mies|month|monthly)\b"))
+        else if (salaryMin.HasValue || salaryMax.HasValue || info.ParsedMin.HasValue || info.ParsedMax.HasValue || Regex.IsMatch(text, @"\b(mies|miesiecznie|month|monthly)\b"))
         {
             info.SalaryPeriod = "month";
         }
@@ -725,7 +914,7 @@ public static class ImporterHelpers
             info.SalaryTaxType = "net";
         }
 
-        info.Evidence = string.IsNullOrWhiteSpace(salaryRaw) ? null : salaryRaw;
+        info.Evidence ??= string.IsNullOrWhiteSpace(rawText) ? null : rawText;
         return info;
     }
 
@@ -734,14 +923,14 @@ public static class ImporterHelpers
         var text = BuildDetectionText(title, description, null, tags);
         var rules = new (string Code, string Pattern)[]
         {
-            ("shift_work", @"\b(praca zmianowa|system zmianowy|shift work)\b"),
-            ("night_shifts", @"\b(praca w nocy|nocne zmiany|night shifts?)\b"),
-            ("weekend_work", @"\b(praca w weekend|weekend work|weekendy)\b"),
-            ("flexible_hours", @"\b(elastyczne godziny|flexible hours|flexible working hours)\b"),
+            ("shift_work", @"\b(praca zmianowa|system zmianowy|dwie zmiany|trzy zmiany|4[- ]?brygadowy|shift work|schichtarbeit)\b"),
+            ("night_shifts", @"\b(praca w nocy|nocne zmiany|nocki|night shifts?|nachtschicht)\b"),
+            ("weekend_work", @"\b(praca w weekend|weekend work|weekendy|wochenendarbeit)\b"),
+            ("flexible_hours", @"\b(elastyczne godziny|flexible hours|flexible working hours|flexible arbeitszeiten)\b"),
             ("fixed_hours", @"\b(stale godziny|fixed hours)\b"),
             ("overtime", @"\b(nadgodziny|overtime)\b"),
-            ("business_trips", @"\b(delegacje|podroze sluzbowe|business trips?)\b"),
-            ("on_call", @"\b(dyzury|on-call|on call)\b"),
+            ("business_trips", @"\b(delegacje|podroze sluzbowe|business trips?|travelling job)\b"),
+            ("on_call", @"\b(dyzury|dyżury|on-call|on call)\b"),
             ("morning_shifts", @"\b(poranne zmiany|morning shifts?)\b"),
             ("afternoon_shifts", @"\b(popoldniowe zmiany|afternoon shifts?)\b"),
             ("evening_shifts", @"\b(wieczorne zmiany|evening shifts?)\b")
@@ -757,6 +946,12 @@ public static class ImporterHelpers
         var text = BuildDetectionText(title, description, null, tags);
         var rules = new (string Code, string Name, string Pattern)[]
         {
+            ("remote_work", "Praca zdalna", @"\b(homeoffice|home office|remote work)\b"),
+            ("flexible_hours", "Elastyczne godziny", @"\b(flexible arbeitszeiten|flexible arbeitszeit|flexible hours)\b"),
+            ("training_budget", "Szkolenia", @"\b(weiterbildung|fortbildung|training budget|szkolenia)\b"),
+            ("equipment", "Sprzet do pracy", @"\b(arbeitsausstattung|equipment)\b"),
+            ("parking", "Parking", @"\b(parkplatz|parking)\b"),
+            ("performance_bonus", "Premia wynikowa", @"\b(bonuszahlungen|performance bonus|premia wynikowa|premia za wyniki)\b"),
             ("private_healthcare", "Prywatna opieka medyczna", @"\b(prywatna opieka medyczna|opieka medyczna|private healthcare|medical care)\b"),
             ("multisport", "Multisport", @"\b(multisport|karta sportowa|sport card)\b"),
             ("life_insurance", "Ubezpieczenie na życie", @"\b(ubezpieczenie na zycie|life insurance)\b"),
@@ -768,14 +963,17 @@ public static class ImporterHelpers
             ("parking", "Parking", @"\b(parking)\b"),
             ("meal_allowance", "Dofinansowanie posiłków", @"\b(dofinansowanie posilkow|meal allowance|lunch card)\b"),
             ("company_car", "Samochód służbowy", @"\b(samochod sluzbowy|company car)\b"),
-            ("phone", "Telefon", @"\b(telefon sluzbowy|phone)\b"),
-            ("laptop", "Laptop", @"\b(laptop)\b"),
+            ("company_phone", "Telefon służbowy", @"\b(telefon sluzbowy|company phone)\b"),
+            ("company_laptop", "Laptop służbowy", @"\b(laptop sluzbowy|company laptop|laptop)\b"),
             ("integration_events", "Wydarzenia integracyjne", @"\b(integracje|integration events?)\b"),
             ("relocation_package", "Pakiet relokacyjny", @"\b(relocation package|pakiet relokacyjny)\b"),
             ("stock_options", "Opcje na akcje", @"\b(stock options?|opcje na akcje)\b"),
-            ("bonus", "Premia", @"\b(premia|premie|bonus)\b"),
+            ("performance_bonus", "Premia wynikowa", @"\b(premia|premie|bonus)\b"),
+            ("sales_bonus", "Premia sprzedażowa", @"\b(premia sprzedazowa|sales bonus)\b"),
             ("commission", "Prowizja", @"\b(prowizja|commission)\b"),
-            ("christmas_bonus", "Premia świąteczna", @"\b(premia swiateczna|christmas bonus)\b")
+            ("christmas_bonus", "Premia świąteczna", @"\b(premia swiateczna|christmas bonus|christmas allowance)\b"),
+            ("employee_discounts", "Zniżki pracownicze", @"\b(znizki pracownicze|employee discounts?)\b"),
+            ("paid_holidays", "Płatny urlop", @"\b(platny urlop|paid holidays?|paid vacation)\b")
         };
 
         return rules
@@ -799,6 +997,12 @@ public static class ImporterHelpers
         var text = BuildDetectionText(title, description, null, tags);
         var rules = new (string Code, string Name, string Pattern)[]
         {
+            ("real_estate", "Nieruchomosci", @"\b(immobilien|real estate|nieruchomosci)\b"),
+            ("building_services", "Technika budynkowa", @"\b(gebaudetechnik|gebaeudetechnik|versorgungstechnik|hkls|hlsk|tga|facility management)\b"),
+            ("pharma", "Pharma", @"\b(pharma|pharmaindustrie|pharmaceutical)\b"),
+            ("fashion", "Fashion / tekstylia", @"\b(fashion|textile|textilien|moda)\b"),
+            ("bakery", "Piekarnia", @"\b(backerei|baeckerei|bakery|piekarnia)\b"),
+            ("mobility", "Mobilnosc", @"\b(mobilitat|mobilitaet|mobility)\b"),
             ("fintech", "Fintech", @"\b(fintech)\b"),
             ("banking", "Bankowość", @"\b(bankowosc|banking|bank)\b"),
             ("ecommerce", "E-commerce", @"\b(e-commerce|ecommerce|sklep internetowy)\b"),
@@ -822,7 +1026,16 @@ public static class ImporterHelpers
         return rules
             .Select(rule => (rule, Match: Regex.Match(text, rule.Pattern, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)))
             .Where(x => x.Match.Success)
-            .Select(x => new OfferDomain { DomainCode = x.rule.Code, DomainName = x.rule.Name, Confidence = 0.76m, Evidence = ExtractEvidence(text, x.Match) })
+            .Select(x => new OfferDomain
+            {
+                DomainCode = x.rule.Code,
+                DomainName = x.rule.Name,
+                Confidence = 0.76m,
+                Evidence = ExtractEvidence(text, x.Match),
+                SourceField = "description",
+                SourceSection = ResolveSourceSection(text, x.Match),
+                ExtractorVersion = ExtractorVersionProvider.Current
+            })
             .GroupBy(x => x.DomainCode, StringComparer.OrdinalIgnoreCase)
             .Select(group => group.First())
             .ToList();
@@ -833,6 +1046,10 @@ public static class ImporterHelpers
         var text = BuildDetectionText(title, description, null, tags);
         var rules = new (string Code, string Pattern)[]
         {
+            ("driving_license_b", @"\b(prawo jazdy kat\.?\s*b|kat\.?\s*b|driving license b)\b"),
+            ("driving_license_c", @"\b(prawo jazdy kat\.?\s*c|kat\.?\s*c|driving license c)\b"),
+            ("driving_license_ce", @"\b(prawo jazdy kat\.?\s*c\+e|kat\.?\s*c\+e|driving license c\+e)\b"),
+            ("driving_license_required", @"\b(prawo jazdy|driving license|fuhrerschein|fuehrerschein)\b"),
             ("work_permit_required", @"\b(pozwolenie na prace|work permit)\b"),
             ("eu_citizenship_required", @"\b(obywatelstwo ue|eu citizenship)\b"),
             ("security_clearance_required", @"\b(poswiadczenie bezpieczenstwa|security clearance)\b"),
@@ -841,11 +1058,23 @@ public static class ImporterHelpers
             ("student_status_required", @"\b(status studenta|student status)\b"),
             ("availability_asap", @"\b(od zaraz|asap|start asap)\b"),
             ("own_car_required", @"\b(wlasny samochod|own car)\b"),
-            ("own_equipment_required", @"\b(wlasny sprzet|own equipment)\b")
+            ("own_equipment_required", @"\b(wlasny sprzet|own equipment)\b"),
+            ("udt_required", @"\b(udt|uprawnienia udt|wozki widlowe|wózki widłowe|forklift license)\b"),
+            ("sep_required", @"\b(sep|uprawnienia sep)\b"),
+            ("sanitary_book_required", @"\b(ksiazeczka sanepidowska|książeczka sanepidowska|sanepid)\b")
         };
 
         return DetectFlags(text, rules)
-            .Select(x => new OfferFormalRequirement { RequirementCode = x.Code, IsRequired = true, Confidence = x.Confidence, Evidence = x.Evidence })
+            .Select(x => new OfferFormalRequirement
+            {
+                RequirementCode = x.Code,
+                IsRequired = true,
+                Confidence = x.Confidence,
+                Evidence = x.Evidence,
+                SourceField = "description",
+                SourceSection = x.SourceSection,
+                ExtractorVersion = ExtractorVersionProvider.Current
+            })
             .ToList();
     }
 
@@ -853,16 +1082,91 @@ public static class ImporterHelpers
     {
         offer.EmploymentTypeRaw ??= offer.EmploymentType;
         offer.ContractTypeRaw ??= offer.ContractType;
-        offer.WorkMode = DetectWorkModeInfo(offer.Title, offer.Description, offer.LocationName, offer.Tags, offer.IsRemote);
+        offer.WorkMode = DetectWorkModeInfo(offer.Title, offer.Description, offer.LocationName, offer.Tags, offer.IsRemote, offer.RawPayloadJson, offer.EmploymentTypeRaw, offer.ContractTypeRaw);
         offer.IsRemote = offer.IsRemote || offer.WorkMode.WorkMode == "remote";
-        offer.WorkTime = DetectWorkTimeInfo(offer.Title, offer.Description, offer.EmploymentTypeRaw, offer.Tags);
-        offer.SalaryInfo = DetectSalaryInfo(offer.SalaryMin, offer.SalaryMax, offer.SalaryRaw);
-        offer.ContractTypes = DetectContractTypes(offer.Title, offer.Description, offer.ContractTypeRaw, offer.Tags);
+        offer.WorkTime = DetectWorkTimeInfo(offer.Title, offer.Description, offer.EmploymentTypeRaw, offer.Tags, offer.RawPayloadJson, offer.ContractTypeRaw);
+        offer.SalaryInfo = DetectSalaryInfo(offer.SalaryMin, offer.SalaryMax, offer.SalaryRaw, offer.Description);
+        if (!offer.SalaryMin.HasValue && offer.SalaryInfo.ParsedMin.HasValue)
+        {
+            offer.SalaryMin = offer.SalaryInfo.ParsedMin;
+        }
+
+        if (!offer.SalaryMax.HasValue && offer.SalaryInfo.ParsedMax.HasValue)
+        {
+            offer.SalaryMax = offer.SalaryInfo.ParsedMax;
+        }
+
+        if (string.IsNullOrWhiteSpace(offer.SalaryCurrency) && !string.IsNullOrWhiteSpace(offer.SalaryInfo.ParsedCurrency))
+        {
+            offer.SalaryCurrency = offer.SalaryInfo.ParsedCurrency;
+        }
+
+        offer.ContractTypes = DetectContractTypes(offer.Title, offer.Description, offer.ContractTypeRaw, offer.Tags, offer.RawPayloadJson, offer.EmploymentTypeRaw);
         offer.ScheduleFlags = DetectScheduleFlags(offer.Title, offer.Description, offer.Tags);
         offer.Benefits = DetectBenefits(offer.Title, offer.Description, offer.Tags);
         offer.Domains = DetectDomains(offer.Title, offer.Description, offer.Tags);
         offer.FormalRequirements = DetectFormalRequirements(offer.Title, offer.Description, offer.Tags);
+        ApplyDescriptionQualityPenalty(offer);
         (offer.DataQualityScore, offer.ExtractionScore) = CalculateQualityScores(offer);
+    }
+
+    public static decimal AdjustConfidenceForDescriptionQuality(decimal confidence, string? descriptionQuality)
+    {
+        var penalty = (descriptionQuality ?? "unknown").ToLowerInvariant() switch
+        {
+            "full" => 0m,
+            "html" => 0.03m,
+            "snippet" => 0.15m,
+            "missing" => 0.35m,
+            _ => 0.10m
+        };
+
+        return Math.Clamp(confidence - penalty, 0.05m, 0.99m);
+    }
+
+    private static void ApplyDescriptionQualityPenalty(NormalizedJobOffer offer)
+    {
+        offer.WorkMode.Confidence = AdjustConfidenceForDescriptionQuality(offer.WorkMode.Confidence, offer.DescriptionQuality);
+        offer.WorkTime.Confidence = AdjustConfidenceForDescriptionQuality(offer.WorkTime.Confidence, offer.DescriptionQuality);
+        offer.SalaryInfo.Confidence = AdjustConfidenceForDescriptionQuality(offer.SalaryInfo.Confidence, offer.DescriptionQuality);
+        offer.Experience.Confidence = AdjustConfidenceForDescriptionQuality(offer.Experience.Confidence, offer.DescriptionQuality);
+        offer.Education.Confidence = AdjustConfidenceForDescriptionQuality(offer.Education.Confidence, offer.DescriptionQuality);
+
+        foreach (var item in offer.ContractTypes)
+        {
+            item.Confidence = AdjustConfidenceForDescriptionQuality(item.Confidence, offer.DescriptionQuality);
+        }
+
+        foreach (var item in offer.ScheduleFlags)
+        {
+            item.Confidence = AdjustConfidenceForDescriptionQuality(item.Confidence, offer.DescriptionQuality);
+        }
+
+        foreach (var item in offer.Benefits)
+        {
+            item.Confidence = AdjustConfidenceForDescriptionQuality(item.Confidence, offer.DescriptionQuality);
+        }
+
+        foreach (var item in offer.Domains)
+        {
+            item.Confidence = AdjustConfidenceForDescriptionQuality(item.Confidence, offer.DescriptionQuality);
+        }
+
+        foreach (var item in offer.FormalRequirements)
+        {
+            item.Confidence = AdjustConfidenceForDescriptionQuality(item.Confidence, offer.DescriptionQuality);
+        }
+
+        foreach (var item in offer.Languages)
+        {
+            item.Confidence = AdjustConfidenceForDescriptionQuality(item.Confidence, offer.DescriptionQuality);
+        }
+
+        foreach (var item in offer.Classification.Criteria.Concat(offer.Classification.CriterionHits))
+        {
+            item.Confidence = AdjustConfidenceForDescriptionQuality(item.Confidence, offer.DescriptionQuality);
+            item.ExtractorVersion = ExtractorVersionProvider.Current;
+        }
     }
 
     public static string NormalizeForDetection(string? value)
@@ -1048,12 +1352,12 @@ public static class ImporterHelpers
             return new ExperienceInfo { Level = "Staż / praktyki", MinYears = 0, MaxYears = 1, IsRequired = false, NoExperienceAllowed = true, Confidence = 0.9m, Evidence = title };
         }
 
-        if (Regex.IsMatch(title, @"\b(junior|jr\.?|mlodszy)\b"))
+        if (Regex.IsMatch(title, @"\b(junior|jr\.?|mlodszy|berufseinstieg|quereinsteiger)\b"))
         {
             return new ExperienceInfo { Level = "Junior", MinYears = 0, MaxYears = 2, NoExperienceAllowed = true, Confidence = 0.86m, Evidence = title };
         }
 
-        if (Regex.IsMatch(title, @"\b(mid|middle|regular)\b"))
+        if (Regex.IsMatch(title, @"\b(mid|middle|regular|berufserfahren)\b"))
         {
             return new ExperienceInfo { Level = "Mid / Regular", MinYears = 2, MaxYears = 5, Confidence = 0.84m, Evidence = title };
         }
@@ -1063,12 +1367,12 @@ public static class ImporterHelpers
             return new ExperienceInfo { Level = "Senior", MinYears = 5, Confidence = 0.86m, Evidence = title };
         }
 
-        if (Regex.IsMatch(title, @"\b(lead|principal|staff|head of)\b"))
+        if (Regex.IsMatch(title, @"\b(lead|principal|staff|head of|teamleitung|leitung)\b"))
         {
             return new ExperienceInfo { Level = "Lead / Principal", MinYears = 7, Confidence = 0.86m, Evidence = title };
         }
 
-        if (Regex.IsMatch(title, @"\b(manager|menadzer|kierownik)\b"))
+        if (Regex.IsMatch(title, @"\b(manager|menadzer|kierownik|abteilungsleiter)\b"))
         {
             return new ExperienceInfo { Level = "Menadżer", Confidence = 0.8m, Evidence = title };
         }
@@ -1187,6 +1491,58 @@ public static class ImporterHelpers
         return decimal.TryParse(raw, NumberStyles.Number, CultureInfo.InvariantCulture, out value);
     }
 
+    private static bool TryParseSalaryAmount(string? raw, out decimal value)
+    {
+        value = 0m;
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            return false;
+        }
+
+        var normalized = Regex.Replace(raw, @"\s+", "");
+        if (Regex.IsMatch(normalized, @"^\d{1,3}([,.]\d{3})+$"))
+        {
+            normalized = normalized.Replace(".", "").Replace(",", "");
+        }
+        else
+        {
+            normalized = normalized.Replace(',', '.');
+        }
+
+        return decimal.TryParse(normalized, NumberStyles.Number, CultureInfo.InvariantCulture, out value);
+    }
+
+    private static string? NormalizeCurrency(string? raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            return null;
+        }
+
+        return NormalizeForDetection(raw) switch
+        {
+            "zl" or "zł" or "pln" => "PLN",
+            "eur" or "€" => "EUR",
+            "usd" or "$" => "USD",
+            _ => null
+        };
+    }
+
+    private static string? DetectCurrency(string text)
+    {
+        if (Regex.IsMatch(text, @"\b(zl|zł|pln)\b"))
+        {
+            return "PLN";
+        }
+
+        if (Regex.IsMatch(text, @"\b(eur|€)\b"))
+        {
+            return "EUR";
+        }
+
+        return Regex.IsMatch(text, @"\b(usd|\$)\b") ? "USD" : null;
+    }
+
     private static string ExtractEvidence(string text, Match match)
     {
         var start = Math.Max(0, match.Index - 60);
@@ -1219,6 +1575,117 @@ public static class ImporterHelpers
     {
         var text = $"{title} {description} {location}";
         return Regex.IsMatch(text, @"(remote|zdal|home office|work from home|telepraca|praca z domu)", RegexOptions.IgnoreCase);
+    }
+
+    public static List<OfferLanguage> DetectLanguagesWithLevels(string? title, string? description)
+    {
+        var text = $"{title} {description}";
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return new List<OfferLanguage>();
+        }
+
+        var normalized = NormalizeForDetection(text);
+        var titleLength = title?.Length ?? 0;
+        var rules = new (string Code, string Name, string Pattern)[]
+        {
+            ("en", "Angielski", @"\b(angielski|angielskiego|english)\b"),
+            ("de", "Niemiecki", @"\b(niemiecki|niemieckiego|german|deutsch)\b"),
+            ("uk", "Ukrainski", @"\b(ukrainski|ukrainskiego|ukrainian)\b"),
+            ("fr", "Francuski", @"\b(francuski|francuskiego|french|francais)\b")
+        };
+
+        var result = new List<OfferLanguage>();
+        foreach (var rule in rules)
+        {
+            var match = Regex.Match(normalized, rule.Pattern, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+            if (!match.Success)
+            {
+                continue;
+            }
+
+            var sentence = ExtractSentenceWindow(normalized, match);
+            var level = DetectLanguageLevel(sentence);
+            var requirement = ResolveLanguageRequirement(sentence);
+            var section = ResolveSourceSection(normalized, match);
+            result.Add(new OfferLanguage
+            {
+                Code = rule.Code,
+                Name = rule.Name,
+                LevelMin = level,
+                IsRequired = requirement,
+                Confidence = Math.Min(0.96m, (level == "unknown" ? 0.72m : 0.88m) + (requirement == true ? 0.04m : 0m)),
+                Evidence = ExtractEvidence(text, match),
+                SourceField = match.Index <= titleLength ? "title" : "description",
+                SourceSection = section,
+                ExtractorVersion = ExtractorVersionProvider.Current
+            });
+        }
+
+        return result
+            .GroupBy(x => x.Code, StringComparer.OrdinalIgnoreCase)
+            .Select(group => group
+                .OrderByDescending(x => x.IsRequired == true)
+                .ThenByDescending(x => LanguageLevelRank(x.LevelMin))
+                .ThenByDescending(x => x.Confidence)
+                .First())
+            .ToList();
+    }
+
+    private static string ExtractSentenceWindow(string text, Match match)
+    {
+        var sentenceStart = text.LastIndexOfAny(new[] { '.', '!', '?', '\n', ';' }, Math.Max(0, match.Index));
+        var sentenceEnd = text.IndexOfAny(new[] { '.', '!', '?', '\n', ';' }, match.Index + match.Length);
+        var start = sentenceStart < 0 ? Math.Max(0, match.Index - 60) : sentenceStart + 1;
+        var end = sentenceEnd < 0 ? Math.Min(text.Length, match.Index + match.Length + 120) : sentenceEnd;
+        return text[start..end];
+    }
+
+    private static string DetectLanguageLevel(string window)
+    {
+        var levelMatch = Regex.Match(window, @"\b(?<level>a1|a2|b1|b2|c1|c2|native|fluent|communicative|komunikatywny|komunikatywna|plynny|biegle|biegly)\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        if (!levelMatch.Success)
+        {
+            return "unknown";
+        }
+
+        return levelMatch.Groups["level"].Value.ToLowerInvariant() switch
+        {
+            "native" => "native",
+            "fluent" or "plynny" or "biegle" or "biegly" => "C1",
+            "communicative" or "komunikatywny" or "komunikatywna" => "B1",
+            var level => level.ToUpperInvariant()
+        };
+    }
+
+    private static bool? ResolveLanguageRequirement(string window)
+    {
+        if (Regex.IsMatch(window, @"\b(mile widziane|dodatkowy atut|nice to have|optional|preferred|would be a plus|is a plus)\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            return false;
+        }
+
+        if (Regex.IsMatch(window, @"\b(wymagane|wymagamy|oczekujemy|must have|required|requirements|expected|minimum|min\.?|co najmniej|at least)\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            return true;
+        }
+
+        return null;
+    }
+
+    private static int LanguageLevelRank(string level)
+    {
+        return level.ToUpperInvariant() switch
+        {
+            "A1" => 1,
+            "A2" => 2,
+            "B1" => 3,
+            "B2" => 4,
+            "C1" => 5,
+            "C2" => 6,
+            "NATIVE" => 7,
+            _ => 0
+        };
     }
 
     public static List<OfferLanguage> DetectLanguages(string? title, string? description)

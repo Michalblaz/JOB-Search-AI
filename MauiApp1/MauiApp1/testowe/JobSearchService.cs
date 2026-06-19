@@ -321,6 +321,8 @@ namespace MauiApp1.testowe
         public string SelectedCategoryCode { get; private set; } = string.Empty;
         public string SelectedRoleCode { get; private set; } = string.Empty;
         public Dictionary<string, bool> CriterionFilters { get; private set; } = new(StringComparer.OrdinalIgnoreCase);
+        public Dictionary<string, bool> StructuredFilters { get; private set; } = new(StringComparer.OrdinalIgnoreCase);
+        public bool HideLowQualityOffers { get; set; }
         public Dictionary<string, int> CriterionMatchThresholds { get; private set; } = new(StringComparer.OrdinalIgnoreCase)
         {
             { "technology", 50 },
@@ -347,7 +349,7 @@ namespace MauiApp1.testowe
             .OrderBy(option => option.CategoryName);
 
         public IEnumerable<JobRoleOption> VisibleRoleOptions => string.IsNullOrWhiteSpace(SelectedCategoryCode)
-            ? RoleOptions.OrderBy(option => option.CategoryName).ThenBy(option => option.RoleName)
+            ? Enumerable.Empty<JobRoleOption>()
             : RoleOptions
                 .Where(option => string.Equals(option.CategoryCode, SelectedCategoryCode, StringComparison.OrdinalIgnoreCase))
                 .OrderByDescending(option => option.ActiveOfferCount)
@@ -406,6 +408,11 @@ namespace MauiApp1.testowe
         public async Task SelectCategoryAsync(string categoryCode)
         {
             SelectedCategoryCode = categoryCode?.Trim() ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(SelectedCategoryCode))
+            {
+                SelectedRoleCode = string.Empty;
+            }
 
             if (!string.IsNullOrWhiteSpace(SelectedRoleCode))
             {
@@ -478,6 +485,83 @@ namespace MauiApp1.testowe
             NotifyStateChanged();
         }
 
+        public bool IsStructuredFilterSelected(string kind, string code)
+        {
+            return StructuredFilters.TryGetValue(BuildStructuredFilterKey(kind, code), out var selected) && selected;
+        }
+
+        public void SetStructuredFilter(string kind, string code, bool selected)
+        {
+            if (string.IsNullOrWhiteSpace(kind) || string.IsNullOrWhiteSpace(code))
+            {
+                return;
+            }
+
+            var key = BuildStructuredFilterKey(kind, code);
+            if (selected)
+            {
+                StructuredFilters[key] = true;
+            }
+            else
+            {
+                StructuredFilters.Remove(key);
+            }
+
+            RefreshLocalMatchScores();
+            NotifyStateChanged();
+        }
+
+        public bool MatchesStructuredFilters(JobOffer offer)
+        {
+            if (HideLowQualityOffers && (offer.DataQualityScore < 40 || offer.ExtractionScore < 25 || offer.DescriptionQuality == "missing"))
+            {
+                return false;
+            }
+
+            var selected = StructuredFilters
+                .Where(filter => filter.Value)
+                .Select(filter => filter.Key.Split('|', 2))
+                .Where(parts => parts.Length == 2)
+                .GroupBy(parts => parts[0], parts => parts[1], StringComparer.OrdinalIgnoreCase);
+
+            foreach (var group in selected)
+            {
+                var codes = group.ToHashSet(StringComparer.OrdinalIgnoreCase);
+                var matched = group.Key switch
+                {
+                    "work_mode" => codes.Contains(offer.WorkMode),
+                    "work_time" => codes.Contains(offer.WorkTimeType),
+                    "contract" => offer.ContractTypes.Any(codes.Contains) || codes.Contains(offer.ContractType),
+                    "benefit" => offer.BenefitCodes.Any(codes.Contains),
+                    "schedule_exclude" => !offer.ScheduleFlags.Any(codes.Contains),
+                    _ => true
+                };
+
+                if (!matched)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public string GetStructuredFilterLabel(string kind)
+        {
+            return kind switch
+            {
+                "work_mode" => "Tryb pracy",
+                "work_time" => "Wymiar pracy",
+                "contract" => "Umowa",
+                "benefit" => "Benefity",
+                "schedule_exclude" => "Harmonogram bez",
+                _ => "Filtry"
+            };
+        }
+
+        private static string BuildStructuredFilterKey(string kind, string code)
+            => $"{kind}|{code}";
+
         public int GetCriterionThreshold(string kind)
         {
             return CriterionMatchThresholds.TryGetValue(kind, out var threshold) ? threshold : 50;
@@ -522,10 +606,7 @@ namespace MauiApp1.testowe
                     continue;
                 }
 
-                var selectedCodes = CriterionFilters
-                    .Where(filter => filter.Value)
-                    .Select(filter => filter.Key)
-                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                var selectedCodes = GetKnownCriterionCodesForMatching();
 
                 var matchedCount = requiredCodes.Count(code => selectedCodes.Contains(code));
                 var requiredPercent = GetCriterionThreshold(group.Key);
@@ -549,6 +630,16 @@ namespace MauiApp1.testowe
             }
 
             return LanguageFilters.TryGetValue(detectedLanguage, out var isSelected) && isSelected;
+        }
+
+        private HashSet<string> GetKnownCriterionCodesForMatching()
+        {
+            return CriterionFilters
+                .Where(filter => filter.Value)
+                .Select(filter => filter.Key)
+                .Concat(CurrentUser.Settings.GetProfileCriterionCodes())
+                .Where(code => !string.IsNullOrWhiteSpace(code))
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
         }
 
         public string GetCriterionGroupLabel(string kind)
@@ -852,21 +943,65 @@ namespace MauiApp1.testowe
         /// </remarks>
         public void ApplyProfileFilters()
         {
-            Location = CurrentUser.Settings.DefaultLocation;
-            SearchText = CurrentUser.Settings.JobTitle;
-            MinSalary = SafeParseSalary(CurrentUser.Settings.ExpectedSalary);
+            var settings = CurrentUser.Settings;
+            Location = settings.DefaultLocation;
+            SearchText = settings.JobTitle;
+            MinSalary = settings.ExpectedSalaryMin.HasValue
+                ? (int)Math.Round(settings.ExpectedSalaryMin.Value)
+                : SafeParseSalary(settings.ExpectedSalary);
             MaxSalary = 0;
-            SelectedExperience = CurrentUser.Settings.Experience;
-            SelectedEducation = CurrentUser.Settings.Education;
-            JobRange = NormalizeJobRangeFromProfile(CurrentUser.Settings.PreferredContractTypes);
-            RemoteOnly = false;
+            SelectedExperience = settings.Experience;
+            SelectedEducation = settings.Education;
+            JobRange = NormalizeJobRangeFromProfile(settings.PreferredContractTypes);
+            Distance = settings.MaxDistanceKm ?? Distance;
+            RemoteOnly = string.Equals(settings.WorkMode, "remote", StringComparison.OrdinalIgnoreCase);
+
+            StructuredFilters.Clear();
+            if (!string.IsNullOrWhiteSpace(settings.WorkMode) && !string.Equals(settings.WorkMode, "any", StringComparison.OrdinalIgnoreCase))
+            {
+                StructuredFilters[BuildStructuredFilterKey("work_mode", settings.WorkMode)] = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(settings.WorkTimeType) && !string.Equals(settings.WorkTimeType, "any", StringComparison.OrdinalIgnoreCase))
+            {
+                StructuredFilters[BuildStructuredFilterKey("work_time", settings.WorkTimeType)] = true;
+            }
+
+            foreach (var contractCode in settings.PreferredContractTypes.Select(MapProfileContractToCode).Where(code => !string.IsNullOrWhiteSpace(code)))
+            {
+                StructuredFilters[BuildStructuredFilterKey("contract", contractCode)] = true;
+            }
+
+            CriterionFilters.Clear();
+            foreach (var code in settings.GetProfileCriterionCodes())
+            {
+                CriterionFilters[code] = true;
+            }
+
+            var threshold = Math.Clamp((settings.RequiredCriteriaMatchPercent / 10) * 10, 10, 100);
+            foreach (var kind in CriterionMatchThresholds.Keys.ToList())
+            {
+                CriterionMatchThresholds[kind] = threshold;
+            }
 
             foreach (var language in LanguageFilters.Keys.ToList())
             {
-                LanguageFilters[language] = CurrentUser.Settings.KnownLanguages.Contains(language);
+                LanguageFilters[language] = settings.KnownLanguages.Contains(language);
             }
 
+            RefreshLocalMatchScores();
             NotifyStateChanged();
+        }
+
+        private static string MapProfileContractToCode(string contract)
+        {
+            return contract switch
+            {
+                "Umowa o Pracę" or "Umowa o pracę" => "employment_contract",
+                "Zlecenie" or "Umowa zlecenie" => "mandate_contract",
+                "B2B" => "b2b",
+                _ => string.Empty
+            };
         }
 
         private static string NormalizeJobRangeFromProfile(List<string>? preferredContractTypes)
@@ -983,10 +1118,7 @@ namespace MauiApp1.testowe
                 score += 15;
             }
 
-            var selectedCriteria = CriterionFilters
-                .Where(filter => filter.Value)
-                .Select(filter => filter.Key)
-                .ToList();
+            var selectedCriteria = GetKnownCriterionCodesForMatching().ToList();
 
             if (selectedCriteria.Any())
             {
@@ -1214,10 +1346,7 @@ namespace MauiApp1.testowe
                 reasons.Add("+15 za zgodną kategorię z bazy");
             }
 
-            var selectedCriteria = CriterionFilters
-                .Where(filter => filter.Value)
-                .Select(filter => filter.Key)
-                .ToList();
+            var selectedCriteria = GetKnownCriterionCodesForMatching().ToList();
 
             if (selectedCriteria.Any())
             {
@@ -1228,6 +1357,12 @@ namespace MauiApp1.testowe
                 {
                     reasons.Add($"+{Math.Min(25, matchedCriteria * 8)} za wybrane kryteria");
                 }
+            }
+
+            var requirementSummary = BuildRequirementMatchSummary(offer);
+            if (!string.IsNullOrWhiteSpace(requirementSummary))
+            {
+                reasons.Add(requirementSummary);
             }
 
             if (!string.Equals(JobRange, "Wszystkie", StringComparison.OrdinalIgnoreCase) &&
@@ -1305,6 +1440,33 @@ namespace MauiApp1.testowe
             }
 
             return $"{localReason} Gemini było chwilowo niedostępne, więc użyto dopasowania lokalnego.";
+        }
+
+        public string BuildRequirementMatchSummary(JobOffer offer)
+        {
+            var requiredCodes = offer.Criteria
+                .Where(criterion => criterion.IsRequired)
+                .Select(criterion => criterion.Code)
+                .Where(code => !string.IsNullOrWhiteSpace(code))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            if (!requiredCodes.Any())
+            {
+                return "Nie wykryto twardych wymagań w kryteriach oferty";
+            }
+
+            var knownCodes = GetKnownCriterionCodesForMatching();
+            var matched = requiredCodes.Where(knownCodes.Contains).ToList();
+            var missing = requiredCodes.Where(code => !knownCodes.Contains(code)).Take(6).ToList();
+
+            var summary = $"masz {matched.Count}/{requiredCodes.Count} wymaganych kryteriów";
+            if (missing.Any())
+            {
+                summary += $"; brakuje: {string.Join(", ", missing)}";
+            }
+
+            return summary;
         }
 
         private static double CalculateTokenOverlapScore(string query, string text, double maxPoints)

@@ -21,10 +21,18 @@
         </div>
     </details>
 
+    @if (!HasFilterScope)
+    {
+        <div class="filter-empty filter-scope-hint">
+            Wybierz u góry kategorię i rolę, aby zobaczyć tylko filtry pasujące do tego stanowiska.
+        </div>
+    }
+    else
+    {
     @if (AvailableEducationLevels.Any())
     {
-    <div class="filter-group" style="margin-top: 20px;">
-        <h3>Wykształcenie</h3>
+    <details class="filter-group filter-details">
+        <summary>Wykształcenie</summary>
         @foreach (var level in AvailableEducationLevels)
         {
             <div class="filter-item">
@@ -34,13 +42,13 @@
                 <span style="margin-left: 8px;">@level</span>
             </div>
         }
-    </div>
+    </details>
     }
 
     @if (AvailableExperienceLevels.Any())
     {
-    <div class="filter-group" style="margin-top: 20px;">
-        <h3>Doświadczenie</h3>
+    <details class="filter-group filter-details">
+        <summary>Doświadczenie</summary>
         @if (ShouldShowExperienceHint)
         {
             <div class="filter-empty">Junior: zwykle 0-2 lata, Mid: 2-4 lata, Senior: 5+ lat, Lead: 7+ lat.</div>
@@ -54,13 +62,13 @@
                 <span style="margin-left: 8px;">@level</span>
             </div>
         }
-    </div>
+    </details>
     }
 
     @if (AvailableLanguageLevels.Any())
     {
-    <div class="filter-group" style="margin-top: 20px;">
-        <h3>Znane języki</h3>
+    <details class="filter-group filter-details">
+        <summary>Znane języki</summary>
         @foreach (var lang in AvailableLanguageLevels)
         {
             <div class="filter-item">
@@ -68,16 +76,45 @@
                 <span style="margin-left: 8px;">@lang</span>
             </div>
         }
-    </div>
+    </details>
     }
+
+    @foreach (var filterGroup in StructuredFilterGroups)
+    {
+        <details class="filter-group dynamic-filter-group filter-details">
+            <summary>@SearchService.GetStructuredFilterLabel(filterGroup.Key)</summary>
+            @foreach (var option in filterGroup.Value.Take(18))
+            {
+                <div class="filter-item dynamic-filter-item">
+                    <input type="checkbox"
+                           checked="@SearchService.IsStructuredFilterSelected(filterGroup.Key, option.Code)"
+                           @onchange="@(e => SearchService.SetStructuredFilter(filterGroup.Key, option.Code, e.Value is bool value && value))" />
+                    <span class="filter-label">@option.DisplayName</span>
+                    <span class="filter-count">@option.ActiveOfferCount</span>
+                </div>
+            }
+        </details>
+    }
+
+    @if (RoleScopedOffers.Any(offer => offer.DataQualityScore < 40 || offer.ExtractionScore < 25 || offer.DescriptionQuality == "missing"))
+    {
+        <details class="filter-group dynamic-filter-group filter-details">
+            <summary>Jakość danych</summary>
+            <div class="filter-item">
+                <input type="checkbox" @bind="SearchService.HideLowQualityOffers" />
+                <span style="margin-left: 8px;">Ukryj niską jakość</span>
+            </div>
+        </details>
+    }
+
     @if (SearchService.CriteriaOptions.Any())
     {
         @foreach (var group in SearchService.CriteriaOptions
             .GroupBy(option => option.Kind)
             .OrderBy(group => GetCriterionGroupOrder(group.Key)))
         {
-            <div class="filter-group dynamic-filter-group">
-                <h3>@SearchService.GetCriterionGroupLabel(group.Key)</h3>
+            <details class="filter-group dynamic-filter-group filter-details">
+                <summary>@SearchService.GetCriterionGroupLabel(group.Key)</summary>
                 <div class="match-threshold">
                     <label>@SearchService.GetCriterionThresholdLabel(group.Key): @SearchService.GetCriterionThreshold(group.Key)%</label>
                     <input type="range"
@@ -97,15 +134,16 @@
                         <span class="filter-count">@option.ActiveOfferCount</span>
                     </div>
                 }
-            </div>
+            </details>
         }
     }
     else if (!string.IsNullOrWhiteSpace(SearchService.SelectedCategoryCode) || !string.IsNullOrWhiteSpace(SearchService.SelectedRoleCode))
     {
-        <div class="filter-group dynamic-filter-group">
-            <h3>Dodatkowe kryteria</h3>
+        <details class="filter-group dynamic-filter-group filter-details" open>
+            <summary>Dodatkowe kryteria</summary>
             <div class="filter-empty">Brak dodatkowych filtrów dla tego wyboru.</div>
-        </div>
+        </details>
+    }
     }
 </aside>
 
@@ -230,6 +268,10 @@
             ? "#ffb3b3"
             : "#9fe7c2";
 
+    private bool HasFilterScope =>
+        !string.IsNullOrWhiteSpace(SearchService.SelectedCategoryCode) &&
+        !string.IsNullOrWhiteSpace(SearchService.SelectedRoleCode);
+
     private static int GetCriterionGroupOrder(string kind)
     {
         return kind switch
@@ -281,6 +323,7 @@
          o.ContractTime.Equals(SearchService.JobRange, StringComparison.OrdinalIgnoreCase) ||
          o.ContractType.Equals(SearchService.JobRange, StringComparison.OrdinalIgnoreCase)) &&
         SearchService.MatchesSelectedRoleAndCriteria(o) &&
+        SearchService.MatchesStructuredFilters(o) &&
         SearchService.MatchesOfferTextLanguage(o) &&
         (!SearchService.SourceFilters.ContainsKey(o.Source) || SearchService.SourceFilters[o.Source]) &&
         (
@@ -327,6 +370,78 @@
     private List<string> AvailableLanguageLevels => SearchService.LanguageFilters.Keys
         .Where(language => RoleScopedOffers.Any(offer => offer.Languages.Contains(language, StringComparer.OrdinalIgnoreCase)))
         .ToList();
+
+    private Dictionary<string, List<JobFilterOption>> StructuredFilterGroups
+    {
+        get
+        {
+            var offers = RoleScopedOffers.ToList();
+            return new Dictionary<string, List<JobFilterOption>>
+            {
+                ["work_mode"] = BuildOptions(offers.Where(o => o.WorkMode != "unknown").Select(o => (o.WorkMode, DisplayWorkMode(o.WorkMode)))),
+                ["work_time"] = BuildOptions(offers.Where(o => o.WorkTimeType != "unknown").Select(o => (o.WorkTimeType, DisplayWorkTime(o.WorkTimeType)))),
+                ["contract"] = BuildOptions(offers.SelectMany(o => o.ContractTypes.Select(code => (code, DisplayContract(code))))),
+                ["benefit"] = BuildOptions(offers.SelectMany(o => o.BenefitCodes.Select(code => (code, DisplayBenefit(code))))),
+                ["schedule_exclude"] = BuildOptions(offers.SelectMany(o => o.ScheduleFlags.Select(code => (code, DisplaySchedule(code)))))
+            }
+            .Where(group => group.Value.Any())
+            .ToDictionary(group => group.Key, group => group.Value);
+        }
+    }
+
+    private static List<JobFilterOption> BuildOptions(IEnumerable<(string Code, string Name)> values)
+    {
+        return values
+            .Where(value => !string.IsNullOrWhiteSpace(value.Code))
+            .GroupBy(value => value.Code, StringComparer.OrdinalIgnoreCase)
+            .Select(group => new JobFilterOption
+            {
+                Kind = "",
+                Code = group.Key,
+                DisplayName = group.First().Name,
+                ActiveOfferCount = group.Count()
+            })
+            .OrderByDescending(option => option.ActiveOfferCount)
+            .ThenBy(option => option.DisplayName)
+            .ToList();
+    }
+
+    private static string DisplayWorkMode(string code) => code switch
+    {
+        "remote" => "Zdalna",
+        "hybrid" => "Hybrydowa",
+        "onsite" => "Stacjonarna",
+        "field" => "Terenowa",
+        _ => code
+    };
+
+    private static string DisplayWorkTime(string code) => code switch
+    {
+        "full_time" => "Pełny etat",
+        "part_time" => "Część etatu",
+        "full_or_part" => "Pełny lub część",
+        "flexible" => "Elastycznie",
+        _ => code
+    };
+
+    private static string DisplayContract(string code) => code switch
+    {
+        "employment_contract" => "Umowa o pracę",
+        "mandate_contract" => "Umowa zlecenie",
+        "specific_task_contract" => "Umowa o dzieło",
+        "b2b" => "B2B",
+        "temporary_contract" => "Tymczasowa",
+        _ => code
+    };
+
+    private static string DisplayBenefit(string code) => code.Replace("_", " ");
+    private static string DisplaySchedule(string code) => code switch
+    {
+        "night_shifts" => "Bez nocek",
+        "weekend_work" => "Bez weekendów",
+        "shift_work" => "Bez zmianowej",
+        _ => $"Bez: {code.Replace("_", " ")}"
+    };
 
     private bool ShouldShowExperienceHint => AvailableExperienceLevels.Any(level =>
         level is "Junior" or "Mid / Regular" or "Senior" or "Lead / Principal");

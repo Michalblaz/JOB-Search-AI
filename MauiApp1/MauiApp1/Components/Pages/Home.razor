@@ -6,21 +6,33 @@
 @using MauiApp1.Components
 
 <aside class="sidebar">
-    <div class="filter-group">
-        <h3>Źródło ofert</h3>
-        @foreach (var source in SearchService.SourceFilters.Keys.ToList())
-        {
-            <div class="filter-item">
-                <input type="checkbox"
-                       checked="@SearchService.SourceFilters[source]"
-                       @onchange="@(async e => await SearchService.SetSourceFilterAsync(source, e.Value is bool value && value))" />
-                <span style="margin-left: 8px;">@source</span>
-            </div>
-        }
-    </div>
+    <details class="source-details">
+        <summary>Źródła ofert</summary>
+        <div class="filter-group source-filter-group">
+            @foreach (var source in SearchService.SourceFilters.Keys.ToList())
+            {
+                <div class="filter-item">
+                    <input type="checkbox"
+                           checked="@SearchService.SourceFilters[source]"
+                           @onchange="@(async e => await SearchService.SetSourceFilterAsync(source, e.Value is bool value && value))" />
+                    <span style="margin-left: 8px;">@source</span>
+                </div>
+            }
+        </div>
+    </details>
 
-    <div class="filter-group" style="margin-top: 20px;">
-        <h3>Wykształcenie</h3>
+    @if (!HasFilterScope)
+    {
+        <div class="filter-empty filter-scope-hint">
+            Wybierz u góry kategorię i rolę, aby zobaczyć tylko filtry pasujące do tego stanowiska.
+        </div>
+    }
+    else
+    {
+    @if (AvailableEducationLevels.Any())
+    {
+    <details class="filter-group filter-details">
+        <summary>Wykształcenie</summary>
         @foreach (var level in AvailableEducationLevels)
         {
             <div class="filter-item">
@@ -30,10 +42,13 @@
                 <span style="margin-left: 8px;">@level</span>
             </div>
         }
-    </div>
+    </details>
+    }
 
-    <div class="filter-group" style="margin-top: 20px;">
-        <h3>Doświadczenie</h3>
+    @if (AvailableExperienceLevels.Any())
+    {
+    <details class="filter-group filter-details">
+        <summary>Doświadczenie</summary>
         @if (ShouldShowExperienceHint)
         {
             <div class="filter-empty">Junior: zwykle 0-2 lata, Mid: 2-4 lata, Senior: 5+ lat, Lead: 7+ lat.</div>
@@ -47,10 +62,13 @@
                 <span style="margin-left: 8px;">@level</span>
             </div>
         }
-    </div>
+    </details>
+    }
 
-    <div class="filter-group" style="margin-top: 20px;">
-        <h3>Znane języki</h3>
+    @if (AvailableLanguageLevels.Any())
+    {
+    <details class="filter-group filter-details">
+        <summary>Znane języki</summary>
         @foreach (var lang in AvailableLanguageLevels)
         {
             <div class="filter-item">
@@ -58,15 +76,16 @@
                 <span style="margin-left: 8px;">@lang</span>
             </div>
         }
-    </div>
+    </details>
+    }
     @if (SearchService.CriteriaOptions.Any())
     {
         @foreach (var group in SearchService.CriteriaOptions
             .GroupBy(option => option.Kind)
             .OrderBy(group => GetCriterionGroupOrder(group.Key)))
         {
-            <div class="filter-group dynamic-filter-group">
-                <h3>@SearchService.GetCriterionGroupLabel(group.Key)</h3>
+            <details class="filter-group dynamic-filter-group filter-details">
+                <summary>@SearchService.GetCriterionGroupLabel(group.Key)</summary>
                 @foreach (var option in group.OrderByDescending(option => option.ActiveOfferCount).ThenBy(option => option.DisplayName).Take(24))
                 {
                     <div class="filter-item dynamic-filter-item">
@@ -77,15 +96,16 @@
                         <span class="filter-count">@option.ActiveOfferCount</span>
                     </div>
                 }
-            </div>
+            </details>
         }
     }
     else if (!string.IsNullOrWhiteSpace(SearchService.SelectedCategoryCode) || !string.IsNullOrWhiteSpace(SearchService.SelectedRoleCode))
     {
-        <div class="filter-group dynamic-filter-group">
-            <h3>Dodatkowe kryteria</h3>
+        <details class="filter-group dynamic-filter-group filter-details" open>
+            <summary>Dodatkowe kryteria</summary>
             <div class="filter-empty">Brak dodatkowych filtrów dla tego wyboru.</div>
-        </div>
+        </details>
+    }
     }
 </aside>
 
@@ -209,6 +229,10 @@
         aiStatusMessage.Contains("błąd", StringComparison.OrdinalIgnoreCase)
             ? "#ffb3b3"
             : "#9fe7c2";
+
+    private bool HasFilterScope =>
+        !string.IsNullOrWhiteSpace(SearchService.SelectedCategoryCode) &&
+        !string.IsNullOrWhiteSpace(SearchService.SelectedRoleCode);
 
     private static int GetCriterionGroupOrder(string kind)
     {

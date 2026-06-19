@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MauiApp1.Importer;
 
@@ -9,20 +10,30 @@ internal static class Program
         try
         {
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-                .AddEnvironmentVariables(prefix: "JOBIMPORTER_")
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+                .AddJsonFile(Path.Combine("MauiApp1.Importer", "appsettings.json"), optional: true, reloadOnChange: false)
+                .AddEnvironmentVariables(prefix: "JOBIMPORTER__")
                 .Build();
 
             var settings = configuration.Get<ImporterSettings>() ?? new ImporterSettings();
-            if (string.IsNullOrWhiteSpace(settings.Database.ConnectionString) ||
-                settings.Database.ConnectionString.Contains("YOUR_SUPABASE_HOST", StringComparison.OrdinalIgnoreCase))
+            var configurationErrors = ValidateConfiguration(settings).ToList();
+            if (configurationErrors.Any())
             {
                 Console.WriteLine("Uzupełnij ConnectionString w appsettings.json albo przez zmienne środowiskowe.");
+                foreach (var error in configurationErrors)
+                {
+                    Console.WriteLine($"- {error}");
+                }
+
                 return 1;
             }
 
-            var coordinator = new JobImportCoordinator(settings);
+            using var services = new ServiceCollection()
+                .AddHttpClient("job-importer", client => client.Timeout = TimeSpan.FromSeconds(30))
+                .Services
+                .BuildServiceProvider();
+            var coordinator = new JobImportCoordinator(settings, services.GetRequiredService<IHttpClientFactory>());
             var repository = new PostgresJobRepository(
                 settings.Database.ConnectionString,
                 settings.Import.DeactivateMissingOffers);
@@ -40,6 +51,18 @@ internal static class Program
             if (args.Any(arg => string.Equals(arg, "--classification-stats", StringComparison.OrdinalIgnoreCase)))
             {
                 var lines = await repository.GetClassificationStatsAsync();
+                foreach (var line in lines)
+                {
+                    Console.WriteLine(line);
+                }
+
+                return 0;
+            }
+
+            if (args.Any(arg => string.Equals(arg, "--classification-gaps", StringComparison.OrdinalIgnoreCase)))
+            {
+                var limit = ParseLimit(args, 80);
+                var lines = await repository.GetClassificationGapReportAsync(limit);
                 foreach (var line in lines)
                 {
                     Console.WriteLine(line);
@@ -78,6 +101,41 @@ internal static class Program
         }
     }
 
+    private static IEnumerable<string> ValidateConfiguration(ImporterSettings settings)
+    {
+        if (string.IsNullOrWhiteSpace(settings.Database.ConnectionString) ||
+            settings.Database.ConnectionString.Contains("YOUR_", StringComparison.OrdinalIgnoreCase))
+        {
+            yield return "Database:ConnectionString";
+        }
+
+        if (settings.Sources.Adzuna.Enabled)
+        {
+            if (string.IsNullOrWhiteSpace(settings.Sources.Adzuna.AppId))
+            {
+                yield return "Sources:Adzuna:AppId";
+            }
+
+            if (string.IsNullOrWhiteSpace(settings.Sources.Adzuna.AppKey))
+            {
+                yield return "Sources:Adzuna:AppKey";
+            }
+        }
+
+        if (settings.Sources.Jooble.Enabled && string.IsNullOrWhiteSpace(settings.Sources.Jooble.ApiKey))
+        {
+            yield return "Sources:Jooble:ApiKey";
+        }
+
+        if (!settings.Sources.Adzuna.Enabled &&
+            !settings.Sources.Jooble.Enabled &&
+            !settings.Sources.Remotive.Enabled &&
+            !settings.Sources.Arbeitnow.Enabled)
+        {
+            yield return "Sources: at least one source must be enabled";
+        }
+    }
+
     private static ReclassificationOptions ParseReclassificationOptions(string[] args)
     {
         var options = new ReclassificationOptions();
@@ -104,5 +162,20 @@ internal static class Program
         }
 
         return options;
+    }
+
+    private static int ParseLimit(string[] args, int defaultLimit)
+    {
+        foreach (var arg in args)
+        {
+            if (arg.StartsWith("--limit=", StringComparison.OrdinalIgnoreCase) &&
+                int.TryParse(arg["--limit=".Length..], out var limit) &&
+                limit > 0)
+            {
+                return limit;
+            }
+        }
+
+        return defaultLimit;
     }
 }

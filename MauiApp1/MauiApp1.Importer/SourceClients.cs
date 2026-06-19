@@ -15,19 +15,18 @@ namespace MauiApp1.Importer;
 /// <seealso cref="ImporterHelpers"/>
 public sealed class JobImportCoordinator
 {
-    private readonly HttpClient _httpClient = new()
-    {
-        Timeout = TimeSpan.FromSeconds(30)
-    };
+    private readonly IHttpClientFactory _httpClientFactory;
     private readonly ImporterSettings _settings;
 
     /// <summary>
     /// Tworzy koordynator importu na podstawie konfiguracji źródeł i limitów pobierania.
     /// </summary>
     /// <param name="settings">Ustawienia importera odczytane z pliku konfiguracyjnego.</param>
-    public JobImportCoordinator(ImporterSettings settings)
+    /// <param name="httpClientFactory">Fabryka klientow HTTP uzywana przez wszystkie zrodla.</param>
+    public JobImportCoordinator(ImporterSettings settings, IHttpClientFactory httpClientFactory)
     {
         _settings = settings;
+        _httpClientFactory = httpClientFactory;
     }
 
     /// <summary>
@@ -38,13 +37,13 @@ public sealed class JobImportCoordinator
     /// Jeżeli dane źródło nie ma wymaganych kluczy API albo zwróci pustą odpowiedź, wynik dla niego pozostanie pusty lub nie zostanie
     /// dodany. Pozwala to kontynuować import pozostałych źródeł bez przerywania całego procesu.
     /// </remarks>
-    public async Task<Dictionary<string, List<NormalizedJobOffer>>> FetchAllAsync()
+    public async Task<Dictionary<string, List<NormalizedJobOffer>>> FetchAllAsync(CancellationToken cancellationToken = default)
     {
         var result = new Dictionary<string, List<NormalizedJobOffer>>(StringComparer.OrdinalIgnoreCase);
 
         foreach (var sourceCode in GetEnabledSourceCodes())
         {
-            result[sourceCode] = await FetchAsync(sourceCode);
+            result[sourceCode] = await FetchAsync(sourceCode, cancellationToken);
         }
 
         return result;
@@ -73,32 +72,32 @@ public sealed class JobImportCoordinator
         }
     }
 
-    public Task<List<NormalizedJobOffer>> FetchAsync(string sourceCode)
+    public Task<List<NormalizedJobOffer>> FetchAsync(string sourceCode, CancellationToken cancellationToken = default)
     {
         if (string.Equals(sourceCode, _settings.Sources.Adzuna.Code, StringComparison.OrdinalIgnoreCase))
         {
-            return FetchAdzunaAsync();
+            return FetchAdzunaAsync(cancellationToken);
         }
 
         if (string.Equals(sourceCode, _settings.Sources.Jooble.Code, StringComparison.OrdinalIgnoreCase))
         {
-            return FetchJoobleAsync();
+            return FetchJoobleAsync(cancellationToken);
         }
 
         if (string.Equals(sourceCode, _settings.Sources.Remotive.Code, StringComparison.OrdinalIgnoreCase))
         {
-            return FetchRemotiveAsync();
+            return FetchRemotiveAsync(cancellationToken);
         }
 
         if (string.Equals(sourceCode, _settings.Sources.Arbeitnow.Code, StringComparison.OrdinalIgnoreCase))
         {
-            return FetchArbeitnowAsync();
+            return FetchArbeitnowAsync(cancellationToken);
         }
 
         return Task.FromResult(new List<NormalizedJobOffer>());
     }
 
-    private async Task<List<NormalizedJobOffer>> FetchAdzunaAsync()
+    private async Task<List<NormalizedJobOffer>> FetchAdzunaAsync(CancellationToken cancellationToken)
     {
         var offers = new List<NormalizedJobOffer>();
         var queries = GetImportQueries();
@@ -115,11 +114,11 @@ public sealed class JobImportCoordinator
                 for (var page = 1; page <= _settings.Import.MaxPagesPerQuery; page++)
                 {
                     var url = BuildAdzunaUrl(query, location, page);
-                    using var response = await _httpClient.GetAsync(url);
+                    using var response = await GetWithRetryAsync(url, "adzuna", cancellationToken);
                     if ((int)response.StatusCode == 429)
                     {
                         Console.WriteLine($"[WARN] adzuna: HTTP 429 for query={query}, location={location}, page={page}. Skipping page after delay.");
-                        await Task.Delay(TimeSpan.FromSeconds(10));
+                        await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
                         continue;
                     }
 
@@ -149,7 +148,7 @@ public sealed class JobImportCoordinator
         return Deduplicate(offers);
     }
 
-    private async Task<List<NormalizedJobOffer>> FetchJoobleAsync()
+    private async Task<List<NormalizedJobOffer>> FetchJoobleAsync(CancellationToken cancellationToken)
     {
         var offers = new List<NormalizedJobOffer>();
         var queries = GetImportQueries();
@@ -168,14 +167,13 @@ public sealed class JobImportCoordinator
                     var endpoint = $"https://pl.jooble.org/api/{_settings.Sources.Jooble.ApiKey}";
                     var payload = BuildJooblePayload(query, location, page);
 
-                    using var response = await _httpClient.PostAsync(
-                        endpoint,
-                        new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"));
+                    var payloadJson = JsonConvert.SerializeObject(payload);
+                    using var response = await PostWithRetryAsync(endpoint, payloadJson, "jooble", cancellationToken);
 
                     if ((int)response.StatusCode == 429)
                     {
                         Console.WriteLine($"[WARN] jooble: HTTP 429 for query={query}, location={location}, page={page}. Skipping page after delay.");
-                        await Task.Delay(TimeSpan.FromSeconds(10));
+                        await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
                         continue;
                     }
 
@@ -260,25 +258,9 @@ public sealed class JobImportCoordinator
         return locations.Count > 0 ? locations : new List<string> { string.Empty };
     }
 
-    private async Task<List<NormalizedJobOffer>> FetchRemotiveAsync()
+    private async Task<List<NormalizedJobOffer>> FetchRemotiveAsync(CancellationToken cancellationToken)
     {
-        using var response = await _httpClient.GetAsync(_settings.Sources.Remotive.Url);
-        if ((int)response.StatusCode == 429)
-        {
-            Console.WriteLine("[WARN] remotive: HTTP 429. Retry after delay.");
-            await Task.Delay(TimeSpan.FromSeconds(10));
-            using var retryResponse = await _httpClient.GetAsync(_settings.Sources.Remotive.Url);
-            if (!retryResponse.IsSuccessStatusCode)
-            {
-                Console.WriteLine($"[WARN] remotive: HTTP {(int)retryResponse.StatusCode}");
-                return new List<NormalizedJobOffer>();
-            }
-
-            var retryJson = await ReadUtf8Async(retryResponse);
-            var retryData = JsonConvert.DeserializeObject<RemotiveRoot>(retryJson);
-            return Deduplicate((retryData?.Jobs ?? new List<RemotiveJob>()).Select(MapRemotiveOffer).ToList());
-        }
-
+        using var response = await GetWithRetryAsync(_settings.Sources.Remotive.Url, "remotive", cancellationToken);
         if (!response.IsSuccessStatusCode)
         {
             Console.WriteLine($"[WARN] remotive: HTTP {(int)response.StatusCode}");
@@ -290,25 +272,9 @@ public sealed class JobImportCoordinator
         return Deduplicate((data?.Jobs ?? new List<RemotiveJob>()).Select(MapRemotiveOffer).ToList());
     }
 
-    private async Task<List<NormalizedJobOffer>> FetchArbeitnowAsync()
+    private async Task<List<NormalizedJobOffer>> FetchArbeitnowAsync(CancellationToken cancellationToken)
     {
-        using var response = await _httpClient.GetAsync(_settings.Sources.Arbeitnow.Url);
-        if ((int)response.StatusCode == 429)
-        {
-            Console.WriteLine("[WARN] arbeitnow: HTTP 429. Retry after delay.");
-            await Task.Delay(TimeSpan.FromSeconds(10));
-            using var retryResponse = await _httpClient.GetAsync(_settings.Sources.Arbeitnow.Url);
-            if (!retryResponse.IsSuccessStatusCode)
-            {
-                Console.WriteLine($"[WARN] arbeitnow: HTTP {(int)retryResponse.StatusCode}");
-                return new List<NormalizedJobOffer>();
-            }
-
-            var retryJson = await ReadUtf8Async(retryResponse);
-            var retryData = JsonConvert.DeserializeObject<ArbeitnowRoot>(retryJson);
-            return Deduplicate((retryData?.Data ?? new List<ArbeitnowJob>()).Select(MapArbeitnowOffer).ToList());
-        }
-
+        using var response = await GetWithRetryAsync(_settings.Sources.Arbeitnow.Url, "arbeitnow", cancellationToken);
         if (!response.IsSuccessStatusCode)
         {
             Console.WriteLine($"[WARN] arbeitnow: HTTP {(int)response.StatusCode}");
@@ -318,6 +284,56 @@ public sealed class JobImportCoordinator
         var json = await ReadUtf8Async(response);
         var data = JsonConvert.DeserializeObject<ArbeitnowRoot>(json);
         return Deduplicate((data?.Data ?? new List<ArbeitnowJob>()).Select(MapArbeitnowOffer).ToList());
+    }
+
+    private Task<HttpResponseMessage> GetWithRetryAsync(string url, string sourceCode, CancellationToken cancellationToken)
+        => SendWithRetryAsync(() => new HttpRequestMessage(HttpMethod.Get, url), sourceCode, cancellationToken);
+
+    private Task<HttpResponseMessage> PostWithRetryAsync(string url, string json, string sourceCode, CancellationToken cancellationToken)
+        => SendWithRetryAsync(
+            () => new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            },
+            sourceCode,
+            cancellationToken);
+
+    private async Task<HttpResponseMessage> SendWithRetryAsync(Func<HttpRequestMessage> requestFactory, string sourceCode, CancellationToken cancellationToken)
+    {
+        var client = _httpClientFactory.CreateClient("job-importer");
+        for (var attempt = 1; attempt <= 3; attempt++)
+        {
+            try
+            {
+                using var request = requestFactory();
+                var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                if (!IsTransient(response) || attempt == 3)
+                {
+                    return response;
+                }
+
+                Console.WriteLine($"[WARN] {sourceCode}: transient HTTP {(int)response.StatusCode}, retry {attempt}/3.");
+                response.Dispose();
+            }
+            catch (TaskCanceledException) when (!cancellationToken.IsCancellationRequested && attempt < 3)
+            {
+                Console.WriteLine($"[WARN] {sourceCode}: timeout, retry {attempt}/3.");
+            }
+            catch (HttpRequestException ex) when (attempt < 3)
+            {
+                Console.WriteLine($"[WARN] {sourceCode}: {ex.Message}, retry {attempt}/3.");
+            }
+
+            await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, attempt)), cancellationToken);
+        }
+
+        return new HttpResponseMessage(System.Net.HttpStatusCode.ServiceUnavailable);
+    }
+
+    private static bool IsTransient(HttpResponseMessage response)
+    {
+        var status = (int)response.StatusCode;
+        return status == 408 || status == 429 || status >= 500;
     }
 
     private static List<NormalizedJobOffer> Deduplicate(List<NormalizedJobOffer> offers)
@@ -380,7 +396,7 @@ public sealed class JobImportCoordinator
             Latitude = result.Latitude,
             Longitude = result.Longitude,
             PublishedAt = ParseDate(result.Created),
-            Languages = ImporterHelpers.DetectLanguages(result.Title, description),
+            Languages = ImporterHelpers.DetectLanguagesWithLevels(result.Title, description),
             Tags = tags,
             ExternalReference = result.Adref,
             RawPayloadJson = payload,
@@ -428,7 +444,7 @@ public sealed class JobImportCoordinator
             Education = education,
             IsRemote = ImporterHelpers.DetectRemote(job.Title, description, job.Location),
             PublishedAt = ParseDate(job.Updated),
-            Languages = ImporterHelpers.DetectLanguages(job.Title, description),
+            Languages = ImporterHelpers.DetectLanguagesWithLevels(job.Title, description),
             Tags = tags,
             RawPayloadJson = payload,
             Classification = classification,
@@ -474,7 +490,7 @@ public sealed class JobImportCoordinator
             Education = education,
             IsRemote = true,
             PublishedAt = ParseDate(job.PublicationDate),
-            Languages = ImporterHelpers.DetectLanguages(job.Title, description),
+            Languages = ImporterHelpers.DetectLanguagesWithLevels(job.Title, description),
             Tags = tags,
             RawPayloadJson = payload,
             Classification = JobClassificationRules.Classify(job.Title, description, tags),
@@ -519,7 +535,7 @@ public sealed class JobImportCoordinator
             Education = education,
             IsRemote = job.Remote || ImporterHelpers.DetectRemote(job.Title, description, job.Location),
             PublishedAt = job.CreatedAtUnix.HasValue ? DateTimeOffset.FromUnixTimeSeconds(job.CreatedAtUnix.Value) : null,
-            Languages = ImporterHelpers.DetectLanguages(job.Title, description),
+            Languages = ImporterHelpers.DetectLanguagesWithLevels(job.Title, description),
             Tags = tags,
             RawPayloadJson = payload,
             Classification = JobClassificationRules.Classify(job.Title, description, tags),

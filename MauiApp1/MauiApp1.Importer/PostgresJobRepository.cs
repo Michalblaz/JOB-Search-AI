@@ -173,6 +173,7 @@ public sealed class PostgresJobRepository
                 Education = education,
                 ExperienceLevel = experience.Level,
                 EducationLevel = education.Level,
+                Languages = ImporterHelpers.DetectLanguagesWithLevels(offer.Title, offer.Description),
                 Classification = classification
             };
             ImporterHelpers.PopulateDerivedOfferData(normalized);
@@ -185,6 +186,7 @@ public sealed class PostgresJobRepository
             await using var transaction = await connection.BeginTransactionAsync();
             await UpdateDerivedOfferFieldsAsync(connection, transaction, offer.Id, normalized);
             await ReplaceClassificationAsync(connection, transaction, offer.Id, classification);
+            await ReplaceLanguagesAsync(connection, transaction, offer.Id, normalized.Languages);
             await ReplaceContractTypesAsync(connection, transaction, offer.Id, normalized.ContractTypes);
             await ReplaceScheduleFlagsAsync(connection, transaction, offer.Id, normalized.ScheduleFlags);
             await ReplaceBenefitsAsync(connection, transaction, offer.Id, normalized.Benefits);
@@ -386,6 +388,150 @@ public sealed class PostgresJobRepository
             while (await reader.ReadAsync())
             {
                 lines.Add($"top.criteria.{reader.GetString(0)}.{reader.GetString(1)}={reader.GetInt64(2)}");
+            }
+        }
+
+        return lines;
+    }
+
+    public async Task<List<string>> GetClassificationGapReportAsync(int limit = 80)
+    {
+        await using var connection = new NpgsqlConnection(_connectionString);
+        await connection.OpenAsync();
+        await EnsureClassificationSchemaAsync(connection);
+
+        var lines = new List<string>();
+        await using (var command = new NpgsqlCommand("""
+            select
+                js.code,
+                coalesce(jo.description_quality, 'unknown') as description_quality,
+                count(*)::bigint as total,
+                count(*) filter (
+                    where not exists (select 1 from public.job_offer_criteria joc where joc.job_offer_id = jo.id)
+                )::bigint as without_criteria,
+                count(*) filter (
+                    where exists (
+                        select 1
+                        from public.job_offer_roles jor
+                        join public.job_roles jr on jr.id = jor.role_id
+                        join public.job_categories cat on cat.id = jr.category_id
+                        where jor.job_offer_id = jo.id and cat.code = 'it'
+                    )
+                    and not exists (
+                        select 1
+                        from public.job_offer_criteria joc
+                        join public.job_criteria jc on jc.id = joc.criterion_id
+                        where joc.job_offer_id = jo.id and joc.is_required and jc.kind = any(@technical_kinds)
+                    )
+                )::bigint as it_without_required_technology
+            from public.job_offers jo
+            join public.job_sources js on js.id = jo.source_id
+            where jo.is_active = true
+            group by js.code, jo.description_quality
+            order by without_criteria desc, total desc
+            """, connection))
+        {
+            command.Parameters.AddWithValue("technical_kinds", TechnicalCriterionKinds);
+            await using var reader = await command.ExecuteReaderAsync();
+            lines.Add("coverage.by_source_quality:");
+            while (await reader.ReadAsync())
+            {
+                lines.Add($"- source={reader.GetString(0)}, quality={reader.GetString(1)}, total={reader.GetInt64(2)}, without_criteria={reader.GetInt64(3)}, it_without_required_technology={reader.GetInt64(4)}");
+            }
+        }
+
+        await using (var command = new NpgsqlCommand("""
+            select
+                coalesce(cat.code, 'unknown') as category_code,
+                coalesce(cat.display_name, 'Unknown') as category_name,
+                count(distinct jo.id)::bigint as total,
+                count(distinct jo.id) filter (
+                    where not exists (select 1 from public.job_offer_criteria joc where joc.job_offer_id = jo.id)
+                )::bigint as without_criteria
+            from public.job_offers jo
+            left join public.job_offer_roles jor on jor.job_offer_id = jo.id
+            left join public.job_roles jr on jr.id = jor.role_id
+            left join public.job_categories cat on cat.id = jr.category_id
+            where jo.is_active = true
+            group by cat.code, cat.display_name
+            order by without_criteria desc, total desc
+            limit 30
+            """, connection))
+        await using (var reader = await command.ExecuteReaderAsync())
+        {
+            lines.Add("coverage.by_category:");
+            while (await reader.ReadAsync())
+            {
+                lines.Add($"- category={reader.GetString(0)} ({reader.GetString(1)}), total={reader.GetInt64(2)}, without_criteria={reader.GetInt64(3)}");
+            }
+        }
+
+        await using (var command = new NpgsqlCommand("""
+            select
+                jo.id,
+                js.code,
+                jo.title,
+                coalesce(jo.description_quality, 'unknown'),
+                left(regexp_replace(coalesce(jo.description, ''), '\s+', ' ', 'g'), 520) as description_sample,
+                coalesce(array_to_string(array_agg(distinct jot.tag) filter (where jot.tag is not null), ', '), '') as tags
+            from public.job_offers jo
+            join public.job_sources js on js.id = jo.source_id
+            left join public.job_offer_tags jot on jot.job_offer_id = jo.id
+            where jo.is_active = true
+              and not exists (select 1 from public.job_offer_criteria joc where joc.job_offer_id = jo.id)
+            group by jo.id, js.code
+            order by jo.description_quality, length(coalesce(jo.description, '')) desc
+            limit @limit
+            """, connection))
+        {
+            command.Parameters.AddWithValue("limit", limit);
+            await using var reader = await command.ExecuteReaderAsync();
+            lines.Add("samples.without_criteria:");
+            while (await reader.ReadAsync())
+            {
+                lines.Add($"- id={reader.GetInt64(0)}, source={reader.GetString(1)}, quality={reader.GetString(3)}, title={reader.GetString(2)}");
+                lines.Add($"  tags={reader.GetString(5)}");
+                lines.Add($"  text={reader.GetString(4)}");
+            }
+        }
+
+        await using (var command = new NpgsqlCommand("""
+            select
+                jo.id,
+                js.code,
+                jo.title,
+                coalesce(jr.display_name, ''),
+                coalesce(jo.description_quality, 'unknown'),
+                left(regexp_replace(coalesce(jo.description, ''), '\s+', ' ', 'g'), 620) as description_sample,
+                coalesce(array_to_string(array_agg(distinct jot.tag) filter (where jot.tag is not null), ', '), '') as tags
+            from public.job_offers jo
+            join public.job_sources js on js.id = jo.source_id
+            join public.job_offer_roles jor on jor.job_offer_id = jo.id
+            join public.job_roles jr on jr.id = jor.role_id
+            join public.job_categories cat on cat.id = jr.category_id
+            left join public.job_offer_tags jot on jot.job_offer_id = jo.id
+            where jo.is_active = true
+              and cat.code = 'it'
+              and not exists (
+                  select 1
+                  from public.job_offer_criteria joc
+                  join public.job_criteria jc on jc.id = joc.criterion_id
+                  where joc.job_offer_id = jo.id and joc.is_required and jc.kind = any(@technical_kinds)
+              )
+            group by jo.id, js.code, jr.display_name
+            order by jo.description_quality, length(coalesce(jo.description, '')) desc
+            limit @limit
+            """, connection))
+        {
+            command.Parameters.AddWithValue("technical_kinds", TechnicalCriterionKinds);
+            command.Parameters.AddWithValue("limit", limit);
+            await using var reader = await command.ExecuteReaderAsync();
+            lines.Add("samples.it_without_required_technology:");
+            while (await reader.ReadAsync())
+            {
+                lines.Add($"- id={reader.GetInt64(0)}, source={reader.GetString(1)}, role={reader.GetString(3)}, quality={reader.GetString(4)}, title={reader.GetString(2)}");
+                lines.Add($"  tags={reader.GetString(6)}");
+                lines.Add($"  text={reader.GetString(5)}");
             }
         }
 
@@ -771,12 +917,37 @@ public sealed class PostgresJobRepository
         foreach (var language in languages)
         {
             await using var insertCommand = new NpgsqlCommand(
-                "insert into public.job_offer_languages (job_offer_id, language_code, language_name) values (@job_offer_id, @code, @name) on conflict do nothing",
+                """
+                insert into public.job_offer_languages (
+                    job_offer_id, language_code, language_name, level_min, is_required,
+                    confidence, evidence, source_field, source_section, extractor_version
+                )
+                values (
+                    @job_offer_id, @code, @name, @level_min, @is_required,
+                    @confidence, @evidence, @source_field, @source_section, @extractor_version
+                )
+                on conflict (job_offer_id, language_code) do update set
+                    language_name = excluded.language_name,
+                    level_min = excluded.level_min,
+                    is_required = excluded.is_required,
+                    confidence = excluded.confidence,
+                    evidence = excluded.evidence,
+                    source_field = excluded.source_field,
+                    source_section = excluded.source_section,
+                    extractor_version = excluded.extractor_version
+                """,
                 connection,
                 transaction);
             insertCommand.Parameters.AddWithValue("job_offer_id", jobOfferId);
             insertCommand.Parameters.AddWithValue("code", language.Code);
             insertCommand.Parameters.AddWithValue("name", language.Name);
+            insertCommand.Parameters.AddWithValue("level_min", language.LevelMin);
+            insertCommand.Parameters.AddWithValue("is_required", (object?)language.IsRequired ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("confidence", language.Confidence);
+            insertCommand.Parameters.AddWithValue("evidence", (object?)language.Evidence ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("source_field", (object?)language.SourceField ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("source_section", (object?)language.SourceSection ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("extractor_version", language.ExtractorVersion);
             await insertCommand.ExecuteNonQueryAsync();
         }
     }
@@ -903,18 +1074,24 @@ public sealed class PostgresJobRepository
         foreach (var domain in domains.Where(x => !string.IsNullOrWhiteSpace(x.DomainCode)))
         {
             await using var insertCommand = new NpgsqlCommand("""
-                insert into public.job_offer_domains (job_offer_id, domain_code, domain_name, confidence, evidence)
-                values (@job_offer_id, @domain_code, @domain_name, @confidence, @evidence)
+                insert into public.job_offer_domains (job_offer_id, domain_code, domain_name, confidence, evidence, source_field, source_section, extractor_version)
+                values (@job_offer_id, @domain_code, @domain_name, @confidence, @evidence, @source_field, @source_section, @extractor_version)
                 on conflict (job_offer_id, domain_code) do update set
                     domain_name = excluded.domain_name,
                     confidence = excluded.confidence,
-                    evidence = excluded.evidence
+                    evidence = excluded.evidence,
+                    source_field = excluded.source_field,
+                    source_section = excluded.source_section,
+                    extractor_version = excluded.extractor_version
                 """, connection, transaction);
             insertCommand.Parameters.AddWithValue("job_offer_id", jobOfferId);
             insertCommand.Parameters.AddWithValue("domain_code", domain.DomainCode);
             insertCommand.Parameters.AddWithValue("domain_name", domain.DomainName);
             insertCommand.Parameters.AddWithValue("confidence", domain.Confidence);
             insertCommand.Parameters.AddWithValue("evidence", (object?)domain.Evidence ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("source_field", (object?)domain.SourceField ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("source_section", (object?)domain.SourceSection ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("extractor_version", domain.ExtractorVersion);
             await insertCommand.ExecuteNonQueryAsync();
         }
     }
@@ -930,18 +1107,24 @@ public sealed class PostgresJobRepository
         foreach (var requirement in requirements.Where(x => !string.IsNullOrWhiteSpace(x.RequirementCode)))
         {
             await using var insertCommand = new NpgsqlCommand("""
-                insert into public.job_offer_formal_requirements (job_offer_id, requirement_code, is_required, confidence, evidence)
-                values (@job_offer_id, @requirement_code, @is_required, @confidence, @evidence)
+                insert into public.job_offer_formal_requirements (job_offer_id, requirement_code, is_required, confidence, evidence, source_field, source_section, extractor_version)
+                values (@job_offer_id, @requirement_code, @is_required, @confidence, @evidence, @source_field, @source_section, @extractor_version)
                 on conflict (job_offer_id, requirement_code) do update set
                     is_required = excluded.is_required,
                     confidence = excluded.confidence,
-                    evidence = excluded.evidence
+                    evidence = excluded.evidence,
+                    source_field = excluded.source_field,
+                    source_section = excluded.source_section,
+                    extractor_version = excluded.extractor_version
                 """, connection, transaction);
             insertCommand.Parameters.AddWithValue("job_offer_id", jobOfferId);
             insertCommand.Parameters.AddWithValue("requirement_code", requirement.RequirementCode);
             insertCommand.Parameters.AddWithValue("is_required", requirement.IsRequired);
             insertCommand.Parameters.AddWithValue("confidence", requirement.Confidence);
             insertCommand.Parameters.AddWithValue("evidence", (object?)requirement.Evidence ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("source_field", (object?)requirement.SourceField ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("source_section", (object?)requirement.SourceSection ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("extractor_version", requirement.ExtractorVersion);
             await insertCommand.ExecuteNonQueryAsync();
         }
     }
@@ -1120,6 +1303,24 @@ public sealed class PostgresJobRepository
         foreach (var sql in new[]
         {
             """
+            alter table public.job_offer_languages
+                add column if not exists level_min varchar(20) not null default 'unknown',
+                add column if not exists is_required boolean,
+                add column if not exists confidence numeric(5,4) not null default 0.5000,
+                add column if not exists evidence text,
+                add column if not exists source_field varchar(80),
+                add column if not exists source_section varchar(80),
+                add column if not exists extractor_version varchar(50) not null default 'rules_v3'
+            """
+        })
+        {
+            await using var alterCommand = new NpgsqlCommand(sql, connection);
+            await alterCommand.ExecuteNonQueryAsync();
+        }
+
+        foreach (var sql in new[]
+        {
+            """
             create table if not exists public.job_offer_contract_types (
                 job_offer_id bigint not null references public.job_offers(id) on delete cascade,
                 contract_type varchar(50) not null,
@@ -1164,6 +1365,9 @@ public sealed class PostgresJobRepository
                 domain_name varchar(160) not null,
                 confidence numeric(5,4) not null default 0.5000,
                 evidence text,
+                source_field varchar(80),
+                source_section varchar(80),
+                extractor_version varchar(50) not null default 'rules_v3',
                 created_at timestamptz not null default now(),
                 primary key (job_offer_id, domain_code)
             )
@@ -1175,6 +1379,9 @@ public sealed class PostgresJobRepository
                 is_required boolean not null default true,
                 confidence numeric(5,4) not null default 0.5000,
                 evidence text,
+                source_field varchar(80),
+                source_section varchar(80),
+                extractor_version varchar(50) not null default 'rules_v3',
                 created_at timestamptz not null default now(),
                 primary key (job_offer_id, requirement_code)
             )
@@ -1183,6 +1390,26 @@ public sealed class PostgresJobRepository
         {
             await using var tableCommand = new NpgsqlCommand(sql, connection);
             await tableCommand.ExecuteNonQueryAsync();
+        }
+
+        foreach (var sql in new[]
+        {
+            """
+            alter table public.job_offer_domains
+                add column if not exists source_field varchar(80),
+                add column if not exists source_section varchar(80),
+                add column if not exists extractor_version varchar(50) not null default 'rules_v3'
+            """,
+            """
+            alter table public.job_offer_formal_requirements
+                add column if not exists source_field varchar(80),
+                add column if not exists source_section varchar(80),
+                add column if not exists extractor_version varchar(50) not null default 'rules_v3'
+            """
+        })
+        {
+            await using var alterCommand = new NpgsqlCommand(sql, connection);
+            await alterCommand.ExecuteNonQueryAsync();
         }
 
         foreach (var sql in new[]
@@ -1253,6 +1480,284 @@ public sealed class PostgresJobRepository
         await using (var command = new NpgsqlCommand("""
             create index if not exists ix_job_offer_criterion_hits_criterion
                 on public.job_offer_criterion_hits(criterion_id)
+            """, connection))
+        {
+            await command.ExecuteNonQueryAsync();
+        }
+
+        await using (var command = new NpgsqlCommand("""
+            create table if not exists public.job_offer_match_scores (
+                id bigint generated always as identity primary key,
+                job_offer_id bigint not null references public.job_offers(id) on delete cascade,
+                user_id bigint null,
+                total_score numeric(6,2) not null default 0,
+                salary_score numeric(6,2) not null default 0,
+                location_score numeric(6,2) not null default 0,
+                skills_score numeric(6,2) not null default 0,
+                experience_score numeric(6,2) not null default 0,
+                education_score numeric(6,2) not null default 0,
+                language_score numeric(6,2) not null default 0,
+                contract_score numeric(6,2) not null default 0,
+                work_mode_score numeric(6,2) not null default 0,
+                work_time_score numeric(6,2) not null default 0,
+                benefits_score numeric(6,2) not null default 0,
+                schedule_score numeric(6,2) not null default 0,
+                missing_required_skills_count integer not null default 0,
+                matched_required_skills_count integer not null default 0,
+                matched_optional_skills_count integer not null default 0,
+                explanation text,
+                calculated_at timestamptz not null default now(),
+                constraint uq_job_offer_match_scores_offer_user unique (job_offer_id, user_id)
+            )
+            """, connection))
+        {
+            await command.ExecuteNonQueryAsync();
+        }
+
+        await using (var command = new NpgsqlCommand("""
+            create index if not exists ix_job_offer_match_scores_total
+                on public.job_offer_match_scores(total_score desc)
+            """, connection))
+        {
+            await command.ExecuteNonQueryAsync();
+        }
+
+        await EnsureCriterionAliasesAsync(connection);
+        await LoadCriterionAliasesAsync(connection);
+        await EnsureSearchViewsAsync(connection);
+    }
+
+    private static async Task EnsureCriterionAliasesAsync(NpgsqlConnection connection)
+    {
+        await using (var command = new NpgsqlCommand("""
+            create table if not exists public.criterion_aliases (
+                id bigint generated always as identity primary key,
+                criterion_id integer not null references public.job_criteria(id) on delete cascade,
+                alias varchar(180) not null,
+                normalized_alias varchar(180) not null,
+                is_short_ambiguous boolean not null default false,
+                requires_tech_context boolean not null default false,
+                requires_whole_token boolean not null default true,
+                priority integer not null default 100,
+                is_active boolean not null default true,
+                created_at timestamptz not null default now(),
+                updated_at timestamptz not null default now(),
+                constraint uq_criterion_aliases_criterion_alias unique (criterion_id, normalized_alias)
+            )
+            """, connection))
+        {
+            await command.ExecuteNonQueryAsync();
+        }
+
+        foreach (var seed in JobClassificationRules.GetBootstrapCriterionAliases())
+        {
+            await using var command = new NpgsqlCommand("""
+                with criterion as (
+                    insert into public.job_criteria (kind, code, display_name)
+                    values (@kind, @code, @display_name)
+                    on conflict (kind, code)
+                    do update set display_name = excluded.display_name, updated_at = now()
+                    returning id
+                )
+                insert into public.criterion_aliases (
+                    criterion_id, alias, normalized_alias, is_short_ambiguous,
+                    requires_tech_context, requires_whole_token, priority, is_active
+                )
+                select
+                    criterion.id, @alias, lower(@alias), @is_short_ambiguous,
+                    @requires_tech_context, @requires_whole_token, @priority, @is_active
+                from criterion
+                on conflict (criterion_id, normalized_alias)
+                do update set
+                    alias = excluded.alias,
+                    is_short_ambiguous = excluded.is_short_ambiguous,
+                    requires_tech_context = excluded.requires_tech_context,
+                    requires_whole_token = excluded.requires_whole_token,
+                    priority = least(public.criterion_aliases.priority, excluded.priority),
+                    is_active = public.criterion_aliases.is_active,
+                    updated_at = now()
+                """, connection);
+            command.Parameters.AddWithValue("kind", seed.Kind);
+            command.Parameters.AddWithValue("code", seed.Code);
+            command.Parameters.AddWithValue("display_name", seed.DisplayName);
+            command.Parameters.AddWithValue("alias", seed.Alias);
+            command.Parameters.AddWithValue("is_short_ambiguous", seed.IsShortAmbiguous);
+            command.Parameters.AddWithValue("requires_tech_context", seed.RequiresTechContext);
+            command.Parameters.AddWithValue("requires_whole_token", seed.RequiresWholeToken);
+            command.Parameters.AddWithValue("priority", seed.Priority);
+            command.Parameters.AddWithValue("is_active", seed.IsActive);
+            await command.ExecuteNonQueryAsync();
+        }
+
+        foreach (var sql in new[]
+        {
+            "create index if not exists ix_criterion_aliases_alias on public.criterion_aliases(normalized_alias) where is_active = true",
+            "create index if not exists ix_criterion_aliases_criterion on public.criterion_aliases(criterion_id) where is_active = true"
+        })
+        {
+            await using var indexCommand = new NpgsqlCommand(sql, connection);
+            await indexCommand.ExecuteNonQueryAsync();
+        }
+    }
+
+    private static async Task LoadCriterionAliasesAsync(NpgsqlConnection connection)
+    {
+        var aliases = new List<CriterionAliasSeed>();
+        await using var command = new NpgsqlCommand("""
+            select
+                jc.kind,
+                jc.code,
+                jc.display_name,
+                ca.alias,
+                ca.is_short_ambiguous,
+                ca.requires_tech_context,
+                ca.requires_whole_token,
+                ca.priority,
+                ca.is_active
+            from public.criterion_aliases ca
+            join public.job_criteria jc on jc.id = ca.criterion_id
+            where ca.is_active = true
+            order by jc.kind, jc.code, ca.priority, ca.alias
+            """, connection);
+        await using var reader = await command.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
+        {
+            aliases.Add(new CriterionAliasSeed
+            {
+                Kind = reader.GetString(0),
+                Code = reader.GetString(1),
+                DisplayName = reader.GetString(2),
+                Alias = reader.GetString(3),
+                IsShortAmbiguous = reader.GetBoolean(4),
+                RequiresTechContext = reader.GetBoolean(5),
+                RequiresWholeToken = reader.GetBoolean(6),
+                Priority = reader.GetInt32(7),
+                IsActive = reader.GetBoolean(8)
+            });
+        }
+
+        JobClassificationRules.ConfigureCriterionAliases(aliases);
+    }
+
+    private static async Task EnsureSearchViewsAsync(NpgsqlConnection connection)
+    {
+        foreach (var sql in new[]
+        {
+            "create index if not exists ix_job_offers_active_city on public.job_offers(city) where is_active = true",
+            "create index if not exists ix_job_offers_active_work_mode on public.job_offers(work_mode, remote_scope) where is_active = true",
+            "create index if not exists ix_job_offers_active_salary on public.job_offers(salary_min, salary_max) where is_active = true",
+            "create index if not exists ix_job_offers_active_experience on public.job_offers(experience_level, experience_min_years) where is_active = true",
+            "create index if not exists ix_job_offers_active_education on public.job_offers(education_level, education_field) where is_active = true",
+            "create index if not exists ix_job_offers_active_published on public.job_offers(published_at desc) where is_active = true"
+        })
+        {
+            await using var indexCommand = new NpgsqlCommand(sql, connection);
+            await indexCommand.ExecuteNonQueryAsync();
+        }
+
+        await using (var command = new NpgsqlCommand("""
+            create or replace view public.job_offer_search_view as
+            select
+                jo.id,
+                jo.source_id,
+                js.code as source_code,
+                js.display_name as source_name,
+                jo.external_id,
+                jo.external_url,
+                jo.title,
+                jo.company_name,
+                jo.company_logo_url,
+                jo.location_name,
+                jo.city,
+                jo.region,
+                jo.country_code,
+                jo.salary_min,
+                jo.salary_max,
+                jo.salary_currency,
+                jo.salary_raw,
+                jo.salary_period,
+                jo.salary_tax_type,
+                jo.salary_rate_type,
+                jo.salary_confidence,
+                jo.employment_type,
+                jo.contract_type,
+                jo.employment_type_raw,
+                jo.contract_type_raw,
+                jo.work_mode,
+                jo.remote_scope,
+                jo.remote_country_restriction,
+                jo.office_days_per_week_min,
+                jo.office_days_per_week_max,
+                jo.work_mode_confidence,
+                jo.work_time_type,
+                jo.fte_min,
+                jo.fte_max,
+                jo.hours_per_week_min,
+                jo.hours_per_week_max,
+                jo.work_time_confidence,
+                jo.experience_level,
+                jo.experience_min_years,
+                jo.experience_max_years,
+                jo.no_experience_allowed,
+                jo.experience_required,
+                jo.experience_confidence,
+                jo.education_level,
+                jo.education_required,
+                jo.education_field,
+                jo.education_confidence,
+                jo.description_quality,
+                jo.data_quality_score,
+                jo.extraction_score,
+                jo.is_remote,
+                jo.published_at,
+                jo.created_at,
+                jo.last_seen_at
+            from public.job_offers jo
+            join public.job_sources js on js.id = jo.source_id
+            where jo.is_active = true
+            """, connection))
+        {
+            await command.ExecuteNonQueryAsync();
+        }
+
+        await using (var command = new NpgsqlCommand("""
+            create or replace view public.job_offer_filter_values_view as
+            select filter_kind, filter_code, filter_name, count(distinct job_offer_id)::bigint as active_offer_count
+            from (
+                select 'work_mode' as filter_kind, coalesce(work_mode, 'unknown') as filter_code, coalesce(work_mode, 'unknown') as filter_name, id as job_offer_id
+                from public.job_offers where is_active = true and coalesce(work_mode, 'unknown') <> 'unknown'
+                union all
+                select 'work_time', coalesce(work_time_type, 'unknown'), coalesce(work_time_type, 'unknown'), id
+                from public.job_offers where is_active = true and coalesce(work_time_type, 'unknown') <> 'unknown'
+                union all
+                select 'experience', coalesce(experience_level, 'Wszystkie'), coalesce(experience_level, 'Wszystkie'), id
+                from public.job_offers where is_active = true and coalesce(experience_level, 'Wszystkie') <> 'Wszystkie'
+                union all
+                select 'education', coalesce(education_level, 'Brak wymagan lub niewymagane'), coalesce(education_level, 'Brak wymagan lub niewymagane'), id
+                from public.job_offers where is_active = true and coalesce(education_level, 'Brak wymagan lub niewymagane') <> 'Brak wymagan lub niewymagane'
+                union all
+                select 'contract', contract_type, contract_type, job_offer_id
+                from public.job_offer_contract_types
+                union all
+                select 'schedule', schedule_flag, schedule_flag, job_offer_id
+                from public.job_offer_schedule_flags
+                union all
+                select 'benefit', benefit_code, benefit_name, job_offer_id
+                from public.job_offer_benefits
+                union all
+                select 'language_required', language_code || ':' || level_min, language_name || ' ' || level_min, job_offer_id
+                from public.job_offer_languages where is_required = true
+                union all
+                select 'language_optional', language_code || ':' || level_min, language_name || ' ' || level_min, job_offer_id
+                from public.job_offer_languages where is_required = false
+                union all
+                select jc.kind, jc.code, jc.display_name, joc.job_offer_id
+                from public.job_offer_criteria joc
+                join public.job_criteria jc on jc.id = joc.criterion_id
+                join public.job_offers jo on jo.id = joc.job_offer_id and jo.is_active = true
+                where jc.is_user_selectable = true
+            ) filter_values
+            group by filter_kind, filter_code, filter_name
             """, connection))
         {
             await command.ExecuteNonQueryAsync();

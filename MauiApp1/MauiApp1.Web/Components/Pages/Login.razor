@@ -19,12 +19,12 @@
 
         <div class="auth-field">
             <label for="loginField">Login</label>
-            <input id="loginField" type="text" @bind="tempUsername" placeholder="np. michal123" class="auth-input" autocomplete="off" />
+            <input id="loginField" type="text" @bind="tempUsername" @bind:event="oninput" placeholder="np. michal123" class="auth-input" autocomplete="off" />
         </div>
 
         <div class="auth-field">
             <label for="passwordField">Hasło</label>
-            <input id="passwordField" type="password" @bind="tempPassword" placeholder="Wpisz hasło" class="auth-input" autocomplete="new-password" />
+            <input id="passwordField" type="password" @bind="tempPassword" @bind:event="oninput" placeholder="Wpisz hasło" class="auth-input" autocomplete="new-password" />
         </div>
 
         @if (!string.IsNullOrWhiteSpace(errorMessage))

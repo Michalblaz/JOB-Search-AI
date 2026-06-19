@@ -9,7 +9,7 @@ public static class JobClassificationRules
     private const string RequiredLevel = "required";
     private const string OptionalLevel = "optional";
     private const string MentionedLevel = "mentioned";
-    private const string ExtractorVersion = "rules_v2";
+    private const string ExtractorVersion = ExtractorVersionProvider.Current;
 
     private static readonly Regex RequiredHeader = new(
         @"^(wymagania|wymagane|nasze wymagania|nasze oczekiwania|oczekujemy|czego oczekujemy|kwalifikacje|profil kandydata|must have|must-have|must haves|required|required skills|requirements|key requirements|minimum qualifications|qualifications|expected|you have|you should have|what you need|what we expect|skills required|anforderungen|qualifikationen|dein profil|was du mitbringst)\b",
@@ -35,17 +35,23 @@ public static class JobClassificationRules
         @"\b(bonus rekrutacyjny|premia|dodatek|benefit|benefity|relocation bonus|signing bonus|uncapped commission|commission|wynagrodzenie|zarobki)\b",
         RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
+    private static readonly Regex AiDisclaimerCue = new(
+        @"\b(ai[- ]?assisted recruitment|ai in recruitment process|rekrutacja wspierana przez ai|proces rekrutacji wspierany przez ai|ki[- ]?gestutzte systeme|ki[- ]?gestuetzte systeme|eu ai act|artificial intelligence act|nie uzywamy danych do trenowania ai|automatyczne przetwarzanie danych)\b",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
     private static readonly Regex StackCue = new(
         @"\b(tech stack|technology stack|technologie|technologies|stack|narzedzia|tools|pracujemy z|you will work with|we use|uzywamy|wykorzystujemy)\b",
         RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     private static readonly Regex TechContextCue = new(
-        @"\b(programming|developer|software|backend|frontend|fullstack|stack|technology|technologies|framework|language|jezyk|programowania|technologie|technologii|aplikacja|system|kod|code|engineer|programista)\b",
+        @"\b(programming|developer|software|backend|frontend|fullstack|stack|technology|technologies|framework|language|jezyk|programowania|technologie|technologii|aplikacja|system|kod|code|engineer|programista|entwickler|entwicklung|softwareentwicklung|informatik|it-support|systemadministrator)\b",
         RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     private static readonly Regex ItRoleTitleCue = new(
-        @"\b(developer|programista|engineer|software|frontend|backend|fullstack|devops|tester|qa|administrator|data engineer|cloud engineer|architect)\b",
+        @"\b(developer|programista|engineer|software|frontend|backend|fullstack|devops|tester|qa|administrator|data engineer|cloud engineer|architect|entwickler|softwareentwickler|systemadministrator|informatiker)\b",
         RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+    private static CriterionRule[]? DatabaseCriterionRules;
 
     private static readonly TaxonomyRule[] CategoryRules =
     {
@@ -61,7 +67,17 @@ public static class JobClassificationRules
         new("construction", "Budownictwo", "budowa", "budowlany", "murarz", "ciesla", "dekarz", "zbrojarz", "operator koparki"),
         new("production", "Produkcja", "produkcja", "operator produkcji", "monter", "pakowacz", "pracownik produkcji"),
         new("gastronomy", "Gastronomia", "kucharz", "kelner", "barista", "gastronomia", "restaurac", "pomoc kuchenna"),
-        new("technical", "Techniczne i serwis", "mechanik", "elektryk", "spawacz", "slusarz", "serwisant", "utrzymanie ruchu", "automatyk")
+        new("technical", "Techniczne i serwis", "mechanik", "elektryk", "spawacz", "slusarz", "serwisant", "utrzymanie ruchu", "automatyk"),
+        new("it", "IT i technologia", "entwickler", "softwareentwickler", "informatik", "it-support", "software development", "systemadministrator", "product engineer"),
+        new("finance", "Finanse i ksiegowosc", "buchhalter", "finanzbuchhalter", "bilanzbuchhalter", "entgeltabrechner", "gehaltsabrechner", "accounts payable", "accounting", "finance"),
+        new("customer_service", "Obsluga klienta", "kundenberater", "kundenservice", "beratung"),
+        new("marketing", "Marketing i social media", "content creator", "video content", "campaign management", "direct marketing", "influencer marketing"),
+        new("technical", "Techniczne i serwis", "techniker", "ingenieur", "fachplaner", "facility management", "versorgungstechnik", "hkls", "hlsk", "engineering"),
+        new("office", "Administracja i biuro", "sachbearbeiter", "office management", "personalreferent", "personalentwicklung"),
+        new("production", "Produkcja", "qualitatssicherung", "qualitaetssicherung", "quality assurance", "backerei", "baeckerei"),
+        new("data", "Dane i analityka", "data analyst", "online data analyst", "analityk danych", "business intelligence", "bi analyst"),
+        new("gastronomy", "Gastronomia", "kfc", "restauracji", "restaurant crew", "game presenter"),
+        new("construction", "Budownictwo", "prace elewacyjne", "ogolnobudowlany", "remontowo-budowlany")
     };
 
     private static readonly RoleRule[] RoleRules =
@@ -72,7 +88,7 @@ public static class JobClassificationRules
         new("ai_engineer", "AI / ML Engineer", "it", "ai engineer", "ml engineer", "machine learning engineer", "genai", "ki engineer"),
         new("solutions_architect", "Solution Architect", "it", "solutions architect", "solution architect", "systemarchitektur", "system architecture"),
         new("it_support", "Wsparcie IT / Helpdesk", "it", "helpdesk", "support it", "wsparcie it", "technik informatyk", "administrator it"),
-        new("tester", "Tester oprogramowania", "it", "tester", "qa", "quality assurance"),
+        new("tester", "Tester oprogramowania", "it", "tester oprogramowania", "software tester", "qa engineer", "qa tester", "quality assurance"),
         new("devops", "DevOps / Administrator systemów", "it", "devops", "administrator linux", "administrator systemow", "cloud engineer"),
         new("seller", "Sprzedawca / Kasjer", "sales", "sprzedawca", "kasjer", "ekspedient", "pracownik sklepu"),
         new("sales_representative", "Przedstawiciel handlowy", "sales", "przedstawiciel handlowy", "handlowiec", "sales representative"),
@@ -90,7 +106,21 @@ public static class JobClassificationRules
         new("cook", "Kucharz / Pomoc kuchenna", "gastronomy", "kucharz", "pomoc kuchenna", "cook", "chef"),
         new("waiter", "Kelner / Obsługa sali", "gastronomy", "kelner", "obsluga sali", "waiter"),
         new("mechanic", "Mechanik / Serwisant", "technical", "mechanik", "serwisant", "technik serwisu"),
+        new("software_developer", "Programista / Developer", "it", "entwickler", "softwareentwickler", "software development", "product engineer"),
+        new("it_support", "Wsparcie IT / Helpdesk", "it", "it-support", "1st level support", "first level support", "anwender support", "technical support"),
+        new("tester", "Tester oprogramowania", "it", "test engineer", "manual tester", "test automation", "qa lead"),
+        new("devops", "DevOps / Administrator systemow", "it", "platform engineer", "platform devops", "systemadministrator", "site reliability"),
+        new("customer_service_agent", "Konsultant obslugi klienta", "customer_service", "kundenberater", "kundenservice", "customer success"),
+        new("accountant", "Ksiegowosc", "finance", "buchhalter", "finanzbuchhalter", "bilanzbuchhalter", "entgeltabrechner", "gehaltsabrechner", "accounts payable"),
+        new("finance_manager", "Finance / Accounting Manager", "finance", "leitung finance", "abteilungsleiter finance", "head of finance"),
+        new("social_media_marketing", "Social Media / Influencer Marketing", "marketing", "video content creator", "campaign management", "content creator", "direct marketing"),
+        new("mechanic", "Mechanik / Serwisant", "technical", "service techniker", "servicetechniker", "techniker", "facility management"),
+        new("electrician", "Elektryk / Automatyk", "technical", "betriebsingenieur", "fachplaner", "versorgungstechnik", "hkls", "hlsk", "tga"),
         new("electrician", "Elektryk / Automatyk", "technical", "elektryk", "automatyk", "elektromonter"),
+        new("data_analyst", "Analityk danych", "data", "data analyst", "online data analyst", "analityk danych", "business intelligence analyst", "bi analyst"),
+        new("mechanical_engineer", "Inzynier mechanik / konstruktor", "technical", "mechanical engineer", "konstruktor", "cad", "nx", "budowy maszyn"),
+        new("restaurant_worker", "Pracownik restauracji", "gastronomy", "pracownik restauracji", "kfc", "serwowanie zamowien", "przygotowywanie produktow"),
+        new("construction_worker", "Pracownik budowlany", "construction", "ogolnobudowlany", "remontowo-budowlany", "prace elewacyjne"),
         new("welder", "Spawacz / Ślusarz", "technical", "spawacz", "slusarz", "monter konstrukcji")
     };
 
@@ -105,13 +135,15 @@ public static class JobClassificationRules
         new("programming_language", "kotlin", "Kotlin", "kotlin"),
         new("programming_language", "swift", "Swift", "swift"),
         new("programming_language", "python", "Python", "python"),
+        new("programming_language", "scala", "Scala", "scala"),
         new("programming_language", "javascript", "JavaScript", "javascript", "js"),
         new("programming_language", "typescript", "TypeScript", "typescript", "ts"),
         new("programming_language", "php", "PHP", "php"),
         new("programming_language", "ruby", "Ruby", "ruby"),
         new("programming_language", "abap", "ABAP", "abap"),
+        new("programming_language", "matlab", "MATLAB", "matlab"),
 
-        new("framework", "dotnet", ".NET", ".net", "dotnet"),
+        new("framework", "dotnet", ".NET", ".net", "dotnet", "net developer", "net core", "net framework"),
         new("framework", "aspnet_core", "ASP.NET Core", "asp.net core", "aspnet core", "asp.net"),
         new("framework", "entity_framework", "Entity Framework", "entity framework", "ef core"),
         new("framework", "blazor", "Blazor", "blazor"),
@@ -130,6 +162,10 @@ public static class JobClassificationRules
         new("framework", "flask", "Flask", "flask"),
         new("framework", "fastapi", "FastAPI", "fastapi"),
         new("framework", "laravel", "Laravel", "laravel"),
+        new("framework", "magento", "Magento / Adobe Commerce", "magento", "magento 2", "adobe commerce"),
+        new("framework", "shopify", "Shopify", "shopify"),
+        new("framework", "weweb", "WeWeb", "weweb"),
+        new("framework", "softr", "Softr", "softr"),
         new("framework", "symfony", "Symfony", "symfony"),
         new("framework", "rails", "Ruby on Rails", "ruby on rails", "rails"),
         new("framework", "tailwind", "Tailwind", "tailwind", "tailwind css"),
@@ -160,6 +196,11 @@ public static class JobClassificationRules
         new("devops_tool", "docker", "Docker", "docker"),
         new("devops_tool", "kubernetes", "Kubernetes", "kubernetes", "k8s"),
         new("devops_tool", "terraform", "Terraform", "terraform"),
+        new("devops_tool", "harness", "Harness", "harness"),
+        new("devops_tool", "jfrog_artifactory", "JFrog Artifactory", "jfrog", "jfrog artifactory", "artifactory"),
+        new("devops_tool", "argo_cd", "Argo CD", "argocd", "argo cd"),
+        new("devops_tool", "flux_cd", "FluxCD", "fluxcd", "flux cd"),
+        new("devops_tool", "conan", "Conan", "conan"),
         new("devops_tool", "ansible", "Ansible", "ansible"),
         new("devops_tool", "jenkins", "Jenkins", "jenkins"),
         new("devops_tool", "git", "Git", "git"),
@@ -175,12 +216,14 @@ public static class JobClassificationRules
         new("devops_tool", "vmware", "VMware", "vmware"),
         new("devops_tool", "grafana", "Grafana", "grafana"),
         new("devops_tool", "prometheus", "Prometheus", "prometheus"),
+        new("devops_tool", "datadog", "Datadog", "datadog"),
 
         new("testing_tool", "jest", "Jest", "jest.js", "jest testing"),
         new("testing_tool", "junit", "JUnit", "junit"),
         new("testing_tool", "mockito", "Mockito", "mockito"),
         new("testing_tool", "cypress", "Cypress", "cypress"),
         new("testing_tool", "playwright", "Playwright", "playwright"),
+        new("testing_tool", "robot_framework", "Robot Framework", "robot framework"),
         new("testing_tool", "selenium", "Selenium", "selenium"),
         new("testing_tool", "postman", "Postman", "postman"),
         new("testing_tool", "testing", "Testowanie", "testing", "testy", "quality assurance"),
@@ -218,6 +261,9 @@ public static class JobClassificationRules
         new("integration_tool", "kafka", "Kafka", "kafka", "apache kafka"),
         new("integration_tool", "rabbitmq", "RabbitMQ", "rabbitmq", "rabbit mq"),
         new("integration_tool", "microservices", "Mikroserwisy", "microservices", "mikroserwisy"),
+        new("integration_tool", "n8n", "N8N", "n8n"),
+        new("integration_tool", "make", "Make.com", "make.com", "make automation"),
+        new("integration_tool", "low_code", "Low-code / No-code", "low-code", "no-code", "low code", "no code"),
 
         new("business_tool", "jira", "Jira", "jira"),
         new("business_tool", "servicenow", "ServiceNow", "servicenow", "service now"),
@@ -227,6 +273,8 @@ public static class JobClassificationRules
         new("business_tool", "power_platform", "Power Platform", "power platform"),
         new("business_tool", "dataverse", "Dataverse", "dataverse"),
         new("business_tool", "microsoft_365", "Microsoft 365", "microsoft 365", "office 365", "m365"),
+        new("business_tool", "excel", "Microsoft Excel", "microsoft excel", "excel"),
+        new("business_tool", "outlook", "Outlook", "outlook"),
         new("business_tool", "exchange", "Exchange", "exchange"),
         new("business_tool", "sharepoint", "SharePoint", "sharepoint"),
         new("business_tool", "figma", "Figma", "figma"),
@@ -241,6 +289,34 @@ public static class JobClassificationRules
         new("industrial_tool", "siemens", "Siemens", "siemens"),
         new("industrial_tool", "beckhoff", "Beckhoff", "beckhoff"),
         new("industrial_tool", "rockwell", "Rockwell", "rockwell"),
+
+        new("trait", "accuracy", "Dokladnosc", "sorgfaltig", "sorgfaeltig", "careful", "accuracy"),
+        new("trait", "responsibility", "Odpowiedzialnosc", "zuverlassig", "zuverlaessig", "reliable"),
+        new("trait", "independence", "Samodzielnosc", "eigenstandig", "eigenstaendig", "selbststandig", "selbststaendig"),
+        new("trait", "teamwork", "Praca zespolowa", "teamfahig", "teamfaehig", "team player"),
+
+        new("work_activity", "customer_service", "Obsluga klienta", "kundenservice", "kundenberatung", "client support"),
+        new("work_activity", "sales", "Sprzedaz", "vertrieb", "verkauf"),
+        new("work_activity", "driving", "Prowadzenie pojazdu", "fuhrerschein", "fuehrerschein"),
+        new("work_activity", "office_work", "Praca biurowa", "sachbearbeitung", "back office", "office management"),
+        new("work_activity", "shift_work", "Praca zmianowa", "schichtarbeit", "shift work"),
+        new("work_activity", "accounting", "Ksiegowosc i rozliczenia", "ksiegowosc", "buchhaltung", "accounting", "accounts payable", "payroll", "abrechnung"),
+        new("work_activity", "accounting", "Ksiegowosc i rozliczenia", "bilanzbuchhalter", "finanzbuchhalter", "steuerfachangestellte", "rechnungswesen", "deklaracji podatkowych", "sprawozdan finansowych", "jpk", "vat", "cit", "pit"),
+        new("work_activity", "hr_development", "HR i rozwoj pracownikow", "personalentwickler", "learning development", "recruitment and hr", "personalberatung", "onboarding", "rekrutacja"),
+        new("work_activity", "marketing_pr", "Marketing i PR", "marketing pr", "marketing manager", "kampanie", "newsletter", "produktkommunikation", "social media"),
+        new("work_activity", "gastronomy_service", "Obsluga gastronomiczna", "pracownik restauracji", "serwowanie zamowien", "przygotowywanie produktow", "kfc", "gastronomia"),
+        new("work_activity", "construction_work", "Prace budowlane", "prace elewacyjne", "ocieplania", "klej i tynki", "gladzie", "plyt gk", "remontowo-budowlanych"),
+        new("work_activity", "assembly", "Montaz", "pracownik montazu", "montowac", "montaz", "komponentow", "rysunkow technicznych"),
+        new("work_activity", "technical_drawing", "Rysunek techniczny / CAD", "rysunki techniczne", "cad", "nx", "dokumentacji technicznej"),
+        new("work_activity", "game_presenting", "Prowadzenie gier / prezentacja online", "game presenter", "live card games", "on-camera", "online players"),
+        new("work_activity", "quality_assurance", "Kontrola jakosci", "kontrola jakosci", "quality assurance", "qualitatssicherung", "qualitaetssicherung"),
+        new("work_activity", "content_creation", "Tworzenie tresci", "content creator", "video content", "campaign management", "direct marketing"),
+        new("work_activity", "ecommerce", "E-commerce", "e-commerce", "ecommerce", "shopify", "marketplace", "amazon marketplace"),
+        new("work_activity", "facility_management", "Facility management / technika budynkowa", "facility management", "tga", "hkls", "hlsk", "versorgungstechnik"),
+        new("work_activity", "it_support", "Wsparcie IT", "it support", "helpdesk", "1st level support", "anwender support"),
+
+        new("certification", "istqb", "ISTQB", "istqb"),
+        new("certification", "driving_license", "Prawo jazdy", "fuhrerschein", "fuehrerschein", "driving license"),
 
         new("trait", "calm", "Spokój", "spokojny", "spokojna", "opanowanie", "opanowany"),
         new("trait", "patience", "Cierpliwość", "cierpliwosc", "cierpliwy", "cierpliwa"),
@@ -275,11 +351,14 @@ public static class JobClassificationRules
             .Where(tag => !string.IsNullOrWhiteSpace(tag))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToList();
-        var combinedText = $"{title} {description} {string.Join(' ', tagList)}";
+        var titleAndDescriptionText = $"{title} {description}";
+        var normalizedTitleAndDescription = NormalizeForSearch(titleAndDescriptionText);
+        var taxonomyTags = FilterTaxonomyTags(tagList, normalizedTitleAndDescription);
+        var combinedText = $"{titleAndDescriptionText} {string.Join(' ', taxonomyTags)}";
         var normalizedText = NormalizeForSearch(combinedText);
         var category = FindBest(CategoryRules, normalizedText);
         var role = FindBest(RoleRules, normalizedText);
-        var criteria = DetectCriteria(title, description, tagList);
+        var criteria = DetectCriteria(title, description, tagList, LooksLikeItRole(normalizedText) || HasTechContext(normalizedText));
 
         if (role.Rule is not null && CategoryRules.FirstOrDefault(x => x.Code == role.Rule.CategoryCode) is { } roleCategory)
         {
@@ -299,13 +378,99 @@ public static class JobClassificationRules
         };
     }
 
-    private static List<OfferCriterion> DetectCriteria(string? title, string? description, IReadOnlyCollection<string> tags)
+    private static List<string> FilterTaxonomyTags(IEnumerable<string> tags, string normalizedTitleAndDescription)
     {
-        var segments = BuildTextSegments(title, description, tags);
-        return CriterionRules
-            .SelectMany(rule => MatchCriterion(rule, segments))
+        return tags
+            .Where(tag => !IsNoisyTaxonomyTag(tag, normalizedTitleAndDescription))
             .ToList();
     }
+
+    private static bool IsNoisyTaxonomyTag(string tag, string normalizedTitleAndDescription)
+    {
+        var normalizedTag = NormalizeForSearch(tag);
+        if (string.IsNullOrWhiteSpace(normalizedTag))
+        {
+            return true;
+        }
+
+        if (normalizedTag is "unknown" or "all others" or "full time" or "full_time" or "part time" or "part_time" or "remote" or "zdalna")
+        {
+            return true;
+        }
+
+        if (normalizedTag is "polska" or "poland" or "podkarpackie" or "rzeszow")
+        {
+            return true;
+        }
+
+        if (normalizedTag.EndsWith(" jobs", StringComparison.OrdinalIgnoreCase) || normalizedTag.EndsWith("-jobs", StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        if (normalizedTag is "it")
+        {
+            return !LooksLikeItRole(normalizedTitleAndDescription) && !HasTechContext(normalizedTitleAndDescription);
+        }
+
+        return false;
+    }
+
+    private static List<OfferCriterion> DetectCriteria(string? title, string? description, IReadOnlyCollection<string> tags, bool globalTechContext)
+    {
+        var segments = BuildTextSegments(title, description, tags);
+        return GetCriterionRules()
+            .SelectMany(rule => MatchCriterion(rule, segments, globalTechContext))
+            .ToList();
+    }
+
+    public static IReadOnlyList<CriterionAliasSeed> GetBootstrapCriterionAliases()
+    {
+        return CriterionRules
+            .SelectMany(rule => rule.Aliases.Select((alias, index) =>
+            {
+                var normalizedAlias = NormalizeForSearch(alias);
+                var isShort = IsShortAmbiguousAlias(normalizedAlias);
+                return new CriterionAliasSeed
+                {
+                    Kind = rule.Kind,
+                    Code = rule.Code,
+                    DisplayName = rule.DisplayName,
+                    Alias = alias,
+                    IsShortAmbiguous = isShort,
+                    RequiresTechContext = isShort && IsTechnicalCriterion(rule.Kind),
+                    RequiresWholeToken = true,
+                    Priority = 100 + index
+                };
+            }))
+            .ToList();
+    }
+
+    public static void ConfigureCriterionAliases(IEnumerable<CriterionAliasSeed> aliases)
+    {
+        var rules = aliases
+            .Where(alias => alias.IsActive && !string.IsNullOrWhiteSpace(alias.Kind) && !string.IsNullOrWhiteSpace(alias.Code) && !string.IsNullOrWhiteSpace(alias.Alias))
+            .GroupBy(alias => $"{alias.Kind}|{alias.Code}", StringComparer.OrdinalIgnoreCase)
+            .Select(group =>
+            {
+                var first = group.OrderBy(alias => alias.Priority).First();
+                return new CriterionRule(
+                    first.Kind,
+                    first.Code,
+                    string.IsNullOrWhiteSpace(first.DisplayName) ? first.Code : first.DisplayName,
+                    group
+                        .OrderBy(alias => alias.Priority)
+                        .Select(alias => alias.Alias)
+                        .Distinct(StringComparer.OrdinalIgnoreCase)
+                        .ToArray());
+            })
+            .ToArray();
+
+        DatabaseCriterionRules = rules.Length == 0 ? null : rules;
+    }
+
+    private static IReadOnlyList<CriterionRule> GetCriterionRules()
+        => DatabaseCriterionRules is { Length: > 0 } ? DatabaseCriterionRules : CriterionRules;
 
     private static List<OfferCriterion> SelectFinalCriteria(IEnumerable<OfferCriterion> hits)
     {
@@ -318,7 +483,7 @@ public static class JobClassificationRules
             .ToList();
     }
 
-    private static IEnumerable<OfferCriterion> MatchCriterion(CriterionRule rule, IReadOnlyCollection<TextSegment> segments)
+    private static IEnumerable<OfferCriterion> MatchCriterion(CriterionRule rule, IReadOnlyCollection<TextSegment> segments, bool globalTechContext)
     {
         foreach (var segment in segments)
         {
@@ -335,7 +500,12 @@ public static class JobClassificationRules
                     continue;
                 }
 
-                var requirementLevel = ResolveRequirementLevel(rule, segment, normalizedAlias);
+                if (rule.Kind == "ai_tool" && rule.Code == "ai_ml" && IsAiDisclaimerOnly(segment.NormalizedText, normalizedAlias))
+                {
+                    continue;
+                }
+
+                var requirementLevel = ResolveRequirementLevel(rule, segment, normalizedAlias, globalTechContext);
                 var (evidenceStart, evidenceEnd) = FindEvidenceBounds(segment.Text, alias);
                 yield return new OfferCriterion
                 {
@@ -494,7 +664,7 @@ public static class JobClassificationRules
         return line[(colonIndex + 1)..].Trim();
     }
 
-    private static string ResolveRequirementLevel(CriterionRule rule, TextSegment segment, string normalizedEvidence)
+    private static string ResolveRequirementLevel(CriterionRule rule, TextSegment segment, string normalizedEvidence, bool globalTechContext)
     {
         var evidenceWindow = BuildEvidenceWindow(segment.NormalizedText, normalizedEvidence);
 
@@ -511,6 +681,11 @@ public static class JobClassificationRules
         if (segment.RequirementLevel == RequiredLevel || segment.RequirementLevel == OptionalLevel)
         {
             return segment.RequirementLevel;
+        }
+
+        if (segment.Source == "tag" && IsTechnicalCriterion(rule.Kind) && globalTechContext)
+        {
+            return RequiredLevel;
         }
 
         if (IsTechnicalCriterion(rule.Kind) && segment.Source == "title" && LooksLikeItRole(segment.NormalizedText))
@@ -562,6 +737,11 @@ public static class JobClassificationRules
             _ => baseScore
         };
 
+        if (rule.Kind is "trait" or "work_activity")
+        {
+            score = Math.Min(score, requirementLevel == RequiredLevel ? 0.72m : 0.62m);
+        }
+
         return IsShortAmbiguousAlias(normalizedAlias)
             ? Math.Min(score, 0.75m)
             : score;
@@ -602,6 +782,16 @@ public static class JobClassificationRules
     private static bool LooksLikeItRole(string normalizedText)
     {
         return ItRoleTitleCue.IsMatch(normalizedText);
+    }
+
+    private static bool IsAiDisclaimerOnly(string normalizedText, string normalizedAlias)
+    {
+        if (!AiDisclaimerCue.IsMatch(normalizedText))
+        {
+            return false;
+        }
+
+        return !Regex.IsMatch(normalizedText, @"\b(machine learning engineer|ml engineer|ai engineer|ai/ml engineer|llm|genai|generative ai|model training|uczenie maszynowe|sztuczna inteligencja|deep learning|computer vision|nlp)\b");
     }
 
     private static (int? Start, int? End) FindEvidenceBounds(string text, string alias)

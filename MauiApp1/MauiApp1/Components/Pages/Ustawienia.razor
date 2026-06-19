@@ -34,9 +34,25 @@
             <input type="checkbox" @bind="SearchService.CurrentUser.Settings.NotificationsEnabled" style="width: 22px; height: 22px; cursor: pointer;" />
         </div>
 
-        <div class="settings-toggle-row" style="margin-top: 15px; display: flex; align-items: center; justify-content: space-between;">
-            <span class="settings-label" style="font-weight: bold;">Ciemny motyw (Dark Mode)</span>
-            <input type="checkbox" @bind="SearchService.CurrentUser.Settings.DarkMode" style="width: 22px; height: 22px; cursor: pointer;" />
+        <div class="settings-row" style="margin-top: 18px;">
+            <span class="settings-label" style="font-weight: bold;">Wygląd aplikacji</span>
+            <div class="theme-choice-grid">
+                <button type="button" class="theme-choice light @(IsThemeSelected("light") ? "active" : "")" @onclick="@(() => SetTheme("light"))">
+                    <span class="theme-choice-preview"></span>
+                    <strong>Jasny</strong>
+                    <small>Czysty widok dzienny</small>
+                </button>
+                <button type="button" class="theme-choice dark @(IsThemeSelected("dark") ? "active" : "")" @onclick="@(() => SetTheme("dark"))">
+                    <span class="theme-choice-preview"></span>
+                    <strong>Ciemny</strong>
+                    <small>Spokojny tryb nocny</small>
+                </button>
+                <button type="button" class="theme-choice cyberpunk @(IsThemeSelected("cyberpunk") ? "active" : "")" @onclick="@(() => SetTheme("cyberpunk"))">
+                    <span class="theme-choice-preview"></span>
+                    <strong>Cyberpunk</strong>
+                    <small>Neonowy panel pracy</small>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -137,5 +153,14 @@
 
         passwordChangeSucceeded = false;
         passwordMessage = errorMessage;
+    }
+
+    private bool IsThemeSelected(string theme)
+        => SearchService.CurrentUser.Settings.Theme == MauiApp1.testowe.UserSettings.NormalizeTheme(theme);
+
+    private void SetTheme(string theme)
+    {
+        SearchService.CurrentUser.Settings.Theme = theme;
+        SearchService.NotifyStateChanged();
     }
 }

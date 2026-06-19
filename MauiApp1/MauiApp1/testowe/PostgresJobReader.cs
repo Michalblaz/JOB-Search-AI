@@ -86,11 +86,22 @@ namespace MauiApp1.testowe
                     jo.education_required,
                     jo.education_field,
                     jo.education_confidence,
-                    jo.education_evidence
+                    jo.education_evidence,
+                    coalesce(jo.work_mode, 'unknown') as work_mode,
+                    coalesce(jo.work_time_type, 'unknown') as work_time_type,
+                    coalesce(jo.description_quality, 'unknown') as description_quality,
+                    jo.data_quality_score,
+                    jo.extraction_score,
+                    coalesce(array_remove(array_agg(distinct jct.contract_type), null), '{}'::text[]) as contract_types,
+                    coalesce(array_remove(array_agg(distinct job.benefit_code), null), '{}'::text[]) as benefit_codes,
+                    coalesce(array_remove(array_agg(distinct jsf.schedule_flag), null), '{}'::text[]) as schedule_flags
                 from public.job_offers jo
                 join public.job_sources js on js.id = jo.source_id
                 left join public.job_offer_languages jol on jol.job_offer_id = jo.id
                 left join public.job_offer_tags jot on jot.job_offer_id = jo.id
+                left join public.job_offer_contract_types jct on jct.job_offer_id = jo.id
+                left join public.job_offer_benefits job on job.job_offer_id = jo.id
+                left join public.job_offer_schedule_flags jsf on jsf.job_offer_id = jo.id
                 left join public.job_offer_roles jor on jor.job_offer_id = jo.id
                 left join public.job_roles jr on jr.id = jor.role_id
                 left join public.job_categories cat on cat.id = jr.category_id
@@ -146,6 +157,14 @@ namespace MauiApp1.testowe
                     EducationField = reader.IsDBNull(30) ? null : reader.GetString(30),
                     EducationConfidence = reader.IsDBNull(31) ? 0.5m : reader.GetDecimal(31),
                     EducationEvidence = reader.IsDBNull(32) ? null : reader.GetString(32),
+                    WorkMode = reader.GetString(33),
+                    WorkTimeType = reader.GetString(34),
+                    DescriptionQuality = reader.GetString(35),
+                    DataQualityScore = reader.IsDBNull(36) ? 0 : reader.GetDecimal(36),
+                    ExtractionScore = reader.IsDBNull(37) ? 0 : reader.GetDecimal(37),
+                    ContractTypes = reader.GetFieldValue<string[]>(38).ToList(),
+                    BenefitCodes = reader.GetFieldValue<string[]>(39).ToList(),
+                    ScheduleFlags = reader.GetFieldValue<string[]>(40).ToList(),
                     SourceCode = reader.GetString(10),
                     Source = reader.GetString(11),
                     Url = reader.IsDBNull(12) ? null : reader.GetString(12),

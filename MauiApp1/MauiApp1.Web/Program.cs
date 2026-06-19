@@ -1,9 +1,18 @@
 using MauiApp1.Components;
 using MauiApp1.testowe;
+using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseStaticWebAssets();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+var dataProtectionKeysPath = Path.Combine(builder.Environment.ContentRootPath, "App_Data", "DataProtectionKeys");
+Directory.CreateDirectory(dataProtectionKeysPath);
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionKeysPath))
+    .SetApplicationName("MauiApp1.Web");
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();

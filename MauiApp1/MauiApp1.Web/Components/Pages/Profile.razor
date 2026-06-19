@@ -1,154 +1,411 @@
-﻿@page "/profile"
+@page "/profile"
+@using MauiApp1.testowe
 @inject MauiApp1.testowe.JobSearchService SearchService
 @inject NavigationManager Nav
 
-<div class="profile-container">
-    <div class="profile-card">
-        <h2>Twój Profil i Preferencje</h2>
-        <p class="hint">Konto logowania: <strong>@SearchService.CurrentUser.AccountLogin</strong></p>
-
-        <div class="form-group">
-            <label>Imię / Nick:</label>
-            <input type="text" @bind="SearchService.CurrentUser.Username" class="form-input" />
+<div class="profile-container profile-cv">
+    <section class="profile-hero">
+        <div>
+            <span class="profile-kicker">Profil dopasowania</span>
+            <h2>Twoje CV i preferencje</h2>
+            <p>Te dane są traktowane jak Twoje umiejętności, języki i warunki pracy. Na ich podstawie aplikacja filtruje wymagania oraz buduje wynik dopasowania ofert.</p>
         </div>
+        <div class="profile-score-box">
+            <strong>@ProfileCompletion%</strong>
+            <span>uzupełnienia profilu</span>
+        </div>
+    </section>
 
-        <hr />
+    <div class="profile-grid">
+        <details class="profile-panel profile-panel-wide profile-details" open>
+            <summary>Dane podstawowe i kierunek pracy</summary>
+            <div class="profile-form-grid">
+                <label class="profile-field">
+                    <span>Imię / nick</span>
+                    <input type="text" @bind="SearchService.CurrentUser.Username" class="form-input" />
+                </label>
 
-        <div class="form-group">
-            <label>Domyślna lokalizacja:</label>
-            <select @bind="SearchService.CurrentUser.Settings.DefaultLocation" class="form-input">
-                @foreach (var city in LocationOptions)
+                <label class="profile-field">
+                    <span>Konto logowania</span>
+                    <input type="text" value="@SearchService.CurrentUser.AccountLogin" class="form-input" disabled />
+                </label>
+
+                <label class="profile-field">
+                    <span>Domyślna lokalizacja</span>
+                    <select @bind="SearchService.CurrentUser.Settings.DefaultLocation" class="form-input">
+                        @foreach (var city in LocationOptions)
+                        {
+                            <option value="@city">@city</option>
+                        }
+                    </select>
+                </label>
+
+                <label class="profile-field">
+                    <span>Szukana rola / stanowisko</span>
+                    <input type="text" @bind="SearchService.CurrentUser.Settings.JobTitle" class="form-input" placeholder="np. .NET Developer, sprzedawca, opiekun" />
+                </label>
+
+                <label class="profile-field">
+                    <span>Kategoria zawodowa</span>
+                    <select class="form-input"
+                            value="@SearchService.CurrentUser.Settings.PreferredCategoryCode"
+                            @onchange="HandleProfileCategoryChanged">
+                        <option value="">Wybierz kategorię</option>
+                        @foreach (var category in SearchService.CategoryOptions)
+                        {
+                            <option value="@category.CategoryCode">@category.CategoryName (@category.ActiveOfferCount)</option>
+                        }
+                    </select>
+                </label>
+
+                <label class="profile-field">
+                    <span>Rola / stanowisko z bazy</span>
+                    <select class="form-input"
+                            value="@SearchService.CurrentUser.Settings.PreferredRoleCode"
+                            @onchange="HandleProfileRoleChanged"
+                            disabled="@(!HasProfileCategory)">
+                        <option value="">Wybierz rolę</option>
+                        @foreach (var role in SearchService.VisibleRoleOptions)
+                        {
+                            <option value="@role.RoleCode">@role.RoleName (@role.ActiveOfferCount)</option>
+                        }
+                    </select>
+                </label>
+            </div>
+        </details>
+
+        @if (!HasProfileScope)
+        {
+            <section class="profile-panel profile-panel-wide profile-empty-state">
+                <h3>Najpierw wybierz kategorię i rolę</h3>
+                <p>Po tym kroku pokażę tylko te sekcje profilu, które mają sens dla danego stanowiska. Dzięki temu nie trzeba przewijać technologii przy pracy w sprzedaży albo certyfikatów budowlanych przy IT.</p>
+            </section>
+        }
+        else
+        {
+        <details class="profile-panel profile-details" open>
+            <summary>Warunki pracy</summary>
+            <div class="profile-form-grid one-col">
+                <label class="profile-field">
+                    <span>Minimalna stawka PLN/h</span>
+                    <input type="number" min="0" step="1" @bind="SearchService.CurrentUser.Settings.ExpectedSalaryMin" class="form-input" />
+                </label>
+
+                <label class="profile-field">
+                    <span>Tryb pracy</span>
+                    <select @bind="SearchService.CurrentUser.Settings.WorkMode" class="form-input">
+                        <option value="any">Dowolny</option>
+                        <option value="remote">Zdalna</option>
+                        <option value="hybrid">Hybrydowa</option>
+                        <option value="onsite">Stacjonarna</option>
+                        <option value="field">Terenowa</option>
+                    </select>
+                </label>
+
+                <label class="profile-field">
+                    <span>Wymiar pracy</span>
+                    <select @bind="SearchService.CurrentUser.Settings.WorkTimeType" class="form-input">
+                        <option value="any">Dowolny</option>
+                        <option value="full_time">Pełny etat</option>
+                        <option value="part_time">Część etatu</option>
+                        <option value="flexible">Elastycznie</option>
+                    </select>
+                </label>
+
+                <label class="profile-field">
+                    <span>Maksymalny dystans dojazdu</span>
+                    <input type="number" min="0" step="5" @bind="SearchService.CurrentUser.Settings.MaxDistanceKm" class="form-input" placeholder="np. 20" />
+                </label>
+            </div>
+        </details>
+
+        <details class="profile-panel profile-details">
+            <summary>Doświadczenie i formalności</summary>
+            <label class="profile-field">
+                <span>Doświadczenie</span>
+                <select @bind="SearchService.CurrentUser.Settings.Experience" class="form-input">
+                    @foreach (var level in ExperienceOptions)
+                    {
+                        <option value="@level">@level</option>
+                    }
+                </select>
+            </label>
+
+            <label class="profile-field">
+                <span>Wykształcenie</span>
+                <select @bind="SearchService.CurrentUser.Settings.Education" class="form-input">
+                    @foreach (var level in EducationOptions)
+                    {
+                        <option value="@level">@level</option>
+                    }
+                </select>
+            </label>
+
+            <div class="profile-chip-block">
+                <span class="profile-label">Preferowane umowy</span>
+                <div class="profile-pill-group">
+                    @foreach (var type in ContractOptions)
+                    {
+                        <label class="profile-pill">
+                            <input type="checkbox"
+                                   checked="@IsSelected(SearchService.CurrentUser.Settings.PreferredContractTypes, type)"
+                                   @onchange="@(e => ToggleList(SearchService.CurrentUser.Settings.PreferredContractTypes, type, e.Value is bool value && value))" />
+                            @type
+                        </label>
+                    }
+                </div>
+            </div>
+        </details>
+
+        <details class="profile-panel profile-panel-wide profile-details">
+            <summary>Języki z poziomami</summary>
+            <div class="language-level-grid">
+                @foreach (var language in LanguageOptions)
                 {
-                    <option value="@city">@city</option>
+                    <div class="language-level-row">
+                        <label class="profile-pill language-pill">
+                            <input type="checkbox"
+                                   checked="@IsSelected(SearchService.CurrentUser.Settings.KnownLanguages, language)"
+                                   @onchange="@(e => ToggleLanguage(language, e.Value is bool value && value))" />
+                            @language
+                        </label>
+                        <select class="form-input"
+                                value="@GetLanguageLevel(language)"
+                                @onchange="@(e => SetLanguageLevel(language, e.Value?.ToString() ?? "unknown"))"
+                                disabled="@(!IsSelected(SearchService.CurrentUser.Settings.KnownLanguages, language))">
+                            @foreach (var level in LanguageLevels)
+                            {
+                                <option value="@level">@DisplayLanguageLevel(level)</option>
+                            }
+                        </select>
+                    </div>
                 }
-            </select>
-        </div>
+            </div>
+        </details>
 
-        <h3>Twoje Preferencje wyszukiwania</h3>
-        <p class="hint">Te dane pomogą nam obliczać dopasowanie i szybko ustawić filtry wyszukiwarki.</p>
+        <details class="profile-panel profile-panel-wide profile-details" open>
+            <summary>Umiejętności z bazy ofert</summary>
+            <div class="profile-section-header">
+                <div>
+                    <p>Opcje są pobierane z aktualnych kryteriów importera. Zaznacz to, co realnie wpisujesz do CV.</p>
+                </div>
+                <label class="profile-threshold">
+                    <span>Minimum wymaganych: @SearchService.CurrentUser.Settings.RequiredCriteriaMatchPercent%</span>
+                    <input type="range" min="10" max="100" step="10" @bind="SearchService.CurrentUser.Settings.RequiredCriteriaMatchPercent" @bind:event="oninput" />
+                </label>
+            </div>
 
-        <div class="form-group">
-            <label>Stanowisko (np. React Developer):</label>
-            <input type="text" @bind="SearchService.CurrentUser.Settings.JobTitle" class="form-input" />
-        </div>
+            @if (SkillOptions.Any())
+            {
+                @foreach (var group in SkillOptions.GroupBy(option => option.Kind).OrderBy(group => GetCriterionGroupOrder(group.Key)))
+                {
+                    <ProfileCriterionGroup Title="@SearchService.GetCriterionGroupLabel(group.Key)"
+                                           Options="@group.OrderByDescending(option => option.ActiveOfferCount).ThenBy(option => option.DisplayName).Take(24).ToList()"
+                                           SelectedCodes="@SearchService.CurrentUser.Settings.Skills"
+                                           OnToggle="ToggleProfileCode" />
+                }
+            }
+            else
+            {
+                <p class="profile-empty">Brak kryteriów z bazy. Uruchom import lub wybierz kategorię z ofertami.</p>
+            }
+        </details>
 
-        <div class="form-group">
-            <label>Minimalne oczekiwania finansowe (zł/h):</label>
-            <input type="text" @bind="SearchService.CurrentUser.Settings.ExpectedSalary" class="form-input" placeholder="np. 60 zł/h" />
-        </div>
+        @if (TraitOptions.Any() || ActivityOptions.Any() || CertificationOptions.Any())
+        {
+            <details class="profile-panel profile-panel-wide profile-details">
+                <summary>Cechy, czynności i uprawnienia</summary>
 
-        <div class="form-group">
-            <label>Wykształcenie:</label>
-            <select @bind="SearchService.CurrentUser.Settings.Education" class="form-input">
-                <option value="Brak wymagań lub niewymagane">Brak wymagań lub niewymagane</option>
-                <option value="Student / w trakcie">Student / w trakcie</option>
-                <option value="Średnie">Średnie</option>
-                <option value="Wyższe">Wyższe</option>
-            </select>
-        </div>
+                @if (TraitOptions.Any())
+                {
+                    <ProfileCriterionGroup Title="Cechy osobowe"
+                                           Options="@TraitOptions"
+                                           SelectedCodes="@SearchService.CurrentUser.Settings.PersonalTraits"
+                                           OnToggle="ToggleProfileCode" />
+                }
 
-        <div class="form-group">
-            <label>Twoje doświadczenie:</label>
-            <select @bind="SearchService.CurrentUser.Settings.Experience" class="form-input">
-                <option value="Wszystkie">Wszystkie</option>
-                <option value="Brak doświadczenia">Brak doświadczenia</option>
-                <option value="Młodszy specjalista">Młodszy specjalista</option>
-                <option value="Specjalista">Specjalista</option>
-                <option value="Starszy specjalista">Starszy specjalista</option>
-                <option value="Menadżer">Menadżer</option>
-            </select>
-        </div>
+                @if (ActivityOptions.Any())
+                {
+                    <ProfileCriterionGroup Title="Rodzaj wykonywanej pracy"
+                                           Options="@ActivityOptions"
+                                           SelectedCodes="@SearchService.CurrentUser.Settings.WorkActivities"
+                                           OnToggle="ToggleProfileCode" />
+                }
 
-        <div class="form-group">
-            <h3>Preferowane rodzaje umów:</h3>
+                @if (CertificationOptions.Any())
+                {
+                    <ProfileCriterionGroup Title="Certyfikaty i uprawnienia"
+                                           Options="@CertificationOptions"
+                                           SelectedCodes="@SearchService.CurrentUser.Settings.Certifications"
+                                           OnToggle="ToggleProfileCode" />
+                }
+            </details>
+        }
+
+        <details class="profile-panel profile-panel-wide profile-details">
+            <summary>Czego nie chcesz</summary>
             <div class="profile-pill-group">
-                @foreach (var type in ContractOptions)
+                @foreach (var flag in ExcludedFlagOptions)
                 {
                     <label class="profile-pill">
                         <input type="checkbox"
-                               checked="@(SearchService.CurrentUser.Settings.PreferredContractTypes?.Contains(type) ?? false)"
-                               @onchange="@((e) => ToggleContract(type, (bool)e.Value))" />
-                        @type
+                               checked="@IsSelected(SearchService.CurrentUser.Settings.ExcludedFlags, flag.Code)"
+                               @onchange="@(e => ToggleList(SearchService.CurrentUser.Settings.ExcludedFlags, flag.Code, e.Value is bool value && value))" />
+                        @flag.Label
                     </label>
                 }
             </div>
-        </div>
-
-        <div class="form-group">
-            <h3>Znam języki</h3>
-            <div class="checkbox-group profile-pill-group">
-                @foreach (var lang in LanguageOptions)
-                {
-                    <label class="profile-pill profile-pill-light">
-                        <input type="checkbox"
-                               checked="@SearchService.CurrentUser.Settings.KnownLanguages.Contains(lang)"
-                               @onchange="@((e) => ToggleLanguage(lang, (bool)e.Value))" />
-                        @lang
-                    </label>
-                }
-            </div>
-        </div>
-
-        <button class="btn-save" @onclick="SaveProfile">Zapisz zmiany profilu</button>
-
-        @if (saved)
-        {
-            <p class="success">Profil zaktualizowany!</p>
+        </details>
         }
     </div>
 
-    <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
-        <button class="btn-search-profile" @onclick="SearchWithProfile">
-            Szukaj na podstawie mojego profilu
-        </button>
+    <div class="profile-actions">
+        <button class="btn-save" @onclick="SaveProfile">Zapisz profil</button>
+        <button class="btn-search-profile" @onclick="SearchWithProfile">Szukaj według profilu</button>
     </div>
+
+    @if (saved)
+    {
+        <p class="success">Profil zaktualizowany.</p>
+    }
 </div>
 
 @code {
-    private bool saved = false;
+    private bool saved;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await SearchService.LoadSearchOptionsAsync();
+        if (!string.IsNullOrWhiteSpace(SearchService.CurrentUser.Settings.PreferredCategoryCode))
+        {
+            await SearchService.SelectCategoryAsync(SearchService.CurrentUser.Settings.PreferredCategoryCode);
+        }
+
+        if (!string.IsNullOrWhiteSpace(SearchService.CurrentUser.Settings.PreferredRoleCode))
+        {
+            await SearchService.SelectRoleAsync(SearchService.CurrentUser.Settings.PreferredRoleCode);
+        }
+    }
 
     private List<string> LocationOptions = new()
     {
-        "Rzeszów",
-        "Kraków",
-        "Warszawa",
-        "Wrocław",
-        "Gdańsk",
-        "Poznań",
-        "Łódź",
-        "Katowice",
-        "Lublin",
-        "Szczecin",
-        "Białystok",
-        "Bydgoszcz",
-        "Toruń",
-        "Gdynia",
-        "Częstochowa"
+        "Rzeszów", "Kraków", "Warszawa", "Wrocław", "Gdańsk", "Poznań", "Łódź", "Katowice",
+        "Lublin", "Szczecin", "Białystok", "Bydgoszcz", "Toruń", "Gdynia", "Częstochowa", "Wszystkie"
+    };
+
+    private List<string> ExperienceOptions = new()
+    {
+        "Wszystkie", "Brak doświadczenia", "Staż / praktyki", "Junior", "Mid / Regular",
+        "Senior", "Lead / Principal", "Młodszy specjalista", "Specjalista", "Starszy specjalista", "Menadżer"
+    };
+
+    private List<string> EducationOptions = new()
+    {
+        "Brak wymagań lub niewymagane", "Student / w trakcie", "Średnie", "Wyższe"
     };
 
     private List<string> ContractOptions = new()
     {
-        "Umowa o Pracę",
-        "Zlecenie",
-        "1/2 etatu",
-        "1/4 etatu",
-        "Pełny etat"
+        "Umowa o pracę", "Zlecenie", "B2B", "Pełny etat", "Część etatu"
     };
 
     private List<string> LanguageOptions = new()
     {
-        "Angielski",
-        "Niemiecki",
-        "Ukraiński",
-        "Francuski"
+        "Angielski", "Niemiecki", "Ukraiński", "Francuski"
     };
+
+    private List<string> LanguageLevels = new()
+    {
+        "unknown", "A1", "A2", "B1", "B2", "C1", "C2", "communicative", "fluent", "native"
+    };
+
+    private List<(string Code, string Label)> ExcludedFlagOptions = new()
+    {
+        ("night_shifts", "Bez nocek"),
+        ("weekend_work", "Bez weekendów"),
+        ("shift_work", "Bez pracy zmianowej"),
+        ("delegations", "Bez delegacji"),
+        ("physical_work", "Bez ciężkiej pracy fizycznej")
+    };
+
+    private static readonly HashSet<string> SkillKinds = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "technology", "programming_language", "framework", "database", "cloud", "devops_tool",
+        "testing_tool", "methodology", "data_tool", "ai_tool", "integration_tool", "business_tool",
+        "industrial_tool"
+    };
+
+    private List<JobCriterionOption> SkillOptions => SearchService.CriteriaOptions
+        .Where(option => SkillKinds.Contains(option.Kind))
+        .ToList();
+
+    private List<JobCriterionOption> TraitOptions => SearchService.CriteriaOptions
+        .Where(option => option.Kind == "trait")
+        .OrderByDescending(option => option.ActiveOfferCount)
+        .ThenBy(option => option.DisplayName)
+        .Take(24)
+        .ToList();
+
+    private List<JobCriterionOption> ActivityOptions => SearchService.CriteriaOptions
+        .Where(option => option.Kind == "work_activity")
+        .OrderByDescending(option => option.ActiveOfferCount)
+        .ThenBy(option => option.DisplayName)
+        .Take(24)
+        .ToList();
+
+    private List<JobCriterionOption> CertificationOptions => SearchService.CriteriaOptions
+        .Where(option => option.Kind == "certification")
+        .OrderByDescending(option => option.ActiveOfferCount)
+        .ThenBy(option => option.DisplayName)
+        .Take(24)
+        .ToList();
+
+    private bool HasProfileCategory => !string.IsNullOrWhiteSpace(SearchService.CurrentUser.Settings.PreferredCategoryCode);
+
+    private bool HasProfileScope =>
+        HasProfileCategory && !string.IsNullOrWhiteSpace(SearchService.CurrentUser.Settings.PreferredRoleCode);
+
+    private int ProfileCompletion
+    {
+        get
+        {
+            var settings = SearchService.CurrentUser.Settings;
+            var score = 0;
+            if (!string.IsNullOrWhiteSpace(SearchService.CurrentUser.Username)) score += 10;
+            if (!string.IsNullOrWhiteSpace(settings.JobTitle)) score += 10;
+            if (settings.ExpectedSalaryMin > 0) score += 10;
+            if (!string.Equals(settings.WorkMode, "any", StringComparison.OrdinalIgnoreCase)) score += 10;
+            if (!string.Equals(settings.WorkTimeType, "any", StringComparison.OrdinalIgnoreCase)) score += 10;
+            if (settings.GetProfileCriterionCodes().Any()) score += 25;
+            if (settings.KnownLanguages.Any()) score += 15;
+            if (settings.PreferredContractTypes.Any()) score += 10;
+            return Math.Min(score, 100);
+        }
+    }
+
+    private static int GetCriterionGroupOrder(string kind)
+    {
+        return kind switch
+        {
+            "programming_language" => 0,
+            "framework" => 1,
+            "database" => 2,
+            "cloud" => 3,
+            "devops_tool" => 4,
+            "testing_tool" => 5,
+            "data_tool" => 6,
+            "ai_tool" => 7,
+            "technology" => 8,
+            _ => 20
+        };
+    }
 
     private async Task SaveProfile()
     {
         SearchService.SaveDataToDevice();
         saved = true;
         StateHasChanged();
-        await Task.Delay(2000);
+        await Task.Delay(1800);
         saved = false;
         StateHasChanged();
     }
@@ -160,122 +417,89 @@
         Nav.NavigateTo("/");
     }
 
-    private void ToggleContract(string type, bool isChecked)
+    private async Task HandleProfileCategoryChanged(ChangeEventArgs e)
     {
-        if (SearchService.CurrentUser.Settings.PreferredContractTypes == null)
+        var categoryCode = e.Value?.ToString() ?? string.Empty;
+        SearchService.CurrentUser.Settings.PreferredCategoryCode = categoryCode;
+        SearchService.CurrentUser.Settings.PreferredRoleCode = string.Empty;
+        await SearchService.SelectCategoryAsync(categoryCode);
+    }
+
+    private async Task HandleProfileRoleChanged(ChangeEventArgs e)
+    {
+        var roleCode = e.Value?.ToString() ?? string.Empty;
+        SearchService.CurrentUser.Settings.PreferredRoleCode = roleCode;
+        await SearchService.SelectRoleAsync(roleCode);
+    }
+
+    private static bool IsSelected(List<string> values, string code)
+        => values.Contains(code, StringComparer.OrdinalIgnoreCase);
+
+    private static void ToggleList(List<string> values, string code, bool isChecked)
+    {
+        if (string.IsNullOrWhiteSpace(code))
         {
-            SearchService.CurrentUser.Settings.PreferredContractTypes = new List<string>();
+            return;
         }
 
         if (isChecked)
         {
-            if (!SearchService.CurrentUser.Settings.PreferredContractTypes.Contains(type))
+            if (!values.Contains(code, StringComparer.OrdinalIgnoreCase))
             {
-                SearchService.CurrentUser.Settings.PreferredContractTypes.Add(type);
+                values.Add(code);
             }
         }
         else
         {
-            SearchService.CurrentUser.Settings.PreferredContractTypes.Remove(type);
+            values.RemoveAll(value => string.Equals(value, code, StringComparison.OrdinalIgnoreCase));
         }
     }
 
-    private void ToggleLanguage(string lang, bool isChecked)
+    private void ToggleProfileCode(ProfileCriterionToggle toggle)
     {
-        if (isChecked)
+        ToggleList(toggle.SelectedCodes, toggle.Code, toggle.IsSelected);
+    }
+
+    private void ToggleLanguage(string language, bool isChecked)
+    {
+        ToggleList(SearchService.CurrentUser.Settings.KnownLanguages, language, isChecked);
+        if (isChecked && !SearchService.CurrentUser.Settings.KnownLanguageLevels.ContainsKey(language))
         {
-            if (!SearchService.CurrentUser.Settings.KnownLanguages.Contains(lang))
-            {
-                SearchService.CurrentUser.Settings.KnownLanguages.Add(lang);
-            }
+            SearchService.CurrentUser.Settings.KnownLanguageLevels[language] = "unknown";
         }
-        else
+
+        if (!isChecked)
         {
-            SearchService.CurrentUser.Settings.KnownLanguages.Remove(lang);
+            SearchService.CurrentUser.Settings.KnownLanguageLevels.Remove(language);
         }
+    }
+
+    private string GetLanguageLevel(string language)
+    {
+        return SearchService.CurrentUser.Settings.KnownLanguageLevels.TryGetValue(language, out var level)
+            ? level
+            : "unknown";
+    }
+
+    private void SetLanguageLevel(string language, string level)
+    {
+        if (!IsSelected(SearchService.CurrentUser.Settings.KnownLanguages, language))
+        {
+            return;
+        }
+
+        SearchService.CurrentUser.Settings.KnownLanguageLevels[language] = level;
+    }
+
+    private static string DisplayLanguageLevel(string level)
+    {
+        return level switch
+        {
+            "unknown" => "Poziom nieokreślony",
+            "communicative" => "Komunikatywny",
+            "fluent" => "Płynny",
+            "native" => "Ojczysty",
+            _ => level
+        };
     }
 }
-
-<style>
-    .profile-card {
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        color: #333;
-        max-width: 600px;
-        margin: auto;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-    }
-
-    .form-input {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        margin-top: 5px;
-    }
-
-    .hint {
-        font-size: 0.8rem;
-        color: #666;
-        margin-bottom: 15px;
-    }
-
-    .profile-pill-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 10px;
-    }
-
-    .profile-pill {
-        background: #f0f0f0;
-        padding: 7px 12px;
-        border-radius: 999px;
-        cursor: pointer;
-    }
-
-    .profile-pill-light {
-        background: #f7f9fb;
-    }
-
-    .btn-save {
-        background: #6c5ce7;
-        color: white;
-        border: none;
-        padding: 12px;
-        border-radius: 6px;
-        width: 100%;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    .success {
-        color: green;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-
-    .btn-search-profile {
-        background: #00ced1;
-        color: #1a1a1a;
-        border: none;
-        padding: 15px;
-        border-radius: 8px;
-        width: 100%;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: 0.3s;
-    }
-
-    .btn-search-profile:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 206, 209, 0.3);
-    }
-</style>

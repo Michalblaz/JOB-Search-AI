@@ -36,7 +36,9 @@
             <p><strong>Źródło:</strong> @Offer.Source</p>
         </div>
 
-        <div class="circular-progress-container" style="display: flex !important; justify-content: flex-start !important; align-items: center !important; gap: 10px !important; width: fit-content !important;">
+        <div class="circular-progress-container"
+             title="@matchReason"
+             style="display: flex !important; justify-content: flex-start !important; align-items: center !important; gap: 10px !important; width: fit-content !important;">
             <span class="match-label" style="margin: 0 !important; white-space: nowrap !important;">Dopasowanie</span>
 
             <div style="position: relative; width: 45px; height: 45px; flex-shrink: 0;">
@@ -52,6 +54,8 @@
                 </div>
             </div>
         </div>
+
+        <p class="match-explanation">@matchReason</p>
     </div>
 
     <div class="card-footer">
@@ -76,6 +80,10 @@
     [Parameter] public JobOffer Offer { get; set; } = new();
 
     private int matchPercent => SearchService.CalculateMatchingScore(Offer);
+
+    private string matchReason => !string.IsNullOrWhiteSpace(Offer.MatchReason)
+        ? Offer.MatchReason
+        : SearchService.BuildRequirementMatchSummary(Offer);
 
     private bool IsFavorite => SearchService.FavoriteOffers.Any(o => o.Title == Offer.Title && o.Company == Offer.Company);
 

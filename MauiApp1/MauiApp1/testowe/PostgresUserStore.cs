@@ -47,7 +47,17 @@ namespace MauiApp1.testowe
                     coalesce(p.default_location, 'Rzeszów') as default_location,
                     coalesce(p.notifications_enabled, true) as notifications_enabled,
                     coalesce(p.dark_mode, false) as dark_mode,
+                    coalesce(p.theme, case when coalesce(p.dark_mode, false) then 'dark' else 'light' end) as theme,
                     coalesce(p.expected_salary, '') as expected_salary,
+                    p.expected_salary_min,
+                    coalesce(p.salary_currency, 'PLN') as salary_currency,
+                    coalesce(p.salary_tax_type, 'unknown') as salary_tax_type,
+                    coalesce(p.work_mode_preference, 'any') as work_mode_preference,
+                    p.max_office_days_per_week,
+                    coalesce(p.work_time_type_preference, 'any') as work_time_type_preference,
+                    p.max_distance_km,
+                    coalesce(p.preferred_category_code, '') as preferred_category_code,
+                    coalesce(p.preferred_role_code, '') as preferred_role_code,
                     coalesce(p.job_title, '') as job_title,
                     coalesce(p.experience, 'Wszystkie') as experience,
                     coalesce(p.education, 'Brak wymagań lub niewymagane') as education
@@ -81,10 +91,20 @@ namespace MauiApp1.testowe
                         DefaultLocation = reader.GetString(6),
                         NotificationsEnabled = reader.GetBoolean(7),
                         DarkMode = reader.GetBoolean(8),
-                        ExpectedSalary = reader.GetString(9),
-                        JobTitle = reader.GetString(10),
-                        Experience = reader.GetString(11),
-                        Education = reader.GetString(12)
+                        Theme = reader.GetString(9),
+                        ExpectedSalary = reader.GetString(10),
+                        ExpectedSalaryMin = reader.IsDBNull(11) ? null : reader.GetDecimal(11),
+                        SalaryCurrency = reader.GetString(12),
+                        SalaryTaxType = reader.GetString(13),
+                        WorkMode = reader.GetString(14),
+                        MaxOfficeDaysPerWeek = reader.IsDBNull(15) ? null : reader.GetDecimal(15),
+                        WorkTimeType = reader.GetString(16),
+                        MaxDistanceKm = reader.IsDBNull(17) ? null : reader.GetInt32(17),
+                        PreferredCategoryCode = reader.GetString(18),
+                        PreferredRoleCode = reader.GetString(19),
+                        JobTitle = reader.GetString(20),
+                        Experience = reader.GetString(21),
+                        Education = reader.GetString(22)
                     }
                 },
                 FavoriteOffers = new List<JobOffer>()
@@ -95,6 +115,14 @@ namespace MauiApp1.testowe
             account.Profile.Settings.Skills = LoadStringList(connection, account.Login, "public.user_profile_skills", "skill_name");
             account.Profile.Settings.KnownLanguages = LoadStringList(connection, account.Login, "public.user_profile_languages", "language_name");
             account.Profile.Settings.PreferredContractTypes = LoadStringList(connection, account.Login, "public.user_profile_contract_types", "contract_type");
+            account.Profile.Settings.Skills = MergeDistinct(account.Profile.Settings.Skills, LoadStringList(connection, account.Login, "public.user_skills", "skill_code"));
+            account.Profile.Settings.KnownLanguageLevels = LoadLanguageLevels(connection, account.Login);
+            account.Profile.Settings.KnownLanguages = MergeDistinct(account.Profile.Settings.KnownLanguages, account.Profile.Settings.KnownLanguageLevels.Keys);
+            account.Profile.Settings.Certifications = LoadStringList(connection, account.Login, "public.user_certifications", "certification_code");
+            account.Profile.Settings.DrivingLicenses = account.Profile.Settings.Certifications
+                .Where(code => code.Contains("driving", StringComparison.OrdinalIgnoreCase) || code.Contains("prawo", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            account.Profile.Settings.ExcludedFlags = LoadStringList(connection, account.Login, "public.user_excluded_flags", "flag_code");
             account.FavoriteOffers = LoadFavoriteOffers(connection, account.Login);
             account.Profile.SearchHistory = LoadSearchHistory(connection, account.Login);
 
@@ -132,12 +160,16 @@ namespace MauiApp1.testowe
 
             const string upsertProfileSql = """
                 insert into public.user_profiles (
-                    user_id, username, email, default_location, notifications_enabled, dark_mode,
-                    expected_salary, job_title, experience, education, created_at, updated_at
+                    user_id, username, email, default_location, notifications_enabled, dark_mode, theme,
+                    expected_salary, expected_salary_min, salary_currency, salary_tax_type, work_mode_preference,
+                    max_office_days_per_week, work_time_type_preference, max_distance_km,
+                    preferred_category_code, preferred_role_code, job_title, experience, education, created_at, updated_at
                 )
                 values (
-                    @user_id, @username, @email, @default_location, @notifications_enabled, @dark_mode,
-                    @expected_salary, @job_title, @experience, @education, now(), now()
+                    @user_id, @username, @email, @default_location, @notifications_enabled, @dark_mode, @theme,
+                    @expected_salary, @expected_salary_min, @salary_currency, @salary_tax_type, @work_mode_preference,
+                    @max_office_days_per_week, @work_time_type_preference, @max_distance_km,
+                    @preferred_category_code, @preferred_role_code, @job_title, @experience, @education, now(), now()
                 )
                 on conflict (user_id)
                 do update set
@@ -146,7 +178,17 @@ namespace MauiApp1.testowe
                     default_location = excluded.default_location,
                     notifications_enabled = excluded.notifications_enabled,
                     dark_mode = excluded.dark_mode,
+                    theme = excluded.theme,
                     expected_salary = excluded.expected_salary,
+                    expected_salary_min = excluded.expected_salary_min,
+                    salary_currency = excluded.salary_currency,
+                    salary_tax_type = excluded.salary_tax_type,
+                    work_mode_preference = excluded.work_mode_preference,
+                    max_office_days_per_week = excluded.max_office_days_per_week,
+                    work_time_type_preference = excluded.work_time_type_preference,
+                    max_distance_km = excluded.max_distance_km,
+                    preferred_category_code = excluded.preferred_category_code,
+                    preferred_role_code = excluded.preferred_role_code,
                     job_title = excluded.job_title,
                     experience = excluded.experience,
                     education = excluded.education,
@@ -161,16 +203,31 @@ namespace MauiApp1.testowe
                 profileCommand.Parameters.AddWithValue("default_location", account.Profile?.Settings?.DefaultLocation ?? "Rzeszów");
                 profileCommand.Parameters.AddWithValue("notifications_enabled", account.Profile?.Settings?.NotificationsEnabled ?? true);
                 profileCommand.Parameters.AddWithValue("dark_mode", account.Profile?.Settings?.DarkMode ?? false);
+                profileCommand.Parameters.AddWithValue("theme", UserSettings.NormalizeTheme(account.Profile?.Settings?.Theme));
                 profileCommand.Parameters.AddWithValue("expected_salary", account.Profile?.Settings?.ExpectedSalary ?? string.Empty);
+                profileCommand.Parameters.AddWithValue("expected_salary_min", (object?)account.Profile?.Settings?.ExpectedSalaryMin ?? DBNull.Value);
+                profileCommand.Parameters.AddWithValue("salary_currency", account.Profile?.Settings?.SalaryCurrency ?? "PLN");
+                profileCommand.Parameters.AddWithValue("salary_tax_type", account.Profile?.Settings?.SalaryTaxType ?? "unknown");
+                profileCommand.Parameters.AddWithValue("work_mode_preference", account.Profile?.Settings?.WorkMode ?? "any");
+                profileCommand.Parameters.AddWithValue("max_office_days_per_week", (object?)account.Profile?.Settings?.MaxOfficeDaysPerWeek ?? DBNull.Value);
+                profileCommand.Parameters.AddWithValue("work_time_type_preference", account.Profile?.Settings?.WorkTimeType ?? "any");
+                profileCommand.Parameters.AddWithValue("max_distance_km", (object?)account.Profile?.Settings?.MaxDistanceKm ?? DBNull.Value);
+                profileCommand.Parameters.AddWithValue("preferred_category_code", account.Profile?.Settings?.PreferredCategoryCode ?? string.Empty);
+                profileCommand.Parameters.AddWithValue("preferred_role_code", account.Profile?.Settings?.PreferredRoleCode ?? string.Empty);
                 profileCommand.Parameters.AddWithValue("job_title", account.Profile?.Settings?.JobTitle ?? string.Empty);
                 profileCommand.Parameters.AddWithValue("experience", account.Profile?.Settings?.Experience ?? "Wszystkie");
                 profileCommand.Parameters.AddWithValue("education", account.Profile?.Settings?.Education ?? "Brak wymagań lub niewymagane");
                 profileCommand.ExecuteNonQuery();
             }
 
+            var settings = account.Profile?.Settings;
             ReplaceStringList(connection, transaction, userId, "public.user_profile_skills", "skill_name", account.Profile?.Settings?.Skills);
             ReplaceStringList(connection, transaction, userId, "public.user_profile_languages", "language_name", account.Profile?.Settings?.KnownLanguages);
             ReplaceStringList(connection, transaction, userId, "public.user_profile_contract_types", "contract_type", account.Profile?.Settings?.PreferredContractTypes);
+            ReplaceUserSkills(connection, transaction, userId, settings);
+            ReplaceUserLanguages(connection, transaction, userId, settings);
+            ReplaceStringList(connection, transaction, userId, "public.user_certifications", "certification_code", (settings?.Certifications ?? new List<string>()).Concat(settings?.DrivingLicenses ?? new List<string>()));
+            ReplaceStringList(connection, transaction, userId, "public.user_excluded_flags", "flag_code", settings?.ExcludedFlags);
             ReplaceFavoriteOffers(connection, transaction, userId, account.FavoriteOffers);
             ReplaceSearchHistory(connection, transaction, userId, account.Profile?.SearchHistory);
 
@@ -216,6 +273,7 @@ namespace MauiApp1.testowe
                     default_location varchar(150) not null default 'Rzeszów',
                     notifications_enabled boolean not null default true,
                     dark_mode boolean not null default false,
+                    theme varchar(20) not null default 'light',
                     expected_salary varchar(100) null,
                     job_title varchar(200) null,
                     experience varchar(100) not null default 'Wszystkie',
@@ -223,6 +281,18 @@ namespace MauiApp1.testowe
                     created_at timestamptz not null default now(),
                     updated_at timestamptz not null default now()
                 );
+
+                alter table public.user_profiles
+                    add column if not exists expected_salary_min numeric(12,2),
+                    add column if not exists theme varchar(20) not null default 'light',
+                    add column if not exists salary_currency varchar(10) not null default 'PLN',
+                    add column if not exists salary_tax_type varchar(30) not null default 'unknown',
+                    add column if not exists work_mode_preference varchar(50) not null default 'any',
+                    add column if not exists max_office_days_per_week numeric(3,1),
+                    add column if not exists work_time_type_preference varchar(50) not null default 'any',
+                    add column if not exists max_distance_km integer,
+                    add column if not exists preferred_category_code varchar(100) not null default '',
+                    add column if not exists preferred_role_code varchar(100) not null default '';
 
                 create table if not exists public.user_profile_skills (
                     user_id bigint not null references public.app_users(id) on delete cascade,
@@ -240,6 +310,37 @@ namespace MauiApp1.testowe
                     user_id bigint not null references public.app_users(id) on delete cascade,
                     contract_type varchar(100) not null,
                     primary key (user_id, contract_type)
+                );
+
+                create table if not exists public.user_skills (
+                    user_id bigint not null references public.app_users(id) on delete cascade,
+                    skill_code varchar(150) not null,
+                    skill_kind varchar(60),
+                    proficiency_level varchar(40),
+                    created_at timestamptz not null default now(),
+                    primary key (user_id, skill_code)
+                );
+
+                create table if not exists public.user_languages (
+                    user_id bigint not null references public.app_users(id) on delete cascade,
+                    language_code varchar(20) not null,
+                    level_min varchar(20) not null default 'unknown',
+                    created_at timestamptz not null default now(),
+                    primary key (user_id, language_code)
+                );
+
+                create table if not exists public.user_certifications (
+                    user_id bigint not null references public.app_users(id) on delete cascade,
+                    certification_code varchar(150) not null,
+                    created_at timestamptz not null default now(),
+                    primary key (user_id, certification_code)
+                );
+
+                create table if not exists public.user_excluded_flags (
+                    user_id bigint not null references public.app_users(id) on delete cascade,
+                    flag_code varchar(150) not null,
+                    created_at timestamptz not null default now(),
+                    primary key (user_id, flag_code)
                 );
 
                 create table if not exists public.user_favorite_offer_snapshots (
@@ -310,6 +411,37 @@ namespace MauiApp1.testowe
             while (reader.Read())
             {
                 values.Add(reader.GetString(0));
+            }
+
+            return values;
+        }
+
+        private static List<string> MergeDistinct(IEnumerable<string>? first, IEnumerable<string>? second)
+        {
+            return (first ?? Enumerable.Empty<string>())
+                .Concat(second ?? Enumerable.Empty<string>())
+                .Where(value => !string.IsNullOrWhiteSpace(value))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+        }
+
+        private static Dictionary<string, string> LoadLanguageLevels(NpgsqlConnection connection, string login)
+        {
+            const string sql = """
+                select language_code, coalesce(level_min, 'unknown') as level_min
+                from public.user_languages ul
+                join public.app_users u on u.id = ul.user_id
+                where lower(u.login) = lower(@login)
+                order by language_code;
+                """;
+
+            var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            using var command = new NpgsqlCommand(sql, connection);
+            command.Parameters.AddWithValue("login", login);
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                values[reader.GetString(0)] = reader.GetString(1);
             }
 
             return values;
@@ -402,6 +534,76 @@ namespace MauiApp1.testowe
                     transaction);
                 insertCommand.Parameters.AddWithValue("user_id", userId);
                 insertCommand.Parameters.AddWithValue("value", value);
+                insertCommand.ExecuteNonQuery();
+            }
+        }
+
+        private static void ReplaceUserSkills(NpgsqlConnection connection, NpgsqlTransaction transaction, long userId, UserSettings? settings)
+        {
+            using (var deleteCommand = new NpgsqlCommand("delete from public.user_skills where user_id = @user_id", connection, transaction))
+            {
+                deleteCommand.Parameters.AddWithValue("user_id", userId);
+                deleteCommand.ExecuteNonQuery();
+            }
+
+            var values = new List<(string Code, string Kind)>();
+            values.AddRange((settings?.Skills ?? new List<string>()).Select(code => (code, "skill")));
+            values.AddRange((settings?.PersonalTraits ?? new List<string>()).Select(code => (code, "trait")));
+            values.AddRange((settings?.WorkActivities ?? new List<string>()).Select(code => (code, "work_activity")));
+            values.AddRange((settings?.DrivingLicenses ?? new List<string>()).Select(code => (code, "certification")));
+
+            foreach (var value in values
+                         .Where(value => !string.IsNullOrWhiteSpace(value.Code))
+                         .GroupBy(value => value.Code, StringComparer.OrdinalIgnoreCase)
+                         .Select(group => group.First()))
+            {
+                using var insertCommand = new NpgsqlCommand(
+                    """
+                    insert into public.user_skills (user_id, skill_code, skill_kind, proficiency_level)
+                    values (@user_id, @code, @kind, 'known')
+                    on conflict (user_id, skill_code)
+                    do update set skill_kind = excluded.skill_kind, proficiency_level = excluded.proficiency_level
+                    """,
+                    connection,
+                    transaction);
+                insertCommand.Parameters.AddWithValue("user_id", userId);
+                insertCommand.Parameters.AddWithValue("code", value.Code);
+                insertCommand.Parameters.AddWithValue("kind", value.Kind);
+                insertCommand.ExecuteNonQuery();
+            }
+        }
+
+        private static void ReplaceUserLanguages(NpgsqlConnection connection, NpgsqlTransaction transaction, long userId, UserSettings? settings)
+        {
+            using (var deleteCommand = new NpgsqlCommand("delete from public.user_languages where user_id = @user_id", connection, transaction))
+            {
+                deleteCommand.Parameters.AddWithValue("user_id", userId);
+                deleteCommand.ExecuteNonQuery();
+            }
+
+            var languages = (settings?.KnownLanguages ?? new List<string>())
+                .Where(language => !string.IsNullOrWhiteSpace(language))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            foreach (var language in languages)
+            {
+                var level = settings?.KnownLanguageLevels.TryGetValue(language, out var savedLevel) == true
+                    ? savedLevel
+                    : "unknown";
+
+                using var insertCommand = new NpgsqlCommand(
+                    """
+                    insert into public.user_languages (user_id, language_code, level_min)
+                    values (@user_id, @language_code, @level_min)
+                    on conflict (user_id, language_code)
+                    do update set level_min = excluded.level_min
+                    """,
+                    connection,
+                    transaction);
+                insertCommand.Parameters.AddWithValue("user_id", userId);
+                insertCommand.Parameters.AddWithValue("language_code", language);
+                insertCommand.Parameters.AddWithValue("level_min", string.IsNullOrWhiteSpace(level) ? "unknown" : level);
                 insertCommand.ExecuteNonQuery();
             }
         }

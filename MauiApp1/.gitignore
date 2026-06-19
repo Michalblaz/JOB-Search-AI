@@ -10,6 +10,7 @@
 appsettings.json
 appsettings.Development.json
 .env
+**/App_Data/DataProtectionKeys/
 *.userosscache
 *.sln.docstates
 

@@ -1,0 +1,25 @@
+@using MauiApp1.testowe
+
+<div class="profile-criterion-group">
+    <h4>@Title</h4>
+    <div class="profile-pill-group">
+        @foreach (var option in Options)
+        {
+            <label class="profile-pill profile-pill-data">
+                <input type="checkbox"
+                       checked="@SelectedCodes.Contains(option.Code, StringComparer.OrdinalIgnoreCase)"
+                       @onchange="@(e => OnToggle.InvokeAsync(new ProfileCriterionToggle(SelectedCodes, option.Code, e.Value is bool value && value)))" />
+                <span>@option.DisplayName</span>
+                <small>@option.ActiveOfferCount</small>
+            </label>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public List<JobCriterionOption> Options { get; set; } = new();
+    [Parameter] public List<string> SelectedCodes { get; set; } = new();
+    [Parameter] public EventCallback<ProfileCriterionToggle> OnToggle { get; set; }
+}
+
